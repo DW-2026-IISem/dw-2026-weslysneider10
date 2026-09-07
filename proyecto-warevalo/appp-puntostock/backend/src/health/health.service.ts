@@ -1,0 +1,27 @@
+import { Injectable } from '@nestjs/common';
+import { InjectConnection } from '@nestjs/sequelize';
+import { Sequelize } from 'sequelize-typescript';
+
+@Injectable()
+export class HealthService {
+  constructor(
+    @InjectConnection()
+    private readonly sequelize: Sequelize,
+  ) {}
+
+  async check() {
+    let database = 'down';
+    try {
+      await this.sequelize.authenticate();
+      database = 'up';
+    } catch {
+      database = 'down';
+    }
+
+    return {
+      status: 'ok',
+      timestamp: new Date().toISOString(),
+      database,
+    };
+  }
+}

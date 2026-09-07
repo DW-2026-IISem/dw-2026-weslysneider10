@@ -254,16 +254,17 @@ nest g module infrastructure/database/sequelize
 nest g controller health
 nest g service health
 ```
+![alt text](imagenes/image4.png)
 
-En `src/app.module.ts` importa `ConfigModule.forRoot({ isGlobal: true })` y `SequelizeModule.forRootAsync(...)`. Configura `dialect` con el valor validado de `DB_DIALECT`, además de `host`, `port`, `username` (proveniente de `DB_USERNAME`), `password`, `database`, `models` y `autoLoadModels: true`. No permitas que un valor arbitrario llegue al constructor: valida la lista de dialectos al arrancar. En desarrollo puede usarse `synchronize: true` solo si la decisión está registrada; para datos importantes usa migraciones con Sequelize CLI.
+En `src/app.module.ts` importa `ConfigModule.forRoot({ isGlobal: true })` y `SequelizeModule.forRootAsync(...)`. Configura `dialect` con el valor validado de `DB_DIALECT`, además de `host`, `port`, `username` (proveniente de `DB_USERNAME`), `password`, `database`, `models` y `autoLoadModels: true`. No permitas que un valor arbitrario llegue al constructor: valida que el dialecto sea `postgres` al arrancar, conforme a la decisión de motor tomada para PuntoStock. En desarrollo puede usarse `synchronize: true` solo si la decisión está registrada; para datos importantes usa migraciones con Sequelize CLI.
 
 Ejemplo de configuración centralizada:
 
 ```ts
-const allowed = ['mysql', 'postgres', 'mssql', 'oracle'] as const;
+const allowed = ['postgres'] as const;
 const dialect = config.get<string>('DB_DIALECT');
 if (!dialect || !allowed.includes(dialect as typeof allowed[number])) {
-  throw new Error('DB_DIALECT debe ser mysql, postgres, mssql u oracle');
+  throw new Error('DB_DIALECT debe ser postgres (motor definido para PuntoStock)');
 }
 return {
   dialect,
@@ -287,7 +288,7 @@ app.use(helmet());
 app.useGlobalPipes(new ValidationPipe({ whitelist: true, forbidNonWhitelisted: true, transform: true }));
 ```
 
-Agrega Swagger en `/api/docs` y un endpoint `GET /api/health` que responda estado de aplicación y base de datos sin exponer secretos.
+Agrega Swagger en `/api/docs` y un endpoint `GET /api/health` que responda estado de aplicación y base de datos de PuntoStock sin exponer secretos.
 
 Verifica:
 
@@ -302,38 +303,42 @@ Registra estas entidades y reglas en `docs/sdd.md` antes de crear tablas:
 
 | Grupo | Entidades | Reglas esenciales |
 |---|---|---|
-| Negocio | Client, ProductType, Product | Cliente válido; tipo activo; precio > 0; stock y stock mínimo ≥ 0; stock nunca negativo. |
-| Venta | Sale, SaleItem | Al menos un ítem; total calculado por servidor; cantidad y precio > 0; descuento de stock atómico. |
+| Negocio | Sucursal, Producto, Proveedor | Sucursal activa; proveedor con NIT único; producto con SKU único y precio > 0. |
+| Compras | Compra, CompraDetalle | Al menos un ítem; total calculado por servidor; cantidad y valor_unitario > 0; recepción parcial permitida sin cerrar la compra. |
+| Inventario | Inventario | Relaciona Sucursal N:M Producto; cantidad ≥ 0 y nunca negativa; alerta cuando cantidad ≤ stock_minimo. |
+| Venta | Cliente, Venta, VentaDetalle | Cliente válido y activo; al menos un ítem; total calculado por servidor; cantidad y valor_unitario > 0; no se vende sin disponibilidad en inventario; descuento de stock atómico. |
+| Pagos | Pago | Referencia polimórfica válida (`referencia_tipo`/`referencia_id` apunta a Venta o Devolucion); monto > 0; soporta pagos mixtos por una misma venta. |
+| Devoluciones | Devolucion | Referencia a una Venta existente; solo referencia líneas realmente vendidas; motivo obligatorio. |
 | Identidad | User, RefreshToken | Email/usuario únicos; contraseña con hash; token expirado o revocado no sirve; nunca devolver hash. |
-| Autorización | Role, RoleUser, Resource, ResourceRole | Asociaciones únicas y activas; solo una cadena activa concede permiso. |
+| Autorización | Role, RoleUser, Resource, ResourceRole | Roles iniciales ADMIN, COMPRAS, CAJA, BODEGA, AUDITOR; asociaciones únicas y activas; solo una cadena activa concede permiso. |
 
-Relaciones mínimas: `ProductType 1:N Product`, `Client 1:N Sale`, `Sale 1:N SaleItem`, `Product 1:N SaleItem`, `User N:M Role por RoleUser`, `Role N:M Resource por ResourceRole`, `User 1:N RefreshToken`.
+Relaciones mínimas: `Proveedor 1:N Compra`, `Compra 1:N CompraDetalle`, `Producto 1:N CompraDetalle`, `Sucursal N:M Producto por Inventario`, `Cliente 1:N Venta`, `Sucursal 1:N Venta`, `Venta 1:N VentaDetalle`, `Producto 1:N VentaDetalle`, `Venta 1:N Pago`, `Venta 1:N Devolucion`, `User N:M Role por RoleUser`, `Role N:M Resource por ResourceRole`, `User 1:N RefreshToken`.
 
 ## 10. Construir por incrementos, no por CRUD repetido
 
-### Incremento A — Client
+### Incremento A — Cliente
 
 ```bash
 nest g module features/business/clients
 nest g controller features/business/clients/presentation/http/controllers/clients
 nest g service features/business/clients/application/use-cases/clients
 ```
+![alt text](imagenes/image5.png)
+Implementa entidad de dominio, puerto de repositorio, caso de uso de crear/consultar, adaptador Sequelize, DTO y controlador. Valida nombre obligatorio, tipo/número de documento único, email/teléfono con formato. Prueba éxito y datos inválidos.
 
-Implementa entidad de dominio, puerto de repositorio, caso de uso de crear/consultar, adaptador Sequelize, DTO y controlador. Valida nombre obligatorio, email/teléfono con formato y unicidad cuando aplique. Prueba éxito y datos inválidos.
+### Incremento B — Sucursal y Producto
 
-### Incremento B — ProductType y Product
+Implementa primero Sucursal y luego Producto. El caso de uso de Producto debe comprobar que la Sucursal existe y está activa antes de habilitar su registro en `Inventario`. No permitas crear inventario para una sucursal inexistente o un producto inactivo. Prueba precio cero, cantidad negativa, sucursal inexistente y sucursal inactiva.
 
-Implementa primero ProductType y luego Product. El caso de uso de Product debe comprobar que el tipo existe y está activo. No permitas crear un producto huérfano. Prueba precio cero, stock negativo, tipo inexistente y tipo inactivo.
+### Incremento C — VentaDetalle y Venta
 
-### Incremento C — SaleItem y Sale
+Venta es un agregado: recibe cliente, sucursal e ítems, valida referencias, calcula importes y coordina el descuento de stock en `Inventario`. El precio utilizado debe quedar congelado en VentaDetalle; no lo tomes de una operación posterior del frontend.
 
-Sale es un agregado: recibe cliente e ítems, valida referencias, calcula importes y coordina el descuento de stock. El precio utilizado debe quedar congelado en SaleItem; no lo tomes de una operación posterior del frontend.
-
-Implementa una transacción en el adaptador de infraestructura. Si falla la validación de un ítem o el stock no alcanza, no debe persistirse ni la venta, ni sus detalles, ni el descuento parcial.
+Implementa una transacción en el adaptador de infraestructura. Si falla la validación de un ítem o el stock de la sucursal no alcanza, no debe persistirse ni la venta, ni sus detalles, ni el descuento parcial de inventario.
 
 ### Incremento D — identidad y RBAC
 
-Implementa en este orden: User, Role, RoleUser, Resource, ResourceRole y RefreshToken. Después crea login, refresh, logout y `me`. La autenticación identifica; RBAC decide si el actor puede ejecutar el caso de uso.
+Implementa en este orden: User, Role, RoleUser, Resource, ResourceRole y RefreshToken. Después crea login, refresh, logout y `me`. La autenticación identifica; RBAC decide si el actor puede ejecutar el caso de uso (ej. solo `CAJA` puede registrar `POST /ventas`, solo `COMPRAS` puede registrar `POST /compras`).
 
 El guard debe comprobar: JWT válido, usuario activo, rol activo, asociación RoleUser activa, recurso activo y asociación ResourceRole activa. Demuestra `401`, `403` y acceso permitido.
 
