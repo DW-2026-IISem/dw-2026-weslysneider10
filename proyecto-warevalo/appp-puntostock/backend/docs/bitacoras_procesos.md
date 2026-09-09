@@ -94,3 +94,14 @@
 ## 5.1 — Constante SEQUELIZE_TOKEN
 
 ![](images/clipboard-2579148028.png)
+
+## 5.2 — Tipos auxiliares de database config
+
+```         
+```
+
+![](images/clipboard-3363341827.png)
+
+## 5.3 — database.config.ts
+
+![](images/clipboard-2104557887.png)
