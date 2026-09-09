@@ -112,3 +112,11 @@
 ```
 
 ![](images/clipboard-4142884365.png)
+
+## 5.5 — database.providers.ts
+
+![](images/clipboard-3272649390.png)
+
+## 5.6 — Opciones Sequelize por dialecto
+
+![](images/clipboard-2886276164.png)
