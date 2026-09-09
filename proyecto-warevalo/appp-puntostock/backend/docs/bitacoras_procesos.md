@@ -105,3 +105,10 @@
 ## 5.3 — database.config.ts
 
 ![](images/clipboard-2104557887.png)
+
+## 5.4 — database.module.ts / providers
+
+```         
+```
+
+![](images/clipboard-4142884365.png)
