@@ -39,3 +39,9 @@
 ```
 
 ![](images/clipboard-4050448449.png)
+
+## 2.4 — Actualizar scripts npm en package.json
+
+![](images/clipboard-2945939292.png)
+
+## 2.5 — Verificar arranque base
