@@ -57,4 +57,18 @@
 ## 3.2 — Recordatorio de responsabilidades
 
 ```         
+| Carpeta | Responsabilidad |
+|---------|------------------|
+| `config/` | Cómo se configura la app (env, jwt, swagger) |
+| `common/` | Piezas transversales reutilizables |
+| `infrastructure/` | Detalles técnicos (Sequelize, bcrypt, JWT) |
+| `features/*` | Dominios (business/auth) con CA interna |
 ```
+
+# FASE 4 — \`03_BASE_ENTORNO_ENV\`
+
+## Configuración del entorno tipado (multi-base)
+
+## 4.1 — Crear \`.env.example\` y actualizar \`.env\` completo
+
+![![](images/clipboard-806226465.png)](images/clipboard-2104553557.png)
