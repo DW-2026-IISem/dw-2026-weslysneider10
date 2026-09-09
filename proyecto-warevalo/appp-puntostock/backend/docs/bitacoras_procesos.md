@@ -47,3 +47,9 @@
 ## 2.5 — Verificar arranque base
 
 ![](images/clipboard-2131738441.png)
+
+# FASE 3 — \`02_BASE_ESTRUCTURA_CA\`
+
+## 3.1 — Crear árbol base de carpetas
+
+![](images/clipboard-3690804181.png)
