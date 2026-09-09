@@ -132,3 +132,7 @@
 ## 5.9 — Módulo global Sequelize
 
 ![](images/clipboard-1668120965.png)
+
+## 5.10 — Verificar conexión a BD
+
+![](images/clipboard-293159620.png)
