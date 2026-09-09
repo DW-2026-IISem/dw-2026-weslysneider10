@@ -11,3 +11,8 @@
 ![](images/clipboard-1716755966.png)
 
 # 1.4 — Crear \`.env\` mínimo (puerto)
+
+```         
+```
+
+![](images/clipboard-902227579.png)
