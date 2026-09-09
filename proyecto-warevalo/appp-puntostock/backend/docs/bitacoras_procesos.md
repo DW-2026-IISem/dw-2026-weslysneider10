@@ -76,3 +76,7 @@
 ##  4.2 — Interface de entorno
 
 ![](images/clipboard-773604933.png)
+
+## Validación de entorno con class-validator
+
+![](images/clipboard-3085980191.png)
