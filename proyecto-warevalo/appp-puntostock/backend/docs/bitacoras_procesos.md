@@ -120,3 +120,7 @@
 ## 5.6 — Opciones Sequelize por dialecto
 
 ![](images/clipboard-2886276164.png)
+
+## 5.7 — Factory Sequelize (sin modelos aún)
+
+![](images/clipboard-2647965166.png)
