@@ -45,3 +45,5 @@
 ![](images/clipboard-2945939292.png)
 
 ## 2.5 — Verificar arranque base
+
+![](images/clipboard-2131738441.png)
