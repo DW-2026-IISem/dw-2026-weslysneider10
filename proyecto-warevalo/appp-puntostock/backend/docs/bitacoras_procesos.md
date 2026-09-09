@@ -72,3 +72,7 @@
 ## 4.1 — Crear \`.env.example\` y actualizar \`.env\` completo
 
 ![![](images/clipboard-806226465.png)](images/clipboard-2104553557.png)
+
+##  4.2 — Interface de entorno
+
+![](images/clipboard-773604933.png)
