@@ -177,6 +177,8 @@
 
 ##  **6.10 — common/enums/http-method.enum.ts** 
 
+![](images/clipboard-1102277654.png)
+
 ##  **6.11 — common/enums/sort-order.enum.ts** 
 
 ##  **6.12 — common/constants/app.constants.ts** 
