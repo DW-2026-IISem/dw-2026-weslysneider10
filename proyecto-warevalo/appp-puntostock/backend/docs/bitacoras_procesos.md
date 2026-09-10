@@ -197,6 +197,8 @@
 
 ##  **6.15 — common/exceptions/domain.exception.ts** 
 
+![](images/clipboard-689672916.png)
+
 ##  **6.16 — common/exceptions/entity-not-found.exception.ts** 
 
 ##  **6.17 — common/exceptions/validation.exception.ts** 
