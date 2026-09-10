@@ -265,6 +265,8 @@
 
 ##  **6.32 — common/types/nullable.type.ts** 
 
+![](images/clipboard-256535839.png)
+
 ##  **6.33 — common/types/optional.type.ts** 
 
 ##  **6.34 — common/utils/pagination.util.ts** 
