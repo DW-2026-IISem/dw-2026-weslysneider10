@@ -297,6 +297,8 @@
 
 ##  **6.40 — infrastructure/security/tokens/token.service.ts** 
 
+![](images/clipboard-1638592771.png)
+
 ##  **6.41 — infrastructure/security/security.module.ts** 
 
 ##  **6.42 — Actualizar main.ts (bootstrap completo)** 
