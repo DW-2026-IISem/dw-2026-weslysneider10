@@ -305,6 +305,8 @@
 
 ##  **6.42 — Actualizar main.ts (bootstrap completo)** 
 
+![](images/clipboard-2667202806.png)
+
 ##  **6.43 — Actualizar app.module.ts (base sin features ni guards)** 
 
 ##  **6.44 — Verificar bootstrap transversal**
