@@ -173,6 +173,8 @@
 
 ##  **6.9 — common/enums/status.enum.ts** 
 
+![](images/clipboard-3905599104.png)
+
 ##  **6.10 — common/enums/http-method.enum.ts** 
 
 ##  **6.11 — common/enums/sort-order.enum.ts** 
