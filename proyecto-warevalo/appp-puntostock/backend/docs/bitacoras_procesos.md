@@ -185,6 +185,8 @@
 
 ##  **6.12 — common/constants/app.constants.ts** 
 
+![](images/clipboard-2465149862.png)
+
 ##  **6.13 — common/constants/pagination.constants.ts** 
 
 ##  **6.14 — common/exceptions/application.exception.ts** 
