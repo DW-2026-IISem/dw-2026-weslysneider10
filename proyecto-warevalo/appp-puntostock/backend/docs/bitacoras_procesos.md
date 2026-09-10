@@ -233,6 +233,8 @@
 
 ##  **6.24 — common/pipes/parse-positive-int.pipe.ts** 
 
+![](images/clipboard-1383808069.png)
+
 ##  **6.25 — common/decorators/public.decorator.ts** 
 
 ##  **6.26 — common/decorators/roles.decorator.ts** 
