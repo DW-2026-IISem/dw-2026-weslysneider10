@@ -217,6 +217,8 @@
 
 ##  **6.20 — common/interceptors/response.interceptor.ts** 
 
+![](images/clipboard-2729810298.png)
+
 ##  **6.21 — common/interceptors/logging.interceptor.ts** 
 
 ##  **6.22 — common/interceptors/timeout.interceptor.ts** 
