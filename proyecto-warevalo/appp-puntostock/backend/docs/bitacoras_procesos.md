@@ -301,6 +301,8 @@
 
 ##  **6.41 — infrastructure/security/security.module.ts** 
 
+![](images/clipboard-2372015120.png)
+
 ##  **6.42 — Actualizar main.ts (bootstrap completo)** 
 
 ##  **6.43 — Actualizar app.module.ts (base sin features ni guards)** 
