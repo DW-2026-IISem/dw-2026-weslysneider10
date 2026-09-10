@@ -221,6 +221,8 @@
 
 ##  **6.21 — common/interceptors/logging.interceptor.ts** 
 
+![](images/clipboard-873165590.png)
+
 ##  **6.22 — common/interceptors/timeout.interceptor.ts** 
 
 ##  **6.23 — common/pipes/validation.pipe.ts** 
