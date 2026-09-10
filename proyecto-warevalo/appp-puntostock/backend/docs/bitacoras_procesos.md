@@ -241,6 +241,8 @@
 
 ##  **6.26 — common/decorators/roles.decorator.ts** 
 
+![](images/clipboard-1023481534.png)
+
 ##  **6.27 — common/decorators/current-user.decorator.ts** 
 
 ##  **6.28 — common/decorators/resource.decorator.ts** 
