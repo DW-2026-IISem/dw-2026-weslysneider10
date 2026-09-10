@@ -289,7 +289,11 @@
 
 ##  **6.38 — infrastructure/security/hashing/bcrypt-password-hasher.service.ts** 
 
+![](images/clipboard-221746197.png)
+
 ##  **6.39 — infrastructure/security/tokens/token.interface.ts** 
+
+![](images/clipboard-3745588493.png)
 
 ##  **6.40 — infrastructure/security/tokens/token.service.ts** 
 
