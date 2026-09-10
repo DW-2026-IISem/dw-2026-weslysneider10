@@ -209,7 +209,11 @@
 
 ##  **6.18 — common/filters/global-exception.filter.ts** 
 
+![](images/clipboard-2304758966.png)
+
 ##  **6.19 — common/filters/sequelize-exception.filter.ts** 
+
+![](images/clipboard-2837475472.png)
 
 ##  **6.20 — common/interceptors/response.interceptor.ts** 
 
