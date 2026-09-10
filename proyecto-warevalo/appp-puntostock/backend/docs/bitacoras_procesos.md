@@ -229,6 +229,8 @@
 
 ##  **6.23 — common/pipes/validation.pipe.ts** 
 
+![](images/clipboard-3490536766.png)
+
 ##  **6.24 — common/pipes/parse-positive-int.pipe.ts** 
 
 ##  **6.25 — common/decorators/public.decorator.ts** 
