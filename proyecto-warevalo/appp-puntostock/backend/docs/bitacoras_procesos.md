@@ -225,6 +225,8 @@
 
 ##  **6.22 — common/interceptors/timeout.interceptor.ts** 
 
+![](images/clipboard-3648499145.png)
+
 ##  **6.23 — common/pipes/validation.pipe.ts** 
 
 ##  **6.24 — common/pipes/parse-positive-int.pipe.ts** 
