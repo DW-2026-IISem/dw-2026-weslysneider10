@@ -269,6 +269,8 @@
 
 ##  **6.33 — common/types/optional.type.ts** 
 
+![](images/clipboard-950457430.png)
+
 ##  **6.34 — common/utils/pagination.util.ts** 
 
 ##  **6.35 — common/utils/date.util.ts** 
