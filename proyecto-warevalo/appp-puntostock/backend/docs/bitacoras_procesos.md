@@ -277,6 +277,8 @@
 
 ##  **6.35 — common/utils/date.util.ts** 
 
+![](images/clipboard-4040226803.png)
+
 ##  **6.36 — common/utils/string.util.ts** 
 
 ##  **6.37 — infrastructure/security/hashing/password-hasher.interface.ts** 
