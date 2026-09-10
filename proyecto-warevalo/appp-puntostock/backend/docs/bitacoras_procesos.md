@@ -2,7 +2,7 @@
 
 # FASE 1 — \`00_BASE_INIT_NESTJS\`
 
-#  
+# 
 
 ## 1.1 — Crear carpetas padre y permisos
 
@@ -23,7 +23,7 @@
 
 ![](images/clipboard-902227579.png)
 
-# FASE 2 — \`01_BASE_DEPS_Y_PUERTO\` 
+# FASE 2 — \`01_BASE_DEPS_Y_PUERTO\`
 
 ## 2.1 — Dependencias de producción
 
@@ -73,7 +73,7 @@
 
 ![![](images/clipboard-806226465.png)](images/clipboard-2104553557.png)
 
-##  4.2 — Interface de entorno
+## 4.2 — Interface de entorno
 
 ![](images/clipboard-773604933.png)
 
@@ -136,3 +136,13 @@
 ## 5.10 — Verificar conexión a BD
 
 ![](images/clipboard-293159620.png)
+
+# FASE 6 — `05_BASE_APP_COMMON_SECURITY`
+
+## 6.1 — config/app/app.constants.ts
+
+![](images/clipboard-581120151.png)
+
+## 6.2 — config/app/app.config.ts
+
+![](images/clipboard-1253619954.png)
