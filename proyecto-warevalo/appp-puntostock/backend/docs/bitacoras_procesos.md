@@ -193,6 +193,8 @@
 
 ##  **6.14 — common/exceptions/application.exception.ts** 
 
+![](images/clipboard-3138741389.png)
+
 ##  **6.15 — common/exceptions/domain.exception.ts** 
 
 ##  **6.16 — common/exceptions/entity-not-found.exception.ts** 
