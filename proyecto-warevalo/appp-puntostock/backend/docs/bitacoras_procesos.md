@@ -281,6 +281,8 @@
 
 ##  **6.36 — common/utils/string.util.ts** 
 
+![](images/clipboard-1080195594.png)
+
 ##  **6.37 — infrastructure/security/hashing/password-hasher.interface.ts** 
 
 ##  **6.38 — infrastructure/security/hashing/bcrypt-password-hasher.service.ts** 
