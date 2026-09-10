@@ -257,9 +257,11 @@
 
 ##  **6.30 — common/interfaces/pagination.interface.ts** 
 
+![](images/clipboard-4164455729.png)
+
 ##  **6.31 — common/interfaces/api-response.interface.ts**
 
-##  
+##  ![](images/clipboard-246902102.png)
 
 ##  **6.32 — common/types/nullable.type.ts** 
 
