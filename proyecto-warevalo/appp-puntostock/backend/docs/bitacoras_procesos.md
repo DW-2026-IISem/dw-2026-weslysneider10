@@ -245,6 +245,8 @@
 
 ##  **6.27 — common/decorators/current-user.decorator.ts** 
 
+![](images/clipboard-2545757657.png)
+
 ##  **6.28 — common/decorators/resource.decorator.ts** 
 
 ##  **6.29 — common/interfaces/authenticated-user.interface.ts**
