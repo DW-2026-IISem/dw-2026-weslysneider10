@@ -285,6 +285,8 @@
 
 ##  **6.37 — infrastructure/security/hashing/password-hasher.interface.ts** 
 
+![](images/clipboard-3839554789.png)
+
 ##  **6.38 — infrastructure/security/hashing/bcrypt-password-hasher.service.ts** 
 
 ##  **6.39 — infrastructure/security/tokens/token.interface.ts** 
