@@ -146,3 +146,97 @@
 ## 6.2 — config/app/app.config.ts
 
 ![](images/clipboard-1253619954.png)
+
+#### **6.3 — config/logger/logger.config.ts**
+
+![](images/clipboard-2116405960.png)
+
+## **6.4 — config/logger/logger.module.ts**
+
+![](images/clipboard-1343252277.png)
+
+##  **6.5 — config/jwt/jwt.constants.ts** 
+
+##  **6.6 — config/jwt/jwt.config.ts** 
+
+##  **6.7 — config/swagger/swagger.constants.ts** 
+
+##  **6.8 — config/swagger/swagger.config.ts** 
+
+##  **6.9 — common/enums/status.enum.ts** 
+
+##  **6.10 — common/enums/http-method.enum.ts** 
+
+##  **6.11 — common/enums/sort-order.enum.ts** 
+
+##  **6.12 — common/constants/app.constants.ts** 
+
+##  **6.13 — common/constants/pagination.constants.ts** 
+
+##  **6.14 — common/exceptions/application.exception.ts** 
+
+##  **6.15 — common/exceptions/domain.exception.ts** 
+
+##  **6.16 — common/exceptions/entity-not-found.exception.ts** 
+
+##  **6.17 — common/exceptions/validation.exception.ts** 
+
+##  **6.18 — common/filters/global-exception.filter.ts** 
+
+##  **6.19 — common/filters/sequelize-exception.filter.ts** 
+
+##  **6.20 — common/interceptors/response.interceptor.ts** 
+
+##  **6.21 — common/interceptors/logging.interceptor.ts** 
+
+##  **6.22 — common/interceptors/timeout.interceptor.ts** 
+
+##  **6.23 — common/pipes/validation.pipe.ts** 
+
+##  **6.24 — common/pipes/parse-positive-int.pipe.ts** 
+
+##  **6.25 — common/decorators/public.decorator.ts** 
+
+##  **6.26 — common/decorators/roles.decorator.ts** 
+
+##  **6.27 — common/decorators/current-user.decorator.ts** 
+
+##  **6.28 — common/decorators/resource.decorator.ts** 
+
+##  **6.29 — common/interfaces/authenticated-user.interface.ts**
+
+##  
+
+##  **6.30 — common/interfaces/pagination.interface.ts** 
+
+##  **6.31 — common/interfaces/api-response.interface.ts**
+
+##  
+
+##  **6.32 — common/types/nullable.type.ts** 
+
+##  **6.33 — common/types/optional.type.ts** 
+
+##  **6.34 — common/utils/pagination.util.ts** 
+
+##  **6.35 — common/utils/date.util.ts** 
+
+##  **6.36 — common/utils/string.util.ts** 
+
+##  **6.37 — infrastructure/security/hashing/password-hasher.interface.ts** 
+
+##  **6.38 — infrastructure/security/hashing/bcrypt-password-hasher.service.ts** 
+
+##  **6.39 — infrastructure/security/tokens/token.interface.ts** 
+
+##  **6.40 — infrastructure/security/tokens/token.service.ts** 
+
+##  **6.41 — infrastructure/security/security.module.ts** 
+
+##  **6.42 — Actualizar main.ts (bootstrap completo)** 
+
+##  **6.43 — Actualizar app.module.ts (base sin features ni guards)** 
+
+##  **6.44 — Verificar bootstrap transversal**
+
+## 
