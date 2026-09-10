@@ -181,6 +181,8 @@
 
 ##  **6.11 — common/enums/sort-order.enum.ts** 
 
+![](images/clipboard-3224750637.png)
+
 ##  **6.12 — common/constants/app.constants.ts** 
 
 ##  **6.13 — common/constants/pagination.constants.ts** 
