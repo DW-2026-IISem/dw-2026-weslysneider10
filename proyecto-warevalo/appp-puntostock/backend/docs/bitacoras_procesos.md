@@ -169,6 +169,8 @@
 
 ##  **6.8 — config/swagger/swagger.config.ts** 
 
+![](images/clipboard-1595061549.png)
+
 ##  **6.9 — common/enums/status.enum.ts** 
 
 ##  **6.10 — common/enums/http-method.enum.ts** 
