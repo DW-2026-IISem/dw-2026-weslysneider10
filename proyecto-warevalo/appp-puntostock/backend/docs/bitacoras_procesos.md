@@ -201,6 +201,8 @@
 
 ##  **6.16 — common/exceptions/entity-not-found.exception.ts** 
 
+![](images/clipboard-1338445366.png)
+
 ##  **6.17 — common/exceptions/validation.exception.ts** 
 
 ##  **6.18 — common/filters/global-exception.filter.ts** 
