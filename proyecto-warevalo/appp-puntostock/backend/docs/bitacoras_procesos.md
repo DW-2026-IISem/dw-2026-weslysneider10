@@ -371,6 +371,8 @@
 
 ## **7.13** — Caso de uso: actualizar cliente 
 
+![](images/clipboard-2038644474.png)
+
 ##  **7.14** — Caso de uso: eliminar cliente 
 
 ##  **7.15** — Caso de uso: obtener cliente 
