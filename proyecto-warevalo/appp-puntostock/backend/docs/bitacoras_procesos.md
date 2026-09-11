@@ -407,6 +407,8 @@
 
 ##  **7.22** — `ClientsModule` 
 
+![](images/clipboard-40263503.png)
+
 ##  **7.23** — Registro de dependencias 
 
 ##  **7.24** — Integración del módulo de clientes 
