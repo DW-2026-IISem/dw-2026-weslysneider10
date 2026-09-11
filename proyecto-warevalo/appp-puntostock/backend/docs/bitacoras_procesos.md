@@ -363,7 +363,11 @@
 
 ##  **7.11** — Mapper de `Client`
 
+![](images/clipboard-2338260458.png)
+
 ##   **7.12** — Caso de uso: crear cliente 
+
+![](images/clipboard-3872531212.png)
 
 ## **7.13** — Caso de uso: actualizar cliente 
 
