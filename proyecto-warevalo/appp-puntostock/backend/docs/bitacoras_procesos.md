@@ -399,6 +399,8 @@
 
 ##  **7.20** — Configuración de rutas/endpoints 
 
+![](images/clipboard-4224422010.png)
+
 ##  **7.21** — Índice del módulo de clientes 
 
 ##  **7.22** — `ClientsModule` 
