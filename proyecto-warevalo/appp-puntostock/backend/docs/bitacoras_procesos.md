@@ -395,6 +395,8 @@
 
 ##  **7.19** — Controller de `Client` 
 
+![](images/clipboard-3082914929.png)
+
 ##  **7.20** — Configuración de rutas/endpoints 
 
 ##  **7.21** — Índice del módulo de clientes 
