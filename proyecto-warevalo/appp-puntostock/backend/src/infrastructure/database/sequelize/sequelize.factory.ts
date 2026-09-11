@@ -1,13 +1,12 @@
 import { Sequelize } from 'sequelize-typescript';
-import { DatabaseDialect } from '../../../config/environment/env.interface.js';
-import { getSequelizeOptions } from './sequelize.options.js';
+import { DatabaseDialect } from '../../../config/environment/env.interface';
+import { getSequelizeOptions } from './sequelize.options';
 
-import mysql2 from 'mysql2';
-import pg from 'pg';
-import tedious from 'tedious';
-import oracledb from 'oracledb';
+import { ClientModel } from '../../../features/business/clients/infrastructure/persistence/models/client.model';
 
-export const ALL_MODELS = [];
+export const ALL_MODELS = [
+  ClientModel,
+];
 
 export async function createSequelizeInstance(
   dialect: DatabaseDialect,
@@ -18,19 +17,19 @@ export async function createSequelizeInstance(
 
   switch (dialect) {
     case DatabaseDialect.MySQL:
-      dialectModule = mysql2;
+      dialectModule = require('mysql2');
       break;
 
     case DatabaseDialect.Postgres:
-      dialectModule = pg;
+      dialectModule = require('pg');
       break;
 
     case DatabaseDialect.MSSQL:
-      dialectModule = tedious;
+      dialectModule = require('tedious');
       break;
 
     case DatabaseDialect.Oracle:
-      dialectModule = oracledb;
+      dialectModule = require('oracledb');
       break;
 
     default:
@@ -46,7 +45,9 @@ export async function createSequelizeInstance(
   try {
     await sequelize.authenticate();
 
-    console.log(`✅ Conexión exitosa a ${dialect.toUpperCase()}`);
+    console.log(
+      `✅ Conexión exitosa a ${dialect.toUpperCase()}`,
+    );
   } catch (error: any) {
     console.error(
       `❌ Error conectando a ${dialect.toUpperCase()}:`,

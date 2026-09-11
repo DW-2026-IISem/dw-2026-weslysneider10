@@ -419,6 +419,8 @@
 
 ##  **7.25** — Registrar `ClientModel` en Sequelize 
 
+![](images/clipboard-257490081.png)
+
 ## **7.26** — Actualizar `business.module.ts` 
 
 ##  **7.27** — Actualizar `database-seeder.service.ts` 
