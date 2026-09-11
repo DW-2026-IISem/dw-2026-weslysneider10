@@ -423,6 +423,8 @@
 
 ## **7.26** — Actualizar `business.module.ts` 
 
+![](images/clipboard-933045601.png)
+
 ##  **7.27** — Actualizar `database-seeder.service.ts` 
 
 ##  **7.28** — Actualizar `app.module.ts` 
