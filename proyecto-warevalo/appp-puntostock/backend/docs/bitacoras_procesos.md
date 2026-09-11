@@ -403,6 +403,8 @@
 
 ##  **7.21** — Índice del módulo de clientes 
 
+![](images/clipboard-3108740569.png)
+
 ##  **7.22** — `ClientsModule` 
 
 ##  **7.23** — Registro de dependencias 
