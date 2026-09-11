@@ -351,6 +351,8 @@
 
 ##  **7.8** — Seeder de `clients` 
 
+![](images/clipboard-3523350029.png)
+
 ##  **7.9** — DTO de creación de cliente 
 
 ##  **7.10** — DTO de actualización de cliente 
