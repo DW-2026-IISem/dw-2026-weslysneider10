@@ -1,43 +1,43 @@
 import { NestFactory } from '@nestjs/core';
 
-import { AppModule } from './app.module';
+import { AppModule } from './app.module.js';
 
 import {
   getLoggerConfig,
-} from './config/logger/logger.config';
+} from './config/logger/logger.config.js';
 
 import {
   GlobalExceptionFilter,
-} from './common/filters/global-exception.filter';
+} from './common/filters/global-exception.filter.js';
 
 import {
   SequelizeExceptionFilter,
-} from './common/filters/sequelize-exception.filter';
+} from './common/filters/sequelize-exception.filter.js';
 
 import {
   ResponseInterceptor,
-} from './common/interceptors/response.interceptor';
+} from './common/interceptors/response.interceptor.js';
 
 import {
   LoggingInterceptor,
-} from './common/interceptors/logging.interceptor';
+} from './common/interceptors/logging.interceptor.js';
 
 import {
   TimeoutInterceptor,
-} from './common/interceptors/timeout.interceptor';
+} from './common/interceptors/timeout.interceptor.js';
 
 import {
   CustomValidationPipe,
-} from './common/pipes/validation.pipe';
+} from './common/pipes/validation.pipe.js';
 
 import {
   setupSwagger,
-} from './config/swagger/swagger.config';
+} from './config/swagger/swagger.config.js';
 
 import {
   GLOBAL_PREFIX,
   APP_PORT,
-} from './common/constants/app.constants';
+} from './common/constants/app.constants.js';
 
 async function bootstrap() {
   const app = await NestFactory.create(

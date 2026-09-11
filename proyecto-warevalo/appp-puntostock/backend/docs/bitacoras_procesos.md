@@ -313,4 +313,6 @@
 
 ##  **6.44 — Verificar bootstrap transversal**
 
-## 
+## ![](images/clipboard-2196894267.png)
+
+![](images/clipboard-616487120.png)

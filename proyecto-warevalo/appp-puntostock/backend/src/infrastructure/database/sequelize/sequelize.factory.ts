@@ -2,9 +2,12 @@ import { Sequelize } from 'sequelize-typescript';
 import { DatabaseDialect } from '../../../config/environment/env.interface.js';
 import { getSequelizeOptions } from './sequelize.options.js';
 
-export const ALL_MODELS = [
-  // (aún sin modelos — se agregan por feature)
-];
+import mysql2 from 'mysql2';
+import pg from 'pg';
+import tedious from 'tedious';
+import oracledb from 'oracledb';
+
+export const ALL_MODELS = [];
 
 export async function createSequelizeInstance(
   dialect: DatabaseDialect,
@@ -15,17 +18,21 @@ export async function createSequelizeInstance(
 
   switch (dialect) {
     case DatabaseDialect.MySQL:
-      dialectModule = require('mysql2');
+      dialectModule = mysql2;
       break;
+
     case DatabaseDialect.Postgres:
-      dialectModule = require('pg');
+      dialectModule = pg;
       break;
+
     case DatabaseDialect.MSSQL:
-      dialectModule = require('tedious');
+      dialectModule = tedious;
       break;
+
     case DatabaseDialect.Oracle:
-      dialectModule = require('oracledb');
+      dialectModule = oracledb;
       break;
+
     default:
       throw new Error(`Dialecto no soportado: ${dialect}`);
   }
@@ -38,17 +45,20 @@ export async function createSequelizeInstance(
 
   try {
     await sequelize.authenticate();
+
     console.log(`✅ Conexión exitosa a ${dialect.toUpperCase()}`);
   } catch (error: any) {
     console.error(
       `❌ Error conectando a ${dialect.toUpperCase()}:`,
       error.message,
     );
+
     throw error;
   }
 
   if (process.env.NODE_ENV !== 'production') {
     await sequelize.sync({ alter: false });
+
     console.log('✅ Tablas sincronizadas');
   }
 

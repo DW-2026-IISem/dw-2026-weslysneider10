@@ -2,9 +2,9 @@ import {
   DEFAULT_LIMIT,
   DEFAULT_PAGE,
   MAX_LIMIT,
-} from '../constants/pagination.constants';
+} from '../constants/pagination.constants.js';
 
-import { PaginatedResult } from '../interfaces/pagination.interface';
+import { PaginatedResult } from '../interfaces/pagination.interface.js';
 
 export function normalizePagination(
   page?: number,

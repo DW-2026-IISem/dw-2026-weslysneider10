@@ -6,7 +6,7 @@ import {
   ITokenService,
   IssuedTokens,
   TokenPayload,
-} from './token.interface';
+} from './token.interface.js';
 
 @Injectable()
 export class TokenService

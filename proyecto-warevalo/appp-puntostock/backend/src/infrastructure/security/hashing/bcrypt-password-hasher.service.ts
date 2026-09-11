@@ -2,7 +2,7 @@ import { Injectable } from '@nestjs/common';
 
 import * as bcrypt from 'bcrypt';
 
-import { IPasswordHasher } from './password-hasher.interface';
+import { IPasswordHasher } from './password-hasher.interface.js';
 
 @Injectable()
 export class BcryptPasswordHasherService

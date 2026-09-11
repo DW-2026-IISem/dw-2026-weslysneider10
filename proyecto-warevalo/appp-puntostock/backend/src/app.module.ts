@@ -4,35 +4,35 @@ import { ConfigModule } from '@nestjs/config';
 
 import {
   envConfig,
-} from './config/environment/env.config';
+} from './config/environment/env.config.js';
 
 import {
   appConfig,
-} from './config/app/app.config';
+} from './config/app/app.config.js';
 
 import {
   jwtConfig,
-} from './config/jwt/jwt.config';
+} from './config/jwt/jwt.config.js';
 
 import {
   LoggerModule,
-} from './config/logger/logger.module';
+} from './config/logger/logger.module.js';
 
 import {
   SequelizeDatabaseModule,
-} from './infrastructure/database/sequelize/sequelize.module';
+} from './infrastructure/database/sequelize/sequelize.module.js';
 
 import {
   SecurityModule,
-} from './infrastructure/security/security.module';
+} from './infrastructure/security/security.module.js';
 
 import {
   AppController,
-} from './app.controller';
+} from './app.controller.js';
 
 import {
   AppService,
-} from './app.service';
+} from './app.service.js';
 
 @Module({
   imports: [
