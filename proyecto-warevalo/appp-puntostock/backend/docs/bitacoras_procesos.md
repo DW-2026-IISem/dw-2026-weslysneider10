@@ -415,6 +415,8 @@
 
 ##  **7.24** — Integración del módulo de clientes 
 
+![](images/clipboard-798451804.png)
+
 ##  **7.25** — Registrar `ClientModel` en Sequelize 
 
 ## **7.26** — Actualizar `business.module.ts` 
