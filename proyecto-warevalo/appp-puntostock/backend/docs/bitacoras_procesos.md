@@ -427,6 +427,8 @@
 
 ##  **7.27** — Actualizar `database-seeder.service.ts` 
 
+![](images/clipboard-2316602066.png)
+
 ##  **7.28** — Actualizar `app.module.ts` 
 
 ##  **7.29** — Verificar tabla física `clients` y API
