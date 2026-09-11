@@ -379,6 +379,8 @@
 
 ##  **7.15** — Caso de uso: obtener cliente 
 
+![](images/clipboard-860005210.png)
+
 ##  **7.16** — Caso de uso: listar clientes 
 
 ##  **7.17** — Registro de casos de uso 
