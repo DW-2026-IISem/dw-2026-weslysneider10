@@ -343,7 +343,11 @@
 
 ##  **7.6** — Repositorio Sequelize de `Client` 
 
+![](images/clipboard-3007451422.png)
+
 ##  **7.7** — Migración de `clients` 
+
+![](images/clipboard-3305990571.png)
 
 ##  **7.8** — Seeder de `clients` 
 
