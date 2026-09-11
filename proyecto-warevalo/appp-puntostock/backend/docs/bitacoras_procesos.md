@@ -375,6 +375,8 @@
 
 ##  **7.14** — Caso de uso: eliminar cliente 
 
+![](images/clipboard-325261033.png)
+
 ##  **7.15** — Caso de uso: obtener cliente 
 
 ##  **7.16** — Caso de uso: listar clientes 
