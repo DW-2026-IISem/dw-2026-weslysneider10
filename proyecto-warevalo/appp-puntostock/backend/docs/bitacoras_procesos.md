@@ -431,6 +431,8 @@
 
 ##  **7.28** — Actualizar `app.module.ts` 
 
+![](images/clipboard-3516012332.png)
+
 ##  **7.29** — Verificar tabla física `clients` y API
 
 ## 
