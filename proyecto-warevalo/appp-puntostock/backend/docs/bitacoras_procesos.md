@@ -359,6 +359,8 @@
 
 ##  **7.10** — DTO de actualización de cliente 
 
+![](images/clipboard-2395615305.png)
+
 ##  **7.11** — Mapper de `Client`
 
 ##   **7.12** — Caso de uso: crear cliente 
