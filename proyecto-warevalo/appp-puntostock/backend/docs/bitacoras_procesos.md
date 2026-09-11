@@ -411,6 +411,8 @@
 
 ##  **7.23** — Registro de dependencias 
 
+![](images/clipboard-2353628631.png)
+
 ##  **7.24** — Integración del módulo de clientes 
 
 ##  **7.25** — Registrar `ClientModel` en Sequelize 
