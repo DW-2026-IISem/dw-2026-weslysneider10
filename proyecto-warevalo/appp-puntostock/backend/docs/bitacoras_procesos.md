@@ -391,6 +391,8 @@
 
 ##  **7.18** — Serializador de `Client` 
 
+![](images/clipboard-3854751201.png)
+
 ##  **7.19** — Controller de `Client` 
 
 ##  **7.20** — Configuración de rutas/endpoints 
