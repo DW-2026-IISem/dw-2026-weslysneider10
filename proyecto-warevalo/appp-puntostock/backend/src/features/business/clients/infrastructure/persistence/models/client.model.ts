@@ -46,10 +46,11 @@ export class ClientModel extends Model {
   @UpdatedAt
   declare updatedAt: Date;
 
-  @HasMany(
-    () =>
-      require('../../../../sales/infrastructure/persistence/models/sale.model')
-        .SaleModel,
-  )
-  declare sales: unknown[];
+  // TODO: descomentar cuando exista el modulo sales
+  // @HasMany(
+  //   () =>
+  //     require('../../../../sales/infrastructure/persistence/models/sale.model')
+  //       .SaleModel,
+  // )
+  // declare sales: unknown[];
 }

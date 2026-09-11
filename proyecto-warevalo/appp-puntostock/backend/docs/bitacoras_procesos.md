@@ -435,4 +435,4 @@
 
 ##  **7.29** — Verificar tabla física `clients` y API
 
-## 
+## ![](images/clipboard-2209075704.png)
