@@ -387,6 +387,8 @@
 
 ##  **7.17** — Registro de casos de uso 
 
+![](images/clipboard-3502722345.png)
+
 ##  **7.18** — Serializador de `Client` 
 
 ##  **7.19** — Controller de `Client` 
