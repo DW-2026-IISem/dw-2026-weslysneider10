@@ -383,6 +383,8 @@
 
 ##  **7.16** — Caso de uso: listar clientes 
 
+![](images/clipboard-2081948762.png)
+
 ##  **7.17** — Registro de casos de uso 
 
 ##  **7.18** — Serializador de `Client` 
