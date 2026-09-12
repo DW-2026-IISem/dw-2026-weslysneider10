@@ -965,11 +965,11 @@
 
 ### **12.23** — presentation/http/controllers/suppliers.controller.ts
 
-###  
+###  ![](images/clipboard-3508599307.png)
 
 ### **12.24** — index.ts (barrel export)
 
-###  
+###  ![](images/clipboard-2922664168.png)
 
 ### **12.25** — suppliers.module.ts
 
