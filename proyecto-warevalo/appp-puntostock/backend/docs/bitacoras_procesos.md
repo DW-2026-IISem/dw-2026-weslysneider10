@@ -1013,7 +1013,7 @@
 
 ###  **13.4** — domain/interfaces/inventory-repository.interface.ts
 
-###  
+###  ![](images/clipboard-102272176.png)
 
 ### **13.5** — infrastructure/persistence/models/inventory.model.ts *(FKs a Branch y Product + índice únicocompuesto)*
 
