@@ -913,7 +913,7 @@
 
 ### **12.10** — infrastructure/persistence/migrations/create-suppliers-table.migration.ts
 
-###  
+###  ![](images/clipboard-2312919273.png)
 
 ### **12.11** — infrastructure/persistence/seeders/suppliers.seeder.ts
 
