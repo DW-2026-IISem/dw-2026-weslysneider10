@@ -492,7 +492,7 @@
 ### ![](images/clipboard-2161797516.png) 
 **8.17 — `features/business/product-types/application/use-cases/update-product-type.use-case.ts`**
 
-###  
+### ![](images/clipboard-4007180333.png) 
 **8.18 — `features/business/product-types/presentation/http/serializers/product-type.serializer.ts`**
 
 ###  
