@@ -507,10 +507,10 @@
 ### ![](images/clipboard-2139885569.png) 
 **8.22 — `src/infrastructure/database/sequelize/sequelize.factory.ts`**
 
-###  
+### ![](images/clipboard-1641303517.png) 
 **8.23 — `src/features/business/business.module.ts`**
 
-###  
+### ![](images/clipboard-2898480883.png) 
 **8.24 — `src/infrastructure/database/seeders/database-seeder.service.ts`**
 
 ###  
