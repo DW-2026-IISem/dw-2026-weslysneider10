@@ -996,3 +996,115 @@
 ### ![](images/clipboard-3451196258.png)
 
 ![](images/clipboard-1241286723.png)
+
+#  Fase 13 `_BUSINESS_INVENTORY`
+
+### **13.1** — domain/entities/inventory.entity.ts
+
+###  ![](images/clipboard-3959725334.png)
+
+### **13.2** — domain/exceptions/inventory-already-exists.exception.ts *(duplicado sucursal + producto)*
+
+###  
+
+### **13.3** — domain/exceptions/inventory-not-found.exception.ts
+
+###  **13.4** — domain/interfaces/inventory-repository.interface.ts
+
+###  
+
+### **13.5** — infrastructure/persistence/models/inventory.model.ts *(FKs a Branch y Product + índice únicocompuesto)*
+
+###  
+
+### **13.6** — infrastructure/persistence/repositories/inventory.repository.ts
+
+###  
+
+### **13.7** — infrastructure/persistence/migrations/create-inventories-table.migration.ts
+
+###  
+
+### **13.8** — infrastructure/persistence/seeders/inventory.seeder.ts
+
+###  
+
+### **13.9** — application/dto/create-inventory.dto.ts
+
+###  
+
+### **13.10** — application/dto/inventory-filter.dto.ts
+
+###  
+
+### **13.11** — application/dto/inventory-response.dto.ts
+
+###  
+
+### **13.12** — application/dto/update-inventory.dto.ts
+
+###  
+
+### **13.13** — application/mappers/inventory.mapper.ts
+
+###  
+
+### **13.14** — application/use-cases/create-inventory.use-case.ts
+
+###  
+
+### **13.15** — application/use-cases/delete-inventory.use-case.ts
+
+###  
+
+### **13.16** — application/use-cases/get-inventory.use-case.ts
+
+###  
+
+### **13.17** — application/use-cases/list-inventory.use-case.ts
+
+###  
+
+### **13.18** — application/use-cases/update-inventory.use-case.ts
+
+###  
+
+### **13.19** — application/use-cases/list-low-stock.use-case.ts *(alertas de reposición del PDF: cantidad ≤stock_minimo)*
+
+###  
+
+### **13.20** — presentation/http/serializers/inventory.serializer.ts
+
+###  
+
+### **13.21** — presentation/http/controllers/inventories.controller.ts
+
+###  
+
+### **13.22** — index.ts (barrel export)
+
+###  
+
+### **13.23** — inventories.module.ts
+
+###  
+
+### **13.24** — Actualizar sequelize.factory.ts (registrar InventoryModel)
+
+###  
+
+### **13.25** — Actualizar business.module.ts (agregar InventoriesModule)
+
+###  
+
+### **13.26** — Actualizar database-seeder.service.ts (correr seedInventory)
+
+###  
+
+### **13.27** — Actualizar app.module.ts (confirmar cableado)
+
+###  
+
+### **13.28** — Verificar tabla `inventories` y API
+
+### 
