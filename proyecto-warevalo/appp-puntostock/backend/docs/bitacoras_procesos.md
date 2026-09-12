@@ -504,7 +504,7 @@
 ### ![](images/clipboard-143693970.png) 
 **8.21 — `features/business/product-types/product-types.module.ts`**
 
-###  
+### ![](images/clipboard-2139885569.png) 
 **8.22 — `src/infrastructure/database/sequelize/sequelize.factory.ts`**
 
 ###  
