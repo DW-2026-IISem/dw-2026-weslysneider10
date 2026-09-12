@@ -4,7 +4,6 @@ import { DatabaseDialect } from '../../../config/environment/env.interface';
 import { getSequelizeOptions } from './sequelize.options';
 
 import { ClientModel } from '../../../features/business/clients/infrastructure/persistence/models/client.model';
-
 import { ProductModel } from '../../../features/business/products/infrastructure/persistence/models/product.model';
 
 export const ALL_MODELS = [
@@ -37,9 +36,7 @@ export async function createSequelizeInstance(
       break;
 
     default:
-      throw new Error(
-        `Dialecto no soportado: ${dialect}`,
-      );
+      throw new Error(`Dialecto no soportado: ${dialect}`);
   }
 
   const sequelize = new Sequelize({
@@ -68,9 +65,7 @@ export async function createSequelizeInstance(
       alter: false,
     });
 
-    console.log(
-      '✅ Tablas sincronizadas',
-    );
+    console.log('✅ Tablas sincronizadas');
   }
 
   return sequelize;
