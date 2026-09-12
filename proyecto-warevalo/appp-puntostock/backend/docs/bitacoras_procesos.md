@@ -1202,7 +1202,7 @@
 ### ![](images/clipboard-1456638985.png)
 14.28 — Actualizar database-seeder.service.ts (correr seedPurchases)
 
-### 
+### ![](images/clipboard-3351787104.png)
 14.29 — Verificar tablas \`purchases\` / \`purchase_details\` y API
 
 ### 
