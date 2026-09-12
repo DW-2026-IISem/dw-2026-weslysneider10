@@ -1133,6 +1133,10 @@
 
 ### ![](images/clipboard-68189925.png)
 14.6  — domain/services/purchase-calculator.domain-service.ts (subtotal/impuestos/total)
+
+![](images/clipboard-1232042010.png)
+
+### 
 14.7  — infrastructure/persistence/models/purchase-detail.model.ts
 
 ### 
