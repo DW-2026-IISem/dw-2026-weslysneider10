@@ -1049,7 +1049,7 @@
 
 ### **13.13** — application/mappers/inventory.mapper.ts
 
-###  
+###  ![](images/clipboard-3112202768.png)
 
 ### **13.14** — application/use-cases/create-inventory.use-case.ts
 
