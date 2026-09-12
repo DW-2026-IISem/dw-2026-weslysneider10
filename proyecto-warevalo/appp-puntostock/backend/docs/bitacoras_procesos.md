@@ -1151,7 +1151,7 @@
 ### ![](images/clipboard-4242522308.png)
 14.11 — infrastructure/persistence/seeders/purchases.seeder.ts
 
-### 
+### ![](images/clipboard-3899431053.png)
 14.12 — application/dto/create-purchase.dto.ts
 
 ### 
