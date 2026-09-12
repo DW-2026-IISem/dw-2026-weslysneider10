@@ -1163,7 +1163,7 @@
 ### ![](images/clipboard-3984802138.png)
 14.15 — application/dto/receive-purchase.dto.ts (recepción parcial/total)
 
-### 
+### ![](images/clipboard-518723956.png)
 14.16 — application/mappers/purchase.mapper.ts
 
 ### 
