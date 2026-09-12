@@ -795,6 +795,8 @@
 
 ### **11.7** — infrastructure/persistence/seeders/branches.seeder.ts
 
+![](images/clipboard-2928989183.png)
+
 ### **11.8** — application/dto/create-branch.dto.ts
 
 ### **11.9** — application/dto/branch-filter.dto.ts
