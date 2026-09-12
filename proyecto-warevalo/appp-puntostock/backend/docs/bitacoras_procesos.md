@@ -539,7 +539,7 @@
 
 ### 9.4 — features/business/products/domain/exceptions/product-not-found.exception.ts
 
-### 
+### ![](images/clipboard-336937830.png)
 
 ### 9.5 — features/business/products/domain/interfaces/product-repository.interface.ts
 
