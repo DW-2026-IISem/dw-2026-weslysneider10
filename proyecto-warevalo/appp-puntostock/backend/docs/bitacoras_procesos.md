@@ -453,7 +453,7 @@
 ### ![](images/clipboard-3651410975.png) 
 **8.4 — `features/business/product-types/infrastructure/persistence/models/product-type.model.ts`**
 
-###  
+### ![](images/clipboard-3364340952.png) 
 **8.5 — `features/business/product-types/infrastructure/persistence/repositories/product-type.repository.ts`**
 
 ###  
