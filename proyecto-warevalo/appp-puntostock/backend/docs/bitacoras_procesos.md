@@ -501,7 +501,7 @@
 ### ![](images/clipboard-1594762314.png) 
 **8.20 — `features/business/product-types/index.ts`**
 
-###  
+### ![](images/clipboard-143693970.png) 
 **8.21 — `features/business/product-types/product-types.module.ts`**
 
 ###  
