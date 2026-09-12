@@ -657,7 +657,11 @@
 
 ###  **10.2** — `features/business/sales/domain/exceptions/insufficient-stock.exception.ts` 
 
+![](images/clipboard-2414158537.png)
+
 ###  **10.3** — `features/business/sales/domain/exceptions/sale-not-found.exception.ts` 
+
+![](images/clipboard-2414158537.png)
 
 ###  **10.4** — `features/business/sales/domain/interfaces/sale-repository.interface.ts` 
 
