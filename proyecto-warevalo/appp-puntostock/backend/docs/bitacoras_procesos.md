@@ -611,11 +611,11 @@
 
 ### 9.22 — features/business/products/presentation/http/serializers/product.serializer.ts
 
-### 
+### ![](images/clipboard-3069524451.png)
 
 ### 9.23 — features/business/products/presentation/http/controllers/products.controller.ts
 
-### 
+### ![](images/clipboard-1591961728.png)
 
 ### 9.24 — features/business/products/index.ts
 
