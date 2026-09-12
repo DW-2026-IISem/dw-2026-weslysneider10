@@ -831,7 +831,11 @@
 
 ### **11.16** — application/use-cases/list-branches.use-case.ts
 
+![](images/clipboard-1177643011.png)
+
 ### **11.17** — application/use-cases/update-branch.use-case.ts
+
+![](images/clipboard-3967367934.png)
 
 ### **11.18** — presentation/http/serializers/branch.serializer.ts
 
