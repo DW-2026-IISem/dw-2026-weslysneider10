@@ -1172,7 +1172,7 @@
 ### ![](images/clipboard-192038615.png)
 14.18 — application/use-cases/receive-purchase.use-case.ts (actualiza Inventory)
 
-### 
+### ![](images/clipboard-3939456574.png)
 14.19 — application/use-cases/cancel-purchase.use-case.ts
 
 ### 
