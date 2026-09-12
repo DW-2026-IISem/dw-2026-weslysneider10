@@ -1053,7 +1053,7 @@
 
 ### **13.14** — application/use-cases/create-inventory.use-case.ts
 
-###  
+###  ![](images/clipboard-1008220660.png)
 
 ### **13.15** — application/use-cases/delete-inventory.use-case.ts
 
