@@ -599,7 +599,7 @@
 
 ### 9.19 — features/business/products/application/use-cases/get-product.use-case.ts
 
-### 
+### ![](images/clipboard-2835650087.png)
 
 ### 9.20 — features/business/products/application/use-cases/list-products.use-case.ts
 

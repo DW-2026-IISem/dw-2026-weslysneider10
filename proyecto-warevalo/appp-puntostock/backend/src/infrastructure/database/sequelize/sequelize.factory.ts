@@ -1,16 +1,15 @@
 import { Sequelize } from 'sequelize-typescript';
 
 import { DatabaseDialect } from '../../../config/environment/env.interface';
-
 import { getSequelizeOptions } from './sequelize.options';
 
 import { ClientModel } from '../../../features/business/clients/infrastructure/persistence/models/client.model';
 
-import { ProductTypeModel } from '../../../features/business/product-types/infrastructure/persistence/models/product-type.model';
+import { ProductModel } from '../../../features/business/products/infrastructure/persistence/models/product.model';
 
 export const ALL_MODELS = [
   ClientModel,
-  ProductTypeModel,
+  ProductModel,
 ];
 
 export async function createSequelizeInstance(
@@ -69,7 +68,9 @@ export async function createSequelizeInstance(
       alter: false,
     });
 
-    console.log('✅ Tablas sincronizadas');
+    console.log(
+      '✅ Tablas sincronizadas',
+    );
   }
 
   return sequelize;
