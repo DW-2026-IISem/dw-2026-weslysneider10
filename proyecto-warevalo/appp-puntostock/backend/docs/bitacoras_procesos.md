@@ -705,6 +705,8 @@
 
 ###  **10.14** — `features/business/sales/application/mappers/sale.mapper.ts` 
 
+![](images/clipboard-872239156.png)
+
 ###  **10.15** — `features/business/sales/application/use-cases/cancel-sale.use-case.ts` 
 
 ###  **10.16** — `features/business/sales/application/use-cases/create-sale.use-case.ts` 
