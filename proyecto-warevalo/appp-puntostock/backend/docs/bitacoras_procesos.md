@@ -456,7 +456,7 @@
 ### ![](images/clipboard-3364340952.png) 
 **8.5 — `features/business/product-types/infrastructure/persistence/repositories/product-type.repository.ts`**
 
-###  
+### ![](images/clipboard-3364376724.png) 
 **8.6 — `features/business/product-types/infrastructure/persistence/migrations/create-product-types-table.migration.ts`**
 
 ###  
