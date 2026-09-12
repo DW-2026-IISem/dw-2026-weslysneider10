@@ -1017,7 +1017,7 @@
 
 ### **13.5** — infrastructure/persistence/models/inventory.model.ts *(FKs a Branch y Product + índice únicocompuesto)*
 
-###  
+###  ![](images/clipboard-2446371859.png)
 
 ### **13.6** — infrastructure/persistence/repositories/inventory.repository.ts
 
