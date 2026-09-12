@@ -872,3 +872,125 @@
 ### **11.26** — Verificar tabla `branches` y API
 
 ![![](images/clipboard-3237278975.png)](images/clipboard-3766663094.png)
+
+#  Fase 12 `11_BUSINESS_SUPPLIERS`
+
+### **12.1** — domain/entities/supplier.entity.ts
+
+###  ![](images/clipboard-304246543.png)
+
+### **12.2** — domain/exceptions/supplier-nit-already-exists.exception.ts
+
+###  
+
+### **12.3** — domain/exceptions/supplier-not-found.exception.ts
+
+###  
+
+### **12.4** — domain/interfaces/supplier-repository.interface.ts
+
+###  
+
+### **12.5** — domain/validators/supplier-nit.validator.ts
+
+###  
+
+### **12.6** — domain/validators/supplier-email.validator.ts
+
+###  
+
+### **12.7** — domain/validators/supplier-phone.validator.ts
+
+###  
+
+### **12.8** — infrastructure/persistence/models/supplier.model.ts
+
+###  
+
+### **12.9** — infrastructure/persistence/repositories/supplier.repository.ts
+
+###  
+
+### **12.10** — infrastructure/persistence/migrations/create-suppliers-table.migration.ts
+
+###  
+
+### **12.11** — infrastructure/persistence/seeders/suppliers.seeder.ts
+
+###  
+
+### **12.12** — application/dto/create-supplier.dto.ts
+
+###  
+
+### **12.13** — application/dto/supplier-filter.dto.ts
+
+###  
+
+### **12.14** — application/dto/supplier-response.dto.ts
+
+###  
+
+### **12.15** — application/dto/update-supplier.dto.ts
+
+###  
+
+### **12.16** — application/mappers/supplier.mapper.ts
+
+###  
+
+### **12.17** — application/use-cases/create-supplier.use-case.ts
+
+###  
+
+### **12.18** — application/use-cases/delete-supplier.use-case.ts
+
+###  
+
+### **12.19** — application/use-cases/get-supplier.use-case.ts
+
+###  
+
+### **12.20** — application/use-cases/list-suppliers.use-case.ts
+
+###  
+
+### **12.21** — application/use-cases/update-supplier.use-case.ts
+
+###  
+
+### **12.22** — presentation/http/serializers/supplier.serializer.ts
+
+###  
+
+### **12.23** — presentation/http/controllers/suppliers.controller.ts
+
+###  
+
+### **12.24** — index.ts (barrel export)
+
+###  
+
+### **12.25** — suppliers.module.ts
+
+###  
+
+### **12.26** — Actualizar sequelize.factory.ts (registrar SupplierModel)
+
+###  
+
+### **12.27** — Actualizar business.module.ts (agregar SuppliersModule)
+
+###  
+
+### **12.28** — Actualizar database-seeder.service.ts (correr seedSuppliers)
+
+###  
+
+### **12.29** — Actualizar app.module.ts (confirmar cableado)
+
+###  
+
+### **12.30** — Verificar tabla `suppliers` y API
+
+### 
