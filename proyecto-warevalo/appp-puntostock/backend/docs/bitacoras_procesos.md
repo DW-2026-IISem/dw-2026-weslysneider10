@@ -1045,7 +1045,7 @@
 
 ### **13.12** — application/dto/update-inventory.dto.ts
 
-###  
+###  ![](images/clipboard-3292510770.png)
 
 ### **13.13** — application/mappers/inventory.mapper.ts
 
