@@ -447,7 +447,7 @@
 
 ### **8.2 — `features/business/product-types/domain/exceptions/product-type-not-found.exception.ts`**
 
-###  
+### ![](images/clipboard-941299263.png) 
 **8.3 — `features/business/product-types/domain/interfaces/product-type-repository.interface.ts`**
 
 ###  
