@@ -985,7 +985,7 @@
 
 ### **12.28** — Actualizar database-seeder.service.ts (correr seedSuppliers)
 
-###  
+###  ![](images/clipboard-776346691.png)
 
 ### **12.29** — Actualizar app.module.ts (confirmar cableado)
 
