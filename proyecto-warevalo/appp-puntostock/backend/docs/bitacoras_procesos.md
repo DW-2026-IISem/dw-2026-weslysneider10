@@ -685,13 +685,23 @@
 
 ###  **10.9** — `features/business/sales/infrastructure/persistence/migrations/create-sales-table.migration.ts` 
 
+![](images/clipboard-2373221631.png)
+
 ###  **10.10** — `features/business/sales/infrastructure/persistence/seeders/sales.seeder.ts` 
+
+![](images/clipboard-3917553635.png)
 
 ###  **10.11** — `features/business/sales/application/dto/create-sale.dto.ts` 
 
+![](images/clipboard-3817566816.png)
+
 ###  **10.12** — `features/business/sales/application/dto/sale-filter.dto.ts` 
 
+![](images/clipboard-3600961020.png)
+
 ###  **10.13** — `features/business/sales/application/dto/sale-response.dto.ts` 
+
+![](images/clipboard-3600961020.png)
 
 ###  **10.14** — `features/business/sales/application/mappers/sale.mapper.ts` 
 
