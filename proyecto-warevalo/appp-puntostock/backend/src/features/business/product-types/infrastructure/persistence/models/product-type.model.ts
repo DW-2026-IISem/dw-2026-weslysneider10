@@ -16,7 +16,7 @@ import { Status } from '../../../../../../common/enums/status.enum';
   tableName: 'product_types',
   timestamps: true,
 })
-export class ProductTypeModel extends Model<ProductTypeModel> {
+export class ProductTypeModel extends Model {
   @PrimaryKey
   @AutoIncrement
   @Column(DataType.INTEGER)
@@ -47,12 +47,13 @@ export class ProductTypeModel extends Model<ProductTypeModel> {
   @UpdatedAt
   declare updatedAt: Date;
 
-  @HasMany(() => {
-    const { ProductModel } = require(
-      '../../../../products/infrastructure/persistence/models/product.model',
-    );
-
-    return ProductModel;
-  })
-  declare products: unknown[];
+  // TODO: descomentar cuando exista el modulo products
+  // @HasMany(() => {
+  //   const { ProductModel } = require(
+  //     '../../../../products/infrastructure/persistence/models/product.model',
+  //   );
+  //
+  //   return ProductModel;
+  // })
+  // declare products: unknown[];
 }

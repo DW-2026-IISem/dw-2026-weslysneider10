@@ -518,3 +518,5 @@
 
 ### ![](images/clipboard-505144632.png) 
 **8.26 — Verificar tabla `product_types` y endpoints `/api/product-types`**
+
+![![](images/clipboard-178510747.png)](images/clipboard-473087644.png)
