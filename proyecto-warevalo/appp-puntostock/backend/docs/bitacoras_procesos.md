@@ -867,4 +867,6 @@
 
 ### **11.25** — Actualizar app.module.ts (confirmar cableado)
 
+![](images/clipboard-3723880920.png)
+
 ### **11.26** — Verificar tabla `branches` y API
