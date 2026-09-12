@@ -909,7 +909,7 @@
 
 ### **12.9** — infrastructure/persistence/repositories/supplier.repository.ts
 
-###  
+###  ![](images/clipboard-1864691248.png)
 
 ### **12.10** — infrastructure/persistence/migrations/create-suppliers-table.migration.ts
 
