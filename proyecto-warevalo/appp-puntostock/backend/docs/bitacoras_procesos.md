@@ -495,7 +495,7 @@
 ### ![](images/clipboard-4007180333.png) 
 **8.18 — `features/business/product-types/presentation/http/serializers/product-type.serializer.ts`**
 
-###  
+### ![](images/clipboard-1621948112.png) 
 **8.19 — `features/business/product-types/presentation/http/controllers/product-types.controller.ts`**
 
 ###  
