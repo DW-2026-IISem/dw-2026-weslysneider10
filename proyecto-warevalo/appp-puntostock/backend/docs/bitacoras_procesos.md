@@ -465,7 +465,7 @@
 ### ![](images/clipboard-1347775943.png) 
 **8.8 — `features/business/product-types/application/dto/create-product-type.dto.ts`**
 
-###  
+### ![](images/clipboard-2299628074.png) 
 **8.9 — `features/business/product-types/application/dto/product-type-filter.dto.ts`**
 
 ###  
