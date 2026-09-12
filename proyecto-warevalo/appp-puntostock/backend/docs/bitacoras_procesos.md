@@ -745,9 +745,15 @@
 
 ###  **10.24** — Actualizar `sequelize.factory.ts` (registrar modelos) 
 
+![](images/clipboard-4223149760.png)
+
 ###  **10.25** — Actualizar `business.module.ts` 
 
+![](images/clipboard-2932397780.png)
+
 ###  **10.26** — Actualizar `database-seeder.service.ts` 
+
+![](images/clipboard-1469343284.png)
 
 ###  **10.27** — Actualizar `app.module.ts` 
 

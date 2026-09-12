@@ -1,16 +1,19 @@
 import { Sequelize } from 'sequelize-typescript';
-
 import { DatabaseDialect } from '../../../config/environment/env.interface';
 import { getSequelizeOptions } from './sequelize.options';
 
 import { ClientModel } from '../../../features/business/clients/infrastructure/persistence/models/client.model';
-import { ProductModel } from '../../../features/business/products/infrastructure/persistence/models/product.model';
 import { ProductTypeModel } from '../../../features/business/product-types/infrastructure/persistence/models/product-type.model';
+import { ProductModel } from '../../../features/business/products/infrastructure/persistence/models/product.model';
+import { SaleModel } from '../../../features/business/sales/infrastructure/persistence/models/sale.model';
+import { ProductSaleModel } from '../../../features/business/sales/infrastructure/persistence/models/product-sale.model';
 
 export const ALL_MODELS = [
   ClientModel,
-  ProductModel,
   ProductTypeModel,
+  ProductModel,
+  SaleModel,
+  ProductSaleModel,
 ];
 
 export async function createSequelizeInstance(
@@ -24,19 +27,15 @@ export async function createSequelizeInstance(
     case DatabaseDialect.MySQL:
       dialectModule = require('mysql2');
       break;
-
     case DatabaseDialect.Postgres:
       dialectModule = require('pg');
       break;
-
     case DatabaseDialect.MSSQL:
       dialectModule = require('tedious');
       break;
-
     case DatabaseDialect.Oracle:
       dialectModule = require('oracledb');
       break;
-
     default:
       throw new Error(`Dialecto no soportado: ${dialect}`);
   }
@@ -49,24 +48,14 @@ export async function createSequelizeInstance(
 
   try {
     await sequelize.authenticate();
-
-    console.log(
-      `✅ Conexión exitosa a ${dialect.toUpperCase()}`,
-    );
+    console.log(`✅ Conexión exitosa a ${dialect.toUpperCase()}`);
   } catch (error: any) {
-    console.error(
-      `❌ Error conectando a ${dialect.toUpperCase()}:`,
-      error.message,
-    );
-
+    console.error(`❌ Error conectando a ${dialect.toUpperCase()}:`, error.message);
     throw error;
   }
 
   if (process.env.NODE_ENV !== 'production') {
-    await sequelize.sync({
-      alter: false,
-    });
-
+    await sequelize.sync({ alter: false });
     console.log('✅ Tablas sincronizadas');
   }
 
