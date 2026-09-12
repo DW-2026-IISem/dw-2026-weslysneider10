@@ -1,9 +1,14 @@
 import { Injectable, Logger, OnModuleInit } from '@nestjs/common';
+import { seedBranches } from '../../../features/business/branches/infrastructure/persistence/seeders/branches.seeder';
 import { seedClients } from '../../../features/business/clients/infrastructure/persistence/seeders/clients.seeder';
 import { seedProductTypes } from '../../../features/business/product-types/infrastructure/persistence/seeders/product-types.seeder';
 import { seedProducts } from '../../../features/business/products/infrastructure/persistence/seeders/products.seeder';
 import { seedSales } from '../../../features/business/sales/infrastructure/persistence/seeders/sales.seeder';
 
+/**
+ * Ejecuta seeders en orden de dependencias.
+ * Solo en entornos no productivos.
+ */
 @Injectable()
 export class DatabaseSeederService implements OnModuleInit {
   private readonly logger = new Logger(DatabaseSeederService.name);
@@ -14,6 +19,7 @@ export class DatabaseSeederService implements OnModuleInit {
     }
 
     try {
+      await seedBranches();
       await seedClients();
       await seedProductTypes();
       await seedProducts();

@@ -863,6 +863,8 @@
 
 ### **11.24** — Actualizar database-seeder.service.ts (correr seedBranches)
 
+![](images/clipboard-665396658.png)
+
 ### **11.25** — Actualizar app.module.ts (confirmar cableado)
 
 ### **11.26** — Verificar tabla `branches` y API
