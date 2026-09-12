@@ -1166,7 +1166,7 @@
 ### ![](images/clipboard-518723956.png)
 14.16 — application/mappers/purchase.mapper.ts
 
-### 
+### ![](images/clipboard-627281399.png)
 14.17 — application/use-cases/create-purchase.use-case.ts
 
 ### 
