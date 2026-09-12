@@ -535,7 +535,7 @@
 
 ### 9.3 — features/business/products/domain/exceptions/invalid-product-stock.exception.ts
 
-### 
+### ![](images/clipboard-467364751.png)
 
 ### 9.4 — features/business/products/domain/exceptions/product-not-found.exception.ts
 
