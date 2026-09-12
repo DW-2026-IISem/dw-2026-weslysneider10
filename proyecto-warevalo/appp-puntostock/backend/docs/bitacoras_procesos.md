@@ -673,7 +673,11 @@
 
 ###  **10.6** — `features/business/sales/infrastructure/persistence/models/product-sale.model.ts` 
 
+![](images/clipboard-2396025016.png)
+
 ###  **10.7** — `features/business/sales/infrastructure/persistence/models/sale.model.ts` 
+
+![](images/clipboard-3212920505.png)
 
 ###  **10.8** — `features/business/sales/infrastructure/persistence/repositories/sale.repository.ts` 
 
