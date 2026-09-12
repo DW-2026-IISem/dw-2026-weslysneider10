@@ -941,7 +941,7 @@
 
 ### **12.17** — application/use-cases/create-supplier.use-case.ts
 
-###  
+###  ![](images/clipboard-3984232591.png)
 
 ### **12.18** — application/use-cases/delete-supplier.use-case.ts
 
