@@ -15,10 +15,10 @@ import { GetProductUseCase } from '../../../application/use-cases/get-product.us
 import { ListProductsUseCase } from '../../../application/use-cases/list-products.use-case';
 import { UpdateProductUseCase } from '../../../application/use-cases/update-product.use-case';
 
-import { CreateProductDto } from '../dto/create-product.dto';
-import { ProductFilterDto } from '../dto/product-filter.dto';
-import { ProductResponseDto } from '../dto/product-response.dto';
-import { UpdateProductDto } from '../dto/update-product.dto';
+import { CreateProductDto } from '../../../application/dto/create-product.dto';
+import { ProductFilterDto } from '../../../application/dto/product-filter.dto';
+import { ProductResponseDto } from '../../../application/dto/product-response.dto';
+import { UpdateProductDto } from '../../../application/dto/update-product.dto';
 
 @Controller('api/products')
 export class ProductsController {
@@ -36,7 +36,7 @@ export class ProductsController {
   ): Promise<ProductResponseDto> {
     const product = await this.createProductUseCase.execute(dto);
 
-    return ProductResponseDto.fromDomain(product);
+    return product;
   }
 
   @Get()
@@ -52,7 +52,7 @@ export class ProductsController {
   ): Promise<ProductResponseDto> {
     const product = await this.getProductUseCase.execute(Number(id));
 
-    return ProductResponseDto.fromDomain(product);
+    return product;
   }
 
   @Patch(':id')
@@ -65,7 +65,7 @@ export class ProductsController {
       dto,
     );
 
-    return ProductResponseDto.fromDomain(product);
+    return product;
   }
 
   @Delete(':id')

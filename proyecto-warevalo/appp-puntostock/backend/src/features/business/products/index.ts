@@ -1,5 +1,5 @@
 export * from './domain/entities/product.entity';
-export * from './domain/repositories/product-repository.interface';
+export * from './domain/interfaces/product-repository.interface';
 
 export * from './application/use-cases/create-product.use-case';
 export * from './application/use-cases/get-product.use-case';
