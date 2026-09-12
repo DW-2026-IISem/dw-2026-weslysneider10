@@ -627,7 +627,7 @@
 
 ### 9.26 — Actualizar sequelize.factory.ts (registrar modelos)
 
-### 
+### ![](images/clipboard-2255201900.png)
 
 ### 9.27 — Actualizar business.module.ts
 
