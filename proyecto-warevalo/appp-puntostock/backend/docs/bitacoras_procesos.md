@@ -1114,3 +1114,91 @@
 ![](images/clipboard-1336646124.png)
 
 ![](images/clipboard-3046088078.png)
+
+# Fase 14 — `_BUSINESS_PURCHASES`
+
+### 14.1  — domain/entities/purchase.entity.ts (incluye PurchaseItem + enum PurchaseStatus)
+
+### ![](images/clipboard-381606332.png)
+14.2  — domain/exceptions/purchase-not-found.exception.ts
+
+### 
+14.3  — domain/exceptions/invalid-purchase-status.exception.ts
+
+### 
+14.4  — domain/exceptions/invalid-receipt-quantity.exception.ts (recepción parcial no puede superar lo pedido)
+
+### 
+14.5  — domain/interfaces/purchase-repository.interface.ts
+
+### 
+14.6  — domain/services/purchase-calculator.domain-service.ts (subtotal/impuestos/total)
+14.7  — infrastructure/persistence/models/purchase-detail.model.ts
+
+### 
+14.8  — infrastructure/persistence/models/purchase.model.ts (FKs a Supplier y Branch)
+
+### 
+14.9  — infrastructure/persistence/repositories/purchase.repository.ts
+
+### 
+14.10 — infrastructure/persistence/migrations/create-purchases-table.migration.ts
+
+### 
+14.11 — infrastructure/persistence/seeders/purchases.seeder.ts
+
+### 
+14.12 — application/dto/create-purchase.dto.ts
+
+### 
+14.13 — application/dto/purchase-filter.dto.ts
+
+### 
+14.14 — application/dto/purchase-response.dto.ts
+
+### 
+14.15 — application/dto/receive-purchase.dto.ts (recepción parcial/total)
+
+### 
+14.16 — application/mappers/purchase.mapper.ts
+
+### 
+14.17 — application/use-cases/create-purchase.use-case.ts
+
+### 
+14.18 — application/use-cases/receive-purchase.use-case.ts (actualiza Inventory)
+
+### 
+14.19 — application/use-cases/cancel-purchase.use-case.ts
+
+### 
+14.20 — application/use-cases/get-purchase.use-case.ts
+
+### 
+14.21 — application/use-cases/list-purchases.use-case.ts
+
+### 
+14.22 — presentation/http/serializers/purchase.serializer.ts
+
+### 
+14.23 — presentation/http/controllers/purchases.controller.ts
+
+### 
+14.24 — index.ts (barrel export)
+
+### 
+14.25 — purchases.module.ts
+
+### 
+14.26 — Actualizar sequelize.factory.ts (registrar PurchaseModel y PurchaseDetailModel)
+
+### 
+14.27 — Actualizar business.module.ts (agregar PurchasesModule)
+
+### 
+14.28 — Actualizar database-seeder.service.ts (correr seedPurchases)
+
+### 
+14.29 — Verificar tablas \`purchases\` / \`purchase_details\` y API
+
+### 
