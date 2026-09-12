@@ -1069,7 +1069,7 @@
 
 ### **13.18** — application/use-cases/update-inventory.use-case.ts
 
-###  
+###  ![](images/clipboard-2123872102.png)
 
 ### **13.19** — application/use-cases/list-low-stock.use-case.ts *(alertas de reposición del PDF: cantidad ≤stock_minimo)*
 
