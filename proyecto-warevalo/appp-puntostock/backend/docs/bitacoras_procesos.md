@@ -779,6 +779,8 @@
 
 ### **11.3** — domain/interfaces/branch-repository.interface.ts
 
+![](images/clipboard-2326740287.png)
+
 ### **11.4** — infrastructure/persistence/models/branch.model.ts
 
 ### **11.5** — infrastructure/persistence/repositories/branch.repository.ts
