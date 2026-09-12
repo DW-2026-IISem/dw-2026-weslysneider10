@@ -631,7 +631,7 @@
 
 ### 9.27 — Actualizar business.module.ts
 
-### ![](images/clipboard-3056842166.png)
+### ![](images/clipboard-4083000579.png)
 
 ### 9.28 — Actualizar database-seeder.service.ts
 
