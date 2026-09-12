@@ -681,6 +681,8 @@
 
 ###  **10.8** — `features/business/sales/infrastructure/persistence/repositories/sale.repository.ts` 
 
+![](images/clipboard-1288295562.png)
+
 ###  **10.9** — `features/business/sales/infrastructure/persistence/migrations/create-sales-table.migration.ts` 
 
 ###  **10.10** — `features/business/sales/infrastructure/persistence/seeders/sales.seeder.ts` 
