@@ -551,11 +551,11 @@
 
 ### 9.7 — features/business/products/domain/validators/product-stock.validator.ts
 
-### 
+### ![](images/clipboard-187791855.png)
 
 ### 9.8 — features/business/products/infrastructure/persistence/models/product.model.ts
 
-### 
+### ![](images/clipboard-2482554623.png)
 
 ### 9.9 — features/business/products/infrastructure/persistence/repositories/product.repository.ts
 
