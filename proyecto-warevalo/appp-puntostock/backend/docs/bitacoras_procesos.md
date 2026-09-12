@@ -516,5 +516,5 @@
 ### ![](images/clipboard-3665547974.png) 
 **8.25 — `src/app.module.ts`**
 
-###  
+### ![](images/clipboard-505144632.png) 
 **8.26 — Verificar tabla `product_types` y endpoints `/api/product-types`**
