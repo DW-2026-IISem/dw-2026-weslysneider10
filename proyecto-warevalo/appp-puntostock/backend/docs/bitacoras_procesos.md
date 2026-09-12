@@ -563,7 +563,7 @@
 
 ### 9.10 — features/business/products/infrastructure/persistence/migrations/create-products-table.migration.ts
 
-### 
+### ![](images/clipboard-2800204256.png)
 
 ### 9.11 — features/business/products/infrastructure/persistence/seeders/products.seeder.ts
 
