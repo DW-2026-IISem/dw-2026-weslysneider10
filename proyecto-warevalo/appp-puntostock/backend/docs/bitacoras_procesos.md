@@ -559,7 +559,7 @@
 
 ### 9.9 — features/business/products/infrastructure/persistence/repositories/product.repository.ts
 
-### 
+### ![](images/clipboard-2722696288.png)
 
 ### 9.10 — features/business/products/infrastructure/persistence/migrations/create-products-table.migration.ts
 
