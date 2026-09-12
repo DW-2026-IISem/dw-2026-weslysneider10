@@ -881,7 +881,7 @@
 
 ### **12.2** — domain/exceptions/supplier-nit-already-exists.exception.ts
 
-###  
+###  ![](images/clipboard-2339478133.png)
 
 ### **12.3** — domain/exceptions/supplier-not-found.exception.ts
 
