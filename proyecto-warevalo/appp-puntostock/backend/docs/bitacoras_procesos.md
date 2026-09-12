@@ -855,6 +855,8 @@
 
 ### **11.22** — Actualizar sequelize.factory.ts (registrar BranchModel)
 
+![](images/clipboard-4176199150.png)
+
 ### **11.23** — Actualizar business.module.ts (agregar BranchesModule)
 
 ### **11.24** — Actualizar database-seeder.service.ts (correr seedBranches)

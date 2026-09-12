@@ -7,6 +7,7 @@ import { ProductTypeModel } from '../../../features/business/product-types/infra
 import { ProductModel } from '../../../features/business/products/infrastructure/persistence/models/product.model';
 import { SaleModel } from '../../../features/business/sales/infrastructure/persistence/models/sale.model';
 import { ProductSaleModel } from '../../../features/business/sales/infrastructure/persistence/models/product-sale.model';
+import { BranchModel } from '../../../features/business/branches/infrastructure/persistence/models/branch.model';
 
 export const ALL_MODELS = [
   ClientModel,
@@ -14,6 +15,7 @@ export const ALL_MODELS = [
   ProductModel,
   SaleModel,
   ProductSaleModel,
+  BranchModel,
 ];
 
 export async function createSequelizeInstance(
@@ -50,7 +52,10 @@ export async function createSequelizeInstance(
     await sequelize.authenticate();
     console.log(`✅ Conexión exitosa a ${dialect.toUpperCase()}`);
   } catch (error: any) {
-    console.error(`❌ Error conectando a ${dialect.toUpperCase()}:`, error.message);
+    console.error(
+      `❌ Error conectando a ${dialect.toUpperCase()}:`,
+      error.message,
+    );
     throw error;
   }
 
