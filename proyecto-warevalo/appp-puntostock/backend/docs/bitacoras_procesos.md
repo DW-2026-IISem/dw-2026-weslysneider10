@@ -498,7 +498,7 @@
 ### ![](images/clipboard-1621948112.png) 
 **8.19 — `features/business/product-types/presentation/http/controllers/product-types.controller.ts`**
 
-###  
+### ![](images/clipboard-1594762314.png) 
 **8.20 — `features/business/product-types/index.ts`**
 
 ###  
