@@ -7,6 +7,9 @@ import { ProductTypeModel } from '../../../features/business/product-types/infra
 import { ProductModel } from '../../../features/business/products/infrastructure/persistence/models/product.model';
 import { SaleModel } from '../../../features/business/sales/infrastructure/persistence/models/sale.model';
 import { ProductSaleModel } from '../../../features/business/sales/infrastructure/persistence/models/product-sale.model';
+import { SupplierModel } from '../../../features/business/suppliers/infrastructure/persistence/models/supplier.model';
+import { BranchModel } from '../../../features/business/branches/infrastructure/persistence/models/branch.model';
+import { InventoryModel } from '../../../features/business/inventory/infrastructure/persistence/models/inventory.model';
 import { PurchaseModel } from '../../../features/business/purchases/infrastructure/persistence/models/purchase.model';
 import { PurchaseDetailModel } from '../../../features/business/purchases/infrastructure/persistence/models/purchase-detail.model';
 
@@ -16,6 +19,9 @@ export const ALL_MODELS = [
   ProductModel,
   SaleModel,
   ProductSaleModel,
+  SupplierModel,
+  BranchModel,
+  InventoryModel,
   PurchaseModel,
   PurchaseDetailModel,
 ];

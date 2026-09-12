@@ -1205,4 +1205,6 @@
 ### ![](images/clipboard-3351787104.png)
 14.29 — Verificar tablas \`purchases\` / \`purchase_details\` y API
 
-### 
+### ![](images/clipboard-1901614652.png)
+
+![](images/clipboard-3496308524.png)
