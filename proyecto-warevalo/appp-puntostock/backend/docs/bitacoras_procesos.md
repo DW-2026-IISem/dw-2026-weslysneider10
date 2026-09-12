@@ -1033,7 +1033,7 @@
 
 ### **13.9** — application/dto/create-inventory.dto.ts
 
-###  
+###  ![](images/clipboard-1791716922.png)
 
 ### **13.10** — application/dto/inventory-filter.dto.ts
 
