@@ -480,7 +480,7 @@
 ### ![](images/clipboard-2948288562.png) 
 **8.13 — `features/business/product-types/application/use-cases/create-product-type.use-case.ts`**
 
-###  
+### ![](images/clipboard-1337878941.png) 
 **8.14 — `features/business/product-types/application/use-cases/delete-product-type.use-case.ts`**
 
 ###  
