@@ -901,7 +901,7 @@
 
 ### **12.7** — domain/validators/supplier-phone.validator.ts
 
-###  
+###  ![](images/clipboard-1571915.png)
 
 ### **12.8** — infrastructure/persistence/models/supplier.model.ts
 
