@@ -994,3 +994,5 @@
 ### **12.30** — Verificar tabla `suppliers` y API
 
 ### ![](images/clipboard-3451196258.png)
+
+![](images/clipboard-1241286723.png)
