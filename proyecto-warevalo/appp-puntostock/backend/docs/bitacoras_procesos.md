@@ -635,7 +635,7 @@
 
 ### 9.28 — Actualizar database-seeder.service.ts
 
-### 
+### ![](images/clipboard-1546214280.png)
 
 ### 9.29 — Actualizar app.module.ts
 
