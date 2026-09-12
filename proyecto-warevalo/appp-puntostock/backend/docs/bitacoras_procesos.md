@@ -1110,3 +1110,7 @@
 ### **13.28** — Verificar tabla `inventories` y API
 
 ### 
+
+![](images/clipboard-1336646124.png)
+
+![](images/clipboard-3046088078.png)
