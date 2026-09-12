@@ -579,11 +579,11 @@
 
 ### 9.14 — features/business/products/application/dto/product-response.dto.ts
 
-### 
+### ![](images/clipboard-1464382774.png)
 
 ### 9.15 — features/business/products/application/dto/update-product.dto.ts
 
-### 
+### ![](images/clipboard-63727997.png)
 
 ### 9.16 — features/business/products/application/mappers/product.mapper.ts
 
