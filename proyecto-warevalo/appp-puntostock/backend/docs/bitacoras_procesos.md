@@ -1148,7 +1148,7 @@
 ### ![](images/clipboard-2172897105.png)
 14.10 — infrastructure/persistence/migrations/create-purchases-table.migration.ts
 
-### 
+### ![](images/clipboard-4242522308.png)
 14.11 — infrastructure/persistence/seeders/purchases.seeder.ts
 
 ### 
