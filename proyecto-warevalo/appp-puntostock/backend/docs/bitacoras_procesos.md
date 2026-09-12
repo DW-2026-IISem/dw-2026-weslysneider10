@@ -799,6 +799,8 @@
 
 ### **11.8** — application/dto/create-branch.dto.ts
 
+![](images/clipboard-3846634404.png)
+
 ### **11.9** — application/dto/branch-filter.dto.ts
 
 ### **11.10** — application/dto/branch-response.dto.ts
