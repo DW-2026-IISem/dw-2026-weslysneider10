@@ -1021,7 +1021,7 @@
 
 ### **13.6** — infrastructure/persistence/repositories/inventory.repository.ts
 
-###  
+###  ![](images/clipboard-788176157.png)
 
 ### **13.7** — infrastructure/persistence/migrations/create-inventories-table.migration.ts
 
