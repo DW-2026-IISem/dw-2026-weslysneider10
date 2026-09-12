@@ -1154,7 +1154,7 @@
 ### ![](images/clipboard-3899431053.png)
 14.12 — application/dto/create-purchase.dto.ts
 
-### 
+### ![](images/clipboard-2750329686.png)
 14.13 — application/dto/purchase-filter.dto.ts
 
 ### 
