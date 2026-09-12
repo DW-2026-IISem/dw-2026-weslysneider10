@@ -1061,7 +1061,7 @@
 
 ### **13.16** — application/use-cases/get-inventory.use-case.ts
 
-###  
+###  ![](images/clipboard-2931650651.png)
 
 ### **13.17** — application/use-cases/list-inventory.use-case.ts
 
