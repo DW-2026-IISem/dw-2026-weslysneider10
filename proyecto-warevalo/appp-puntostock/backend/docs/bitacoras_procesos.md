@@ -870,3 +870,5 @@
 ![](images/clipboard-3723880920.png)
 
 ### **11.26** — Verificar tabla `branches` y API
+
+![![](images/clipboard-3237278975.png)](images/clipboard-3766663094.png)
