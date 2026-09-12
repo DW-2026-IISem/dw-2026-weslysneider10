@@ -859,6 +859,8 @@
 
 ### **11.23** — Actualizar business.module.ts (agregar BranchesModule)
 
+![](images/clipboard-3830902114.png)
+
 ### **11.24** — Actualizar database-seeder.service.ts (correr seedBranches)
 
 ### **11.25** — Actualizar app.module.ts (confirmar cableado)
