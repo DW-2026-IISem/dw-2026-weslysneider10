@@ -1193,13 +1193,13 @@
 ### ![](images/clipboard-1926084826.png)
 14.25 — purchases.module.ts
 
-### 
+### ![](images/clipboard-37234987.png)
 14.26 — Actualizar sequelize.factory.ts (registrar PurchaseModel y PurchaseDetailModel)
 
-### 
+### ![](images/clipboard-1045657232.png)
 14.27 — Actualizar business.module.ts (agregar PurchasesModule)
 
-### 
+### ![](images/clipboard-1456638985.png)
 14.28 — Actualizar database-seeder.service.ts (correr seedPurchases)
 
 ### 
