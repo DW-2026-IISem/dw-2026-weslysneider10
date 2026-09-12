@@ -1,12 +1,10 @@
 import { Injectable, Logger, OnModuleInit } from '@nestjs/common';
-import { seedBranches } from '../../../features/business/branches/infrastructure/persistence/seeders/branches.seeder';
+import { seedClients } from '../../../features/business/clients/infrastructure/persistence/seeders/clients.seeder';
+import { seedProductTypes } from '../../../features/business/product-types/infrastructure/persistence/seeders/product-types.seeder';
 import { seedProducts } from '../../../features/business/products/infrastructure/persistence/seeders/products.seeder';
-// import { seedProviders } from '...';
-// import { seedPurchases } from '...';
-// import { seedClients } from '...';
-// import { seedSales } from '...';
-// import { seedPayments } from '...';
-// import { seedReturns } from '...';
+import { seedSales } from '../../../features/business/sales/infrastructure/persistence/seeders/sales.seeder';
+import { seedBranches } from '../../../features/business/branches/infrastructure/persistence/seeders/branches.seeder';
+import { seedSuppliers } from '../../../features/business/suppliers/infrastructure/persistence/seeders/suppliers.seeder';
 import { seedInventory } from '../../../features/business/inventory/infrastructure/persistence/seeders/inventory.seeder';
 
 /**
@@ -23,14 +21,12 @@ export class DatabaseSeederService implements OnModuleInit {
     }
 
     try {
-      await seedBranches();
+      await seedClients();
+      await seedProductTypes();
       await seedProducts();
-      // await seedProviders();
-      // await seedPurchases();
-      // await seedClients();
-      // await seedSales();
-      // await seedPayments();
-      // await seedReturns();
+      await seedBranches();
+      await seedSuppliers();
+      await seedSales();
       await seedInventory();
       this.logger.log('✅ Seeders ejecutados');
     } catch (error: any) {

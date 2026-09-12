@@ -1093,11 +1093,11 @@
 
 ### **13.24** — Actualizar sequelize.factory.ts (registrar InventoryModel)
 
-###  ![](images/clipboard-1057937709.png)![](images/clipboard-1057937709.png)
+###  ![](images/clipboard-1057937709.png)
 
 ### **13.25** — Actualizar business.module.ts (agregar InventoriesModule)
 
-###  
+###  ![](images/clipboard-3533721661.png)
 
 ### **13.26** — Actualizar database-seeder.service.ts (correr seedInventory)
 
@@ -1105,7 +1105,7 @@
 
 ### **13.27** — Actualizar app.module.ts (confirmar cableado)
 
-###  
+###  ![](images/clipboard-4070798811.png)
 
 ### **13.28** — Verificar tabla `inventories` y API
 
