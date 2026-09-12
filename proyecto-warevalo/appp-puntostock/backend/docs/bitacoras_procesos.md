@@ -819,7 +819,11 @@
 
 ### **11.13** — application/use-cases/create-branch.use-case.ts
 
+![](images/clipboard-1888321972.png)
+
 ### **11.14** — application/use-cases/delete-branch.use-case.ts
+
+![](images/clipboard-2588705794.png)
 
 ### **11.15** — application/use-cases/get-branch.use-case.ts
 
