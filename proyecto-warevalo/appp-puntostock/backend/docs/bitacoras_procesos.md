@@ -917,7 +917,7 @@
 
 ### **12.11** — infrastructure/persistence/seeders/suppliers.seeder.ts
 
-###  
+###  ![](images/clipboard-1890982224.png)
 
 ### **12.12** — application/dto/create-supplier.dto.ts
 
