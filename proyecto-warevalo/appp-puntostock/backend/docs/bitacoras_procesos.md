@@ -1175,7 +1175,7 @@
 ### ![](images/clipboard-3939456574.png)
 14.19 — application/use-cases/cancel-purchase.use-case.ts
 
-### 
+### ![](images/clipboard-44217321.png)
 14.20 — application/use-cases/get-purchase.use-case.ts
 
 ### 
