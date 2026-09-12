@@ -1184,7 +1184,7 @@
 ### ![](images/clipboard-4126811424.png)
 14.22 — presentation/http/serializers/purchase.serializer.ts
 
-### 
+### ![](images/clipboard-452990576.png)
 14.23 — presentation/http/controllers/purchases.controller.ts
 
 ### 
