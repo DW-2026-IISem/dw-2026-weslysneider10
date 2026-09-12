@@ -989,7 +989,7 @@
 
 ### **12.29** — Actualizar app.module.ts (confirmar cableado)
 
-###  
+###  ![](images/clipboard-121356280.png)
 
 ### **12.30** — Verificar tabla `suppliers` y API
 
