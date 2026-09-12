@@ -603,7 +603,7 @@
 
 ### 9.20 — features/business/products/application/use-cases/list-products.use-case.ts
 
-### 
+### ![](images/clipboard-947147847.png)
 
 ### 9.21 — features/business/products/application/use-cases/update-product.use-case.ts
 
