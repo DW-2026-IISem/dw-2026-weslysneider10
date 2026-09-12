@@ -981,7 +981,7 @@
 
 ### **12.27** — Actualizar business.module.ts (agregar SuppliersModule)
 
-###  
+###  ![](images/clipboard-1834561168.png)
 
 ### **12.28** — Actualizar database-seeder.service.ts (correr seedSuppliers)
 
