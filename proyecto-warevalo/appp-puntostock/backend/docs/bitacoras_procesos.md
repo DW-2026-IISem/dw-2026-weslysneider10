@@ -977,7 +977,7 @@
 
 ### **12.26** — Actualizar sequelize.factory.ts (registrar SupplierModel)
 
-###  
+###  ![](images/clipboard-2010219747.png)
 
 ### **12.27** — Actualizar business.module.ts (agregar SuppliersModule)
 

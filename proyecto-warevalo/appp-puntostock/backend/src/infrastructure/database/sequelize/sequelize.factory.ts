@@ -8,6 +8,7 @@ import { ProductModel } from '../../../features/business/products/infrastructure
 import { SaleModel } from '../../../features/business/sales/infrastructure/persistence/models/sale.model';
 import { ProductSaleModel } from '../../../features/business/sales/infrastructure/persistence/models/product-sale.model';
 import { BranchModel } from '../../../features/business/branches/infrastructure/persistence/models/branch.model';
+import { SupplierModel } from '../../../features/business/suppliers/infrastructure/persistence/models/supplier.model';
 
 export const ALL_MODELS = [
   ClientModel,
@@ -16,6 +17,7 @@ export const ALL_MODELS = [
   SaleModel,
   ProductSaleModel,
   BranchModel,
+  SupplierModel,
 ];
 
 export async function createSequelizeInstance(
