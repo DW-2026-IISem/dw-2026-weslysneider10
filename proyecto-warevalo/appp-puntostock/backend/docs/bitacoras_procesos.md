@@ -1145,7 +1145,7 @@
 ### ![](images/clipboard-4144945415.png)
 14.9  — infrastructure/persistence/repositories/purchase.repository.ts
 
-### 
+### ![](images/clipboard-2172897105.png)
 14.10 — infrastructure/persistence/migrations/create-purchases-table.migration.ts
 
 ### 
