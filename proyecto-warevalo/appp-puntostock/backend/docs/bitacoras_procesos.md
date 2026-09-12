@@ -929,7 +929,7 @@
 
 ### **12.14** — application/dto/supplier-response.dto.ts
 
-###  
+###  ![](images/clipboard-3489538988.png)
 
 ### **12.15** — application/dto/update-supplier.dto.ts
 
