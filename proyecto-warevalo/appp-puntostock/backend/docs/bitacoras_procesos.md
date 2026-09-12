@@ -1190,7 +1190,7 @@
 ### ![](images/clipboard-495615670.png)
 14.24 — index.ts (barrel export)
 
-### 
+### ![](images/clipboard-1926084826.png)
 14.25 — purchases.module.ts
 
 ### 
