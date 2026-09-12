@@ -1128,7 +1128,7 @@
 ### ![](images/clipboard-2902359955.png)
 14.4  — domain/exceptions/invalid-receipt-quantity.exception.ts (recepción parcial no puede superar lo pedido)
 
-### 
+### ![](images/clipboard-3225028076.png)
 14.5  — domain/interfaces/purchase-repository.interface.ts
 
 ### 
