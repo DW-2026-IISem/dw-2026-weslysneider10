@@ -741,6 +741,8 @@
 
 ###  **10.23** — Barrel `business/index.ts` 
 
+![](images/clipboard-3036374478.png)
+
 ###  **10.24** — Actualizar `sequelize.factory.ts` (registrar modelos) 
 
 ###  **10.25** — Actualizar `business.module.ts` 
