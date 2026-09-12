@@ -893,7 +893,7 @@
 
 ### **12.5** — domain/validators/supplier-nit.validator.ts
 
-###  
+###  ![](images/clipboard-1011729366.png)
 
 ### **12.6** — domain/validators/supplier-email.validator.ts
 
