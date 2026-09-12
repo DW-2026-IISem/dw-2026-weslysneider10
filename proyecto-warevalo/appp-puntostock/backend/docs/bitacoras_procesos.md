@@ -925,7 +925,7 @@
 
 ### **12.13** — application/dto/supplier-filter.dto.ts
 
-###  
+###  ![](images/clipboard-3923152741.png)
 
 ### **12.14** — application/dto/supplier-response.dto.ts
 
