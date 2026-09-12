@@ -839,6 +839,8 @@
 
 ### **11.18** — presentation/http/serializers/branch.serializer.ts
 
+![](images/clipboard-432535519.png)
+
 ### **11.19** — presentation/http/controllers/branches.controller.ts
 
 ### **11.20** — index.ts (barrel export)
