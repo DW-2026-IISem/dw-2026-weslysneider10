@@ -1057,7 +1057,7 @@
 
 ### **13.15** — application/use-cases/delete-inventory.use-case.ts
 
-###  
+###  ![](images/clipboard-6486224.png)
 
 ### **13.16** — application/use-cases/get-inventory.use-case.ts
 
