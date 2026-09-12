@@ -1,5 +1,7 @@
 # 
 
+# 
+
 # FASE 1 — \`00_BASE_INIT_NESTJS\`
 
 # 
@@ -757,6 +759,66 @@
 
 ###  **10.27** — Actualizar `app.module.ts` 
 
+![](images/clipboard-1332433235.png)
+
 ###  **10.28** — Verificar tablas `sales` / `product_sales`
 
-### 
+### ![](images/clipboard-669784757.png)
+
+# Entidad Sucursal (Branch) — PuntoStock
+
+# FASE 11 — `10_BUSINESS_BRANCHES`
+
+### **11.1** — domain/entities/branch.entity.ts
+
+![](images/clipboard-2623278231.png)
+
+### **11.2** — domain/exceptions/branch-not-found.exception.ts
+
+### **11.3** — domain/interfaces/branch-repository.interface.ts
+
+### **11.4** — infrastructure/persistence/models/branch.model.ts
+
+### **11.5** — infrastructure/persistence/repositories/branch.repository.ts
+
+### **11.6** — infrastructure/persistence/migrations/create-branches-table.migration.ts
+
+### **11.7** — infrastructure/persistence/seeders/branches.seeder.ts
+
+### **11.8** — application/dto/create-branch.dto.ts
+
+### **11.9** — application/dto/branch-filter.dto.ts
+
+### **11.10** — application/dto/branch-response.dto.ts
+
+### **11.11** — application/dto/update-branch.dto.ts
+
+### **11.12** — application/mappers/branch.mapper.ts
+
+### **11.13** — application/use-cases/create-branch.use-case.ts
+
+### **11.14** — application/use-cases/delete-branch.use-case.ts
+
+### **11.15** — application/use-cases/get-branch.use-case.ts
+
+### **11.16** — application/use-cases/list-branches.use-case.ts
+
+### **11.17** — application/use-cases/update-branch.use-case.ts
+
+### **11.18** — presentation/http/serializers/branch.serializer.ts
+
+### **11.19** — presentation/http/controllers/branches.controller.ts
+
+### **11.20** — index.ts (barrel export)
+
+### **11.21** — branches.module.ts
+
+### **11.22** — Actualizar sequelize.factory.ts (registrar BranchModel)
+
+### **11.23** — Actualizar business.module.ts (agregar BranchesModule)
+
+### **11.24** — Actualizar database-seeder.service.ts (correr seedBranches)
+
+### **11.25** — Actualizar app.module.ts (confirmar cableado)
+
+### **11.26** — Verificar tabla `branches` y API

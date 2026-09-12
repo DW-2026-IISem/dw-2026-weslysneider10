@@ -6,6 +6,7 @@ import { Status } from '../../../../../../common/enums/status.enum';
 
 export async function seedSales(): Promise<void> {
   const count = await SaleModel.count();
+
   if (count > 0) {
     return;
   }
@@ -18,6 +19,7 @@ export async function seedSales(): Promise<void> {
   }
 
   const product = await ProductModel.findByPk(1);
+
   if (!product) {
     return;
   }
@@ -53,11 +55,6 @@ export async function seedSales(): Promise<void> {
         unitPrice,
         total: subtotal,
       },
-      { transaction },
-    );
-
-    await product.update(
-      { quantity: product.quantity - quantity },
       { transaction },
     );
   });

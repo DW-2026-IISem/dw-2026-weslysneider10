@@ -10,7 +10,6 @@ export class ProductMapper {
       name: model.name,
       description: model.description ?? undefined,
       price: Number(model.price),
-      quantity: model.quantity,
       isActive: model.isActive,
       createdAt: model.createdAt,
       updatedAt: model.updatedAt,
@@ -24,23 +23,19 @@ export class ProductMapper {
       name: entity.name,
       description: entity.description,
       price: entity.price,
-      quantity: entity.quantity,
       isActive: entity.isActive,
       createdAt: entity.createdAt!,
       updatedAt: entity.updatedAt!,
     };
   }
 
-  static toPersistence(
-    entity: Product,
-  ): Partial<ProductModel> {
+  static toPersistence(entity: Product): Partial<ProductModel> {
     return {
       id: entity.id,
       sku: entity.sku,
       name: entity.name,
-      description: entity.description,
+      description: entity.description ?? null,
       price: entity.price,
-      quantity: entity.quantity,
       isActive: entity.isActive,
     };
   }

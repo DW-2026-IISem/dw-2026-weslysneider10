@@ -1,24 +1,43 @@
-export interface SaleItemInput {
+import { Injectable } from '@nestjs/common';
+
+interface SaleCalculatorItem {
   quantity: number;
   unitPrice: number;
 }
 
-export interface SaleTotals {
+interface SaleCalculatorProps {
+  items: SaleCalculatorItem[];
+  tax?: number;
+  discounts?: number;
+}
+
+interface SaleCalculatorResult {
   subtotal: number;
   tax: number;
   discounts: number;
   total: number;
 }
 
+@Injectable()
 export class SaleCalculatorDomainService {
-  calculateSubtotal(items: SaleItemInput[]): number {
-    return items.reduce((sum, item) => sum + item.quantity * item.unitPrice, 0);
-  }
+  calculate(
+    props: SaleCalculatorProps,
+  ): SaleCalculatorResult {
+    const subtotal = props.items.reduce(
+      (sum, item) =>
+        sum + item.quantity * item.unitPrice,
+      0,
+    );
 
-  calculateTotals(items: SaleItemInput[], tax = 0, discounts = 0): SaleTotals {
-    const subtotal = this.calculateSubtotal(items);
+    const tax = props.tax ?? 0;
+    const discounts = props.discounts ?? 0;
     const total = subtotal + tax - discounts;
 
-    return { subtotal, tax, discounts, total };
+    return {
+      subtotal,
+      tax,
+      discounts,
+      total,
+    };
   }
 }
