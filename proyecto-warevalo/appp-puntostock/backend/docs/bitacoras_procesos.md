@@ -803,6 +803,8 @@
 
 ### **11.9** — application/dto/branch-filter.dto.ts
 
+![](images/clipboard-229025573.png)
+
 ### **11.10** — application/dto/branch-response.dto.ts
 
 ### **11.11** — application/dto/update-branch.dto.ts
