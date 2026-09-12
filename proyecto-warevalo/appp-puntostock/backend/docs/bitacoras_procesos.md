@@ -1081,7 +1081,7 @@
 
 ### **13.21** — presentation/http/controllers/inventories.controller.ts
 
-###  
+###  ![](images/clipboard-3116256015.png)
 
 ### **13.22** — index.ts (barrel export)
 
