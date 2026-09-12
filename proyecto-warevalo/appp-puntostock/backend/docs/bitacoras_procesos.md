@@ -543,7 +543,7 @@
 
 ### 9.5 — features/business/products/domain/interfaces/product-repository.interface.ts
 
-### 
+### ![](images/clipboard-315143547.png)
 
 ### 9.6 — features/business/products/domain/validators/product-price.validator.ts
 
