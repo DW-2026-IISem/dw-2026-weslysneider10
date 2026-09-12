@@ -815,6 +815,8 @@
 
 ### **11.12** — application/mappers/branch.mapper.ts
 
+![](images/clipboard-248768437.png)
+
 ### **11.13** — application/use-cases/create-branch.use-case.ts
 
 ### **11.14** — application/use-cases/delete-branch.use-case.ts
