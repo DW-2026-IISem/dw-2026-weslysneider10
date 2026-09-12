@@ -905,7 +905,7 @@
 
 ### **12.8** — infrastructure/persistence/models/supplier.model.ts
 
-###  
+###  ![](images/clipboard-1793767248.png)
 
 ### **12.9** — infrastructure/persistence/repositories/supplier.repository.ts
 
