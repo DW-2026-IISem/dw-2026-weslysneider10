@@ -1160,7 +1160,7 @@
 ### ![](images/clipboard-4233565329.png)
 14.14 — application/dto/purchase-response.dto.ts
 
-### 
+### ![](images/clipboard-3984802138.png)
 14.15 — application/dto/receive-purchase.dto.ts (recepción parcial/total)
 
 ### 
