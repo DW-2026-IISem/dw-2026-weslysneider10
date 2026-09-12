@@ -1187,7 +1187,7 @@
 ### ![](images/clipboard-452990576.png)
 14.23 — presentation/http/controllers/purchases.controller.ts
 
-### 
+### ![](images/clipboard-495615670.png)
 14.24 — index.ts (barrel export)
 
 ### 
