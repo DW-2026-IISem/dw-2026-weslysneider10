@@ -619,7 +619,7 @@
 
 ### 9.24 — features/business/products/index.ts
 
-### 
+### ![](images/clipboard-2137003277.png)
 
 ### 9.25 — features/business/products/products.module.ts
 
