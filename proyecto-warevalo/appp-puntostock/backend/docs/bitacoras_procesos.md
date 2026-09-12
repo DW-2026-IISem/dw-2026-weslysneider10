@@ -471,7 +471,7 @@
 ### ![](images/clipboard-1346521944.png) 
 **8.10 — `features/business/product-types/application/dto/product-type-response.dto.ts`**
 
-###  
+### ![](images/clipboard-3527047192.png) 
 **8.11 — `features/business/product-types/application/dto/update-product-type.dto.ts`**
 
 ###  
