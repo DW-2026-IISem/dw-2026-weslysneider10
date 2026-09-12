@@ -450,7 +450,7 @@
 ### ![](images/clipboard-941299263.png) 
 **8.3 — `features/business/product-types/domain/interfaces/product-type-repository.interface.ts`**
 
-###  
+### ![](images/clipboard-3651410975.png) 
 **8.4 — `features/business/product-types/infrastructure/persistence/models/product-type.model.ts`**
 
 ###  
