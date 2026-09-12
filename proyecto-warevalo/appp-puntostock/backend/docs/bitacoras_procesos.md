@@ -1122,10 +1122,10 @@
 ### ![](images/clipboard-381606332.png)
 14.2  — domain/exceptions/purchase-not-found.exception.ts
 
-### 
+### ![](images/clipboard-2865141758.png)
 14.3  — domain/exceptions/invalid-purchase-status.exception.ts
 
-### 
+### ![](images/clipboard-2902359955.png)
 14.4  — domain/exceptions/invalid-receipt-quantity.exception.ts (recepción parcial no puede superar lo pedido)
 
 ### 
