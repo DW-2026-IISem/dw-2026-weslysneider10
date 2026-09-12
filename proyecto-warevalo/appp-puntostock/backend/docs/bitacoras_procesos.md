@@ -957,7 +957,7 @@
 
 ### **12.21** — application/use-cases/update-supplier.use-case.ts
 
-###  
+###  ![](images/clipboard-2168565671.png)
 
 ### **12.22** — presentation/http/serializers/supplier.serializer.ts
 
