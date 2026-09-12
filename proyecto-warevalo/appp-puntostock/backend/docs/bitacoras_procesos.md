@@ -1041,7 +1041,7 @@
 
 ### **13.11** — application/dto/inventory-response.dto.ts
 
-###  
+###  ![](images/clipboard-2610506987.png)
 
 ### **13.12** — application/dto/update-inventory.dto.ts
 
