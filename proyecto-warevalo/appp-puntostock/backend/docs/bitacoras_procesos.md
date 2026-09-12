@@ -436,3 +436,85 @@
 ##  **7.29** — Verificar tabla física `clients` y API
 
 ## ![](images/clipboard-2209075704.png)
+
+# FASE 8 — `07_BUSINESS_PRODUCT_TYPES`
+
+## Business — ProductTypes
+
+### 8.1 — features/business/product-types/domain/entities/product-type.entity.ts
+
+![](images/clipboard-1560724258.png)
+
+### **8.2 — `features/business/product-types/domain/exceptions/product-type-not-found.exception.ts`**
+
+###  
+**8.3 — `features/business/product-types/domain/interfaces/product-type-repository.interface.ts`**
+
+###  
+**8.4 — `features/business/product-types/infrastructure/persistence/models/product-type.model.ts`**
+
+###  
+**8.5 — `features/business/product-types/infrastructure/persistence/repositories/product-type.repository.ts`**
+
+###  
+**8.6 — `features/business/product-types/infrastructure/persistence/migrations/create-product-types-table.migration.ts`**
+
+###  
+**8.7 — `features/business/product-types/infrastructure/persistence/seeders/product-types.seeder.ts`**
+
+###  
+**8.8 — `features/business/product-types/application/dto/create-product-type.dto.ts`**
+
+###  
+**8.9 — `features/business/product-types/application/dto/product-type-filter.dto.ts`**
+
+###  
+**8.10 — `features/business/product-types/application/dto/product-type-response.dto.ts`**
+
+###  
+**8.11 — `features/business/product-types/application/dto/update-product-type.dto.ts`**
+
+###  
+**8.12 — `features/business/product-types/application/mappers/product-type.mapper.ts`**
+
+###  
+**8.13 — `features/business/product-types/application/use-cases/create-product-type.use-case.ts`**
+
+###  
+**8.14 — `features/business/product-types/application/use-cases/delete-product-type.use-case.ts`**
+
+###  
+**8.15 — `features/business/product-types/application/use-cases/get-product-type.use-case.ts`**
+
+###  
+**8.16 — `features/business/product-types/application/use-cases/list-product-types.use-case.ts`**
+
+###  
+**8.17 — `features/business/product-types/application/use-cases/update-product-type.use-case.ts`**
+
+###  
+**8.18 — `features/business/product-types/presentation/http/serializers/product-type.serializer.ts`**
+
+###  
+**8.19 — `features/business/product-types/presentation/http/controllers/product-types.controller.ts`**
+
+###  
+**8.20 — `features/business/product-types/index.ts`**
+
+###  
+**8.21 — `features/business/product-types/product-types.module.ts`**
+
+###  
+**8.22 — `src/infrastructure/database/sequelize/sequelize.factory.ts`**
+
+###  
+**8.23 — `src/features/business/business.module.ts`**
+
+###  
+**8.24 — `src/infrastructure/database/seeders/database-seeder.service.ts`**
+
+###  
+**8.25 — `src/app.module.ts`**
+
+###  
+**8.26 — Verificar tabla `product_types` y endpoints `/api/product-types`**
