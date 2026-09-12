@@ -889,7 +889,7 @@
 
 ### **12.4** — domain/interfaces/supplier-repository.interface.ts
 
-###  
+###  ![](images/clipboard-1528627010.png)
 
 ### **12.5** — domain/validators/supplier-nit.validator.ts
 
