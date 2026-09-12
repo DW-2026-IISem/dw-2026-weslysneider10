@@ -489,7 +489,7 @@
 ### ![](images/clipboard-2891675703.png) 
 **8.16 — `features/business/product-types/application/use-cases/list-product-types.use-case.ts`**
 
-###  
+### ![](images/clipboard-2161797516.png) 
 **8.17 — `features/business/product-types/application/use-cases/update-product-type.use-case.ts`**
 
 ###  
