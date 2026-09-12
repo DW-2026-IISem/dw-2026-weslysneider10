@@ -1077,7 +1077,7 @@
 
 ### **13.20** — presentation/http/serializers/inventory.serializer.ts
 
-###  
+###  ![](images/clipboard-3231769999.png)
 
 ### **13.21** — presentation/http/controllers/inventories.controller.ts
 
