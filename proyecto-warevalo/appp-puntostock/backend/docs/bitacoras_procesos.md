@@ -953,7 +953,7 @@
 
 ### **12.20** — application/use-cases/list-suppliers.use-case.ts
 
-###  
+###  ![](images/clipboard-4219586300.png)
 
 ### **12.21** — application/use-cases/update-supplier.use-case.ts
 
