@@ -937,7 +937,7 @@
 
 ### **12.16** — application/mappers/supplier.mapper.ts
 
-###  
+###  ![](images/clipboard-1245613082.png)
 
 ### **12.17** — application/use-cases/create-supplier.use-case.ts
 
