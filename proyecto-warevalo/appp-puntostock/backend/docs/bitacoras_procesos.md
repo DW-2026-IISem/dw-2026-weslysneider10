@@ -1025,11 +1025,11 @@
 
 ### **13.7** — infrastructure/persistence/migrations/create-inventories-table.migration.ts
 
-###  
+###  ![](images/clipboard-2939285648.png)
 
 ### **13.8** — infrastructure/persistence/seeders/inventory.seeder.ts
 
-###  
+###  ![](images/clipboard-1933016722.png)
 
 ### **13.9** — application/dto/create-inventory.dto.ts
 
