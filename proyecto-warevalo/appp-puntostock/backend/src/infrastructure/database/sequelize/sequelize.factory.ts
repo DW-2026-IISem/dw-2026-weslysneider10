@@ -2,22 +2,33 @@ import { Sequelize } from 'sequelize-typescript';
 import { DatabaseDialect } from '../../../config/environment/env.interface';
 import { getSequelizeOptions } from './sequelize.options';
 
-import { ClientModel } from '../../../features/business/clients/infrastructure/persistence/models/client.model';
-import { ProductTypeModel } from '../../../features/business/product-types/infrastructure/persistence/models/product-type.model';
-import { ProductModel } from '../../../features/business/products/infrastructure/persistence/models/product.model';
-import { SaleModel } from '../../../features/business/sales/infrastructure/persistence/models/sale.model';
-import { ProductSaleModel } from '../../../features/business/sales/infrastructure/persistence/models/product-sale.model';
+// --- modelos de fases anteriores (ajusta a tu proyecto real) ---
 import { BranchModel } from '../../../features/business/branches/infrastructure/persistence/models/branch.model';
-import { SupplierModel } from '../../../features/business/suppliers/infrastructure/persistence/models/supplier.model';
+import { ProductModel } from '../../../features/business/products/infrastructure/persistence/models/product.model';
+// import { ProviderModel } from '...';
+// import { PurchaseModel } from '...';
+// import { PurchaseDetailModel } from '...';
+// import { ClientModel } from '...';
+// import { SaleModel } from '...';
+// import { SaleDetailModel } from '...';
+// import { PaymentModel } from '...';
+// import { ReturnModel } from '...';
+
+// --- modelo nuevo de esta fase ---
+import { InventoryModel } from '../../../features/business/inventory/infrastructure/persistence/models/inventory.model';
 
 export const ALL_MODELS = [
-  ClientModel,
-  ProductTypeModel,
-  ProductModel,
-  SaleModel,
-  ProductSaleModel,
   BranchModel,
-  SupplierModel,
+  ProductModel,
+  // ProviderModel,
+  // PurchaseModel,
+  // PurchaseDetailModel,
+  // ClientModel,
+  // SaleModel,
+  // SaleDetailModel,
+  // PaymentModel,
+  // ReturnModel,
+  InventoryModel,
 ];
 
 export async function createSequelizeInstance(

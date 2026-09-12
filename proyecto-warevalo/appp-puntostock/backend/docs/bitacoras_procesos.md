@@ -1093,7 +1093,7 @@
 
 ### **13.24** — Actualizar sequelize.factory.ts (registrar InventoryModel)
 
-###  
+###  ![](images/clipboard-1057937709.png)![](images/clipboard-1057937709.png)
 
 ### **13.25** — Actualizar business.module.ts (agregar InventoriesModule)
 
