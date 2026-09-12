@@ -1085,7 +1085,7 @@
 
 ### **13.22** — index.ts (barrel export)
 
-###  
+###  ![](images/clipboard-737699307.png)
 
 ### **13.23** — inventories.module.ts
 
