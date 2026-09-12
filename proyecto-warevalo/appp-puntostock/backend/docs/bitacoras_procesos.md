@@ -921,7 +921,7 @@
 
 ### **12.12** — application/dto/create-supplier.dto.ts
 
-###  
+###  ![](images/clipboard-361403654.png)
 
 ### **12.13** — application/dto/supplier-filter.dto.ts
 
