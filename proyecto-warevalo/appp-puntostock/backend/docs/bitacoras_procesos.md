@@ -885,7 +885,7 @@
 
 ### **12.3** — domain/exceptions/supplier-not-found.exception.ts
 
-###  
+###  ![](images/clipboard-2303647169.png)
 
 ### **12.4** — domain/interfaces/supplier-repository.interface.ts
 
