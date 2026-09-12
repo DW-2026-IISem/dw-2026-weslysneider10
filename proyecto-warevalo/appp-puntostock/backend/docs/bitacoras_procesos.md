@@ -567,7 +567,7 @@
 
 ### 9.11 — features/business/products/infrastructure/persistence/seeders/products.seeder.ts
 
-### 
+### ![](images/clipboard-1092974154.png)
 
 ### 9.12 — features/business/products/application/dto/create-product.dto.ts
 
