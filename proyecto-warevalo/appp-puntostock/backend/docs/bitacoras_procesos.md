@@ -827,6 +827,8 @@
 
 ### **11.15** — application/use-cases/get-branch.use-case.ts
 
+![](images/clipboard-1626497272.png)
+
 ### **11.16** — application/use-cases/list-branches.use-case.ts
 
 ### **11.17** — application/use-cases/update-branch.use-case.ts
