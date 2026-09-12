@@ -571,7 +571,7 @@
 
 ### 9.12 — features/business/products/application/dto/create-product.dto.ts
 
-### 
+### ![](images/clipboard-268361433.png)
 
 ### 9.13 — features/business/products/application/dto/product-filter.dto.ts
 
