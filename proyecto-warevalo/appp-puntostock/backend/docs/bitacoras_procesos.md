@@ -1181,7 +1181,7 @@
 ### ![](images/clipboard-3606056909.png)
 14.21 — application/use-cases/list-purchases.use-case.ts
 
-### 
+### ![](images/clipboard-4126811424.png)
 14.22 — presentation/http/serializers/purchase.serializer.ts
 
 ### 
