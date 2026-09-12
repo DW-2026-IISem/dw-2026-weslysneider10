@@ -897,7 +897,7 @@
 
 ### **12.6** — domain/validators/supplier-email.validator.ts
 
-###  
+###  ![](images/clipboard-1194889468.png)
 
 ### **12.7** — domain/validators/supplier-phone.validator.ts
 
