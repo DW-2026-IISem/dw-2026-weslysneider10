@@ -807,6 +807,8 @@
 
 ### **11.10** — application/dto/branch-response.dto.ts
 
+![](images/clipboard-3352271813.png)
+
 ### **11.11** — application/dto/update-branch.dto.ts
 
 ### **11.12** — application/mappers/branch.mapper.ts
