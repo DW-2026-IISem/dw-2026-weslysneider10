@@ -847,7 +847,11 @@
 
 ### **11.20** — index.ts (barrel export)
 
+![](images/clipboard-881862681.png)
+
 ### **11.21** — branches.module.ts
+
+![](images/clipboard-3769739706.png)
 
 ### **11.22** — Actualizar sequelize.factory.ts (registrar BranchModel)
 
