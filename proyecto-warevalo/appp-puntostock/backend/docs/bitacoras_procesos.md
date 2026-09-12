@@ -591,7 +591,7 @@
 
 ### 9.17 — features/business/products/application/use-cases/create-product.use-case.ts
 
-### 
+### ![](images/clipboard-2535355839.png)
 
 ### 9.18 — features/business/products/application/use-cases/delete-product.use-case.ts
 
