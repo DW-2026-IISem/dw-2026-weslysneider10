@@ -1005,7 +1005,7 @@
 
 ### **13.2** — domain/exceptions/inventory-already-exists.exception.ts *(duplicado sucursal + producto)*
 
-###  
+###  ![](images/clipboard-4118381831.png)
 
 ### **13.3** — domain/exceptions/inventory-not-found.exception.ts
 
