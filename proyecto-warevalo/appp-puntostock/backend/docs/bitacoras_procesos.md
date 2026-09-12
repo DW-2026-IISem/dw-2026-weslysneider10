@@ -669,6 +669,8 @@
 
 ###  **10.5** — `features/business/sales/domain/services/sale-calculator.domain-service.ts` 
 
+![](images/clipboard-3262802284.png)
+
 ###  **10.6** — `features/business/sales/infrastructure/persistence/models/product-sale.model.ts` 
 
 ###  **10.7** — `features/business/sales/infrastructure/persistence/models/sale.model.ts` 
