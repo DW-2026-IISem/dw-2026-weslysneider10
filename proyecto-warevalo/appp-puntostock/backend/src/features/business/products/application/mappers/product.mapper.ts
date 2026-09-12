@@ -10,6 +10,7 @@ export class ProductMapper {
       name: model.name,
       description: model.description ?? undefined,
       price: Number(model.price),
+      quantity: model.quantity,
       isActive: model.isActive,
       createdAt: model.createdAt,
       updatedAt: model.updatedAt,
@@ -23,6 +24,7 @@ export class ProductMapper {
       name: entity.name,
       description: entity.description,
       price: entity.price,
+      quantity: entity.quantity,
       isActive: entity.isActive,
       createdAt: entity.createdAt!,
       updatedAt: entity.updatedAt!,
@@ -38,6 +40,7 @@ export class ProductMapper {
       name: entity.name,
       description: entity.description,
       price: entity.price,
+      quantity: entity.quantity,
       isActive: entity.isActive,
     };
   }

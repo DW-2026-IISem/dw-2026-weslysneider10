@@ -13,6 +13,7 @@ export async function seedProducts(): Promise<void> {
       name: 'Arroz Diana 500g',
       description: 'Arroz blanco de 500 gramos',
       price: 4500,
+      quantity: 100,
       isActive: true,
     },
     {
@@ -20,6 +21,7 @@ export async function seedProducts(): Promise<void> {
       name: 'Aceite vegetal 1L',
       description: 'Aceite vegetal de cocina',
       price: 8500,
+      quantity: 50,
       isActive: true,
     },
     {
@@ -27,6 +29,7 @@ export async function seedProducts(): Promise<void> {
       name: 'Azúcar 1kg',
       description: 'Azúcar blanca de un kilogramo',
       price: 4200,
+      quantity: 80,
       isActive: true,
     },
   ]);

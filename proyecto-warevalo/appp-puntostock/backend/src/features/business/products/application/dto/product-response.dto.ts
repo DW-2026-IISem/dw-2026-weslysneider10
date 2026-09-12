@@ -27,6 +27,11 @@ export class ProductResponseDto {
   price: number;
 
   @ApiProperty({
+    example: 100,
+  })
+  quantity: number;
+
+  @ApiProperty({
     example: true,
   })
   isActive: boolean;

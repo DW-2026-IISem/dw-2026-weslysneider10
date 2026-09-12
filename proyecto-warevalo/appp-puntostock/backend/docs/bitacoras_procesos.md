@@ -646,3 +646,67 @@
 ### ![](images/clipboard-1670696053.png)
 
 ![](images/clipboard-2255704933.png)
+
+# FASE 10 — `09_BUSINESS_SALES`
+
+## Business — Sales (+ ProductSale)
+
+### **10.1** — `features/business/sales/domain/entities/sale.entity.ts` 
+
+![](images/clipboard-3167533683.png)
+
+###  **10.2** — `features/business/sales/domain/exceptions/insufficient-stock.exception.ts` 
+
+###  **10.3** — `features/business/sales/domain/exceptions/sale-not-found.exception.ts` 
+
+###  **10.4** — `features/business/sales/domain/interfaces/sale-repository.interface.ts` 
+
+###  **10.5** — `features/business/sales/domain/services/sale-calculator.domain-service.ts` 
+
+###  **10.6** — `features/business/sales/infrastructure/persistence/models/product-sale.model.ts` 
+
+###  **10.7** — `features/business/sales/infrastructure/persistence/models/sale.model.ts` 
+
+###  **10.8** — `features/business/sales/infrastructure/persistence/repositories/sale.repository.ts` 
+
+###  **10.9** — `features/business/sales/infrastructure/persistence/migrations/create-sales-table.migration.ts` 
+
+###  **10.10** — `features/business/sales/infrastructure/persistence/seeders/sales.seeder.ts` 
+
+###  **10.11** — `features/business/sales/application/dto/create-sale.dto.ts` 
+
+###  **10.12** — `features/business/sales/application/dto/sale-filter.dto.ts` 
+
+###  **10.13** — `features/business/sales/application/dto/sale-response.dto.ts` 
+
+###  **10.14** — `features/business/sales/application/mappers/sale.mapper.ts` 
+
+###  **10.15** — `features/business/sales/application/use-cases/cancel-sale.use-case.ts` 
+
+###  **10.16** — `features/business/sales/application/use-cases/create-sale.use-case.ts` 
+
+###  **10.17** — `features/business/sales/application/use-cases/get-sale.use-case.ts` 
+
+###  **10.18** — `features/business/sales/application/use-cases/list-sales.use-case.ts` 
+
+###  **10.19** — `features/business/sales/presentation/http/serializers/sale.serializer.ts` 
+
+###  **10.20** — `features/business/sales/presentation/http/controllers/sales.controller.ts` 
+
+###  **10.21** — `features/business/sales/index.ts` 
+
+###  **10.22** — `features/business/sales/sales.module.ts` 
+
+###  **10.23** — Barrel `business/index.ts` 
+
+###  **10.24** — Actualizar `sequelize.factory.ts` (registrar modelos) 
+
+###  **10.25** — Actualizar `business.module.ts` 
+
+###  **10.26** — Actualizar `database-seeder.service.ts` 
+
+###  **10.27** — Actualizar `app.module.ts` 
+
+###  **10.28** — Verificar tablas `sales` / `product_sales`
+
+### 

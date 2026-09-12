@@ -1,10 +1,12 @@
 import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
 import {
+  IsInt,
   IsNotEmpty,
   IsNumber,
   IsOptional,
   IsString,
   IsPositive,
+  Min,
   MaxLength,
 } from 'class-validator';
 
@@ -38,4 +40,13 @@ export class CreateProductDto {
   @IsNumber()
   @IsPositive()
   price: number;
+
+  @ApiPropertyOptional({
+    example: 100,
+    default: 0,
+  })
+  @IsOptional()
+  @IsInt()
+  @Min(0)
+  quantity?: number;
 }

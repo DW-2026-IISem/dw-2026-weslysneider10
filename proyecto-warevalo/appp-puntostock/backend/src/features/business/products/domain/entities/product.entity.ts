@@ -6,10 +6,14 @@ export interface ProductProps {
   name: string;
   description?: string;
   price: number;
+  quantity?: number;
   isActive?: boolean;
   createdAt?: Date;
   updatedAt?: Date;
 }
+
+type CreatableProductProps = Omit<ProductProps, 'id' | 'isActive' | 'createdAt' | 'updatedAt'>;
+type UpdatableProductProps = Partial<CreatableProductProps>;
 
 export class Product {
   id?: number;
@@ -17,6 +21,7 @@ export class Product {
   name: string;
   description?: string;
   price: number;
+  quantity: number;
   isActive: boolean;
   createdAt?: Date;
   updatedAt?: Date;
@@ -27,14 +32,13 @@ export class Product {
     this.name = props.name;
     this.description = props.description;
     this.price = props.price;
+    this.quantity = props.quantity ?? 0;
     this.isActive = props.isActive ?? true;
     this.createdAt = props.createdAt;
     this.updatedAt = props.updatedAt;
   }
 
-  static create(
-    props: Omit<ProductProps, 'id' | 'isActive' | 'createdAt' | 'updatedAt'>,
-  ): Product {
+  static create(props: CreatableProductProps): Product {
     if (!props.sku?.trim()) {
       throw new Error('El SKU del producto es requerido');
     }
@@ -47,6 +51,10 @@ export class Product {
       throw new InvalidProductPriceException(props.price);
     }
 
+    if (props.quantity !== undefined && props.quantity < 0) {
+      throw new Error('La cantidad en stock no puede ser negativa');
+    }
+
     return new Product(props);
   }
 
@@ -54,11 +62,7 @@ export class Product {
     return new Product(props);
   }
 
-  update(
-    props: Partial<
-      Omit<ProductProps, 'id' | 'isActive' | 'createdAt' | 'updatedAt'>
-    >,
-  ): void {
+  update(props: UpdatableProductProps): void {
     if (props.sku !== undefined) {
       if (!props.sku.trim()) {
         throw new Error('El SKU del producto es requerido');
@@ -85,6 +89,14 @@ export class Product {
       }
 
       this.price = props.price;
+    }
+
+    if (props.quantity !== undefined) {
+      if (props.quantity < 0) {
+        throw new Error('La cantidad en stock no puede ser negativa');
+      }
+
+      this.quantity = props.quantity;
     }
   }
 
