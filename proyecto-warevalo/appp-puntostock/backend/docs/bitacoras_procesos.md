@@ -1157,7 +1157,7 @@
 ### ![](images/clipboard-2750329686.png)
 14.13 — application/dto/purchase-filter.dto.ts
 
-### 
+### ![](images/clipboard-4233565329.png)
 14.14 — application/dto/purchase-response.dto.ts
 
 ### 
