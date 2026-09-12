@@ -520,3 +520,127 @@
 **8.26 — Verificar tabla `product_types` y endpoints `/api/product-types`**
 
 ![![](images/clipboard-178510747.png)](images/clipboard-473087644.png)
+
+# FASE 9 — `08_BUSINESS_PRODUCTS`
+
+## Business — Products
+
+### 9.1 — features/business/products/domain/entities/product.entity.ts
+
+### ![](images/clipboard-1248439049.png)
+
+### 9.2 — features/business/products/domain/exceptions/invalid-product-price.exception.ts
+
+### 
+
+### 9.3 — features/business/products/domain/exceptions/invalid-product-stock.exception.ts
+
+### 
+
+### 9.4 — features/business/products/domain/exceptions/product-not-found.exception.ts
+
+### 
+
+### 9.5 — features/business/products/domain/interfaces/product-repository.interface.ts
+
+### 
+
+### 9.6 — features/business/products/domain/validators/product-price.validator.ts
+
+### 
+
+### 9.7 — features/business/products/domain/validators/product-stock.validator.ts
+
+### 
+
+### 9.8 — features/business/products/infrastructure/persistence/models/product.model.ts
+
+### 
+
+### 9.9 — features/business/products/infrastructure/persistence/repositories/product.repository.ts
+
+### 
+
+### 9.10 — features/business/products/infrastructure/persistence/migrations/create-products-table.migration.ts
+
+### 
+
+### 9.11 — features/business/products/infrastructure/persistence/seeders/products.seeder.ts
+
+### 
+
+### 9.12 — features/business/products/application/dto/create-product.dto.ts
+
+### 
+
+### 9.13 — features/business/products/application/dto/product-filter.dto.ts
+
+### 
+
+### 9.14 — features/business/products/application/dto/product-response.dto.ts
+
+### 
+
+### 9.15 — features/business/products/application/dto/update-product.dto.ts
+
+### 
+
+### 9.16 — features/business/products/application/mappers/product.mapper.ts
+
+### 
+
+### 9.17 — features/business/products/application/use-cases/create-product.use-case.ts
+
+### 
+
+### 9.18 — features/business/products/application/use-cases/delete-product.use-case.ts
+
+### 
+
+### 9.19 — features/business/products/application/use-cases/get-product.use-case.ts
+
+### 
+
+### 9.20 — features/business/products/application/use-cases/list-products.use-case.ts
+
+### 
+
+### 9.21 — features/business/products/application/use-cases/update-product.use-case.ts
+
+### 
+
+### 9.22 — features/business/products/presentation/http/serializers/product.serializer.ts
+
+### 
+
+### 9.23 — features/business/products/presentation/http/controllers/products.controller.ts
+
+### 
+
+### 9.24 — features/business/products/index.ts
+
+### 
+
+### 9.25 — features/business/products/products.module.ts
+
+### 
+
+### 9.26 — Actualizar sequelize.factory.ts (registrar modelos)
+
+### 
+
+### 9.27 — Actualizar business.module.ts
+
+### 
+
+### 9.28 — Actualizar database-seeder.service.ts
+
+### 
+
+### 9.29 — Actualizar app.module.ts
+
+### 
+
+### 9.30 — Verificar tabla \`products
+
+### 
