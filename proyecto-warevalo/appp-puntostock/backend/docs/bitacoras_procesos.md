@@ -945,7 +945,7 @@
 
 ### **12.18** — application/use-cases/delete-supplier.use-case.ts
 
-###  
+###  ![](images/clipboard-883979955.png)
 
 ### **12.19** — application/use-cases/get-supplier.use-case.ts
 
