@@ -483,7 +483,7 @@
 ### ![](images/clipboard-1337878941.png) 
 **8.14 — `features/business/product-types/application/use-cases/delete-product-type.use-case.ts`**
 
-###  
+### ![](images/clipboard-3094402002.png) 
 **8.15 — `features/business/product-types/application/use-cases/get-product-type.use-case.ts`**
 
 ###  
