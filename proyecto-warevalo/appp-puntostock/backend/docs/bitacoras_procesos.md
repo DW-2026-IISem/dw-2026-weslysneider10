@@ -547,7 +547,7 @@
 
 ### 9.6 — features/business/products/domain/validators/product-price.validator.ts
 
-### 
+### ![](images/clipboard-2947244856.png)
 
 ### 9.7 — features/business/products/domain/validators/product-stock.validator.ts
 
