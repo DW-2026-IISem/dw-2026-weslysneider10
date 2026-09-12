@@ -811,6 +811,8 @@
 
 ### **11.11** — application/dto/update-branch.dto.ts
 
+![](images/clipboard-2893611636.png)
+
 ### **11.12** — application/mappers/branch.mapper.ts
 
 ### **11.13** — application/use-cases/create-branch.use-case.ts
