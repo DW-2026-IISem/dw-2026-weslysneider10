@@ -513,7 +513,7 @@
 ### ![](images/clipboard-2898480883.png) 
 **8.24 — `src/infrastructure/database/seeders/database-seeder.service.ts`**
 
-###  
+### ![](images/clipboard-3665547974.png) 
 **8.25 — `src/app.module.ts`**
 
 ###  
