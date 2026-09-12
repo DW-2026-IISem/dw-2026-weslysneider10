@@ -725,11 +725,19 @@
 
 ###  **10.19** — `features/business/sales/presentation/http/serializers/sale.serializer.ts` 
 
+![](images/clipboard-2470893563.png)
+
 ###  **10.20** — `features/business/sales/presentation/http/controllers/sales.controller.ts` 
+
+![](images/clipboard-2470893563.png)
 
 ###  **10.21** — `features/business/sales/index.ts` 
 
+![](images/clipboard-4001341595.png)
+
 ###  **10.22** — `features/business/sales/sales.module.ts` 
+
+![](images/clipboard-2214228902.png)
 
 ###  **10.23** — Barrel `business/index.ts` 
 
