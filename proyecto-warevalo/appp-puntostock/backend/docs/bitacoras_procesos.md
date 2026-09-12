@@ -775,6 +775,8 @@
 
 ### **11.2** — domain/exceptions/branch-not-found.exception.ts
 
+![](images/clipboard-2414415100.png)
+
 ### **11.3** — domain/interfaces/branch-repository.interface.ts
 
 ### **11.4** — infrastructure/persistence/models/branch.model.ts
