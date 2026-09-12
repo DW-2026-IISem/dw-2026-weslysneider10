@@ -665,6 +665,8 @@
 
 ###  **10.4** — `features/business/sales/domain/interfaces/sale-repository.interface.ts` 
 
+![](images/clipboard-2633217176.png)
+
 ###  **10.5** — `features/business/sales/domain/services/sale-calculator.domain-service.ts` 
 
 ###  **10.6** — `features/business/sales/infrastructure/persistence/models/product-sale.model.ts` 
