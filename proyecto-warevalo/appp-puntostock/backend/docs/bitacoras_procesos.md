@@ -1101,7 +1101,7 @@
 
 ### **13.26** — Actualizar database-seeder.service.ts (correr seedInventory)
 
-###  
+###  ![](images/clipboard-853588204.png)
 
 ### **13.27** — Actualizar app.module.ts (confirmar cableado)
 

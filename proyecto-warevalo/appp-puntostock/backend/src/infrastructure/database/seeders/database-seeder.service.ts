@@ -1,10 +1,13 @@
 import { Injectable, Logger, OnModuleInit } from '@nestjs/common';
 import { seedBranches } from '../../../features/business/branches/infrastructure/persistence/seeders/branches.seeder';
-import { seedSuppliers } from '../../../features/business/suppliers/infrastructure/persistence/seeders/suppliers.seeder';
-import { seedClients } from '../../../features/business/clients/infrastructure/persistence/seeders/clients.seeder';
-import { seedProductTypes } from '../../../features/business/product-types/infrastructure/persistence/seeders/product-types.seeder';
 import { seedProducts } from '../../../features/business/products/infrastructure/persistence/seeders/products.seeder';
-import { seedSales } from '../../../features/business/sales/infrastructure/persistence/seeders/sales.seeder';
+// import { seedProviders } from '...';
+// import { seedPurchases } from '...';
+// import { seedClients } from '...';
+// import { seedSales } from '...';
+// import { seedPayments } from '...';
+// import { seedReturns } from '...';
+import { seedInventory } from '../../../features/business/inventory/infrastructure/persistence/seeders/inventory.seeder';
 
 /**
  * Ejecuta seeders en orden de dependencias.
@@ -21,11 +24,14 @@ export class DatabaseSeederService implements OnModuleInit {
 
     try {
       await seedBranches();
-      await seedSuppliers();
-      await seedClients();
-      await seedProductTypes();
       await seedProducts();
-      await seedSales();
+      // await seedProviders();
+      // await seedPurchases();
+      // await seedClients();
+      // await seedSales();
+      // await seedPayments();
+      // await seedReturns();
+      await seedInventory();
       this.logger.log('✅ Seeders ejecutados');
     } catch (error: any) {
       this.logger.error(`❌ Error en seeders: ${error.message}`, error.stack);
