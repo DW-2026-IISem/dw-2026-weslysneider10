@@ -1037,7 +1037,7 @@
 
 ### **13.10** — application/dto/inventory-filter.dto.ts
 
-###  
+###  ![](images/clipboard-2060970057.png)
 
 ### **13.11** — application/dto/inventory-response.dto.ts
 
