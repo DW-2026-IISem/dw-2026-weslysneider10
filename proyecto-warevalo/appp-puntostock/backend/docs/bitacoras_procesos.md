@@ -933,7 +933,7 @@
 
 ### **12.15** — application/dto/update-supplier.dto.ts
 
-###  
+###  ![](images/clipboard-627744174.png)
 
 ### **12.16** — application/mappers/supplier.mapper.ts
 
