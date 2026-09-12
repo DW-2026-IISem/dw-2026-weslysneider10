@@ -783,6 +783,8 @@
 
 ### **11.4** — infrastructure/persistence/models/branch.model.ts
 
+![](images/clipboard-1126621114.png)
+
 ### **11.5** — infrastructure/persistence/repositories/branch.repository.ts
 
 ### **11.6** — infrastructure/persistence/migrations/create-branches-table.migration.ts
