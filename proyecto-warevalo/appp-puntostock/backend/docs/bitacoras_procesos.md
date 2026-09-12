@@ -1142,7 +1142,7 @@
 ### ![](images/clipboard-1232568339.png)
 14.8  — infrastructure/persistence/models/purchase.model.ts (FKs a Supplier y Branch)
 
-### 
+### ![](images/clipboard-4144945415.png)
 14.9  — infrastructure/persistence/repositories/purchase.repository.ts
 
 ### 
