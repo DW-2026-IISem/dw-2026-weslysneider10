@@ -607,7 +607,7 @@
 
 ### 9.21 — features/business/products/application/use-cases/update-product.use-case.ts
 
-### 
+### ![](images/clipboard-548146865.png)
 
 ### 9.22 — features/business/products/presentation/http/serializers/product.serializer.ts
 
