@@ -961,7 +961,7 @@
 
 ### **12.22** — presentation/http/serializers/supplier.serializer.ts
 
-###  
+###  ![](images/clipboard-785081237.png)
 
 ### **12.23** — presentation/http/controllers/suppliers.controller.ts
 
