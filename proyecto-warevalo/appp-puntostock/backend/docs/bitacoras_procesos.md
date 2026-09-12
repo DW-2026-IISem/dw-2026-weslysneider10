@@ -709,11 +709,19 @@
 
 ###  **10.15** — `features/business/sales/application/use-cases/cancel-sale.use-case.ts` 
 
+![](images/clipboard-3689785146.png)
+
 ###  **10.16** — `features/business/sales/application/use-cases/create-sale.use-case.ts` 
+
+![](images/clipboard-192113696.png)
 
 ###  **10.17** — `features/business/sales/application/use-cases/get-sale.use-case.ts` 
 
+![](images/clipboard-3107927911.png)
+
 ###  **10.18** — `features/business/sales/application/use-cases/list-sales.use-case.ts` 
+
+![](images/clipboard-3107927911.png)
 
 ###  **10.19** — `features/business/sales/presentation/http/serializers/sale.serializer.ts` 
 
