@@ -1009,6 +1009,8 @@
 
 ### **13.3** — domain/exceptions/inventory-not-found.exception.ts
 
+![](images/clipboard-583519575.png)
+
 ###  **13.4** — domain/interfaces/inventory-repository.interface.ts
 
 ###  
