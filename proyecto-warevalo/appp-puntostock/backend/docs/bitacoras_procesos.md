@@ -1405,7 +1405,7 @@
 
 ### **16.20** — application/use-cases/list-returns-by-sale.use-case.ts
 
-###  
+###  ![](images/clipboard-76315514.png)
 
 ### **16.21** — presentation/http/serializers/return.serializer.ts
 
