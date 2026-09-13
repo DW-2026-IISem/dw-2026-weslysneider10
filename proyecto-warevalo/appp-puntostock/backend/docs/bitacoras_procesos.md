@@ -1309,7 +1309,7 @@
 
 ### **15.25** — Actualizar business.module.ts (agregar PaymentsModule, importa `SalesModule` para el`SALE_REPOSITORY`)
 
-###  
+###  ![](images/clipboard-209392458.png)
 
 ### **15.26** — Actualizar database-seeder.service.ts (correr seedPayments)
 
