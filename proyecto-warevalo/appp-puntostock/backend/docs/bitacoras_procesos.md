@@ -1273,7 +1273,7 @@
 
 ### **15.16** — application/use-cases/cancel-payment.use-case.ts
 
-###  
+###  ![](images/clipboard-3722676291.png)
 
 ### **15.17** — application/use-cases/get-payment.use-case.ts
 
