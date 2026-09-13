@@ -1305,7 +1305,7 @@
 
 ### **15.24** — Actualizar sequelize.factory.ts (registrar PaymentModel)
 
-###  
+###  ![](images/clipboard-1887990825.png)
 
 ### **15.25** — Actualizar business.module.ts (agregar PaymentsModule, importa `SalesModule` para el`SALE_REPOSITORY`)
 
