@@ -1233,7 +1233,7 @@
 
 ### **15.6** — domain/interfaces/payment-repository.interface.ts
 
-###  
+###  ![](images/clipboard-2048732172.png)
 
 ### **15.7** — infrastructure/persistence/models/payment.model.ts
 
