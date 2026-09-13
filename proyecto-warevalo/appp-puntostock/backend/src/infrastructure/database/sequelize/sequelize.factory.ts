@@ -7,10 +7,13 @@ import { ProductTypeModel } from '../../../features/business/product-types/infra
 import { ProductModel } from '../../../features/business/products/infrastructure/persistence/models/product.model';
 import { SaleModel } from '../../../features/business/sales/infrastructure/persistence/models/sale.model';
 import { ProductSaleModel } from '../../../features/business/sales/infrastructure/persistence/models/product-sale.model';
-import { BranchModel } from '../../../features/business/branches/infrastructure/persistence/models/branch.model';
 import { SupplierModel } from '../../../features/business/suppliers/infrastructure/persistence/models/supplier.model';
+import { BranchModel } from '../../../features/business/branches/infrastructure/persistence/models/branch.model';
 import { InventoryModel } from '../../../features/business/inventory/infrastructure/persistence/models/inventory.model';
-import { PaymentModel } from '../../../features/business/payments/infrastructure/persistence/models/payment.model';
+import { PurchaseModel } from '../../../features/business/purchases/infrastructure/persistence/models/purchase.model';
+import { PurchaseDetailModel } from '../../../features/business/purchases/infrastructure/persistence/models/purchase-detail.model';
+import { ReturnModel } from '../../../features/business/returns/infrastructure/persistence/models/return.model';
+import { ReturnDetailModel } from '../../../features/business/returns/infrastructure/persistence/models/return-detail.model';
 
 export const ALL_MODELS = [
   ClientModel,
@@ -18,10 +21,13 @@ export const ALL_MODELS = [
   ProductModel,
   SaleModel,
   ProductSaleModel,
-  BranchModel,
   SupplierModel,
+  BranchModel,
   InventoryModel,
-  PaymentModel,
+  PurchaseModel,
+  PurchaseDetailModel,
+  ReturnModel,
+  ReturnDetailModel,
 ];
 
 export async function createSequelizeInstance(
@@ -58,10 +64,7 @@ export async function createSequelizeInstance(
     await sequelize.authenticate();
     console.log(`✅ Conexión exitosa a ${dialect.toUpperCase()}`);
   } catch (error: any) {
-    console.error(
-      `❌ Error conectando a ${dialect.toUpperCase()}:`,
-      error.message,
-    );
+    console.error(`❌ Error conectando a ${dialect.toUpperCase()}:`, error.message);
     throw error;
   }
 

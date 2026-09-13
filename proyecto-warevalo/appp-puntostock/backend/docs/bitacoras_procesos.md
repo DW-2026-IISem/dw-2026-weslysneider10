@@ -1425,7 +1425,7 @@
 
 ### **16.25** — Actualizar sequelize.factory.ts (registrar ReturnModel/ReturnDetailModel)
 
-###  
+###  ![](images/clipboard-1553216755.png)
 
 ### **16.26** — Actualizar business.module.ts (agregar ReturnsModule)
 
