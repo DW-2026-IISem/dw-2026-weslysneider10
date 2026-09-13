@@ -1409,7 +1409,7 @@
 
 ### **16.21** — presentation/http/serializers/return.serializer.ts
 
-###  
+###  ![](images/clipboard-1347485364.png)
 
 ### **16.22** — presentation/http/controllers/returns.controller.ts
 
