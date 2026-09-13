@@ -1417,7 +1417,7 @@
 
 ### **16.23** — index.ts (barrel export)
 
-###  
+###  ![](images/clipboard-3901332762.png)
 
 ### **16.24** — returns.module.ts *(importa `SalesModule` para `SALE_REPOSITORY`)*
 
