@@ -1297,7 +1297,7 @@
 
 ### **15.22** — index.ts (barrel export)
 
-###  
+###  ![](images/clipboard-32053620.png)
 
 ### **15.23** — payments.module.ts
 
