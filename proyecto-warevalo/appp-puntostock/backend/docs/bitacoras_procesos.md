@@ -1217,7 +1217,7 @@
 
 ### **15.2** — domain/enums/payment-method.enum.ts
 
-###  
+###  ![](images/clipboard-475503364.png)
 
 ### **15.3** — domain/enums/payment-reference-type.enum.ts
 
