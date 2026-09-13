@@ -1208,3 +1208,115 @@
 ### ![](images/clipboard-1901614652.png)
 
 ![](images/clipboard-3496308524.png)
+
+# Fase 15 `_BUSINESS_PAYMENTS`
+
+### **15.1** — domain/entities/payment.entity.ts
+
+###  ![](images/clipboard-579205776.png)
+
+### **15.2** — domain/enums/payment-method.enum.ts
+
+###  
+
+### **15.3** — domain/enums/payment-reference-type.enum.ts
+
+###  
+
+### **15.4** — domain/exceptions/payment-not-found.exception.ts
+
+###  
+
+### **15.5** — domain/exceptions/payment-exceeds-balance.exception.ts *(pagos mixtos no pueden superar eltotal de la venta)*
+
+###  
+
+### **15.6** — domain/interfaces/payment-repository.interface.ts
+
+###  
+
+### **15.7** — infrastructure/persistence/models/payment.model.ts
+
+###  
+
+### **15.8** — infrastructure/persistence/repositories/payment.repository.ts
+
+###  
+
+### **15.9** — infrastructure/persistence/migrations/create-payments-table.migration.ts
+
+###  
+
+### **15.10** — infrastructure/persistence/seeders/payments.seeder.ts
+
+###  
+
+### **15.11** — application/dto/create-payment.dto.ts
+
+###  
+
+### **15.12** — application/dto/payment-filter.dto.ts
+
+###  
+
+### **15.13** — application/dto/payment-response.dto.ts
+
+###  
+
+### **15.14** — application/mappers/payment.mapper.ts
+
+###  
+
+### **15.15** — application/use-cases/create-payment.use-case.ts *(valida que la venta exista y que no se pasedel saldo*
+
+### 
+
+### **15.16** — application/use-cases/cancel-payment.use-case.ts
+
+###  
+
+### **15.17** — application/use-cases/get-payment.use-case.ts
+
+###  
+
+### **15.18** — application/use-cases/list-payments.use-case.ts
+
+###  
+
+### **15.19** — application/use-cases/list-payments-by-sale.use-case.ts *(desglose de pagos mixtos + saldo pendiente de una venta)*
+
+###  
+
+### **15.20** — presentation/http/serializers/payment.serializer.ts
+
+###  
+
+### **15.21** — presentation/http/controllers/payments.controller.ts
+
+###  
+
+### **15.22** — index.ts (barrel export)
+
+###  
+
+### **15.23** — payments.module.ts
+
+###  
+
+### **15.24** — Actualizar sequelize.factory.ts (registrar PaymentModel)
+
+###  
+
+### **15.25** — Actualizar business.module.ts (agregar PaymentsModule, importa `SalesModule` para el`SALE_REPOSITORY`)
+
+###  
+
+### **15.26** — Actualizar database-seeder.service.ts (correr seedPayments)
+
+###  
+
+### **15.27** — Actualizar app.module.ts (confirmar cableado)
+
+###  
+
+### **15.28** — Verificar tabla `payments` y API (incluyendo saldo de una venta
