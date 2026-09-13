@@ -1427,9 +1427,9 @@
 
 ###  ![](images/clipboard-1553216755.png)
 
-### **16.26** — Actualizar business.module.ts (agregar ReturnsModule)
+### **16.26** —![](images/clipboard-880605228.png) Actualizar business.module.ts (agregar ReturnsModule)
 
-###  
+###  ![](images/clipboard-880605228.png)
 
 ### **16.27** — Actualizar database-seeder.service.ts (correr seedReturns)
 

@@ -3,10 +3,11 @@ import { ClientsModule } from './clients/clients.module';
 import { ProductTypesModule } from './product-types/product-types.module';
 import { ProductsModule } from './products/products.module';
 import { SalesModule } from './sales/sales.module';
-import { BranchesModule } from './branches/branches.module';
 import { SuppliersModule } from './suppliers/suppliers.module';
-import { InventoryModule } from './inventory/inventory.module';
-import { PaymentsModule } from './payments/payments.module';
+import { BranchesModule } from './branches/branches.module';
+import { InventoriesModule } from './inventory/inventories.module';
+import { PurchasesModule } from './purchases/purchases.module';
+import { ReturnsModule } from './returns/returns.module';
 
 @Module({
   imports: [
@@ -14,20 +15,22 @@ import { PaymentsModule } from './payments/payments.module';
     ProductTypesModule,
     ProductsModule,
     SalesModule,
-    BranchesModule,
     SuppliersModule,
-    InventoryModule,
-    PaymentsModule,
+    BranchesModule,
+    InventoriesModule,
+    PurchasesModule,
+    ReturnsModule,
   ],
   exports: [
     ClientsModule,
     ProductTypesModule,
     ProductsModule,
     SalesModule,
-    BranchesModule,
     SuppliersModule,
-    InventoryModule,
-    PaymentsModule,
+    BranchesModule,
+    InventoriesModule,
+    PurchasesModule,
+    ReturnsModule,
   ],
 })
 export class BusinessModule {}
