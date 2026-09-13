@@ -1421,7 +1421,7 @@
 
 ### **16.24** — returns.module.ts *(importa `SalesModule` para `SALE_REPOSITORY`)*
 
-###  
+###  ![](images/clipboard-2788382665.png)
 
 ### **16.25** — Actualizar sequelize.factory.ts (registrar ReturnModel/ReturnDetailModel)
 
