@@ -1385,7 +1385,7 @@
 
 ### **16.15** — application/mappers/return.mapper.ts
 
-###  
+###  ![](images/clipboard-181034080.png)
 
 ### **16.16** — application/use-cases/create-return.use-case.ts
 
