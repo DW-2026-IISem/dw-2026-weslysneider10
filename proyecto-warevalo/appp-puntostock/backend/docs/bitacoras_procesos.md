@@ -1225,7 +1225,7 @@
 
 ### **15.4** — domain/exceptions/payment-not-found.exception.ts
 
-###  
+###  ![](images/clipboard-900482245.png)
 
 ### **15.5** — domain/exceptions/payment-exceeds-balance.exception.ts *(pagos mixtos no pueden superar eltotal de la venta)*
 
