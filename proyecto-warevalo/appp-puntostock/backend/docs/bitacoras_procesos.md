@@ -1413,7 +1413,7 @@
 
 ### **16.22** — presentation/http/controllers/returns.controller.ts
 
-###  
+###  ![](images/clipboard-2283835391.png)
 
 ### **16.23** — index.ts (barrel export)
 
