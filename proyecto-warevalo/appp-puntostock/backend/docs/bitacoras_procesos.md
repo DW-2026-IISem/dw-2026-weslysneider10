@@ -1257,7 +1257,7 @@
 
 ### **15.12** — application/dto/payment-filter.dto.ts
 
-###  
+###  ![](images/clipboard-3870862416.png)
 
 ### **15.13** — application/dto/payment-response.dto.ts
 
