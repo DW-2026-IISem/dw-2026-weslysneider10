@@ -1221,7 +1221,7 @@
 
 ### **15.3** — domain/enums/payment-reference-type.enum.ts
 
-###  
+###  ![](images/clipboard-3825886651.png)
 
 ### **15.4** — domain/exceptions/payment-not-found.exception.ts
 
