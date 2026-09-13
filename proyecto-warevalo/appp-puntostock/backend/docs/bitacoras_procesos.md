@@ -1401,7 +1401,7 @@
 
 ### **16.19** — application/use-cases/list-returns.use-case.ts
 
-###  
+###  ![](images/clipboard-910628955.png)
 
 ### **16.20** — application/use-cases/list-returns-by-sale.use-case.ts
 
