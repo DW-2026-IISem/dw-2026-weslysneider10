@@ -1229,7 +1229,7 @@
 
 ### **15.5** — domain/exceptions/payment-exceeds-balance.exception.ts *(pagos mixtos no pueden superar eltotal de la venta)*
 
-###  
+###  ![](images/clipboard-920615953.png)
 
 ### **15.6** — domain/interfaces/payment-repository.interface.ts
 
