@@ -1241,7 +1241,7 @@
 
 ### **15.8** — infrastructure/persistence/repositories/payment.repository.ts
 
-###  
+###  ![](images/clipboard-389432530.png)
 
 ### **15.9** — infrastructure/persistence/migrations/create-payments-table.migration.ts
 
