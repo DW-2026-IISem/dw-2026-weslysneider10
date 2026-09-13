@@ -1245,7 +1245,7 @@
 
 ### **15.9** — infrastructure/persistence/migrations/create-payments-table.migration.ts
 
-###  
+###  ![](images/clipboard-2975589434.png)
 
 ### **15.10** — infrastructure/persistence/seeders/payments.seeder.ts
 
