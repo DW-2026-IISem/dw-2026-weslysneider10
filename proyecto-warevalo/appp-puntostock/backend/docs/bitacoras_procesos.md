@@ -1293,7 +1293,7 @@
 
 ### **15.21** — presentation/http/controllers/payments.controller.ts
 
-###  
+###  ![](images/clipboard-1198724401.png)
 
 ### **15.22** — index.ts (barrel export)
 
