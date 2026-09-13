@@ -1261,7 +1261,7 @@
 
 ### **15.13** — application/dto/payment-response.dto.ts
 
-###  
+###  ![](images/clipboard-2601133388.png)
 
 ### **15.14** — application/mappers/payment.mapper.ts
 
