@@ -1317,6 +1317,6 @@
 
 ### **15.27** — Actualizar app.module.ts (confirmar cableado)
 
-###  
+###  ![](images/clipboard-1533375.png)
 
 ### **15.28** — Verificar tabla `payments` y API (incluyendo saldo de una venta
