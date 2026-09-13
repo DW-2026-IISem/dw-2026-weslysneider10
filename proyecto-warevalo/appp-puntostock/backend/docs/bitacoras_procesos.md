@@ -1377,7 +1377,7 @@
 
 ### **16.13** — application/dto/return-filter.dto.ts
 
-###  
+###  ![](images/clipboard-569737126.png)
 
 ### **16.14** — application/dto/return-response.dto.ts
 
