@@ -1345,7 +1345,7 @@
 
 ### **16.5** — domain/interfaces/return-repository.interface.ts
 
-###  
+###  ![](images/clipboard-3312475823.png)
 
 ### **16.6** — domain/services/return-calculator.domain-service.ts
 
