@@ -1269,7 +1269,7 @@
 
 ### **15.15** — application/use-cases/create-payment.use-case.ts *(valida que la venta exista y que no se pasedel saldo*
 
-### 
+### ![](images/clipboard-2252217274.png)
 
 ### **15.16** — application/use-cases/cancel-payment.use-case.ts
 
