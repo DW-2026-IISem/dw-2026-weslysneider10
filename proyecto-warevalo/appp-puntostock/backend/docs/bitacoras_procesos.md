@@ -1365,7 +1365,7 @@
 
 ### **16.10** — infrastructure/persistence/migrations/create-returns-table.migration.ts
 
-###  
+###  ![](images/clipboard-2133527949.png)
 
 ### **16.11** — infrastructure/persistence/seeders/returns.seeder.ts
 
