@@ -1337,7 +1337,7 @@
 
 ### **16.3** — domain/exceptions/return-not-found.exception.ts
 
-###  
+###  ![](images/clipboard-1338912444.png)
 
 ### **16.4** — domain/exceptions/invalid-return-quantity.exception.ts *(no se puede devolver más de lo vendido menos lo ya devuelto)*
 
