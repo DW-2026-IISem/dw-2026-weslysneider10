@@ -1301,7 +1301,7 @@
 
 ### **15.23** — payments.module.ts
 
-###  
+###  ![](images/clipboard-2458444944.png)
 
 ### **15.24** — Actualizar sequelize.factory.ts (registrar PaymentModel)
 
