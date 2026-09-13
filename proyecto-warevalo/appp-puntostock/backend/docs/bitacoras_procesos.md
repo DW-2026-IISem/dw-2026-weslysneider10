@@ -1353,7 +1353,7 @@
 
 ### **16.7** — infrastructure/persistence/models/return-detail.model.ts
 
-###  
+###  ![](images/clipboard-153685989.png)
 
 ### **16.8** — infrastructure/persistence/models/return.model.ts *(FK real a Sale)*
 
