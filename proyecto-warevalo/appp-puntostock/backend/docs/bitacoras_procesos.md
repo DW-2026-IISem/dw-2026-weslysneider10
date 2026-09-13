@@ -1237,7 +1237,7 @@
 
 ### **15.7** — infrastructure/persistence/models/payment.model.ts
 
-###  
+###  ![](images/clipboard-1502765151.png)
 
 ### **15.8** — infrastructure/persistence/repositories/payment.repository.ts
 
