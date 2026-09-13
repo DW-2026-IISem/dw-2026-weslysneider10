@@ -1369,7 +1369,7 @@
 
 ### **16.11** — infrastructure/persistence/seeders/returns.seeder.ts
 
-###  
+###  ![](images/clipboard-3703271390.png)
 
 ### **16.12** — application/dto/create-return.dto.ts
 
