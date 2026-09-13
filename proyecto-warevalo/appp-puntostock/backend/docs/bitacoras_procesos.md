@@ -1322,3 +1322,123 @@
 ### **15.28** — Verificar tabla `payments` y API (incluyendo saldo de una venta
 
 ![![](images/clipboard-2857268887.png)](images/clipboard-233086268.png)
+
+#  Fase 16 `_BUSINESS_RETURNS`
+
+# 
+
+### **16.1** — domain/enums/return-status.enum.ts
+
+###  ![](images/clipboard-2498035194.png)
+
+### **16.2** — domain/entities/return.entity.ts *(incluye `ReturnLine`, igual que `SaleItem` dentro de `sale.entity.ts`)*
+
+###  
+
+### **16.3** — domain/exceptions/return-not-found.exception.ts
+
+###  
+
+### **16.4** — domain/exceptions/invalid-return-quantity.exception.ts *(no se puede devolver más de lo vendido menos lo ya devuelto)*
+
+###  
+
+### **16.5** — domain/interfaces/return-repository.interface.ts
+
+###  
+
+### **16.6** — domain/services/return-calculator.domain-service.ts
+
+###  
+
+### **16.7** — infrastructure/persistence/models/return-detail.model.ts
+
+###  
+
+### **16.8** — infrastructure/persistence/models/return.model.ts *(FK real a Sale)*
+
+###  
+
+### **16.9** — infrastructure/persistence/repositories/return.repository.ts *(transacción: crea cabecera+detalle y devuelve `Product.quantity`, igual patrón que `sale.repository.ts`)*
+
+###  
+
+### **16.10** — infrastructure/persistence/migrations/create-returns-table.migration.ts
+
+###  
+
+### **16.11** — infrastructure/persistence/seeders/returns.seeder.ts
+
+###  
+
+### **16.12** — application/dto/create-return.dto.ts
+
+###  
+
+### **16.13** — application/dto/return-filter.dto.ts
+
+###  
+
+### **16.14** — application/dto/return-response.dto.ts
+
+###  
+
+### **16.15** — application/mappers/return.mapper.ts
+
+###  
+
+### **16.16** — application/use-cases/create-return.use-case.ts
+
+###  
+
+### **16.17** — application/use-cases/cancel-return.use-case.ts
+
+###  
+
+### **16.18** — application/use-cases/get-return.use-case.ts
+
+###  
+
+### **16.19** — application/use-cases/list-returns.use-case.ts
+
+###  
+
+### **16.20** — application/use-cases/list-returns-by-sale.use-case.ts
+
+###  
+
+### **16.21** — presentation/http/serializers/return.serializer.ts
+
+###  
+
+### **16.22** — presentation/http/controllers/returns.controller.ts
+
+###  
+
+### **16.23** — index.ts (barrel export)
+
+###  
+
+### **16.24** — returns.module.ts *(importa `SalesModule` para `SALE_REPOSITORY`)*
+
+###  
+
+### **16.25** — Actualizar sequelize.factory.ts (registrar ReturnModel/ReturnDetailModel)
+
+###  
+
+### **16.26** — Actualizar business.module.ts (agregar ReturnsModule)
+
+###  
+
+### **16.27** — Actualizar database-seeder.service.ts (correr seedReturns)
+
+###  
+
+### **16.28** — Actualizar app.module.ts (confirmar cableado)
+
+###  
+
+### **16.29** — Verificar tablas `returns` / `return_details` y API
+
+### 
