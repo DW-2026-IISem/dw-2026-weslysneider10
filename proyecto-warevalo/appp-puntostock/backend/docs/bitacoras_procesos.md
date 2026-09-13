@@ -1389,7 +1389,7 @@
 
 ### **16.16** — application/use-cases/create-return.use-case.ts
 
-###  
+###  ![](images/clipboard-2116761759.png)
 
 ### **16.17** — application/use-cases/cancel-return.use-case.ts
 
