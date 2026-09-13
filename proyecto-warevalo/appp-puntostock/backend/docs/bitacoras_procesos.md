@@ -1253,7 +1253,7 @@
 
 ### **15.11** — application/dto/create-payment.dto.ts
 
-###  
+###  ![](images/clipboard-431947730.png)
 
 ### **15.12** — application/dto/payment-filter.dto.ts
 
