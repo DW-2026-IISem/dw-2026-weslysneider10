@@ -1433,7 +1433,7 @@
 
 ### **16.27** — Actualizar database-seeder.service.ts (correr seedReturns)
 
-###  
+###  ![](images/clipboard-2574703880.png)
 
 ### **16.28** — Actualizar app.module.ts (confirmar cableado)
 
