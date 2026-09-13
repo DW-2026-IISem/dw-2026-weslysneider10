@@ -1397,7 +1397,7 @@
 
 ### **16.18** — application/use-cases/get-return.use-case.ts
 
-###  
+###  ![](images/clipboard-2490023629.png)
 
 ### **16.19** — application/use-cases/list-returns.use-case.ts
 
