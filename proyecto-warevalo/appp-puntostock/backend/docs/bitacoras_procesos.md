@@ -1341,7 +1341,7 @@
 
 ### **16.4** — domain/exceptions/invalid-return-quantity.exception.ts *(no se puede devolver más de lo vendido menos lo ya devuelto)*
 
-###  
+###  ![](images/clipboard-3396639046.png)
 
 ### **16.5** — domain/interfaces/return-repository.interface.ts
 
