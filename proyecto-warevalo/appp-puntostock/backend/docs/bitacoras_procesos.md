@@ -1361,7 +1361,7 @@
 
 ### **16.9** — infrastructure/persistence/repositories/return.repository.ts *(transacción: crea cabecera+detalle y devuelve `Product.quantity`, igual patrón que `sale.repository.ts`)*
 
-###  
+###  ![](images/clipboard-2408153553.png)
 
 ### **16.10** — infrastructure/persistence/migrations/create-returns-table.migration.ts
 
