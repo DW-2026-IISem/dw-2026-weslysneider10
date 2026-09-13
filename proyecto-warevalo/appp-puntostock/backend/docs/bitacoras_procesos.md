@@ -1381,7 +1381,7 @@
 
 ### **16.14** — application/dto/return-response.dto.ts
 
-###  
+###  ![](images/clipboard-2432541910.png)
 
 ### **16.15** — application/mappers/return.mapper.ts
 
