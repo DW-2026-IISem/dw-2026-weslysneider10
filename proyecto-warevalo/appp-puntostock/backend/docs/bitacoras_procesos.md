@@ -1349,7 +1349,7 @@
 
 ### **16.6** — domain/services/return-calculator.domain-service.ts
 
-###  
+###  ![](images/clipboard-2930869414.png)
 
 ### **16.7** — infrastructure/persistence/models/return-detail.model.ts
 
