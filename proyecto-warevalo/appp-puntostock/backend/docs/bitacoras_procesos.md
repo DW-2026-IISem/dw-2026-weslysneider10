@@ -1249,7 +1249,7 @@
 
 ### **15.10** — infrastructure/persistence/seeders/payments.seeder.ts
 
-###  
+###  ![](images/clipboard-2877385458.png)
 
 ### **15.11** — application/dto/create-payment.dto.ts
 
