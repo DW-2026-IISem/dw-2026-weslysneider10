@@ -1320,3 +1320,5 @@
 ###  ![](images/clipboard-1533375.png)
 
 ### **15.28** — Verificar tabla `payments` y API (incluyendo saldo de una venta
+
+![![](images/clipboard-2857268887.png)](images/clipboard-233086268.png)
