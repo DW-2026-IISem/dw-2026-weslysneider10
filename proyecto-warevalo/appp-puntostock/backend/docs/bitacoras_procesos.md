@@ -1289,7 +1289,7 @@
 
 ### **15.20** — presentation/http/serializers/payment.serializer.ts
 
-###  
+###  ![](images/clipboard-2578266847.png)
 
 ### **15.21** — presentation/http/controllers/payments.controller.ts
 
