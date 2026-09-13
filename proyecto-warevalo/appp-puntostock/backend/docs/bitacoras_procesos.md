@@ -1277,7 +1277,7 @@
 
 ### **15.17** — application/use-cases/get-payment.use-case.ts
 
-###  
+###  ![](images/clipboard-162504867.png)
 
 ### **15.18** — application/use-cases/list-payments.use-case.ts
 
