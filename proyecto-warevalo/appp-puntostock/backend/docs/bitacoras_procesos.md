@@ -1437,8 +1437,10 @@
 
 ### **16.28** — Actualizar app.module.ts (confirmar cableado)
 
-###  
+###  ![](images/clipboard-3376709874.png)
 
 ### **16.29** — Verificar tablas `returns` / `return_details` y API
 
-### 
+### ![](images/clipboard-664586850.png)
+
+![](images/clipboard-2966252656.png)

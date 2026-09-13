@@ -1,17 +1,17 @@
 import {
   AutoIncrement,
-  BelongsTo,
   Column,
   CreatedAt,
   DataType,
-  ForeignKey,
   Model,
   PrimaryKey,
   Table,
   UpdatedAt,
 } from 'sequelize-typescript';
 
-@Table({ tableName: 'products' })
+@Table({
+  tableName: 'products',
+})
 export class ProductModel extends Model {
   @PrimaryKey
   @AutoIncrement
@@ -19,7 +19,7 @@ export class ProductModel extends Model {
   declare id: number;
 
   @Column({
-    type: DataType.STRING(100),
+    type: DataType.STRING(50),
     allowNull: false,
     unique: true,
   })
@@ -42,6 +42,13 @@ export class ProductModel extends Model {
     allowNull: false,
   })
   declare price: number;
+
+  @Column({
+    type: DataType.INTEGER,
+    allowNull: false,
+    defaultValue: 0,
+  })
+  declare quantity: number;
 
   @Column({
     type: DataType.BOOLEAN,
