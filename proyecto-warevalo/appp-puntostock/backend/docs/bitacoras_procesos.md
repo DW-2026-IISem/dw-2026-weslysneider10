@@ -1333,7 +1333,7 @@
 
 ### **16.2** — domain/entities/return.entity.ts *(incluye `ReturnLine`, igual que `SaleItem` dentro de `sale.entity.ts`)*
 
-###  
+###  ![](images/clipboard-262032523.png)
 
 ### **16.3** — domain/exceptions/return-not-found.exception.ts
 
