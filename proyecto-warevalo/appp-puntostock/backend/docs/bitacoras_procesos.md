@@ -1357,7 +1357,7 @@
 
 ### **16.8** — infrastructure/persistence/models/return.model.ts *(FK real a Sale)*
 
-###  
+###  ![](images/clipboard-3159329785.png)
 
 ### **16.9** — infrastructure/persistence/repositories/return.repository.ts *(transacción: crea cabecera+detalle y devuelve `Product.quantity`, igual patrón que `sale.repository.ts`)*
 
