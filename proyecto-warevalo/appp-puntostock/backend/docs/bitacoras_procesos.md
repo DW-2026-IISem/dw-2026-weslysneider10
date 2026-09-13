@@ -1313,7 +1313,7 @@
 
 ### **15.26** — Actualizar database-seeder.service.ts (correr seedPayments)
 
-###  
+###  ![](images/clipboard-4064245064.png)
 
 ### **15.27** — Actualizar app.module.ts (confirmar cableado)
 

@@ -1,10 +1,17 @@
 import { Injectable, Logger, OnModuleInit } from '@nestjs/common';
+import { seedBranches } from '../../../features/business/branches/infrastructure/persistence/seeders/branches.seeder';
+import { seedSuppliers } from '../../../features/business/suppliers/infrastructure/persistence/seeders/suppliers.seeder';
 import { seedClients } from '../../../features/business/clients/infrastructure/persistence/seeders/clients.seeder';
 import { seedProductTypes } from '../../../features/business/product-types/infrastructure/persistence/seeders/product-types.seeder';
 import { seedProducts } from '../../../features/business/products/infrastructure/persistence/seeders/products.seeder';
+import { seedInventory } from '../../../features/business/inventory/infrastructure/persistence/seeders/inventory.seeder';
 import { seedSales } from '../../../features/business/sales/infrastructure/persistence/seeders/sales.seeder';
-import { seedPurchases } from '../../../features/business/purchases/infrastructure/persistence/seeders/purchases.seeder';
+import { seedPayments } from '../../../features/business/payments/infrastructure/persistence/seeders/payments.seeder';
 
+/**
+ * Ejecuta seeders en orden de dependencias.
+ * Solo en entornos no productivos.
+ */
 @Injectable()
 export class DatabaseSeederService implements OnModuleInit {
   private readonly logger = new Logger(DatabaseSeederService.name);
@@ -15,11 +22,14 @@ export class DatabaseSeederService implements OnModuleInit {
     }
 
     try {
+      await seedBranches();
+      await seedSuppliers();
       await seedClients();
       await seedProductTypes();
       await seedProducts();
+      await seedInventory();
       await seedSales();
-      await seedPurchases();
+      await seedPayments();
       this.logger.log('✅ Seeders ejecutados');
     } catch (error: any) {
       this.logger.error(`❌ Error en seeders: ${error.message}`, error.stack);
