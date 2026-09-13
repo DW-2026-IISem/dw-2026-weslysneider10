@@ -1281,7 +1281,7 @@
 
 ### **15.18** — application/use-cases/list-payments.use-case.ts
 
-###  
+###  ![](images/clipboard-2752903311.png)
 
 ### **15.19** — application/use-cases/list-payments-by-sale.use-case.ts *(desglose de pagos mixtos + saldo pendiente de una venta)*
 
