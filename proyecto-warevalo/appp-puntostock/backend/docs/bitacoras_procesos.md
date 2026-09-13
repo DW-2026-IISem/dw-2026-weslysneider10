@@ -1265,7 +1265,7 @@
 
 ### **15.14** — application/mappers/payment.mapper.ts
 
-###  
+###  ![](images/clipboard-4005852959.png)
 
 ### **15.15** — application/use-cases/create-payment.use-case.ts *(valida que la venta exista y que no se pasedel saldo*
 
