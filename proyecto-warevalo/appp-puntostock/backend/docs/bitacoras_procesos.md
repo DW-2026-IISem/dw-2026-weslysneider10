@@ -1373,7 +1373,7 @@
 
 ### **16.12** — application/dto/create-return.dto.ts
 
-###  
+###  ![](images/clipboard-1584052669.png)
 
 ### **16.13** — application/dto/return-filter.dto.ts
 
