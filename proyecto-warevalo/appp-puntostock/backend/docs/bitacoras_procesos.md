@@ -1513,7 +1513,7 @@
 
 ### **17.4** — test/app.e2e-spec.ts *(adaptado: prueba `/health`, no "Hello World" porque tu `main.ts` no tiene ese endpoint raíz)*
 
-###  
+###  ![](images/clipboard-157124026.png)
 
 ### **17.5** — Actualizar app.module.ts (agregar `HealthController`)
 
