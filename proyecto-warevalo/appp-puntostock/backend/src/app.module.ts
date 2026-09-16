@@ -9,6 +9,7 @@ import { SecurityModule } from './infrastructure/security/security.module';
 import { BusinessModule } from './features/business/business.module';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
+import { HealthController } from './health/health.controller';
 
 @Module({
   imports: [
@@ -22,7 +23,7 @@ import { AppService } from './app.service';
     LoggerModule,
     BusinessModule,
   ],
-  controllers: [AppController],
+  controllers: [AppController, HealthController],
   providers: [
     AppService,
   ],

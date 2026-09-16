@@ -1517,7 +1517,7 @@
 
 ### **17.5** — Actualizar app.module.ts (agregar `HealthController`)
 
-###  
+###  ![](images/clipboard-2906066804.png)
 
 ### **17.6** — scripts/demo.sh *(curl de punta a punta: los 9 módulos, puerto 3000, con tu `GLOBAL_PREFIX`)*
 
