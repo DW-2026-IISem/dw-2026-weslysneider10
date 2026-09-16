@@ -1505,7 +1505,7 @@
 
 ### **17.2** — vitest.config.ts
 
-###  
+###  ![](images/clipboard-496335528.png)
 
 ### **17.3** — vitest.config.e2e.ts
 
