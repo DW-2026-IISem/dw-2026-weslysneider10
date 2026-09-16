@@ -1509,7 +1509,7 @@
 
 ### **17.3** — vitest.config.e2e.ts
 
-###  
+###  ![](images/clipboard-3936561171.png)
 
 ### **17.4** — test/app.e2e-spec.ts *(adaptado: prueba `/health`, no "Hello World" porque tu `main.ts` no tiene ese endpoint raíz)*
 
