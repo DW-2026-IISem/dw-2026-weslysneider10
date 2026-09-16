@@ -1521,4 +1521,4 @@
 
 ### **17.6** — scripts/demo.sh *(curl de punta a punta: los 9 módulos, puerto 3000, con tu `GLOBAL_PREFIX`)*
 
-### 
+### ![](images/clipboard-160236289.png)
