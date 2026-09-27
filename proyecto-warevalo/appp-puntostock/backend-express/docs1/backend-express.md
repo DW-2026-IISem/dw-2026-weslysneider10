@@ -132,7 +132,11 @@
 
 ###  **ISS-04 — Script `npm run db:seed` y verificación** 
 
+![](images/clipboard-3751182726.png)
+
 ###  **ISS-05 — Swagger OpenAPI** 
+
+![](images/clipboard-3089310577.png)
 
 ###  **ISS-05 — `client.swagger.ts`** 
 
