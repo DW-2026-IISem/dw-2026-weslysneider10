@@ -68,15 +68,15 @@
 
 ### **4.3** — Agregador `routes/index.ts` + PARCHE en `config/index.ts` (cablear BD y rutas)
 
-###  
+###  ![](images/clipboard-852224283.png)
 
 ### Verificación y cierre de **ISS-03-A**
 
-###  
+###  ![](images/clipboard-3773347566.png)
 
 ### **ISS-03-B** — Controller PARCHE: `getAll` + `getOne`
 
-###  
+###  ![](images/clipboard-1558421921.png)
 
 ### **ISS-03-B** — Rutas PARCHE: `GET /api/clientes` + `GET /api/clientes/:id`
 

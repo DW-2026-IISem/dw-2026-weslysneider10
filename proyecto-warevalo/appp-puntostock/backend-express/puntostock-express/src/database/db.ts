@@ -15,22 +15,22 @@ interface DatabaseConfig {
 const dbConfigurations: Record<string, DatabaseConfig> = {
   mysql: {
     dialect: "mysql",
-    host: process.env.MYSQL_HOST || "localhost",
-    username: process.env.MYSQL_USER || "root",
-    password: process.env.MYSQL_PASSWORD || "",
-    database: process.env.MYSQL_NAME || "test",
-    port: parseInt(process.env.MYSQL_PORT || "3306")
+    host: process.env.DB_MYSQL_HOST || "localhost",
+    username: process.env.DB_MYSQL_USERNAME || "root",
+    password: process.env.DB_MYSQL_PASSWORD || "",
+    database: process.env.DB_MYSQL_NAME || "puntostock_express",
+    port: parseInt(process.env.DB_MYSQL_PORT || "3307"),
   },
+
   postgres: {
     dialect: "postgres",
-    host: process.env.POSTGRES_HOST || "localhost",
-    username: process.env.POSTGRES_USER || "postgres",
-    password: process.env.POSTGRES_PASSWORD || "",
-    database: process.env.POSTGRES_NAME || "test",
-    port: parseInt(process.env.POSTGRES_PORT || "5432")
-  }
+    host: process.env.DB_POSTGRES_HOST || "localhost",
+    username: process.env.DB_POSTGRES_USERNAME || "postgres",
+    password: process.env.DB_POSTGRES_PASSWORD || "",
+    database: process.env.DB_POSTGRES_NAME || "test",
+    port: parseInt(process.env.DB_POSTGRES_PORT || "5432"),
+  },
 };
-
 const selectedEngine = process.env.DB_ENGINE || "mysql";
 const selectedConfig = dbConfigurations[selectedEngine];
 
