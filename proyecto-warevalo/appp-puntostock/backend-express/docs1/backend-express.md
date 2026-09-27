@@ -140,10 +140,16 @@
 
 ###  **ISS-05 — `client.swagger.ts`** 
 
+![](images/clipboard-871861733.png)
+
 ###  **ISS-05 — Registro Swagger en `src/swagger/index.ts`** 
 
-###  **ISS-05 — Cableado de Swagger en `src/config/index.ts`** 
+![](images/clipboard-2040772736.png)
+
+###  
 
 ###  **ISS-05 — Verificación `/api/docs` y cierre**
 
-### 
+### ![](images/clipboard-3941798818.png)
+
+![](images/clipboard-87079505.png)
