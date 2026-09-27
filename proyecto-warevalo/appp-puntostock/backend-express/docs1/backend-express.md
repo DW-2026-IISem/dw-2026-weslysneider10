@@ -113,3 +113,29 @@
 ### **ISS-03-D** — Controller PARCHE: `update` (PATCH, actualización parcial)
 
 ![](images/clipboard-2238325945.png)
+
+### **ISS-04 — Seeders con Faker** 
+
+![](images/clipboard-3478966645.png)
+
+###  **ISS-04 —  Seeder dentro del feature Client** 
+
+![](images/clipboard-4032032100.png)
+
+###  **ISS-04 —  Conteos por entidad** 
+
+###  **ISS-04 —  SeedersRunner** 
+
+###  **ISS-04 — Script `npm run db:seed` y verificación** 
+
+###  **ISS-05 — Swagger OpenAPI** 
+
+###  **ISS-05 — `client.swagger.ts`** 
+
+###  **ISS-05 — Registro Swagger en `src/swagger/index.ts`** 
+
+###  **ISS-05 — Cableado de Swagger en `src/config/index.ts`** 
+
+###  **ISS-05 — Verificación `/api/docs` y cierre**
+
+### 
