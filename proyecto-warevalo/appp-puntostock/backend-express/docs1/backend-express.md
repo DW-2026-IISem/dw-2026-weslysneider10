@@ -62,7 +62,9 @@
 
 ### **4.2** — Esqueleto `client.controller.ts` / `client.routes.ts` + carpeta `http/`
 
-###  
+###  ![](images/clipboard-2407362602.png)
+
+![](images/clipboard-4215056907.png)
 
 ### **4.3** — Agregador `routes/index.ts` + PARCHE en `config/index.ts` (cablear BD y rutas)
 
