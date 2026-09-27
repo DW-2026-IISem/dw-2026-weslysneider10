@@ -140,6 +140,58 @@ export class ClientController {
 
   // ================== DELETE ==================
 
-  // (rellenar en ISS-03-E)
+  public async deletePhysical(req: Request, res: Response) {
+    try {
+      const id = paramId(req);
 
+      const client = await Client.findByPk(id);
+
+      if (!client) {
+        res.status(404).json({ error: "Client not found" });
+        return;
+      }
+
+      await client.destroy();
+
+      res.status(200).json({
+        message: "Client permanently deleted",
+        id,
+      });
+    } catch (error) {
+      res.status(500).json({
+        error: "Error deleting client",
+        detail: String(error),
+      });
+    }
+  }
+
+  public async deleteLogical(req: Request, res: Response) {
+    try {
+      const id = paramId(req);
+
+      const client = await Client.findByPk(id);
+
+      if (!client) {
+        res.status(404).json({ error: "Client not found" });
+        return;
+      }
+
+      await client.update({
+        status: "inactive",
+      });
+
+      const { password, ...safe } =
+        client.toJSON() as ClientI & { password?: string };
+
+      res.status(200).json({
+        message: "Client deactivated (logical delete)",
+        client: safe,
+      });
+    } catch (error) {
+      res.status(500).json({
+        error: "Error deactivating client",
+        detail: String(error),
+      });
+    }
+  }
 }

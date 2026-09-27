@@ -1,0 +1,19 @@
+### Feature Client — CREATE
+
+### Leyenda: SIN AUTH (sin middleware JWT / sin autenticación)
+
+@baseUrl = http://localhost:3000
+
+# @name createClient
+POST {{baseUrl}}/api/clientes
+
+Content-Type: application/json
+
+{
+  "name": "Ana Pérez",
+  "address": "Calle 10 #20-30",
+  "phone": "3001234567",
+  "email": "ana.perez@example.com",
+  "password": "Password123!",
+  "status": "active"
+}

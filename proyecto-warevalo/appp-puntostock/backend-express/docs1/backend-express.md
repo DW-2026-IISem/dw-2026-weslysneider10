@@ -94,22 +94,22 @@
 
 ### **ISS-03-C** — Controller PARCHE: `create`
 
-###  
+###  ![](images/clipboard-3493975759.png)
 
-### **ISS-03-C** — Rutas PARCHE: `POST /api/clientes`
-
-###  
+### 
 
 ### **ISS-03-C** — HTTP: `clients.create.http`
 
-###  
+###  ![](images/clipboard-1871655311.png)
 
 ### Verificación y cierre de **ISS-03-C**
 
-###  
+###  ![](images/clipboard-345784974.png)
 
 ### **ISS-03-D** — Controller PARCHE: `update` (PUT, reemplazo completo)
 
-###  
+###  ![](images/clipboard-3014788234.png)
 
 ### **ISS-03-D** — Controller PARCHE: `update` (PATCH, actualización parcial)
+
+![](images/clipboard-2238325945.png)
