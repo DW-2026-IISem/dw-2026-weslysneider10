@@ -1,0 +1,40 @@
+### Feature Client — UPDATE
+
+@baseUrl = http://localhost:3000
+
+@id = 1
+
+# ==============================
+# PUT - reemplazo completo
+# ==============================
+
+# @name updateClientPut
+
+PUT {{baseUrl}}/api/clientes/{{id}}
+
+Content-Type: application/json
+
+{
+  "name": "Cliente actualizado",
+  "address": "Calle 20 #30-40",
+  "phone": "3009876543",
+  "email": "cliente.actualizado@example.com",
+  "password": "Password123!",
+  "status": "active"
+}
+
+###
+
+# ==============================
+# PATCH - actualización parcial
+# ==============================
+
+# @name updateClientPatch
+
+PATCH {{baseUrl}}/api/clientes/{{id}}
+
+Content-Type: application/json
+
+{
+  "phone": "3015555555"
+}

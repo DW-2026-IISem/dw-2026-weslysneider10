@@ -80,7 +80,7 @@
 
 ### **ISS-03-B** — Rutas PARCHE: `GET /api/clientes` + `GET /api/clientes/:id`
 
-###  
+###  ![](images/clipboard-2037016301.png)
 
 ### **ISS-03-B** — HTTP: `clients.get.http`
 
