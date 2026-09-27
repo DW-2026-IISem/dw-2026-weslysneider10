@@ -36,11 +36,11 @@
 
 ### Verificación y cierre de **ISS-01** (`npx tsc --noEmit` + `npm run dev`)
 
-###  
+###  ![](images/clipboard-118769016.png)
 
 ### **3.1** — Drivers Sequelize y `.env` (ISS-02)
 
-###  
+###  ![](images/clipboard-194051402.png)
 
 ### **3.2** — Configuración Sequelize (`src/database/db.ts`)
 
