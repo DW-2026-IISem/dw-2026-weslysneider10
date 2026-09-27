@@ -84,11 +84,13 @@
 
 ### **ISS-03-B** — HTTP: `clients.get.http`
 
-###  
+###  ![](images/clipboard-779863032.png)
 
 ### Verificación y cierre de **ISS-03-B**
 
-###  
+###  ![](images/clipboard-356882949.png)
+
+![](images/clipboard-325024997.png)
 
 ### **ISS-03-C** — Controller PARCHE: `create`
 

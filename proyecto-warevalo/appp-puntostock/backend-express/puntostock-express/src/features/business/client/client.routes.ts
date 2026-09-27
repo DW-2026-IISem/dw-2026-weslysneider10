@@ -1,40 +1,40 @@
-import { Express } from "express";
-import { ClientController } from "./client.controller.js";
+import { Application } from "express";
+
+import { ClientController } from "./client.controller";
 
 export class ClientRoutes {
 
-  constructor(
-    private readonly clientController: ClientController,
-  ) {}
+  public clientController: ClientController = new ClientController();
 
-  public register(app: Express): void {
+  public routes(app: Application): void {
 
-    // ================== READ ==================
+    // ================== RUTAS SIN AUTENTICACIÓN / SIN MIDDLEWARE JWT ==================
+
+    // getAll
 
     app
       .route("/api/clientes")
       .get(this.clientController.getAll.bind(this.clientController));
 
+    // getOne
+
     app
       .route("/api/clientes/:id")
       .get(this.clientController.getOne.bind(this.clientController));
 
-    // ================== CREATE ==================
+    // create
 
     app
       .route("/api/clientes")
       .post(this.clientController.create.bind(this.clientController));
 
-    // ================== UPDATE ==================
+    // update (PUT / PATCH)
 
-    // PUT - reemplazo completo
     app
       .route("/api/clientes/:id")
-      .put(this.clientController.updatePut.bind(this.clientController));
-
-    // PATCH - actualización parcial
-    app
-      .route("/api/clientes/:id")
+      .put(this.clientController.updatePut.bind(this.clientController))
       .patch(this.clientController.updatePatch.bind(this.clientController));
+
   }
+
 }
