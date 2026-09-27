@@ -56,7 +56,9 @@
 
 ### **4.1** — Modelo `Client` (ISS-03-A)
 
-###  
+###  ![](images/clipboard-700451423.png)
+
+![](images/clipboard-932179446.png)
 
 ### **4.2** — Esqueleto `client.controller.ts` / `client.routes.ts` + carpeta `http/`
 
