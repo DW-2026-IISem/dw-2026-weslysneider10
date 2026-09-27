@@ -128,6 +128,8 @@
 
 ###  **ISS-04 —  SeedersRunner** 
 
+![](images/clipboard-2039273856.png)
+
 ###  **ISS-04 — Script `npm run db:seed` y verificación** 
 
 ###  **ISS-05 — Swagger OpenAPI** 
