@@ -124,6 +124,8 @@
 
 ###  **ISS-04 —  Conteos por entidad** 
 
+![](images/clipboard-2846585907.png)
+
 ###  **ISS-04 —  SeedersRunner** 
 
 ###  **ISS-04 — Script `npm run db:seed` y verificación** 
