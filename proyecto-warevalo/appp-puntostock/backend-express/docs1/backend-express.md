@@ -44,15 +44,15 @@
 
 ### **3.2** — Configuración Sequelize (`src/database/db.ts`)
 
-###  
+###  ![](images/clipboard-4171316086.png)
 
 ### **3.3** — Carpeta `seeders/` (reservada, sin lógica aún)
 
-###  
+###  ![](images/clipboard-1607873606.png)
 
 ### Verificación y cierre de **ISS-02**
 
-###  
+###  ![](images/clipboard-4097047504.png)
 
 ### **4.1** — Modelo `Client` (ISS-03-A)
 
