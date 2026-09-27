@@ -1501,23 +1501,23 @@
 
 ### **17.1** — health/health.controller.ts *(GET /health)*
 
-###  ![](images/clipboard-1382579601.png)
+### ![](images/clipboard-1382579601.png)
 
 ### **17.2** — vitest.config.ts
 
-###  ![](images/clipboard-496335528.png)
+### ![](images/clipboard-496335528.png)
 
 ### **17.3** — vitest.config.e2e.ts
 
-###  ![](images/clipboard-3936561171.png)
+### ![](images/clipboard-3936561171.png)
 
 ### **17.4** — test/app.e2e-spec.ts *(adaptado: prueba `/health`, no "Hello World" porque tu `main.ts` no tiene ese endpoint raíz)*
 
-###  ![](images/clipboard-157124026.png)
+### ![](images/clipboard-157124026.png)
 
 ### **17.5** — Actualizar app.module.ts (agregar `HealthController`)
 
-###  ![](images/clipboard-2906066804.png)
+### ![](images/clipboard-2906066804.png)
 
 ### **17.6** — scripts/demo.sh *(curl de punta a punta: los 9 módulos, puerto 3000, con tu `GLOBAL_PREFIX`)*
 
