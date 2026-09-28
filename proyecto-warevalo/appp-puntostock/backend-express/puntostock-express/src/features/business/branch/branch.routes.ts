@@ -21,6 +21,12 @@ export class BranchRoutes {
       .route("/api/sucursales")
       .post(this.branchController.create.bind(this.branchController));
 
-    // (rellenar en los siguientes pasos: update, delete)
+    // update (PUT / PATCH)
+    app
+      .route("/api/sucursales/:id")
+      .put(this.branchController.updatePut.bind(this.branchController))
+      .patch(this.branchController.updatePatch.bind(this.branchController));
+
+    // (rellenar en el siguiente paso: delete)
   }
 }

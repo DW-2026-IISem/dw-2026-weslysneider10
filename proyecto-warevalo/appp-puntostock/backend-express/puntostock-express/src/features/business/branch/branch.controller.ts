@@ -70,6 +70,22 @@ export class BranchController {
     }
   }
 
+  public async updatePatch(req: Request, res: Response) {
+    try {
+      const id = paramId(req);
+      const body = req.body as Partial<BranchI>;
+      const branch = await Branch.findByPk(id);
+      if (!branch) {
+        res.status(404).json({ error: "Branch not found" });
+        return;
+      }
+      await branch.update(body);
+      res.status(200).json({ branch });
+    } catch (error) {
+      res.status(500).json({ error: "Error updating branch (PATCH)", detail: String(error) });
+    }
+  }
+
   // ================== DELETE ==================
   // (rellenar en el siguiente paso)
 }

@@ -251,16 +251,16 @@ Controller PARCHE: update (PUT, reemplazo completo)
 ## ![](images/clipboard-1699215752.png) 
 Controller PARCHE: update (PATCH, parcial)
 
-##  
+## ![](images/clipboard-3765879777.png) 
 Rutas PARCHE: PUT /api/sucursales/:id + PATCH /api/sucursales/:id
 
-##  
+## ![](images/clipboard-4152349037.png) 
 HTTP: sucursales.update.http
 
 ## ![](images/clipboard-3257596151.png) 
 Verificación y cierre
 
-##  
+## ![](images/clipboard-3877263025.png) 
 Controller PARCHE: deletePhysical
 
 ##  
