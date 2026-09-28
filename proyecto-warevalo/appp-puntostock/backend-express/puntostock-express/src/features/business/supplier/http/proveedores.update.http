@@ -1,0 +1,28 @@
+### Feature Supplier — UPDATE (PUT) / UPDATE (PATCH)
+### Leyenda: SIN AUTH (sin middleware JWT / sin autenticación)
+
+@baseUrl = http://localhost:3000
+@id = 1
+
+# @name updateSupplierPut
+PUT {{baseUrl}}/api/proveedores/{{id}}
+Content-Type: application/json
+
+{
+  "nit": "900123456-7",
+  "razonSocial": "Distribuidora La Guajira S.A.S. (renovada)",
+  "contacto": "Carlos Ramírez Actualizado",
+  "telefono": "3009998877",
+  "email": "contacto@distriguajira.com",
+  "isActive": true
+}
+
+###
+
+# @name updateSupplierPatch
+PATCH {{baseUrl}}/api/proveedores/{{id}}
+Content-Type: application/json
+
+{
+  "telefono": "3000001111"
+}

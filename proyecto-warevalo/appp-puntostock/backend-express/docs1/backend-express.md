@@ -326,31 +326,31 @@ Verificación y cierre
 ## ![](images/clipboard-3317221906.png) 
 Controller PARCHE: create
 
-##  
+## ![](images/clipboard-364599544.png) 
 Rutas PARCHE: POST /api/proveedores
 
-##  
+## ![](images/clipboard-3937811356.png) 
 HTTP: proveedores.create.http
 
-##  
+## ![](images/clipboard-2937365626.png) 
 Verificación y cierre
 
-##  
+## ![](images/clipboard-3502054290.png) 
 Controller PARCHE: update (PUT, reemplazo completo)
 
-##  
+## ![](images/clipboard-1664338555.png) 
 Controller PARCHE: update (PATCH, parcial)
 
-##  
+## ![](images/clipboard-1278250203.png) 
 Rutas PARCHE: PUT /api/proveedores/:id + PATCH /api/proveedores/:id
 
-##  
+## ![](images/clipboard-2984824091.png) 
 HTTP: proveedores.update.http
 
-##  
+## ![](images/clipboard-404874686.png) 
 Verificación y cierre
 
-##  
+## ![](images/clipboard-2085172221.png) 
 Controller PARCHE: deletePhysical
 
 ##  

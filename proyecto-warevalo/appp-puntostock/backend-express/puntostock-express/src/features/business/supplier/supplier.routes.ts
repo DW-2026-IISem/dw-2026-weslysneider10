@@ -16,6 +16,17 @@ export class SupplierRoutes {
       .route("/api/proveedores/:id")
       .get(this.supplierController.getOne.bind(this.supplierController));
 
-    // (rellenar en los siguientes pasos: create, update, delete)
+    // create
+    app
+      .route("/api/proveedores")
+      .post(this.supplierController.create.bind(this.supplierController));
+
+    // update (PUT / PATCH)
+    app
+      .route("/api/proveedores/:id")
+      .put(this.supplierController.updatePut.bind(this.supplierController))
+      .patch(this.supplierController.updatePatch.bind(this.supplierController));
+
+    // (rellenar en el siguiente paso: delete)
   }
 }

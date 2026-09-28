@@ -1,0 +1,17 @@
+### Feature Supplier — CREATE
+### Leyenda: SIN AUTH (sin middleware JWT / sin autenticación)
+
+@baseUrl = http://localhost:3000
+
+# @name createSupplier
+POST {{baseUrl}}/api/proveedores
+Content-Type: application/json
+
+{
+  "nit": "900123456-7",
+  "razonSocial": "Distribuidora La Guajira SAS",
+  "contacto": "Carlos Ramírez",
+  "telefono": "3005551234",
+  "email": "contacto@distriguajira.com",
+  "isActive": true
+}
