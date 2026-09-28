@@ -299,3 +299,91 @@ Verificación y cierre final
 ## 
 
 ![](images/clipboard-875675195.png)
+
+# Modelo Proveedor (Supplier) 
+
+## ![](images/clipboard-1751511618.png)
+Esqueleto controller/routes + carpeta HTTP
+
+## ![](images/clipboard-3859594945.png) 
+Agregador Routes + cableado en Config
+
+## ![](images/clipboard-289377542.png) 
+Verificación y cierre de la fundación
+
+## ![](images/clipboard-1940938597.png) 
+Controller PARCHE: getAll + getOne 
+
+## 
+Rutas PARCHE: GET /api/proveedores + GET /api/proveedores/:id
+
+##  
+HTTP: proveedores.get.http
+
+##  
+Verificación y cierre
+
+##  
+Controller PARCHE: create
+
+##  
+Rutas PARCHE: POST /api/proveedores
+
+##  
+HTTP: proveedores.create.http
+
+##  
+Verificación y cierre
+
+##  
+Controller PARCHE: update (PUT, reemplazo completo)
+
+##  
+Controller PARCHE: update (PATCH, parcial)
+
+##  
+Rutas PARCHE: PUT /api/proveedores/:id + PATCH /api/proveedores/:id
+
+##  
+HTTP: proveedores.update.http
+
+##  
+Verificación y cierre
+
+##  
+Controller PARCHE: deletePhysical
+
+##  
+Controller PARCHE: deleteLogical
+
+##  
+Rutas PARCHE: DELETE /api/proveedores/:id + PATCH /api/proveedores/:id/deactivate
+
+##  
+HTTP: proveedores.delete.http
+
+##  
+Verificación y cierre
+
+##  
+Seeder supplier.seeder.ts (Faker)
+
+##  
+PARCHE counts.ts
+
+##  
+PARCHE seeders/index.ts
+
+##  
+Verificación
+
+##  
+Swagger supplier.swagger.ts
+
+##  
+PARCHE swagger/index.ts
+
+##  
+Verificación y cierre final
+
+## 

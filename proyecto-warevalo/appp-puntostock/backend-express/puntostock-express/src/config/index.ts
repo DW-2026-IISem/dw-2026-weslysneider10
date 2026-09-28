@@ -14,6 +14,7 @@ import "../features/business/product-type/product-type.model";
 import "../features/business/product/product.model";
 import "../features/business/product/product.associations";
 import "../features/business/branch/branch.model";
+import "../features/business/supplier/supplier.model";
 import { Routes } from "../routes/index";
 import { setupSwagger } from "../swagger/index";
 
@@ -49,6 +50,7 @@ export class App {
     this.routePrv.productTypeRoutes.routes(this.app);
     this.routePrv.productRoutes.routes(this.app);
     this.routePrv.branchRoutes.routes(this.app);
+    this.routePrv.supplierRoutes.routes(this.app);
   }
 
   private docs(): void {
@@ -72,8 +74,7 @@ export class App {
       }
 
       await sequelize.sync({
-        force: false,
-        alter: true
+        force: false
       });
 
       console.log(`📦 Base de datos sincronizada exitosamente`);

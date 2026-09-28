@@ -2,6 +2,7 @@ import { ClientRoutes } from "../features/business/client/client.routes";
 import { ProductTypeRoutes } from "../features/business/product-type/product-type.routes";
 import { ProductRoutes } from "../features/business/product/product.routes";
 import { BranchRoutes } from "../features/business/branch/branch.routes";
+import { SupplierRoutes } from "../features/business/supplier/supplier.routes";
 
 export class Routes {
 
@@ -9,4 +10,5 @@ export class Routes {
   public productTypeRoutes: ProductTypeRoutes = new ProductTypeRoutes();
   public productRoutes: ProductRoutes = new ProductRoutes();
   public branchRoutes: BranchRoutes = new BranchRoutes();
+  public supplierRoutes: SupplierRoutes = new SupplierRoutes();
 }
