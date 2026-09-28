@@ -353,19 +353,19 @@ Verificación y cierre
 ## ![](images/clipboard-2085172221.png) 
 Controller PARCHE: deletePhysical
 
-##  
+## ![](images/clipboard-990577569.png) 
 Controller PARCHE: deleteLogical
 
-##  
+## ![](images/clipboard-728701335.png) 
 Rutas PARCHE: DELETE /api/proveedores/:id + PATCH /api/proveedores/:id/deactivate
 
-##  
+## ![](images/clipboard-1393217430.png) 
 HTTP: proveedores.delete.http
 
-##  
+## ![](images/clipboard-1443841128.png) 
 Verificación y cierre
 
-##  
+## ![](images/clipboard-2637822949.png) 
 Seeder supplier.seeder.ts (Faker)
 
 ##  

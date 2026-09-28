@@ -27,6 +27,14 @@ export class SupplierRoutes {
       .put(this.supplierController.updatePut.bind(this.supplierController))
       .patch(this.supplierController.updatePatch.bind(this.supplierController));
 
-    // (rellenar en el siguiente paso: delete)
+    // delete físico
+    app
+      .route("/api/proveedores/:id")
+      .delete(this.supplierController.deletePhysical.bind(this.supplierController));
+
+    // delete lógico
+    app
+      .route("/api/proveedores/:id/deactivate")
+      .patch(this.supplierController.deleteLogical.bind(this.supplierController));
   }
 }

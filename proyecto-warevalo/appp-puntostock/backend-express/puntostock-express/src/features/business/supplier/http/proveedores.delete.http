@@ -1,0 +1,13 @@
+### Feature Supplier — DELETE físico / DELETE lógico (isActive = false)
+### Leyenda: SIN AUTH (sin middleware JWT / sin autenticación)
+
+@baseUrl = http://localhost:3000
+@id = 1
+
+# @name deleteSupplierPhysical
+DELETE {{baseUrl}}/api/proveedores/{{id}}
+
+###
+
+# @name deleteSupplierLogical
+PATCH {{baseUrl}}/api/proveedores/{{id}}/deactivate

@@ -93,5 +93,38 @@ export class SupplierController {
   }
 
   // ================== DELETE ==================
-  // (rellenar en el siguiente paso)
+  /** Eliminación física */
+  public async deletePhysical(req: Request, res: Response) {
+    try {
+      const id = paramId(req);
+      const supplier = await Supplier.findByPk(id);
+      if (!supplier) {
+        res.status(404).json({ error: "Supplier not found" });
+        return;
+      }
+      await supplier.destroy();
+      res.status(200).json({ message: "Supplier permanently deleted", id });
+    } catch (error) {
+      res.status(500).json({ error: "Error deleting supplier", detail: String(error) });
+    }
+  }
+
+  /** Eliminación lógica → isActive = false */
+  public async deleteLogical(req: Request, res: Response) {
+    try {
+      const id = paramId(req);
+      const supplier = await Supplier.findByPk(id);
+      if (!supplier) {
+        res.status(404).json({ error: "Supplier not found" });
+        return;
+      }
+      await supplier.update({ isActive: false });
+      res.status(200).json({
+        message: "Supplier deactivated (logical delete)",
+        supplier,
+      });
+    } catch (error) {
+      res.status(500).json({ error: "Error deactivating supplier", detail: String(error) });
+    }
+  }
 }
