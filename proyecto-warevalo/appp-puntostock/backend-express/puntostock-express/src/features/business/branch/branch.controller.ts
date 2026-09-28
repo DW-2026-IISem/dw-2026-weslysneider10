@@ -50,7 +50,25 @@ export class BranchController {
   }
 
   // ================== UPDATE ==================
-  // (rellenar en el siguiente paso)
+  public async updatePut(req: Request, res: Response) {
+    try {
+      const id = paramId(req);
+      const body = req.body as BranchI;
+      const branch = await Branch.findByPk(id);
+      if (!branch) {
+        res.status(404).json({ error: "Branch not found" });
+        return;
+      }
+      await branch.update({
+        name: body.name,
+        description: body.description ?? null,
+        status: body.status ?? branch.status,
+      });
+      res.status(200).json({ branch });
+    } catch (error) {
+      res.status(500).json({ error: "Error updating branch (PUT)", detail: String(error) });
+    }
+  }
 
   // ================== DELETE ==================
   // (rellenar en el siguiente paso)

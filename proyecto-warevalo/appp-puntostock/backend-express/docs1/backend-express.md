@@ -245,10 +245,10 @@ HTTP: sucursales.create.http
 ## ![](images/clipboard-2639348490.png) 
 Verificación y cierre
 
-##  
+## ![](images/clipboard-869479670.png) 
 Controller PARCHE: update (PUT, reemplazo completo)
 
-##  
+## ![](images/clipboard-1699215752.png) 
 Controller PARCHE: update (PATCH, parcial)
 
 ##  
