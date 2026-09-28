@@ -10,6 +10,7 @@ import {
 } from "../database/db";
 
 import "../features/business/client/client.model";
+import "../features/business/product-type/product-type.model";
 import { Routes } from "../routes/index";
 import { setupSwagger } from "../swagger/index";
 
@@ -42,6 +43,7 @@ export class App {
 
   private routes(): void {
     this.routePrv.clientRoutes.routes(this.app);
+    this.routePrv.productTypeRoutes.routes(this.app);
   }
 
   private docs(): void {

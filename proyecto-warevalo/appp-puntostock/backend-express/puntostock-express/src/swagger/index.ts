@@ -3,6 +3,7 @@ import { Application } from "express";
 import swaggerUi from "swagger-ui-express";
 
 import { clientSwagger } from "../features/business/client/client.swagger";
+import { productTypeSwagger } from "../features/business/product-type/product-type.swagger";
 
 export type FeatureSwaggerModule = {
   tags: unknown[];
@@ -18,6 +19,7 @@ export type FeatureSwaggerModule = {
  */
 const featureSwaggerModules: FeatureSwaggerModule[] = [
   clientSwagger,
+  productTypeSwagger,
 
   // productSwagger,
   // userSwagger,
@@ -46,10 +48,10 @@ export function buildOpenApiDocument() {
     openapi: "3.0.3",
 
     info: {
-      title: "StoreLab API",
+      title: "PuntoStock-express API",
       version: "1.0.0",
       description:
-        "API StoreLab (Express + Sequelize). Los endpoints de Client están documentados como SIN AUTH. Todas las rutas business son SIN AUTH en este lab.",
+        "API PuntoStock-express (Express + Sequelize). Los endpoints de Client están documentados como SIN AUTH. Todas las rutas business son SIN AUTH en este lab.",
     },
 
     servers: [

@@ -153,3 +153,23 @@
 ### ![](images/clipboard-3941798818.png)
 
 ![](images/clipboard-87079505.png)
+
+# Modelo ProductType
+
+![](images/clipboard-465655136.png)
+
+## Controller + routes
+
+![](images/clipboard-1648352940.png)
+
+##  HTTP 
+
+![](images/clipboard-774408778.png)
+
+## Seeder ProductType
+
+![](images/clipboard-42128476.png)
+
+## Swagger ProductType
+
+![](images/clipboard-1063589043.png)

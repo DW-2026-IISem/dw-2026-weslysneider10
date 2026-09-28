@@ -1,0 +1,13 @@
+### Feature ProductType — GET ALL / GET ONE
+### Leyenda: SIN AUTH (sin middleware JWT / sin autenticación)
+
+@baseUrl = http://localhost:4000
+@id = 1
+
+# @name getAllProductTypes
+GET {{baseUrl}}/api/tipos-producto
+
+###
+
+# @name getOneProductType
+GET {{baseUrl}}/api/tipos-producto/{{id}}

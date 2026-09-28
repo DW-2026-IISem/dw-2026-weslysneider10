@@ -1,0 +1,14 @@
+### Feature ProductType — CREATE
+### Leyenda: SIN AUTH (sin middleware JWT / sin autenticación)
+
+@baseUrl = http://localhost:4000
+
+# @name createProductType
+POST {{baseUrl}}/api/tipos-producto
+Content-Type: application/json
+
+{
+  "name": "Electrónica",
+  "description": "Dispositivos y accesorios",
+  "status": "active"
+}
