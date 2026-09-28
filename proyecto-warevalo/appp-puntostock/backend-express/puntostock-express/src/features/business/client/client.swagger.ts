@@ -11,7 +11,7 @@ export const clientSwagger = {
 
   tags: [
     {
-      name: "Clientes",
+      name: "Clients",
       description: "CRUD de clientes — SIN AUTH (sin middleware JWT)",
     },
   ],
@@ -21,7 +21,7 @@ export const clientSwagger = {
     "/api/clientes": {
 
       get: {
-        tags: ["Clientes"],
+        tags: ["Clients"],
         summary: "Listar clientes activos",
         description:
           "SIN AUTH — retorna clientes con status=active (sin password)",
@@ -34,7 +34,7 @@ export const clientSwagger = {
       },
 
       post: {
-        tags: ["Clientes"],
+        tags: ["Clients"],
         summary: "Crear cliente",
         description: "SIN AUTH — crea un nuevo cliente",
         security: [],
@@ -60,7 +60,7 @@ export const clientSwagger = {
     "/api/clientes/{id}": {
 
       get: {
-        tags: ["Clientes"],
+        tags: ["Clients"],
         summary: "Obtener cliente por ID",
         description: "SIN AUTH — retorna un cliente sin password",
         security: [],
@@ -85,7 +85,7 @@ export const clientSwagger = {
       },
 
       put: {
-        tags: ["Clientes"],
+        tags: ["Clients"],
         summary: "Actualizar cliente completo",
         description: "SIN AUTH",
         security: [],
@@ -117,7 +117,7 @@ export const clientSwagger = {
       },
 
       patch: {
-        tags: ["Clientes"],
+        tags: ["Clients"],
         summary: "Actualizar cliente parcialmente",
         description: "SIN AUTH",
         security: [],
@@ -149,7 +149,7 @@ export const clientSwagger = {
       },
 
       delete: {
-        tags: ["Clientes"],
+        tags: ["Clients"],
         summary: "Eliminar cliente físicamente",
         description: "SIN AUTH",
         security: [],
@@ -175,7 +175,7 @@ export const clientSwagger = {
     "/api/clientes/{id}/deactivate": {
 
       patch: {
-        tags: ["Clientes"],
+        tags: ["Clients"],
         summary: "Desactivar cliente",
         description:
           "SIN AUTH — eliminación lógica mediante status=inactive",

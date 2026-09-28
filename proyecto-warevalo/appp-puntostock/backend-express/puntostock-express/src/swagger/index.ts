@@ -4,6 +4,7 @@ import swaggerUi from "swagger-ui-express";
 
 import { clientSwagger } from "../features/business/client/client.swagger";
 import { productTypeSwagger } from "../features/business/product-type/product-type.swagger";
+import { productSwagger } from "../features/business/product/product.swagger";
 
 export type FeatureSwaggerModule = {
   tags: unknown[];
@@ -20,8 +21,8 @@ export type FeatureSwaggerModule = {
 const featureSwaggerModules: FeatureSwaggerModule[] = [
   clientSwagger,
   productTypeSwagger,
+  productSwagger,
 
-  // productSwagger,
   // userSwagger,
 ];
 

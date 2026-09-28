@@ -3,8 +3,13 @@ import dotenv from "dotenv";
 import { sequelize, testConnection } from "../db";
 
 import "../../features/business/client/client.model";
+import "../../features/business/product-type/product-type.model";
+import "../../features/business/product/product.model";
+import "../../features/business/product/product.associations";
 
 import { seedClients } from "../../features/business/client/client.seeder";
+import { seedProductTypes } from "../../features/business/product-type/product-type.seeder";
+import { seedProducts } from "../../features/business/product/product.seeder";
 
 import { resolveSeedCounts } from "./counts";
 
@@ -39,8 +44,10 @@ export async function runAllSeeders(): Promise<void> {
     alter: true,
   });
 
-  // Orden: business
+  // Orden: business (respeta dependencias FK)
   await seedClients(counts.clients);
+  await seedProductTypes(counts.product_types);
+  await seedProducts(counts.products);
 
   console.log("🌱 SeedersRunner finalizado");
 }

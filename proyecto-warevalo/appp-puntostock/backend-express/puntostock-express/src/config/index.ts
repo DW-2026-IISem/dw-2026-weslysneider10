@@ -11,6 +11,8 @@ import {
 
 import "../features/business/client/client.model";
 import "../features/business/product-type/product-type.model";
+import "../features/business/product/product.model";
+import "../features/business/product/product.associations";
 import { Routes } from "../routes/index";
 import { setupSwagger } from "../swagger/index";
 
@@ -44,6 +46,7 @@ export class App {
   private routes(): void {
     this.routePrv.clientRoutes.routes(this.app);
     this.routePrv.productTypeRoutes.routes(this.app);
+    this.routePrv.productRoutes.routes(this.app);
   }
 
   private docs(): void {

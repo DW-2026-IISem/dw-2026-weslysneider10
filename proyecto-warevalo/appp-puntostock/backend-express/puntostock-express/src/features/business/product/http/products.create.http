@@ -1,0 +1,17 @@
+### Feature Product — CREATE
+### Leyenda: SIN AUTH (sin middleware JWT / sin autenticación)
+
+@baseUrl = http://localhost:3000
+
+# @name createProduct
+POST {{baseUrl}}/api/productos
+Content-Type: application/json
+
+{
+  "sku": "COLA-350ML",
+  "name": "Cola 350ml",
+  "description": "Bebida gaseosa sabor cola",
+  "price": 2500,
+  "productTypeId": 1,
+  "status": "active"
+}

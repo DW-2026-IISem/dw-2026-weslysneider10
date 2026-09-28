@@ -173,3 +173,39 @@
 ## Swagger ProductType
 
 ![](images/clipboard-1063589043.png)
+
+# Modelo Product
+
+![](images/clipboard-2254418553.png)
+
+## Controller + routes
+
+![](images/clipboard-3048285626.png)
+
+## HTTP (REST Client)
+
+![](images/clipboard-1608795415.png)
+
+## Relación ProductType ↔ Product
+
+![](images/clipboard-3037371649.png)
+
+## Seeder + Swagger
+
+![](images/clipboard-3393697415.png)
+
+## src/routes/index.ts
+
+![](images/clipboard-1299600753.png)
+
+## src/config/index.ts
+
+## ![](images/clipboard-2796878514.png)
+
+## src/database/seeders/counts.ts
+
+## ![](images/clipboard-3255893492.png)
+
+## src/database/seeders/index.ts
+
+![](images/clipboard-4168322076.png)

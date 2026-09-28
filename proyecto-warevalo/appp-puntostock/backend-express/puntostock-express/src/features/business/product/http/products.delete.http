@@ -1,0 +1,13 @@
+### Feature Product — DELETE físico / DELETE lógico (status = inactive)
+### Leyenda: SIN AUTH (sin middleware JWT / sin autenticación)
+
+@baseUrl = http://localhost:3000
+@id = 1
+
+# @name deleteProductPhysical
+DELETE {{baseUrl}}/api/productos/{{id}}
+
+###
+
+# @name deleteProductLogical
+PATCH {{baseUrl}}/api/productos/{{id}}/deactivate

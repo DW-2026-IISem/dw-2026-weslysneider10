@@ -1,0 +1,28 @@
+### Feature Product — UPDATE (PUT) / UPDATE (PATCH)
+### Leyenda: SIN AUTH (sin middleware JWT / sin autenticación)
+
+@baseUrl = http://localhost:3000
+@id = 1
+
+# @name updateProductPut
+PUT {{baseUrl}}/api/productos/{{id}}
+Content-Type: application/json
+
+{
+  "sku": "COLA-350ML",
+  "name": "Cola 350ml Retornable",
+  "description": "Bebida gaseosa sabor cola, envase retornable",
+  "price": 2800,
+  "productTypeId": 1,
+  "status": "active"
+}
+
+###
+
+# @name updateProductPatch
+PATCH {{baseUrl}}/api/productos/{{id}}
+Content-Type: application/json
+
+{
+  "price": 2650
+}

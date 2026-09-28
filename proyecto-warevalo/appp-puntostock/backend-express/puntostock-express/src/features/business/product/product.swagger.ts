@@ -1,34 +1,34 @@
 /**
- * Documentación OpenAPI del feature ProductType.
+ * Documentación OpenAPI del feature Product.
  * Se agrega desde `src/swagger` (registry externo), no se monta aquí.
  *
  * Leyenda: endpoints documentados como SIN AUTH (sin middleware JWT).
  */
-export const productTypeSwagger = {
+export const productSwagger = {
   tags: [
     {
-      name: "ProductTypes",
-      description: "CRUD de tipos de producto — **SIN AUTH** (sin middleware JWT)",
+      name: "Products",
+      description: "CRUD de productos — **SIN AUTH** (sin middleware JWT)",
     },
   ],
   paths: {
-    "/api/tipos-producto": {
+    "/api/productos": {
       get: {
-        tags: ["ProductTypes"],
-        summary: "Listar tipos de producto activos",
-        description: "SIN AUTH — retorna tipos con status=active",
+        tags: ["Products"],
+        summary: "Listar productos activos",
+        description: "SIN AUTH — retorna productos con status=active",
         security: [],
         responses: {
           "200": {
-            description: "Lista de tipos de producto",
+            description: "Lista de productos",
             content: {
               "application/json": {
                 schema: {
                   type: "object",
                   properties: {
-                    product_types: {
+                    products: {
                       type: "array",
-                      items: { $ref: "#/components/schemas/ProductType" },
+                      items: { $ref: "#/components/schemas/Product" },
                     },
                   },
                 },
@@ -38,27 +38,27 @@ export const productTypeSwagger = {
         },
       },
       post: {
-        tags: ["ProductTypes"],
-        summary: "Crear tipo de producto",
-        description: "SIN AUTH",
+        tags: ["Products"],
+        summary: "Crear producto",
+        description: "SIN AUTH — productTypeId debe existir y estar active",
         security: [],
         requestBody: {
           required: true,
           content: {
             "application/json": {
-              schema: { $ref: "#/components/schemas/ProductTypeCreate" },
+              schema: { $ref: "#/components/schemas/ProductCreate" },
             },
           },
         },
         responses: {
           "201": {
-            description: "Tipo de producto creado",
+            description: "Producto creado",
             content: {
               "application/json": {
                 schema: {
                   type: "object",
                   properties: {
-                    product_type: { $ref: "#/components/schemas/ProductType" },
+                    product: { $ref: "#/components/schemas/Product" },
                   },
                 },
               },
@@ -67,10 +67,10 @@ export const productTypeSwagger = {
         },
       },
     },
-    "/api/tipos-producto/{id}": {
+    "/api/productos/{id}": {
       get: {
-        tags: ["ProductTypes"],
-        summary: "Obtener tipo de producto por id",
+        tags: ["Products"],
+        summary: "Obtener producto por id",
         description: "SIN AUTH",
         security: [],
         parameters: [
@@ -78,13 +78,13 @@ export const productTypeSwagger = {
         ],
         responses: {
           "200": {
-            description: "Tipo de producto encontrado",
+            description: "Producto encontrado",
             content: {
               "application/json": {
                 schema: {
                   type: "object",
                   properties: {
-                    product_type: { $ref: "#/components/schemas/ProductType" },
+                    product: { $ref: "#/components/schemas/Product" },
                   },
                 },
               },
@@ -94,8 +94,8 @@ export const productTypeSwagger = {
         },
       },
       put: {
-        tags: ["ProductTypes"],
-        summary: "Actualizar tipo de producto (PUT — reemplazo)",
+        tags: ["Products"],
+        summary: "Actualizar producto (PUT — reemplazo)",
         description: "SIN AUTH",
         security: [],
         parameters: [
@@ -105,7 +105,7 @@ export const productTypeSwagger = {
           required: true,
           content: {
             "application/json": {
-              schema: { $ref: "#/components/schemas/ProductTypeUpdate" },
+              schema: { $ref: "#/components/schemas/ProductUpdate" },
             },
           },
         },
@@ -115,8 +115,8 @@ export const productTypeSwagger = {
         },
       },
       patch: {
-        tags: ["ProductTypes"],
-        summary: "Actualizar tipo de producto (PATCH — parcial)",
+        tags: ["Products"],
+        summary: "Actualizar producto (PATCH — parcial)",
         description: "SIN AUTH",
         security: [],
         parameters: [
@@ -126,7 +126,7 @@ export const productTypeSwagger = {
           required: true,
           content: {
             "application/json": {
-              schema: { $ref: "#/components/schemas/ProductTypePatch" },
+              schema: { $ref: "#/components/schemas/ProductPatch" },
             },
           },
         },
@@ -136,8 +136,8 @@ export const productTypeSwagger = {
         },
       },
       delete: {
-        tags: ["ProductTypes"],
-        summary: "Eliminar tipo de producto (físico)",
+        tags: ["Products"],
+        summary: "Eliminar producto (físico)",
         description: "SIN AUTH — borra la fila",
         security: [],
         parameters: [
@@ -149,10 +149,10 @@ export const productTypeSwagger = {
         },
       },
     },
-    "/api/tipos-producto/{id}/deactivate": {
+    "/api/productos/{id}/deactivate": {
       patch: {
-        tags: ["ProductTypes"],
-        summary: "Eliminar tipo de producto (lógico)",
+        tags: ["Products"],
+        summary: "Eliminar producto (lógico)",
         description: "SIN AUTH — status = inactive",
         security: [],
         parameters: [
@@ -167,40 +167,52 @@ export const productTypeSwagger = {
   },
   components: {
     schemas: {
-      ProductType: {
+      Product: {
         type: "object",
         properties: {
           id: { type: "integer", example: 1 },
-          name: { type: "string", example: "Electrónica" },
-          description: { type: "string", example: "Dispositivos y accesorios", nullable: true },
+          sku: { type: "string", example: "COLA-350ML" },
+          name: { type: "string", example: "Cola 350ml" },
+          description: { type: "string", example: "Bebida gaseosa sabor cola", nullable: true },
+          price: { type: "number", example: 2500 },
+          productTypeId: { type: "integer", example: 1 },
           status: { type: "string", enum: ["active", "inactive"], example: "active" },
           createdAt: { type: "string", format: "date-time" },
           updatedAt: { type: "string", format: "date-time" },
         },
       },
-      ProductTypeCreate: {
+      ProductCreate: {
         type: "object",
-        required: ["name"],
+        required: ["sku", "name", "price", "productTypeId"],
         properties: {
+          sku: { type: "string" },
           name: { type: "string" },
           description: { type: "string" },
+          price: { type: "number" },
+          productTypeId: { type: "integer" },
           status: { type: "string", enum: ["active", "inactive"], default: "active" },
         },
       },
-      ProductTypeUpdate: {
+      ProductUpdate: {
         type: "object",
-        required: ["name"],
+        required: ["sku", "name", "price", "productTypeId"],
         properties: {
+          sku: { type: "string" },
           name: { type: "string" },
           description: { type: "string" },
+          price: { type: "number" },
+          productTypeId: { type: "integer" },
           status: { type: "string", enum: ["active", "inactive"] },
         },
       },
-      ProductTypePatch: {
+      ProductPatch: {
         type: "object",
         properties: {
+          sku: { type: "string" },
           name: { type: "string" },
           description: { type: "string" },
+          price: { type: "number" },
+          productTypeId: { type: "integer" },
           status: { type: "string", enum: ["active", "inactive"] },
         },
       },

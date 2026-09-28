@@ -1,0 +1,13 @@
+### Feature Product — GET ALL / GET ONE
+### Leyenda: SIN AUTH (sin middleware JWT / sin autenticación)
+
+@baseUrl = http://localhost:3000
+@id = 1
+
+# @name getAllProducts
+GET {{baseUrl}}/api/productos
+
+###
+
+# @name getOneProduct
+GET {{baseUrl}}/api/productos/{{id}}
