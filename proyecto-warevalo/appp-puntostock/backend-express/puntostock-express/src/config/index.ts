@@ -13,6 +13,7 @@ import "../features/business/client/client.model";
 import "../features/business/product-type/product-type.model";
 import "../features/business/product/product.model";
 import "../features/business/product/product.associations";
+import "../features/business/branch/branch.model";
 import { Routes } from "../routes/index";
 import { setupSwagger } from "../swagger/index";
 
@@ -47,6 +48,7 @@ export class App {
     this.routePrv.clientRoutes.routes(this.app);
     this.routePrv.productTypeRoutes.routes(this.app);
     this.routePrv.productRoutes.routes(this.app);
+    this.routePrv.branchRoutes.routes(this.app);
   }
 
   private docs(): void {

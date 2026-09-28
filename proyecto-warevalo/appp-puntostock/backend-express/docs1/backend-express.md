@@ -209,3 +209,89 @@
 ## src/database/seeders/index.ts
 
 ![](images/clipboard-4168322076.png)
+
+# Modelo Sucursal
+
+## ![](images/clipboard-1545995194.png) 
+Esqueleto controller/routes + carpeta HTTP
+
+## ![](images/clipboard-596249441.png) 
+Agregador Routes + cableado en Config
+
+## ![](images/clipboard-605041912.png) 
+Verificación y cierre 
+
+## ![](images/clipboard-3799294656.png) 
+Controller PARCHE: getAll + getOne
+
+##  
+Rutas PARCHE: GET /api/sucursales + GET /api/sucursales/:id
+
+##  
+HTTP: sucursales.get.http
+
+##  
+Verificación y cierre
+
+##  
+Controller PARCHE: create
+
+##  
+Rutas PARCHE: POST /api/sucursales
+
+##  
+HTTP: sucursales.create.http
+
+##  
+Verificación y cierre
+
+##  
+Controller PARCHE: update (PUT, reemplazo completo)
+
+##  
+Controller PARCHE: update (PATCH, parcial)
+
+##  
+Rutas PARCHE: PUT /api/sucursales/:id + PATCH /api/sucursales/:id 
+HTTP: sucursales.update.http
+
+##  
+Verificación y cierre
+
+##  
+Controller PARCHE: deletePhysical
+
+##  
+Controller PARCHE: deleteLogical
+
+##  
+Rutas PARCHE: DELETE /api/sucursales/:id + PATCH /api/sucursales/:id/deactivate
+
+##  
+HTTP: sucursales.delete.http
+
+##  
+Verificación y cierre
+
+##  
+Seeder branch.seeder.ts (Faker)
+
+##  
+PARCHE counts.ts
+
+##  
+PARCHE seeders/index.ts
+
+##  
+Verificación
+
+##  
+Swagger branch.swagger.ts
+
+##  
+PARCHE swagger/index.ts
+
+##  
+Verificación y cierre final
+
+## 
