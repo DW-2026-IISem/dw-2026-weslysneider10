@@ -314,16 +314,16 @@ Verificación y cierre de la fundación
 ## ![](images/clipboard-1940938597.png) 
 Controller PARCHE: getAll + getOne 
 
-## 
+## ![](images/clipboard-3311934756.png)
 Rutas PARCHE: GET /api/proveedores + GET /api/proveedores/:id
 
-##  
+## ![](images/clipboard-2500794587.png) 
 HTTP: proveedores.get.http
 
-##  
+## ![](images/clipboard-1254331117.png) 
 Verificación y cierre
 
-##  
+## ![](images/clipboard-3317221906.png) 
 Controller PARCHE: create
 
 ##  

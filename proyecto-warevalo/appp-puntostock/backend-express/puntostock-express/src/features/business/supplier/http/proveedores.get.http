@@ -1,0 +1,13 @@
+### Feature Supplier — GET ALL / GET ONE
+### Leyenda: SIN AUTH (sin middleware JWT / sin autenticación)
+
+@baseUrl = http://localhost:3000
+@id = 1
+
+# @name getAllSuppliers
+GET {{baseUrl}}/api/proveedores
+
+###
+
+# @name getOneSupplier
+GET {{baseUrl}}/api/proveedores/{{id}}

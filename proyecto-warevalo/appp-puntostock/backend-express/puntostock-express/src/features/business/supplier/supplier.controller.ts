@@ -9,7 +9,30 @@ function paramId(req: Request): number {
 
 export class SupplierController {
   // ================== READ ==================
-  // (rellenar en el siguiente paso) getAll, luego getOne
+  public async getAll(req: Request, res: Response) {
+    try {
+      const suppliers = await Supplier.findAll({
+        where: { isActive: true },
+      });
+      res.status(200).json({ suppliers });
+    } catch (error) {
+      res.status(500).json({ error: "Error fetching suppliers", detail: String(error) });
+    }
+  }
+
+  public async getOne(req: Request, res: Response) {
+    try {
+      const id = paramId(req);
+      const supplier = await Supplier.findByPk(id);
+      if (!supplier) {
+        res.status(404).json({ error: "Supplier not found" });
+        return;
+      }
+      res.status(200).json({ supplier });
+    } catch (error) {
+      res.status(500).json({ error: "Error fetching supplier", detail: String(error) });
+    }
+  }
 
   // ================== CREATE ==================
   // (rellenar en el siguiente paso)
