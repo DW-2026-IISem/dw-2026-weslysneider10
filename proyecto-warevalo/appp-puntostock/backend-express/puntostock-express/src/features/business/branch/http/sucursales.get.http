@@ -1,0 +1,13 @@
+### Feature Branch — GET ALL / GET ONE
+### Leyenda: SIN AUTH (sin middleware JWT / sin autenticación)
+
+@baseUrl = http://localhost:3000
+@id = 1
+
+# @name getAllBranches
+GET {{baseUrl}}/api/sucursales
+
+###
+
+# @name getOneBranch
+GET {{baseUrl}}/api/sucursales/{{id}}

@@ -1,0 +1,14 @@
+### Feature Branch — CREATE
+### Leyenda: SIN AUTH (sin middleware JWT / sin autenticación)
+
+@baseUrl = http://localhost:3000
+
+# @name createBranch
+POST {{baseUrl}}/api/sucursales
+Content-Type: application/json
+
+{
+  "name": "Sucursal Norte",
+  "description": "Sede principal zona norte",
+  "status": "active"
+}

@@ -1,0 +1,25 @@
+### Feature Branch — UPDATE (PUT) / UPDATE (PATCH)
+### Leyenda: SIN AUTH (sin middleware JWT / sin autenticación)
+
+@baseUrl = http://localhost:3000
+@id = 1
+
+# @name updateBranchPut
+PUT {{baseUrl}}/api/sucursales/{{id}}
+Content-Type: application/json
+
+{
+  "name": "Sucursal Norte Renovada",
+  "description": "Sede ampliada zona norte",
+  "status": "active"
+}
+
+###
+
+# @name updateBranchPatch
+PATCH {{baseUrl}}/api/sucursales/{{id}}
+Content-Type: application/json
+
+{
+  "description": "Solo cambio de descripción"
+}

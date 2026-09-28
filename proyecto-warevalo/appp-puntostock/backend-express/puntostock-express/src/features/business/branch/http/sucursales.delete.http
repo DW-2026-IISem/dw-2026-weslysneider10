@@ -1,0 +1,13 @@
+### Feature Branch — DELETE físico / DELETE lógico (status = inactive)
+### Leyenda: SIN AUTH (sin middleware JWT / sin autenticación)
+
+@baseUrl = http://localhost:3000
+@id = 1
+
+# @name deleteBranchPhysical
+DELETE {{baseUrl}}/api/sucursales/{{id}}
+
+###
+
+# @name deleteBranchLogical
+PATCH {{baseUrl}}/api/sucursales/{{id}}/deactivate

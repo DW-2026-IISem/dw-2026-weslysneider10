@@ -5,6 +5,7 @@ import swaggerUi from "swagger-ui-express";
 import { clientSwagger } from "../features/business/client/client.swagger";
 import { productTypeSwagger } from "../features/business/product-type/product-type.swagger";
 import { productSwagger } from "../features/business/product/product.swagger";
+import { branchSwagger } from "../features/business/branch/branch.swagger";
 
 export type FeatureSwaggerModule = {
   tags: unknown[];
@@ -22,8 +23,7 @@ const featureSwaggerModules: FeatureSwaggerModule[] = [
   clientSwagger,
   productTypeSwagger,
   productSwagger,
-
-  // userSwagger,
+  branchSwagger,
 ];
 
 export function buildOpenApiDocument() {

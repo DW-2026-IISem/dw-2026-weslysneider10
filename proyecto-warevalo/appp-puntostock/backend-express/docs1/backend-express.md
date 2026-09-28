@@ -224,25 +224,25 @@ Verificación y cierre
 ## ![](images/clipboard-3799294656.png) 
 Controller PARCHE: getAll + getOne
 
-##  
+## ![](images/clipboard-796225220.png) 
 Rutas PARCHE: GET /api/sucursales + GET /api/sucursales/:id
 
-##  
+## ![](images/clipboard-583740893.png) 
 HTTP: sucursales.get.http
 
-##  
+## ![](images/clipboard-1542418856.png) 
 Verificación y cierre
 
-##  
+## ![](images/clipboard-1438260343.png) 
 Controller PARCHE: create
 
-##  
+## ![](images/clipboard-2592716259.png) 
 Rutas PARCHE: POST /api/sucursales
 
-##  
+## ![](images/clipboard-2596321150.png) 
 HTTP: sucursales.create.http
 
-##  
+## ![](images/clipboard-2639348490.png) 
 Verificación y cierre
 
 ##  
@@ -252,10 +252,12 @@ Controller PARCHE: update (PUT, reemplazo completo)
 Controller PARCHE: update (PATCH, parcial)
 
 ##  
-Rutas PARCHE: PUT /api/sucursales/:id + PATCH /api/sucursales/:id 
-HTTP: sucursales.update.http
+Rutas PARCHE: PUT /api/sucursales/:id + PATCH /api/sucursales/:id
 
 ##  
+HTTP: sucursales.update.http
+
+## ![](images/clipboard-3257596151.png) 
 Verificación y cierre
 
 ##  
@@ -270,28 +272,28 @@ Rutas PARCHE: DELETE /api/sucursales/:id + PATCH /api/sucursales/:id/deactivate
 ##  
 HTTP: sucursales.delete.http
 
-##  
+## ![](images/clipboard-1722801967.png) 
 Verificación y cierre
 
 ##  
 Seeder branch.seeder.ts (Faker)
 
-##  
+## ![](images/clipboard-3855126683.png) 
 PARCHE counts.ts
 
-##  
+## ![](images/clipboard-2240082784.png) 
 PARCHE seeders/index.ts
 
-##  
+## ![](images/clipboard-4163974634.png) 
 Verificación
 
 ##  
 Swagger branch.swagger.ts
 
-##  
+## ![](images/clipboard-1142315151.png) 
 PARCHE swagger/index.ts
 
-##  
+##  ![](images/clipboard-3494399189.png)
 Verificación y cierre final
 
 ## 
