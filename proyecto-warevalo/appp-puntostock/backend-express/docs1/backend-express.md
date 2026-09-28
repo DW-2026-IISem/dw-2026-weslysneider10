@@ -263,19 +263,19 @@ Verificación y cierre
 ## ![](images/clipboard-3877263025.png) 
 Controller PARCHE: deletePhysical
 
-##  
+## ![](images/clipboard-2704079148.png) 
 Controller PARCHE: deleteLogical
 
-##  
+## ![](images/clipboard-2255061050.png) 
 Rutas PARCHE: DELETE /api/sucursales/:id + PATCH /api/sucursales/:id/deactivate
 
-##  
+## ![](images/clipboard-724101169.png) 
 HTTP: sucursales.delete.http
 
 ## ![](images/clipboard-1722801967.png) 
 Verificación y cierre
 
-##  
+## ![](images/clipboard-1588082825.png) 
 Seeder branch.seeder.ts (Faker)
 
 ## ![](images/clipboard-3855126683.png) 
@@ -287,7 +287,7 @@ PARCHE seeders/index.ts
 ## ![](images/clipboard-4163974634.png) 
 Verificación
 
-##  
+## ![](images/clipboard-1588082825.png) 
 Swagger branch.swagger.ts
 
 ## ![](images/clipboard-1142315151.png) 
@@ -297,3 +297,5 @@ PARCHE swagger/index.ts
 Verificación y cierre final
 
 ## 
+
+![](images/clipboard-875675195.png)

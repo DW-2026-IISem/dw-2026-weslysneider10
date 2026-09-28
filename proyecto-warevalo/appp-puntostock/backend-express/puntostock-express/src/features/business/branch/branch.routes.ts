@@ -27,6 +27,14 @@ export class BranchRoutes {
       .put(this.branchController.updatePut.bind(this.branchController))
       .patch(this.branchController.updatePatch.bind(this.branchController));
 
-    // (rellenar en el siguiente paso: delete)
+    // delete físico
+    app
+      .route("/api/sucursales/:id")
+      .delete(this.branchController.deletePhysical.bind(this.branchController));
+
+    // delete lógico
+    app
+      .route("/api/sucursales/:id/deactivate")
+      .patch(this.branchController.deleteLogical.bind(this.branchController));
   }
 }

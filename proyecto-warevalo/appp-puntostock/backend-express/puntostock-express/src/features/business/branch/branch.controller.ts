@@ -87,5 +87,38 @@ export class BranchController {
   }
 
   // ================== DELETE ==================
-  // (rellenar en el siguiente paso)
+  /** Eliminación física */
+  public async deletePhysical(req: Request, res: Response) {
+    try {
+      const id = paramId(req);
+      const branch = await Branch.findByPk(id);
+      if (!branch) {
+        res.status(404).json({ error: "Branch not found" });
+        return;
+      }
+      await branch.destroy();
+      res.status(200).json({ message: "Branch permanently deleted", id });
+    } catch (error) {
+      res.status(500).json({ error: "Error deleting branch", detail: String(error) });
+    }
+  }
+
+  /** Eliminación lógica → status = inactive */
+  public async deleteLogical(req: Request, res: Response) {
+    try {
+      const id = paramId(req);
+      const branch = await Branch.findByPk(id);
+      if (!branch) {
+        res.status(404).json({ error: "Branch not found" });
+        return;
+      }
+      await branch.update({ status: "inactive" });
+      res.status(200).json({
+        message: "Branch deactivated (logical delete)",
+        branch,
+      });
+    } catch (error) {
+      res.status(500).json({ error: "Error deactivating branch", detail: String(error) });
+    }
+  }
 }
