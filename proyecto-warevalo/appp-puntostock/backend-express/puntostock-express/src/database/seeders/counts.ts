@@ -12,6 +12,7 @@ export type SeedCounts = {
   product_types: number;
   products: number;
   branches: number;
+  suppliers: number;
 };
 
 export const DEFAULT_SEED_COUNTS: SeedCounts = {
@@ -19,6 +20,7 @@ export const DEFAULT_SEED_COUNTS: SeedCounts = {
   product_types: 25,
   products: 40,
   branches: 5,
+  suppliers: 8,
 };
 
 export function resolveSeedCounts(
@@ -31,6 +33,7 @@ export function resolveSeedCounts(
   const envProductTypes = process.env.SEED_PRODUCT_TYPES;
   const envProducts = process.env.SEED_PRODUCTS;
   const envBranches = process.env.SEED_BRANCHES;
+  const envSuppliers = process.env.SEED_SUPPLIERS;
 
   if (envClients !== undefined && envClients !== "") {
     counts.clients = Number(envClients);
@@ -46,6 +49,10 @@ export function resolveSeedCounts(
 
   if (envBranches !== undefined && envBranches !== "") {
     counts.branches = Number(envBranches);
+  }
+
+  if (envSuppliers !== undefined && envSuppliers !== "") {
+    counts.suppliers = Number(envSuppliers);
   }
 
   for (const arg of argv) {

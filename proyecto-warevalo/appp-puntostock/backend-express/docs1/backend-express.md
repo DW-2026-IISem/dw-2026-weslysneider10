@@ -368,22 +368,22 @@ Verificación y cierre
 ## ![](images/clipboard-2637822949.png) 
 Seeder supplier.seeder.ts (Faker)
 
-##  
+## ![](images/clipboard-1374134284.png) 
 PARCHE counts.ts
 
-##  
+## ![](images/clipboard-3380019788.png) 
 PARCHE seeders/index.ts
 
-##  
+## ![](images/clipboard-2662606928.png) 
 Verificación
 
-##  
+## ![](images/clipboard-4013723674.png) 
 Swagger supplier.swagger.ts
 
-##  
+## ![](images/clipboard-2016977615.png) 
 PARCHE swagger/index.ts
 
-##  
+## ![](images/clipboard-1549998285.png) 
 Verificación y cierre final
 
-## 
+## ![](images/clipboard-2408180386.png)

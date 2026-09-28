@@ -7,11 +7,13 @@ import "../../features/business/product-type/product-type.model";
 import "../../features/business/product/product.model";
 import "../../features/business/product/product.associations";
 import "../../features/business/branch/branch.model";
+import "../../features/business/supplier/supplier.model";
 
 import { seedClients } from "../../features/business/client/client.seeder";
 import { seedProductTypes } from "../../features/business/product-type/product-type.seeder";
 import { seedProducts } from "../../features/business/product/product.seeder";
 import { seedBranches } from "../../features/business/branch/branch.seeder";
+import { seedSuppliers } from "../../features/business/supplier/supplier.seeder";
 
 import { resolveSeedCounts } from "./counts";
 
@@ -43,7 +45,6 @@ export async function runAllSeeders(): Promise<void> {
 
   await sequelize.sync({
     force: false,
-    alter: true,
   });
 
   // Orden: business (respeta dependencias FK)
@@ -51,6 +52,7 @@ export async function runAllSeeders(): Promise<void> {
   await seedProductTypes(counts.product_types);
   await seedProducts(counts.products);
   await seedBranches(counts.branches);
+  await seedSuppliers(counts.suppliers);
 
   console.log("🌱 SeedersRunner finalizado");
 }
