@@ -514,11 +514,19 @@ Verificación y cierre final
 
 ## Controller PARCHE: getAll + getOne
 
+![](images/clipboard-1540646797.png)
+
 ## Rutas PARCHE: GET /api/compras + GET /api/compras/:id
+
+![](images/clipboard-60147295.png)
 
 ## HTTP: compras.get.http
 
+![](images/clipboard-1886847391.png)
+
 ## Verificación y cierre
+
+![](images/clipboard-2867125027.png)
 
 ## Controller PARCHE: create
 

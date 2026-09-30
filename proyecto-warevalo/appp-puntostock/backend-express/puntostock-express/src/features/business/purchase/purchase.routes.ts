@@ -5,7 +5,18 @@ export class PurchaseRoutes {
   public purchaseController: PurchaseController = new PurchaseController();
 
   public routes(app: Application): void {
+
     // ================== RUTAS SIN AUTENTICACIÓN / SIN MIDDLEWARE JWT ==================
+
+    // getAll
+    app
+      .route("/api/compras")
+      .get(this.purchaseController.getAll.bind(this.purchaseController));
+
+    // getOne
+    app
+      .route("/api/compras/:id")
+      .get(this.purchaseController.getOne.bind(this.purchaseController));
 
     // (rellenar en los siguientes pasos)
   }

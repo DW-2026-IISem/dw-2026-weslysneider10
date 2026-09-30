@@ -15,7 +15,41 @@ function paramId(req: Request): number {
 export class PurchaseController {
 
   // ================== READ ==================
-  // (rellenar en el siguiente paso) getAll, luego getOne
+
+  public async getAll(req: Request, res: Response) {
+    try {
+      const purchases = await Purchase.findAll();
+
+      res.status(200).json({ purchases });
+    } catch (error) {
+      res.status(500).json({
+        error: "Error fetching purchases",
+        detail: String(error),
+      });
+    }
+  }
+
+  public async getOne(req: Request, res: Response) {
+    try {
+      const id = paramId(req);
+
+      const purchase = await Purchase.findByPk(id);
+
+      if (!purchase) {
+        res.status(404).json({
+          error: "Purchase not found",
+        });
+        return;
+      }
+
+      res.status(200).json({ purchase });
+    } catch (error) {
+      res.status(500).json({
+        error: "Error fetching purchase",
+        detail: String(error),
+      });
+    }
+  }
 
   // ================== CREATE ==================
   // (rellenar en el siguiente paso)
