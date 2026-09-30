@@ -416,16 +416,16 @@ Verificación y cierre
 
 ## Controller PARCHE: create (valida que Sucursal y Producto existan, evita duplicado branchId+productId)
 
-## 
+## ![](images/clipboard-3593403335.png)
 Rutas PARCHE: POST /api/inventarios
 
-## 
+## ![](images/clipboard-512208708.png)
 HTTP: inventarios.create.http
 
-## 
+## ![](images/clipboard-3197047250.png)
 Verificación y cierre
 
-## 
+## ![](images/clipboard-3995252682.png)
 
 ## Controller PARCHE: update 
 

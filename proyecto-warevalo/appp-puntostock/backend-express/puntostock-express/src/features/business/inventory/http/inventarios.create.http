@@ -1,0 +1,15 @@
+### Feature Inventory — CREATE
+### Leyenda: SIN AUTH (sin middleware JWT / sin autenticación)
+
+@baseUrl = http://localhost:3000
+
+# @name createInventory
+POST {{baseUrl}}/api/inventarios
+Content-Type: application/json
+
+{
+  "branchId": 1,
+  "productId": 1,
+  "quantity": 20,
+  "minStock": 5
+}

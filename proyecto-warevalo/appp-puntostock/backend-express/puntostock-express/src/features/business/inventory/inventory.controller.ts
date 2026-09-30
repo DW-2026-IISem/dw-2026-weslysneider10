@@ -41,7 +41,43 @@ export class InventoryController {
   }
 
   // ================== CREATE ==================
-  // (rellenar en el siguiente paso)
+  public async create(req: Request, res: Response) {
+    try {
+      const body = req.body as InventoryI;
+
+      const branch = await Branch.findByPk(body.branchId);
+      if (!branch) {
+        res.status(404).json({ error: "Branch not found" });
+        return;
+      }
+
+      const product = await Product.findByPk(body.productId);
+      if (!product) {
+        res.status(404).json({ error: "Product not found" });
+        return;
+      }
+
+      const existing = await Inventory.findOne({
+        where: { branchId: body.branchId, productId: body.productId },
+      });
+      if (existing) {
+        res.status(409).json({
+          error: `Ya existe un registro de inventario para la sucursal '${body.branchId}' y el producto '${body.productId}'`,
+        });
+        return;
+      }
+
+      const inventory = await Inventory.create({
+        branchId: body.branchId,
+        productId: body.productId,
+        quantity: body.quantity ?? 0,
+        minStock: body.minStock ?? 0,
+      });
+      res.status(201).json({ inventory });
+    } catch (error) {
+      res.status(500).json({ error: "Error creating inventory", detail: String(error) });
+    }
+  }
 
   // ================== UPDATE ==================
   // (rellenar en el siguiente paso)
