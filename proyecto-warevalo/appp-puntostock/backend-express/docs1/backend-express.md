@@ -491,3 +491,89 @@ PARCHE swagger/index.ts
 Verificación y cierre final
 
 ![](images/clipboard-1474453521.png)
+
+# Compra + CompraDetalle
+
+## Modelo Compra + CompraDetalle
+
+![](images/clipboard-2163981616.png)
+
+## Esqueleto controller/routes + carpeta HTTP
+
+![](images/clipboard-1574926992.png)
+
+## Agregador Routes + cableado en Config
+
+![](images/clipboard-535318786.png)
+
+![](images/clipboard-1047838256.png)
+
+## Verificación y cierre de la fundación
+
+![](images/clipboard-171272618.png)
+
+## Controller PARCHE: getAll + getOne
+
+## Rutas PARCHE: GET /api/compras + GET /api/compras/:id
+
+## HTTP: compras.get.http
+
+## Verificación y cierre
+
+## Controller PARCHE: create
+
+## Rutas PARCHE: POST /api/compras
+
+## HTTP: compras.create.http
+
+## Verificación y cierre
+
+## Controller PARCHE: update (PUT, reemplazo completo)
+
+## Controller PARCHE: update (PATCH, parcial)
+
+## Rutas PARCHE: PUT /api/compras/:id + PATCH /api/compras/:id
+
+## HTTP: compras.update.http
+
+## Verificación y cierre
+
+## Controller PARCHE: deletePhysical
+
+## Controller PARCHE: deleteLogical
+
+## Rutas PARCHE: DELETE /api/compras/:id + PATCH /api/compras/:id/deactivate
+
+## HTTP: compras.delete.http
+
+## Verificación y cierre
+
+## Controller PARCHE: getDetails
+
+## Rutas PARCHE: GET /api/compras/:id/detalles
+
+## HTTP: compras.details.http
+
+## Verificación y cierre
+
+## Controller PARCHE: receive
+
+## Rutas PARCHE: PATCH /api/compras/:id/receive
+
+## HTTP: compras.receive.http
+
+## Verificación y cierre
+
+## Seeder purchase.seeder.ts (Faker)
+
+## PARCHE counts.ts
+
+## PARCHE seeders/index.ts
+
+## Verificación
+
+## Swagger purchase.swagger.ts
+
+## PARCHE swagger/index.ts
+
+## Verificación y cierre final
