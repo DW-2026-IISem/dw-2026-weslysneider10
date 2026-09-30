@@ -1,0 +1,8 @@
+### Feature Purchase — DETAILS
+### Leyenda: SIN AUTH
+
+@baseUrl = http://localhost:3000
+@id = 1
+
+# @name getPurchaseDetails
+GET {{baseUrl}}/api/compras/{{id}}/detalles

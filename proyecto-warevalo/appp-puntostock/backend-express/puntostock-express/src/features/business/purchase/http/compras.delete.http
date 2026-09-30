@@ -1,0 +1,13 @@
+### Feature Purchase — DELETE físico / DELETE lógico
+### Leyenda: SIN AUTH
+
+@baseUrl = http://localhost:3000
+@id = 1
+
+# @name deletePurchasePhysical
+DELETE {{baseUrl}}/api/compras/{{id}}
+
+###
+
+# @name deletePurchaseLogical
+PATCH {{baseUrl}}/api/compras/{{id}}/deactivate

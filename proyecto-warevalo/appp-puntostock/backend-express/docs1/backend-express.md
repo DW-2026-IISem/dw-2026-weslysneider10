@@ -546,50 +546,100 @@ Verificación y cierre final
 
 ## Controller PARCHE: update (PUT, reemplazo completo)
 
+![](images/clipboard-2065567019.png)
+
 ## Controller PARCHE: update (PATCH, parcial)
+
+![](images/clipboard-2736223975.png)
 
 ## Rutas PARCHE: PUT /api/compras/:id + PATCH /api/compras/:id
 
+![](images/clipboard-1362260657.png)
+
 ## HTTP: compras.update.http
 
+![](images/clipboard-739266436.png)
+
 ## Verificación y cierre
+
+![](images/clipboard-3914222013.png)
 
 ## Controller PARCHE: deletePhysical
 
+![](images/clipboard-102993505.png)
+
 ## Controller PARCHE: deleteLogical
+
+![](images/clipboard-2227633496.png)
 
 ## Rutas PARCHE: DELETE /api/compras/:id + PATCH /api/compras/:id/deactivate
 
+![](images/clipboard-1648090808.png)
+
 ## HTTP: compras.delete.http
 
+![](images/clipboard-2231065392.png)
+
 ## Verificación y cierre
+
+![](images/clipboard-1757242935.png)
 
 ## Controller PARCHE: getDetails
 
+![](images/clipboard-898681269.png)
+
 ## Rutas PARCHE: GET /api/compras/:id/detalles
+
+![](images/clipboard-993260226.png)
 
 ## HTTP: compras.details.http
 
+![](images/clipboard-2143969087.png)
+
 ## Verificación y cierre
+
+![](images/clipboard-1567120004.png)
 
 ## Controller PARCHE: receive
 
+![](images/clipboard-3169808253.png)
+
 ## Rutas PARCHE: PATCH /api/compras/:id/receive
+
+![](images/clipboard-304777495.png)
 
 ## HTTP: compras.receive.http
 
+![](images/clipboard-656052802.png)
+
 ## Verificación y cierre
+
+![](images/clipboard-3752844945.png)
 
 ## Seeder purchase.seeder.ts (Faker)
 
+![](images/clipboard-1765171862.png)
+
 ## PARCHE counts.ts
+
+![](images/clipboard-716426678.png)
 
 ## PARCHE seeders/index.ts
 
+![](images/clipboard-1820475973.png)
+
 ## Verificación
+
+![](images/clipboard-2944036168.png)
 
 ## Swagger purchase.swagger.ts
 
+![](images/clipboard-3339045463.png)
+
 ## PARCHE swagger/index.ts
 
+![](images/clipboard-1228016592.png)
+
 ## Verificación y cierre final
+
+![![](images/clipboard-4158789185.png)](images/clipboard-2261893493.png)

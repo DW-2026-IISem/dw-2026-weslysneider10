@@ -1,0 +1,28 @@
+### Feature Purchase — UPDATE PUT / PATCH
+### Leyenda: SIN AUTH
+
+@baseUrl = http://localhost:3000
+@id = 1
+
+# @name updatePurchasePut
+PUT {{baseUrl}}/api/compras/{{id}}
+Content-Type: application/json
+
+{
+  "supplierId": 1,
+  "date": "2026-09-30",
+  "subtotal": 260000,
+  "taxes": 49400,
+  "total": 309400,
+  "status": "pending"
+}
+
+###
+
+# @name updatePurchasePatch
+PATCH {{baseUrl}}/api/compras/{{id}}
+Content-Type: application/json
+
+{
+  "status": "received"
+}

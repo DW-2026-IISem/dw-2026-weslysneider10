@@ -1,10 +1,5 @@
 /**
  * Cantidad de registros por feature/entidad.
- *
- * Prioridad:
- * CLI (--clients=N) > env (SEED_CLIENTS) > default de este archivo.
- *
- * Cuando agregues features, suma aquí la clave y léela en el runner.
  */
 
 export type SeedCounts = {
@@ -14,6 +9,7 @@ export type SeedCounts = {
   branches: number;
   suppliers: number;
   inventories: number;
+  purchases: number;
 };
 
 export const DEFAULT_SEED_COUNTS: SeedCounts = {
@@ -23,13 +19,16 @@ export const DEFAULT_SEED_COUNTS: SeedCounts = {
   branches: 5,
   suppliers: 8,
   inventories: 30,
+  purchases: 10,
 };
 
 export function resolveSeedCounts(
   argv: string[] = process.argv.slice(2)
 ): SeedCounts {
 
-  const counts: SeedCounts = { ...DEFAULT_SEED_COUNTS };
+  const counts: SeedCounts = {
+    ...DEFAULT_SEED_COUNTS,
+  };
 
   const envClients = process.env.SEED_CLIENTS;
   const envProductTypes = process.env.SEED_PRODUCT_TYPES;
@@ -37,6 +36,7 @@ export function resolveSeedCounts(
   const envBranches = process.env.SEED_BRANCHES;
   const envSuppliers = process.env.SEED_SUPPLIERS;
   const envInventories = process.env.SEED_INVENTORIES;
+  const envPurchases = process.env.SEED_PURCHASES;
 
   if (envClients !== undefined && envClients !== "") {
     counts.clients = Number(envClients);
@@ -62,8 +62,11 @@ export function resolveSeedCounts(
     counts.inventories = Number(envInventories);
   }
 
-  for (const arg of argv) {
+  if (envPurchases !== undefined && envPurchases !== "") {
+    counts.purchases = Number(envPurchases);
+  }
 
+  for (const arg of argv) {
     const m = arg.match(/^--([a-zA-Z_]+)=(\d+)$/);
 
     if (!m) continue;

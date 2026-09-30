@@ -9,6 +9,7 @@ import "../../features/business/product/product.associations";
 import "../../features/business/branch/branch.model";
 import "../../features/business/supplier/supplier.model";
 import "../../features/business/inventory/inventory.model";
+import "../../features/business/purchase/purchase.model";
 
 import { seedClients } from "../../features/business/client/client.seeder";
 import { seedProductTypes } from "../../features/business/product-type/product-type.seeder";
@@ -16,22 +17,12 @@ import { seedProducts } from "../../features/business/product/product.seeder";
 import { seedBranches } from "../../features/business/branch/branch.seeder";
 import { seedSuppliers } from "../../features/business/supplier/supplier.seeder";
 import { seedInventories } from "../../features/business/inventory/inventory.seeder";
+import { seedPurchases } from "../../features/business/purchase/purchase.seeder";
 
 import { resolveSeedCounts } from "./counts";
 
 dotenv.config();
 
-/**
- * SeedersRunner — ejecuta TODOS los seeders de features.
- *
- * Ubicación:
- * `src/database/seeders/`
- *
- * Uso:
- *   npm run db:seed
- *   npm run db:seed -- --clients=20
- *   SEED_CLIENTS=5 npm run db:seed
- */
 export async function runAllSeeders(): Promise<void> {
 
   const counts = resolveSeedCounts();
@@ -49,13 +40,14 @@ export async function runAllSeeders(): Promise<void> {
     force: false,
   });
 
-  // Orden: business (respeta dependencias FK)
+  // Orden respetando dependencias
   await seedClients(counts.clients);
   await seedProductTypes(counts.product_types);
   await seedProducts(counts.products);
   await seedBranches(counts.branches);
   await seedSuppliers(counts.suppliers);
   await seedInventories(counts.inventories);
+  await seedPurchases(counts.purchases);
 
   console.log("🌱 SeedersRunner finalizado");
 }
@@ -69,8 +61,9 @@ if (require.main === module) {
     })
     .catch(async (err) => {
       console.error("❌ Error en seeders:", err);
+
       await sequelize.close();
+
       process.exit(1);
     });
-
 }

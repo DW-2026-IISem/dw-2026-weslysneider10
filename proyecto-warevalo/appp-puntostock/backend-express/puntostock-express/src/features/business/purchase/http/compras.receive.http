@@ -1,0 +1,23 @@
+### Feature Purchase — RECEIVE
+### Leyenda: SIN AUTH
+
+@baseUrl = http://localhost:3000
+@id = 1
+
+# @name receivePurchase
+PATCH {{baseUrl}}/api/compras/{{id}}/receive
+Content-Type: application/json
+
+{
+  "branchId": 1,
+  "received": [
+    {
+      "detailId": 1,
+      "quantity": 5
+    },
+    {
+      "detailId": 2,
+      "quantity": 3
+    }
+  ]
+}
