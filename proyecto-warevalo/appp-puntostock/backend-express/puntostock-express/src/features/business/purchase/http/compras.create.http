@@ -1,0 +1,29 @@
+### Feature Purchase — CREATE
+### Leyenda: SIN AUTH (sin middleware JWT / sin autenticación)
+
+@baseUrl = http://localhost:3000
+
+# @name createPurchase
+POST {{baseUrl}}/api/compras
+Content-Type: application/json
+
+{
+  "supplierId": 1,
+  "date": "2026-09-30",
+  "taxes": 19000,
+  "status": "pending",
+  "details": [
+    {
+      "productId": 1,
+      "quantity": 10,
+      "unitPrice": 15000,
+      "observations": "Compra inicial de producto"
+    },
+    {
+      "productId": 2,
+      "quantity": 5,
+      "unitPrice": 22000,
+      "observations": "Reposición de inventario"
+    }
+  ]
+}

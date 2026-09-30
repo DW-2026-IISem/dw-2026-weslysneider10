@@ -530,11 +530,19 @@ Verificación y cierre final
 
 ## Controller PARCHE: create
 
+![](images/clipboard-2014370195.png)
+
 ## Rutas PARCHE: POST /api/compras
+
+![](images/clipboard-812293964.png)
 
 ## HTTP: compras.create.http
 
+![](images/clipboard-529828646.png)
+
 ## Verificación y cierre
+
+![](images/clipboard-1990410300.png)
 
 ## Controller PARCHE: update (PUT, reemplazo completo)
 

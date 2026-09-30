@@ -18,6 +18,11 @@ export class PurchaseRoutes {
       .route("/api/compras/:id")
       .get(this.purchaseController.getOne.bind(this.purchaseController));
 
+    // create
+    app
+      .route("/api/compras")
+      .post(this.purchaseController.create.bind(this.purchaseController));
+
     // (rellenar en los siguientes pasos)
   }
 }
