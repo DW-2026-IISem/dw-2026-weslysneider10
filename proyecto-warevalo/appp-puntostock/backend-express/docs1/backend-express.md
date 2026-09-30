@@ -403,16 +403,16 @@ Verificación y cierre
 
 ## Controller PARCHE: getAll + getOne
 
-## 
+## ![](images/clipboard-3031403784.png)
 Rutas PARCHE: GET /api/inventarios + GET /api/inventarios/:id
 
-## 
+## ![](images/clipboard-2123362741.png)
 HTTP: inventarios.get.http
 
-## 
+## ![](images/clipboard-143534143.png)
 Verificación y cierre
 
-## 
+## ![](images/clipboard-3793279739.png)
 
 ## Controller PARCHE: create (valida que Sucursal y Producto existan, evita duplicado branchId+productId)
 

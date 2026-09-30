@@ -1,0 +1,18 @@
+### Feature Inventory — GET ALL / GET ONE
+### Leyenda: SIN AUTH (sin middleware JWT / sin autenticación)
+
+@baseUrl = http://localhost:3000
+@id = 1
+
+# @name getAllInventories
+GET {{baseUrl}}/api/inventarios
+
+###
+
+# @name getInventoriesByBranch
+GET {{baseUrl}}/api/inventarios?branchId=1
+
+###
+
+# @name getOneInventory
+GET {{baseUrl}}/api/inventarios/{{id}}
