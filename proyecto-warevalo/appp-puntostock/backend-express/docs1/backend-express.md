@@ -445,43 +445,49 @@ Verificación y cierre
 
 ## Controller PARCHE: getLowStock (cantidad \<= stock_minimo)
 
-## 
+## ![](images/clipboard-1059904594.png)
 Rutas PARCHE: GET /api/inventarios/low-stock
 
-## 
+## ![](images/clipboard-2947483445.png)
 HTTP: inventarios.low-stock.http
 
-## 
+## ![](images/clipboard-2719802693.png)
 Verificación y cierre
 
-## 
+## ![](images/clipboard-4164182505.png)
 
 ## Controller PARCHE: deletePhysical
 
-## 
+## ![](images/clipboard-1361997058.png)
 Rutas PARCHE: DELETE /api/inventarios/:id
 
-## 
+## ![](images/clipboard-3207296833.png)
 HTTP: inventarios.delete.http
 
-## 
+## ![](images/clipboard-3614815228.png)
 Verificación y cierre
+
+![](images/clipboard-3209980403.png)
 
 ## Seeder inventory.seeder.ts
 
-## 
+## ![](images/clipboard-532332729.png)
 PARCHE counts.ts
 
-## 
+## ![](images/clipboard-2963690676.png)
 PARCHE seeders/index.ts
 
-## 
+## ![](images/clipboard-1448163010.png)
 Verificación
+
+![](images/clipboard-697166292.png)
 
 ## Swagger inventory.swagger.ts
 
-## 
+## ![](images/clipboard-3037275229.png)
 PARCHE swagger/index.ts
 
-## 
+## ![](images/clipboard-2442016653.png)
 Verificación y cierre final
+
+![](images/clipboard-1474453521.png)

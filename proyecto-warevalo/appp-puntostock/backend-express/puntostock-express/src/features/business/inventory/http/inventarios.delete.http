@@ -1,0 +1,8 @@
+### Feature Inventory — DELETE físico (no hay borrado lógico)
+### Leyenda: SIN AUTH (sin middleware JWT / sin autenticación)
+
+@baseUrl = http://localhost:3000
+@id = 1
+
+# @name deleteInventoryPhysical
+DELETE {{baseUrl}}/api/inventarios/{{id}}

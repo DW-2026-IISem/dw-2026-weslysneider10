@@ -1,0 +1,12 @@
+### Feature Inventory — LOW STOCK (alertas de reposición)
+### Leyenda: SIN AUTH (sin middleware JWT / sin autenticación)
+
+@baseUrl = http://localhost:3000
+
+# @name getLowStock
+GET {{baseUrl}}/api/inventarios/low-stock
+
+###
+
+# @name getLowStockByBranch
+GET {{baseUrl}}/api/inventarios/low-stock?branchId=1

@@ -1,4 +1,5 @@
 import { Request, Response } from "express";
+import { Op, col, where as sequelizeWhere } from "sequelize";
 import { Inventory, InventoryI } from "./inventory.model";
 import { Branch } from "../branch/branch.model";
 import { Product } from "../product/product.model";
@@ -116,8 +117,40 @@ export class InventoryController {
   }
 
   // ================== LOW STOCK ==================
-  // (rellenar más adelante)
+  /** Alertas de reposición: cantidad <= stock_minimo */
+  public async getLowStock(req: Request, res: Response) {
+    try {
+      const { branchId } = req.query;
+      const where: Record<string, unknown> = {
+        [Op.and]: [sequelizeWhere(col("quantity"), Op.lte, col("minStock"))],
+      };
+
+      if (branchId) where.branchId = Number(branchId);
+
+      const inventories = await Inventory.findAll({
+        where,
+        order: [["quantity", "ASC"]],
+      });
+      res.status(200).json({ inventories });
+    } catch (error) {
+      res.status(500).json({ error: "Error fetching low stock", detail: String(error) });
+    }
+  }
 
   // ================== DELETE ==================
-  // (rellenar en el siguiente paso)
+  /** Eliminación física (no hay borrado lógico: Inventario no tiene status/isActive) */
+  public async deletePhysical(req: Request, res: Response) {
+    try {
+      const id = paramId(req);
+      const inventory = await Inventory.findByPk(id);
+      if (!inventory) {
+        res.status(404).json({ error: "Inventory not found" });
+        return;
+      }
+      await inventory.destroy();
+      res.status(200).json({ message: "Inventory permanently deleted", id });
+    } catch (error) {
+      res.status(500).json({ error: "Error deleting inventory", detail: String(error) });
+    }
+  }
 }

@@ -11,6 +11,11 @@ export class InventoryRoutes {
       .route("/api/inventarios")
       .get(this.inventoryController.getAll.bind(this.inventoryController));
 
+    // low-stock (DEBE ir antes de /:id para que Express no lo confunda con un id)
+    app
+      .route("/api/inventarios/low-stock")
+      .get(this.inventoryController.getLowStock.bind(this.inventoryController));
+
     // getOne
     app
       .route("/api/inventarios/:id")
@@ -27,6 +32,9 @@ export class InventoryRoutes {
       .put(this.inventoryController.updatePut.bind(this.inventoryController))
       .patch(this.inventoryController.updatePatch.bind(this.inventoryController));
 
-    // (rellenar en los siguientes pasos: low-stock, delete)
+    // delete físico
+    app
+      .route("/api/inventarios/:id")
+      .delete(this.inventoryController.deletePhysical.bind(this.inventoryController));
   }
 }
