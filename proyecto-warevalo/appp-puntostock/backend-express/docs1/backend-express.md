@@ -387,3 +387,101 @@ PARCHE swagger/index.ts
 Verificación y cierre final
 
 ## ![](images/clipboard-2408180386.png)
+
+## Modelo Inventario 
+
+## ![](images/clipboard-1169738917.png)
+Esqueleto controller/routes + carpeta HTTP
+
+## ![](images/clipboard-1883597832.png)
+Agregador Routes + cableado en Config
+
+## ![](images/clipboard-3804732431.png)
+Verificación y cierre 
+
+## ![](images/clipboard-1840528117.png)
+
+## Controller PARCHE: getAll + getOne
+
+## 
+Rutas PARCHE: GET /api/inventarios + GET /api/inventarios/:id
+
+## 
+HTTP: inventarios.get.http
+
+## 
+Verificación y cierre
+
+## 
+
+## Controller PARCHE: create (valida que Sucursal y Producto existan, evita duplicado branchId+productId)
+
+## 
+Rutas PARCHE: POST /api/inventarios
+
+## 
+HTTP: inventarios.create.http
+
+## 
+Verificación y cierre
+
+## 
+
+## Controller PARCHE: update 
+
+## 
+Controller PARCHE: update (PATCH, parcial)
+
+## 
+Rutas PARCHE: PUT /api/inventarios/:id + PATCH /api/inventarios/:id
+
+## 
+HTTP: inventarios.update.http
+
+## 
+Verificación y cierre
+
+## 
+
+## Controller PARCHE: getLowStock (cantidad \<= stock_minimo)
+
+## 
+Rutas PARCHE: GET /api/inventarios/low-stock
+
+## 
+HTTP: inventarios.low-stock.http
+
+## 
+Verificación y cierre
+
+## 
+
+## Controller PARCHE: deletePhysical
+
+## 
+Rutas PARCHE: DELETE /api/inventarios/:id
+
+## 
+HTTP: inventarios.delete.http
+
+## 
+Verificación y cierre
+
+## Seeder inventory.seeder.ts
+
+## 
+PARCHE counts.ts
+
+## 
+PARCHE seeders/index.ts
+
+## 
+Verificación
+
+## Swagger inventory.swagger.ts
+
+## 
+PARCHE swagger/index.ts
+
+## 
+Verificación y cierre final
