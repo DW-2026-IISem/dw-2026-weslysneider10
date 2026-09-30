@@ -80,7 +80,40 @@ export class InventoryController {
   }
 
   // ================== UPDATE ==================
-  // (rellenar en el siguiente paso)
+  public async updatePut(req: Request, res: Response) {
+    try {
+      const id = paramId(req);
+      const body = req.body as Pick<InventoryI, "quantity" | "minStock">;
+      const inventory = await Inventory.findByPk(id);
+      if (!inventory) {
+        res.status(404).json({ error: "Inventory not found" });
+        return;
+      }
+      await inventory.update({
+        quantity: body.quantity,
+        minStock: body.minStock,
+      });
+      res.status(200).json({ inventory });
+    } catch (error) {
+      res.status(500).json({ error: "Error updating inventory (PUT)", detail: String(error) });
+    }
+  }
+
+  public async updatePatch(req: Request, res: Response) {
+    try {
+      const id = paramId(req);
+      const body = req.body as Partial<Pick<InventoryI, "quantity" | "minStock">>;
+      const inventory = await Inventory.findByPk(id);
+      if (!inventory) {
+        res.status(404).json({ error: "Inventory not found" });
+        return;
+      }
+      await inventory.update(body);
+      res.status(200).json({ inventory });
+    } catch (error) {
+      res.status(500).json({ error: "Error updating inventory (PATCH)", detail: String(error) });
+    }
+  }
 
   // ================== LOW STOCK ==================
   // (rellenar más adelante)

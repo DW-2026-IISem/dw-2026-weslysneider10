@@ -429,19 +429,19 @@ Verificación y cierre
 
 ## Controller PARCHE: update 
 
-## 
+## ![](images/clipboard-4111599192.png)
 Controller PARCHE: update (PATCH, parcial)
 
-## 
+## ![](images/clipboard-1624620381.png)
 Rutas PARCHE: PUT /api/inventarios/:id + PATCH /api/inventarios/:id
 
-## 
+## ![](images/clipboard-3117633160.png)
 HTTP: inventarios.update.http
 
-## 
+## ![](images/clipboard-2209025597.png)
 Verificación y cierre
 
-## 
+## ![](images/clipboard-2463111495.png)
 
 ## Controller PARCHE: getLowStock (cantidad \<= stock_minimo)
 

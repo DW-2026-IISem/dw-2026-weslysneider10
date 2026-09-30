@@ -21,6 +21,12 @@ export class InventoryRoutes {
       .route("/api/inventarios")
       .post(this.inventoryController.create.bind(this.inventoryController));
 
-    // (rellenar en los siguientes pasos: update, low-stock, delete)
+    // update (PUT / PATCH)
+    app
+      .route("/api/inventarios/:id")
+      .put(this.inventoryController.updatePut.bind(this.inventoryController))
+      .patch(this.inventoryController.updatePatch.bind(this.inventoryController));
+
+    // (rellenar en los siguientes pasos: low-stock, delete)
   }
 }
