@@ -138,19 +138,5 @@ export class InventoryController {
   }
 
   // ================== DELETE ==================
-  /** Eliminación física (no hay borrado lógico: Inventario no tiene status/isActive) */
-  public async deletePhysical(req: Request, res: Response) {
-    try {
-      const id = paramId(req);
-      const inventory = await Inventory.findByPk(id);
-      if (!inventory) {
-        res.status(404).json({ error: "Inventory not found" });
-        return;
-      }
-      await inventory.destroy();
-      res.status(200).json({ message: "Inventory permanently deleted", id });
-    } catch (error) {
-      res.status(500).json({ error: "Error deleting inventory", detail: String(error) });
-    }
-  }
+  // (rellenar en el siguiente paso)
 }
