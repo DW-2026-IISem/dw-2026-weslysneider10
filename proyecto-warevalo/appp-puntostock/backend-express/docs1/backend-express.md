@@ -1274,3 +1274,41 @@ Verificación y cierre
 ### Verificación y cierre
 
 ### ![](images/clipboard-3363781309.png)
+
+# VENTA
+
+### `dto/create-sale-item.dto.ts`
+
+###  ![](images/clipboard-2942732630.png)
+
+### `dto/create-sale.dto.ts`
+
+###  ![](images/clipboard-2657745841.png)
+
+### `dto/sale-response.dto.ts`
+
+###  ![](images/clipboard-2921241792.png)
+
+### `dto/index.ts`
+
+###  ![](images/clipboard-2990924565.png)
+
+### `sale.repository.ts`
+
+###  ![](images/clipboard-3314916732.png)
+
+### `sale.service.ts`
+
+### ![](images/clipboard-1963113291.png)
+
+### `sale.controller.ts`
+
+###  ![](images/clipboard-3098692330.png)
+
+### 
+
+###  
+
+### Verificación y cierre
+
+### ![](images/clipboard-2591981114.png)
