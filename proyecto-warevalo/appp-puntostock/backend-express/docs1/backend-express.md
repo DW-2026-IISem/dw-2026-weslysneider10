@@ -1197,40 +1197,80 @@ Verificación y cierre
 
 ### `dto/create-inventory.dto.ts`
 
-###  
+###  ![](images/clipboard-2212998682.png)
 
 ### `dto/update-inventory.dto.ts`
 
-###  
+###  ![](images/clipboard-1849284752.png)
 
 ### `dto/patch-inventory.dto.ts`
 
-###  
+###  ![](images/clipboard-2854895861.png)
 
 ### `dto/inventory-response.dto.ts`
 
-###  
+###  ![](images/clipboard-4138599589.png)
 
 ### `dto/index.ts`
 
-###  
+###  ![](images/clipboard-3247867039.png)
 
 ### `inventory.repository.ts` 
 
-###  
+###  ![](images/clipboard-333157678.png)
 
 ### `inventory.service.ts` 
 
-###  
+###  ![](images/clipboard-1840733232.png)
 
 ### `inventory.controller.ts` (reescrito, delgado)
 
-###  
+###  ![](images/clipboard-3270540932.png)
 
-### `inventory.routes.ts` 
+### 
+
+### 
+
+# COMPRA
+
+### `dto/create-purchase-item.dto.ts` 
+
+![](images/clipboard-1231516441.png)
+
+### `dto/create-purchase.dto.ts`
+
+![](images/clipboard-2172805935.png)
+
+### `dto/receive-purchase-item.dto.ts` 
+
+###  ![](images/clipboard-1058166665.png)
+
+### `dto/receive-purchase.dto.ts`
+
+###  ![](images/clipboard-1866222869.png)
+
+### `dto/purchase-response.dto.ts`
+
+###  ![](images/clipboard-2106549399.png)
+
+### `dto/index.ts`
+
+###  ![](images/clipboard-402315821.png)
+
+### `purchase.repository.ts` 
+
+###  ![](images/clipboard-2915651296.png)
+
+### `purchase.service.ts`
+
+![](images/clipboard-2314390988.png)
+
+### `purchase.controller.ts`
+
+###  ![](images/clipboard-873339386.png)
 
 ### 
 
 ### Verificación y cierre
 
-### 
+### ![](images/clipboard-3363781309.png)
