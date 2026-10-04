@@ -1354,3 +1354,35 @@ Verificación y cierre
 ### Verificación y cierre
 
 ### ![](images/clipboard-3275401923.png)
+
+# DEVOLUCIÓN
+
+### `dto/create-return.dto.ts`
+
+###  ![](images/clipboard-773166474.png)
+
+### `dto/return-response.dto.ts`
+
+###  ![](images/clipboard-3634101342.png)
+
+### `dto/index.ts`
+
+###  ![](images/clipboard-2043656329.png)
+
+### `return.repository.ts`
+
+###  ![](images/clipboard-516989730.png)
+
+### `return.service.ts` 
+
+### ![](images/clipboard-1066443189.png)
+
+### `return.controller.ts`
+
+###  ![](images/clipboard-1839132090.png)
+
+### 
+
+### Verificación y cierre
+
+![](images/clipboard-2482182755.png)
