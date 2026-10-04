@@ -1019,3 +1019,39 @@ Verificación y cierre final
 ### ![](images/clipboard-3710884176.png)  Verificación y cierre final
 
 ### ![](images/clipboard-1682792228.png)
+
+## AGREGAR CAPAS FALTANTES
+
+### src/shared/errors/app-error.ts
+
+### ![](images/clipboard-658750167.png) 
+src/shared/http/base-controller.ts
+
+###  ![](images/clipboard-40285931.png)
+dto/create-client.dto.ts
+
+### ![](images/clipboard-3315842648.png) 
+dto/update-client.dto.ts
+
+### ![](images/clipboard-3733199501.png) 
+dto/patch-client.dto.ts
+
+### ![](images/clipboard-2741462563.png) 
+dto/client-response.dto.ts
+
+### ![](images/clipboard-892889661.png) 
+dto/index.ts
+
+### ![](images/clipboard-196510941.png) 
+client.repository.ts (nuevo)
+
+### ![](images/clipboard-1632405026.png) 
+client.service.ts (nuevo)
+
+### ![](images/clipboard-4012721992.png) 
+client.controller.ts (reescrito, delgado)
+
+### ![](images/clipboard-808806422.png) 
+Verificación y cierre
+
+### ![](images/clipboard-111835318.png)

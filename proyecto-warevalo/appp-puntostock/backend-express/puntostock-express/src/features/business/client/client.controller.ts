@@ -1,197 +1,79 @@
 import { Request, Response } from "express";
+import { BaseController } from "../../../shared/http/base-controller";
+import { CreateClientDto, PatchClientDto, UpdateClientDto } from "./dto";
+import { ClientService } from "./client.service";
 
-import { Client, ClientI } from "./client.model";
-
-function paramId(req: Request): number {
-  const raw = req.params.id;
-  const value = Array.isArray(raw) ? raw[0] : raw;
-  return Number(value);
-}
-
-export class ClientController {
-
-  // ================== READ ==================
-
-  public async getAll(req: Request, res: Response) {
-    try {
-      const clients = await Client.findAll({
-        where: { status: "active" },
-        attributes: { exclude: ["password"] },
-      });
-
-      res.status(200).json({ clients });
-    } catch (error) {
-      res.status(500).json({
-        error: "Error fetching clients",
-        detail: String(error),
-      });
-    }
+/**
+ * Capa Controller del feature Client.
+ * Solo HTTP: lee req, llama al service y arma res. El try/catch y la
+ * validación de :id viven en BaseController.
+ */
+export class ClientController extends BaseController {
+  public constructor(
+    private readonly service: ClientService = new ClientService()
+  ) {
+    super();
   }
 
-  public async getOne(req: Request, res: Response) {
-    try {
-      const id = paramId(req);
+  // ================== READ ==================
+  public async getAll(_req: Request, res: Response): Promise<void> {
+    await this.run(res, async () => {
+      const clients = await this.service.getAll();
+      res.status(200).json({ clients });
+    });
+  }
 
-      const client = await Client.findByPk(id, {
-        attributes: { exclude: ["password"] },
-      });
-
-      if (!client) {
-        res.status(404).json({ error: "Client not found" });
-        return;
-      }
-
+  public async getOne(req: Request, res: Response): Promise<void> {
+    await this.run(res, async () => {
+      const client = await this.service.getOne(this.paramId(req));
       res.status(200).json({ client });
-    } catch (error) {
-      res.status(500).json({
-        error: "Error fetching client",
-        detail: String(error),
-      });
-    }
+    });
   }
 
   // ================== CREATE ==================
-
-  public async create(req: Request, res: Response) {
-    try {
-      const body = req.body as ClientI;
-
-      const client = await Client.create({
-        name: body.name,
-        address: body.address,
-        phone: body.phone,
-        email: body.email,
-        password: body.password,
-        status: body.status ?? "active",
-      });
-
-      const { password, ...safe } =
-        client.toJSON() as ClientI & { password?: string };
-
-      res.status(201).json({ client: safe });
-    } catch (error) {
-      res.status(500).json({
-        error: "Error creating client",
-        detail: String(error),
-      });
-    }
+  public async create(req: Request, res: Response): Promise<void> {
+    await this.run(res, async () => {
+      const client = await this.service.create(req.body as CreateClientDto);
+      res.status(201).json({ client });
+    });
   }
 
   // ================== UPDATE ==================
-
-  public async updatePut(req: Request, res: Response) {
-    try {
-      const id = paramId(req);
-      const body = req.body as ClientI;
-
-      const client = await Client.findByPk(id);
-
-      if (!client) {
-        res.status(404).json({ error: "Client not found" });
-        return;
-      }
-
-      await client.update({
-        name: body.name,
-        address: body.address,
-        phone: body.phone,
-        email: body.email,
-        password: body.password ?? client.password,
-        status: body.status ?? client.status,
-      });
-
-      const { password, ...safe } =
-        client.toJSON() as ClientI & { password?: string };
-
-      res.status(200).json({ client: safe });
-    } catch (error) {
-      res.status(500).json({
-        error: "Error updating client (PUT)",
-        detail: String(error),
-      });
-    }
+  public async updatePut(req: Request, res: Response): Promise<void> {
+    await this.run(res, async () => {
+      const client = await this.service.updatePut(
+        this.paramId(req),
+        req.body as UpdateClientDto
+      );
+      res.status(200).json({ client });
+    });
   }
 
-  public async updatePatch(req: Request, res: Response) {
-    try {
-      const id = paramId(req);
-      const body = req.body as Partial<ClientI>;
-
-      const client = await Client.findByPk(id);
-
-      if (!client) {
-        res.status(404).json({ error: "Client not found" });
-        return;
-      }
-
-      await client.update(body);
-
-      const { password, ...safe } =
-        client.toJSON() as ClientI & { password?: string };
-
-      res.status(200).json({ client: safe });
-    } catch (error) {
-      res.status(500).json({
-        error: "Error updating client (PATCH)",
-        detail: String(error),
-      });
-    }
+  public async updatePatch(req: Request, res: Response): Promise<void> {
+    await this.run(res, async () => {
+      const client = await this.service.updatePatch(
+        this.paramId(req),
+        req.body as PatchClientDto
+      );
+      res.status(200).json({ client });
+    });
   }
 
   // ================== DELETE ==================
-
-  public async deletePhysical(req: Request, res: Response) {
-    try {
-      const id = paramId(req);
-
-      const client = await Client.findByPk(id);
-
-      if (!client) {
-        res.status(404).json({ error: "Client not found" });
-        return;
-      }
-
-      await client.destroy();
-
-      res.status(200).json({
-        message: "Client permanently deleted",
-        id,
-      });
-    } catch (error) {
-      res.status(500).json({
-        error: "Error deleting client",
-        detail: String(error),
-      });
-    }
+  /** Eliminación física. */
+  public async deletePhysical(req: Request, res: Response): Promise<void> {
+    await this.run(res, async () => {
+      const id = this.paramId(req);
+      await this.service.deletePhysical(id);
+      res.status(200).json({ message: "Client permanently deleted", id });
+    });
   }
 
-  public async deleteLogical(req: Request, res: Response) {
-    try {
-      const id = paramId(req);
-
-      const client = await Client.findByPk(id);
-
-      if (!client) {
-        res.status(404).json({ error: "Client not found" });
-        return;
-      }
-
-      await client.update({
-        status: "inactive",
-      });
-
-      const { password, ...safe } =
-        client.toJSON() as ClientI & { password?: string };
-
-      res.status(200).json({
-        message: "Client deactivated (logical delete)",
-        client: safe,
-      });
-    } catch (error) {
-      res.status(500).json({
-        error: "Error deactivating client",
-        detail: String(error),
-      });
-    }
+  /** Eliminación lógica -> status = inactive. */
+  public async deleteLogical(req: Request, res: Response): Promise<void> {
+    await this.run(res, async () => {
+      const client = await this.service.deleteLogical(this.paramId(req));
+      res.status(200).json({ message: "Client deactivated (logical delete)", client });
+    });
   }
 }
