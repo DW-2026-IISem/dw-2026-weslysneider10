@@ -1091,18 +1091,20 @@ Verificación y cierre
 
 ### dto/create-product.dto.ts
 
-###   dto/update-product.dto.ts
+### ![](images/clipboard-1825449804.png)  dto/update-product.dto.ts
 
-###   dto/patch-product.dto.ts
+### ![](images/clipboard-1526869592.png)  dto/patch-product.dto.ts
 
-###   dto/product-response.dto.ts
+### ![](images/clipboard-1481316180.png)  dto/product-response.dto.ts
 
-###   dto/index.ts
+### ![](images/clipboard-3242809603.png)  dto/index.ts
 
-###   product.repository.ts (nuevo)
+### ![](images/clipboard-3660976162.png)  product.repository.ts (nuevo)
 
-###   product.service.ts (nuevo — aquí se mueve la validación de productTypeId activo)
+### ![](images/clipboard-106593948.png)  product.service.ts (nuevo — aquí se mueve la validación de productTypeId activo)
 
-###   product.controller.ts (reescrito, delgado)
+### ![](images/clipboard-115982543.png)  product.controller.ts (reescrito, delgado)
 
-###   Verificación y cierre
+### ![](images/clipboard-1573128910.png)  Verificación y cierre
+
+![](images/clipboard-1420077000.png)
