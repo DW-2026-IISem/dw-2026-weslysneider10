@@ -1312,3 +1312,45 @@ Verificación y cierre
 ### Verificación y cierre
 
 ### ![](images/clipboard-2591981114.png)
+
+# PAGO
+
+### `dto/create-payment.dto.ts`
+
+![](images/clipboard-2878856797.png)
+
+### `dto/update-payment.dto.ts`
+
+###  ![](images/clipboard-4079972761.png)
+
+### `dto/patch-payment.dto.ts`
+
+###  ![](images/clipboard-741955748.png)
+
+### `dto/payment-response.dto.ts`
+
+###  ![](images/clipboard-1669584620.png)
+
+### `dto/index.ts`
+
+###  ![](images/clipboard-3736285257.png)
+
+### `payment.repository.ts`
+
+###  ![](images/clipboard-1740688043.png)
+
+### `payment.service.ts`
+
+###  ![](images/clipboard-4238475968.png)
+
+### `payment.controller.ts`
+
+###  ![](images/clipboard-3013780158.png)
+
+### `payment.routes.ts` 
+
+###  ![](images/clipboard-1277475295.png)
+
+### Verificación y cierre
+
+### ![](images/clipboard-3275401923.png)

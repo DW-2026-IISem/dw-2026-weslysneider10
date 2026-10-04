@@ -1,144 +1,79 @@
 import { Request, Response } from "express";
-import { Payment } from "./payment.model";
-import { Sale } from "../sale/sale.model";
+import { BaseController } from "../../../shared/http/base-controller";
+import { CreatePaymentDto, PatchPaymentDto, UpdatePaymentDto } from "./dto";
+import { PaymentService } from "./payment.service";
 
-function paramId(req: Request): number {
-  const raw = req.params.id;
-  const value = Array.isArray(raw) ? raw[0] : raw;
-  return Number(value);
-}
+/**
+ * Capa Controller del feature Payment.
+ * Solo HTTP: lee req, llama al service y arma res. El try/catch y la
+ * validación de :id viven en BaseController.
+ */
+export class PaymentController extends BaseController {
+  public constructor(
+    private readonly service: PaymentService = new PaymentService()
+  ) {
+    super();
+  }
 
-export class PaymentController {
-
-  public async getAll(req: Request, res: Response) {
-    try {
-      const payments = await Payment.findAll();
-
+  // ================== READ ==================
+  public async getAll(_req: Request, res: Response): Promise<void> {
+    await this.run(res, async () => {
+      const payments = await this.service.getAll();
       res.status(200).json({ payments });
-    } catch (error) {
-      res.status(500).json({
-        error: "Error fetching payments",
-        detail: String(error),
-      });
-    }
+    });
   }
 
-  public async getOne(req: Request, res: Response) {
-    try {
-      const id = paramId(req);
-
-      const payment = await Payment.findByPk(id);
-
-      if (!payment) {
-        res.status(404).json({
-          error: "Payment not found",
-        });
-        return;
-      }
-
+  public async getOne(req: Request, res: Response): Promise<void> {
+    await this.run(res, async () => {
+      const payment = await this.service.getOne(this.paramId(req));
       res.status(200).json({ payment });
-    } catch (error) {
-      res.status(500).json({
-        error: "Error fetching payment",
-        detail: String(error),
-      });
-    }
+    });
   }
 
-  public async create(req: Request, res: Response) {
-    try {
-      const { saleId, fecha, metodo, monto } = req.body;
-
-      const sale = await Sale.findByPk(saleId);
-
-      if (!sale) {
-        res.status(404).json({
-          error: "Sale not found",
-        });
-        return;
-      }
-
-      if (!metodo || !["cash", "card", "transfer"].includes(metodo)) {
-        res.status(400).json({
-          error: "Invalid payment method",
-        });
-        return;
-      }
-
-      if (!monto || Number(monto) <= 0) {
-        res.status(400).json({
-          error: "Payment amount must be greater than zero",
-        });
-        return;
-      }
-
-      const payment = await Payment.create({
-        saleId,
-        fecha: fecha ?? new Date(),
-        metodo,
-        monto,
-        estado: "completed",
-      });
-
+  // ================== CREATE ==================
+  public async create(req: Request, res: Response): Promise<void> {
+    await this.run(res, async () => {
+      const payment = await this.service.create(req.body as CreatePaymentDto);
       res.status(201).json({ payment });
-    } catch (error) {
-      res.status(500).json({
-        error: "Error creating payment",
-        detail: String(error),
-      });
-    }
+    });
   }
 
-  public async update(req: Request, res: Response) {
-    try {
-      const id = paramId(req);
-
-      const payment = await Payment.findByPk(id);
-
-      if (!payment) {
-        res.status(404).json({
-          error: "Payment not found",
-        });
-        return;
-      }
-
-      await payment.update(req.body);
-
+  // ================== UPDATE ==================
+  public async updatePut(req: Request, res: Response): Promise<void> {
+    await this.run(res, async () => {
+      const payment = await this.service.updatePut(
+        this.paramId(req),
+        req.body as UpdatePaymentDto
+      );
       res.status(200).json({ payment });
-    } catch (error) {
-      res.status(500).json({
-        error: "Error updating payment",
-        detail: String(error),
-      });
-    }
+    });
   }
 
-  public async delete(req: Request, res: Response) {
-    try {
-      const id = paramId(req);
+  public async updatePatch(req: Request, res: Response): Promise<void> {
+    await this.run(res, async () => {
+      const payment = await this.service.updatePatch(
+        this.paramId(req),
+        req.body as PatchPaymentDto
+      );
+      res.status(200).json({ payment });
+    });
+  }
 
-      const payment = await Payment.findByPk(id);
+  // ================== CANCEL ==================
+  public async cancel(req: Request, res: Response): Promise<void> {
+    await this.run(res, async () => {
+      const payment = await this.service.cancel(this.paramId(req));
+      res.status(200).json({ message: "Payment cancelled", payment });
+    });
+  }
 
-      if (!payment) {
-        res.status(404).json({
-          error: "Payment not found",
-        });
-        return;
-      }
-
-      await payment.update({
-        estado: "cancelled",
-      });
-
-      res.status(200).json({
-        message: "Payment cancelled",
-        payment,
-      });
-    } catch (error) {
-      res.status(500).json({
-        error: "Error cancelling payment",
-        detail: String(error),
-      });
-    }
+  // ================== DELETE ==================
+  /** Eliminación física. */
+  public async deletePhysical(req: Request, res: Response): Promise<void> {
+    await this.run(res, async () => {
+      const id = this.paramId(req);
+      await this.service.deletePhysical(id);
+      res.status(200).json({ message: "Payment permanently deleted", id });
+    });
   }
 }

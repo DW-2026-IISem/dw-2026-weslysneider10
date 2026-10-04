@@ -5,34 +5,36 @@ export class PaymentRoutes {
   public paymentController: PaymentController = new PaymentController();
 
   public routes(app: Application): void {
-    app.get(
-      "/api/payments",
-      this.paymentController.getAll.bind(this.paymentController)
-    );
+    // ================== RUTAS SIN AUTENTICACIÓN / SIN MIDDLEWARE JWT ==================
+    // getAll
+    app
+      .route("/api/payments")
+      .get(this.paymentController.getAll.bind(this.paymentController));
 
-    app.get(
-      "/api/payments/:id",
-      this.paymentController.getOne.bind(this.paymentController)
-    );
+    // getOne
+    app
+      .route("/api/payments/:id")
+      .get(this.paymentController.getOne.bind(this.paymentController));
 
-    app.post(
-      "/api/payments",
-      this.paymentController.create.bind(this.paymentController)
-    );
+    // create
+    app
+      .route("/api/payments")
+      .post(this.paymentController.create.bind(this.paymentController));
 
-    app.put(
-      "/api/payments/:id",
-      this.paymentController.update.bind(this.paymentController)
-    );
+    // update (PUT / PATCH)
+    app
+      .route("/api/payments/:id")
+      .put(this.paymentController.updatePut.bind(this.paymentController))
+      .patch(this.paymentController.updatePatch.bind(this.paymentController));
 
-    app.patch(
-      "/api/payments/:id",
-      this.paymentController.update.bind(this.paymentController)
-    );
+    // cancel (antes era el delete lógico)
+    app
+      .route("/api/payments/:id/cancel")
+      .patch(this.paymentController.cancel.bind(this.paymentController));
 
-    app.delete(
-      "/api/payments/:id",
-      this.paymentController.delete.bind(this.paymentController)
-    );
+    // delete físico
+    app
+      .route("/api/payments/:id")
+      .delete(this.paymentController.deletePhysical.bind(this.paymentController));
   }
 }
