@@ -1,0 +1,8 @@
+### Feature Sale — CANCEL (restaura Inventario)
+### Leyenda: SIN AUTH (sin middleware JWT / sin autenticación)
+
+@baseUrl = http://localhost:3000
+@id = 1
+
+# @name cancelSale
+PATCH {{baseUrl}}/api/ventas/{{id}}/cancel

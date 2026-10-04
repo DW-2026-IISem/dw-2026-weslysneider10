@@ -1,0 +1,31 @@
+### Feature Sale — CREATE (valida stock y descuenta Inventario)
+### Leyenda: SIN AUTH (sin middleware JWT / sin autenticación)
+
+@baseUrl = http://localhost:3000
+
+# @name createSale
+POST {{baseUrl}}/api/ventas
+Content-Type: application/json
+
+{
+  "clientId": 1,
+  "branchId": 1,
+  "impuestos": 950,
+  "items": [
+    { "productId": 1, "cantidad": 2, "valorUnitario": 2500 }
+  ]
+}
+
+###
+
+# @name createSaleSinStock
+POST {{baseUrl}}/api/ventas
+Content-Type: application/json
+
+{
+  "clientId": 1,
+  "branchId": 1,
+  "items": [
+    { "productId": 1, "cantidad": 9999, "valorUnitario": 2500 }
+  ]
+}

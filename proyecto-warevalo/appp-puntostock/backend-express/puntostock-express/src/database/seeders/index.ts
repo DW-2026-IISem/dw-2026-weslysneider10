@@ -9,6 +9,13 @@ import "../../features/business/product/product.associations";
 import "../../features/business/branch/branch.model";
 import "../../features/business/supplier/supplier.model";
 import "../../features/business/inventory/inventory.model";
+import "../../features/business/payment/payment.model";
+import "../../features/business/purchase/purchase.model";
+import "../../features/business/purchase/purchase-detail.model";
+import "../../features/business/purchase/purchase.associations";
+import "../../features/business/sale/sale.model";
+import "../../features/business/sale/sale-detail.model";
+import "../../features/business/sale/sale.associations";
 
 import { seedClients } from "../../features/business/client/client.seeder";
 import { seedProductTypes } from "../../features/business/product-type/product-type.seeder";
@@ -16,6 +23,9 @@ import { seedProducts } from "../../features/business/product/product.seeder";
 import { seedBranches } from "../../features/business/branch/branch.seeder";
 import { seedSuppliers } from "../../features/business/supplier/supplier.seeder";
 import { seedInventories } from "../../features/business/inventory/inventory.seeder";
+import { seedPayments } from "../../features/business/payment/payment.seeder";
+import { seedPurchases } from "../../features/business/purchase/purchase.seeder";
+import { seedSales } from "../../features/business/sale/sale.seeder";
 
 import { resolveSeedCounts } from "./counts";
 
@@ -56,6 +66,9 @@ export async function runAllSeeders(): Promise<void> {
   await seedBranches(counts.branches);
   await seedSuppliers(counts.suppliers);
   await seedInventories(counts.inventories);
+  await seedPayments(counts.payments);
+  await seedPurchases(counts.purchases);
+  await seedSales(counts.sales);
 
   console.log("🌱 SeedersRunner finalizado");
 }

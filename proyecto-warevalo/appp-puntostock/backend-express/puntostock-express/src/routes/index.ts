@@ -4,6 +4,7 @@ import { ProductRoutes } from "../features/business/product/product.routes";
 import { BranchRoutes } from "../features/business/branch/branch.routes";
 import { SupplierRoutes } from "../features/business/supplier/supplier.routes";
 import { InventoryRoutes } from "../features/business/inventory/inventory.routes";
+import { SaleRoutes } from "../features/business/sale/sale.routes";
 
 export class Routes {
 
@@ -13,4 +14,5 @@ export class Routes {
   public branchRoutes: BranchRoutes = new BranchRoutes();
   public supplierRoutes: SupplierRoutes = new SupplierRoutes();
   public inventoryRoutes: InventoryRoutes = new InventoryRoutes();
+  public saleRoutes: SaleRoutes = new SaleRoutes();
 }

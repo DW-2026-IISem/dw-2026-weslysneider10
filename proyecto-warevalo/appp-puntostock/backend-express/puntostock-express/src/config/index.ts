@@ -16,6 +16,10 @@ import "../features/business/product/product.associations";
 import "../features/business/branch/branch.model";
 import "../features/business/supplier/supplier.model";
 import "../features/business/inventory/inventory.model";
+import "../features/business/sale/sale.model";
+import "../features/business/sale/sale-detail.model";
+import "../features/business/sale/sale.associations";
+
 import { Routes } from "../routes/index";
 import { setupSwagger } from "../swagger/index";
 
@@ -36,7 +40,7 @@ export class App {
   }
 
   private settings(): void {
-    this.app.set("port", this.port || process.env.PORT || 4000);
+    this.app.set("port", this.port || process.env.PORT || 3000);
   }
 
   private middlewares(): void {
@@ -53,6 +57,7 @@ export class App {
     this.routePrv.branchRoutes.routes(this.app);
     this.routePrv.supplierRoutes.routes(this.app);
     this.routePrv.inventoryRoutes.routes(this.app);
+    this.routePrv.saleRoutes.routes(this.app);
   }
 
   private docs(): void {
@@ -82,7 +87,7 @@ export class App {
       console.log(`📦 Base de datos sincronizada exitosamente`);
     } catch (error) {
       console.error(
-        "❌ Error al conectar con la base de datos:",
+        "❌ Error al conectar a la base de datos:",
         error
       );
 

@@ -1,0 +1,8 @@
+### Feature Sale — DELETE físico (cabecera + detalle)
+### Leyenda: SIN AUTH (sin middleware JWT / sin autenticación)
+
+@baseUrl = http://localhost:3000
+@id = 1
+
+# @name deleteSalePhysical
+DELETE {{baseUrl}}/api/ventas/{{id}}

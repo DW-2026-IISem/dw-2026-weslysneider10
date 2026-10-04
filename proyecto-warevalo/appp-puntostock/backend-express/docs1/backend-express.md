@@ -754,27 +754,27 @@ Verificación y cierre final
 
 **Swagger Venta + VentaDetalle + Verificación y cierre final**
 
-### Modelo Inventario 
+### Modelo Inventario
 
 ### ![](images/clipboard-2482910764.png)
 
-### Esqueleto controller/routes + carpeta 
+### Esqueleto controller/routes + carpeta
 
 ### ![](images/clipboard-801011694.png)
 
-### HTTP Agregador Routes + cableado 
+### HTTP Agregador Routes + cableado
 
 ### ![](images/clipboard-3439974512.png)
 
-### Verificación y cierre 
+### Verificación y cierre
 
 ### ![](images/clipboard-3362699023.png)
 
-### Controller PARCHE: getAll + getOne 
+### Controller PARCHE: getAll + getOne
 
 ### ![](images/clipboard-2504216260.png)
 
-### Rutas PARCHE: GET /api/inventarios + GET /api/inventarios/:id 
+### Rutas PARCHE: GET /api/inventarios + GET /api/inventarios/:id
 
 ### ![](images/clipboard-2293661421.png)
 
@@ -782,11 +782,11 @@ Verificación y cierre final
 
 ### ![](images/clipboard-4241438053.png)
 
-###  Verificación y cierre
+### Verificación y cierre
 
 ### ![](images/clipboard-2197769379.png)
 
-### Controller PARCHE: create (valida que Sucursal y Producto existan, evita duplicado branchId+productId) 
+### Controller PARCHE: create (valida que Sucursal y Producto existan, evita duplicado branchId+productId)
 
 ### ![](images/clipboard-1637138732.png)
 
@@ -794,23 +794,23 @@ Verificación y cierre final
 
 ### ![](images/clipboard-1494308187.png)
 
-###  HTTP: inventarios.create.http
+### HTTP: inventarios.create.http
 
 ### ![](images/clipboard-892164523.png)
 
-###  Verificación y cierre
+### Verificación y cierre
 
 ### ![](images/clipboard-1709278274.png)
 
-### Controller PARCHE: update 
+### Controller PARCHE: update
 
 ### ![](images/clipboard-3111951517.png)
 
-###  Controller PARCHE: update (PATCH, parcial) Rutas PARCHE: PUT /api/inventarios/:id + PATCH /api/inventarios/:id 
+### Controller PARCHE: update (PATCH, parcial) Rutas PARCHE: PUT /api/inventarios/:id + PATCH /api/inventarios/:id
 
 ### ![](images/clipboard-1656811446.png)
 
-### HTTP: inventarios.update.http 
+### HTTP: inventarios.update.http
 
 ### ![](images/clipboard-1000477917.png)
 
@@ -818,11 +818,11 @@ Verificación y cierre final
 
 ### ![](images/clipboard-3896468607.png)
 
-### Controller PARCHE: getLowStock (cantidad \<= stock_minimo) 
+### Controller PARCHE: getLowStock (cantidad \<= stock_minimo)
 
 ### ![](images/clipboard-3383908905.png)
 
-### Rutas PARCHE: GET /api/inventarios/low-stock  HTTP: inventarios.low-stock.http 
+### Rutas PARCHE: GET /api/inventarios/low-stock HTTP: inventarios.low-stock.http
 
 ### ![](images/clipboard-1495550112.png)
 
@@ -830,11 +830,11 @@ Verificación y cierre final
 
 ### ![](images/clipboard-3716362385.png)
 
-### Seeder inventory.seeder.ts (Faker, usando Sucursales y Productos ya sembrados) PARCHE 
+### Seeder inventory.seeder.ts (Faker, usando Sucursales y Productos ya sembrados) PARCHE
 
 ### ![](images/clipboard-4122792533.png)
 
-### counts.ts PARCHE 
+### counts.ts PARCHE
 
 ### ![](images/clipboard-1587223004.png)
 
@@ -842,15 +842,15 @@ Verificación y cierre final
 
 ### ![](images/clipboard-4134688580.png)
 
-###  Verificación
+### Verificación
 
 ### ![](images/clipboard-512989977.png)
 
-### Swagger inventory.swagger.ts 
+### Swagger inventory.swagger.ts
 
 ### ![](images/clipboard-1761243930.png)
 
-### PARCHE swagger/index.ts 
+### PARCHE swagger/index.ts
 
 ### ![](images/clipboard-2654608383.png)
 
@@ -859,3 +859,105 @@ Verificación y cierre final
 ### 
 
 ### ![](images/clipboard-2488075441.png)
+
+# Venta + VentaDetalle
+
+### Modelo Sale (venta) + modelo SaleDetail (ventaDetalle) + asociaciones
+
+![](images/clipboard-734607481.png)
+
+###  Esqueleto controller/routes + carpeta 
+
+![](images/clipboard-4152512336.png)
+
+### HTTP Agregador Routes + cableado en Config 
+
+![](images/clipboard-831601541.png)
+
+### Verificación y cierre de la fundación
+
+![](images/clipboard-286683237.png)
+
+### Controller PARCHE: getAll + getOne (incluye detalle)
+
+![](images/clipboard-830218298.png)
+
+###  Rutas PARCHE: GET /api/ventas + GET /api/ventas/:id
+
+![](images/clipboard-3883136593.png)
+
+###  HTTP: ventas.get.http 
+
+![](images/clipboard-1972274942.png)
+
+### Verificación y cierre
+
+![](images/clipboard-3811825463.png)
+
+### Controller PARCHE: create (valida cliente/sucursal/productos, valida stock disponible en Inventario, descuenta stock, calcula subtotal/impuestos/total, transacción) 
+
+![](images/clipboard-3430096463.png)
+
+### Rutas PARCHE: POST /api/ventas
+
+![](images/clipboard-2500015639.png)
+
+###  HTTP: ventas.create.http 
+
+![](images/clipboard-3278757905.png)
+
+### Verificación y cierre
+
+![](images/clipboard-2752472007.png)
+
+### Controller PARCHE: cancel (no permite cancelar si ya está cancelled, restaura cantidades a Inventario) 
+
+![](images/clipboard-737532767.png)
+
+### Rutas PARCHE: PATCH /api/ventas/:id/cancel 
+
+![](images/clipboard-581301422.png)
+
+### HTTP: ventas.cancel.http
+
+![](images/clipboard-807361327.png)
+
+###  Verificación y cierre
+
+![](images/clipboard-178187800.png)
+
+### Controller PARCHE: deletePhysical (borra detalle y cabecera en transacción)
+
+![](images/clipboard-2087569685.png)
+
+###  Rutas PARCHE: DELETE /api/ventas/:id 
+
+![](images/clipboard-91818371.png)
+
+### HTTP: ventas.delete.http 
+
+![](images/clipboard-1825018262.png)
+
+### Verificación y cierre
+
+![](images/clipboard-126641694.png)
+
+### Controller PARCHE payment.controller.ts: validar referenciaId contra Sale cuando referenciaTipo='venta' (cierra el TODO que dejamos en la fase de Pago) 
+
+![](images/clipboard-666366297.png)
+
+### Verificación
+
+![](images/clipboard-2555982330.png)
+
+### Swagger sale.swagger.ts PARCHE
+
+![](images/clipboard-2435323098.png)
+
+###  swagger/index.ts 
+
+![](images/clipboard-2338314559.png)
+
+### Verificación y cierre final
+
+![](images/clipboard-290551897.png)
