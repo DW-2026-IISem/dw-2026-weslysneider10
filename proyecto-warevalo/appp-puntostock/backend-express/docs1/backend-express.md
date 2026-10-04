@@ -1149,6 +1149,88 @@ Verificación y cierre
 
 ### Verificación y cierre
 
-### ![](images/clipboard-3129163323.png)
+# ![](images/clipboard-3129163323.png)
 
-PRODUCT
+# PROVEEDOR
+
+### `dto/create-supplier.dto.ts`
+
+###  ![](images/clipboard-3595742150.png)
+
+### `dto/update-supplier.dto.ts`
+
+###  ![](images/clipboard-596459870.png)
+
+### `dto/patch-supplier.dto.ts`
+
+###  ![](images/clipboard-2687160196.png)
+
+### `dto/supplier-response.dto.ts`
+
+###  ![](images/clipboard-3488333169.png)
+
+### `dto/index.ts`
+
+###  ![](images/clipboard-243970534.png)
+
+### `supplier.repository.ts`
+
+###  ![](images/clipboard-2681853804.png)
+
+### `supplier.service.ts`
+
+###  ![](images/clipboard-3167543047.png)
+
+### `supplier.controller.ts`
+
+###  ![](images/clipboard-2346751811.png)
+
+### `supplier.routes.ts` (
+
+###  ![](images/clipboard-2031140368.png)
+
+### Verificación y cierre
+
+![](images/clipboard-2422357879.png)
+
+# INVENTARIO
+
+### `dto/create-inventory.dto.ts`
+
+###  
+
+### `dto/update-inventory.dto.ts`
+
+###  
+
+### `dto/patch-inventory.dto.ts`
+
+###  
+
+### `dto/inventory-response.dto.ts`
+
+###  
+
+### `dto/index.ts`
+
+###  
+
+### `inventory.repository.ts` 
+
+###  
+
+### `inventory.service.ts` 
+
+###  
+
+### `inventory.controller.ts` (reescrito, delgado)
+
+###  
+
+### `inventory.routes.ts` 
+
+### 
+
+### Verificación y cierre
+
+### 
