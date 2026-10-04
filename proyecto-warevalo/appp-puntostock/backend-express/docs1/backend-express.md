@@ -960,4 +960,62 @@ Verificación y cierre final
 
 ### Verificación y cierre final
 
-![](images/clipboard-290551897.png)
+![![](images/clipboard-702264951.png)](images/clipboard-290551897.png)
+
+# Modelo Return (devolución, referencia a SaleDetail: "cada devolución referencia líneas vendidas")
+
+### ![](images/clipboard-3719174092.png)  Esqueleto controller/routes + carpeta HTTP
+
+### ![](images/clipboard-594337611.png)  Agregador Routes + cableado en Config
+
+### ![](images/clipboard-3295510225.png)  Verificación y cierre de la fundación
+
+### ![](images/clipboard-4024166317.png)  Controller PARCHE: getAll + getOne
+
+### ![](images/clipboard-3068259233.png)  Rutas PARCHE: GET /api/devoluciones + GET /api/devoluciones/:id
+
+### ![](images/clipboard-1584425308.png)  HTTP: devoluciones.get.http
+
+### ![](images/clipboard-985864298.png)  Verificación y cierre
+
+### ![](images/clipboard-2882373607.png)  Controller PARCHE: create
+
+### ![](images/clipboard-2720763784.png)  Rutas PARCHE: POST /api/devoluciones
+
+### ![](images/clipboard-3231293426.png)  HTTP: devoluciones.create.http
+
+### ![](images/clipboard-199374936.png)  Verificación y cierre
+
+### ![](images/clipboard-2200408901.png)  Controller PARCHE: approve +reject
+
+### ![](images/clipboard-1299471938.png) 
+
+###   Rutas PARCHE: PATCH /api/devoluciones/:id/approve + PATCH /api/devoluciones/:id/reject
+
+### ![](images/clipboard-3368007692.png)  HTTP: devoluciones.approve.http + devoluciones.reject.http
+
+### ![](images/clipboard-2140263139.png)  Verificación y cierre
+
+### ![](images/clipboard-980208635.png)  Controller PARCHE: deletePhysical
+
+### ![](images/clipboard-4105427396.png)  Rutas PARCHE: DELETE /api/devoluciones/:id
+
+### ![](images/clipboard-1600367597.png)  HTTP: devoluciones.delete.http
+
+### ![](images/clipboard-1114922162.png)  Verificación y cierre
+
+### ![](images/clipboard-3877478462.png)  Seeder return.seeder.ts (Faker)
+
+### ![](images/clipboard-3146711986.png)  PARCHE counts.ts
+
+### ![](images/clipboard-194042508.png)  PARCHE seeders/index.ts
+
+### ![](images/clipboard-1708351397.png) 
+
+###   Swagger return.swagger.ts
+
+### ![](images/clipboard-1293833112.png)  PARCHE swagger/index.ts
+
+### ![](images/clipboard-3710884176.png)  Verificación y cierre final
+
+### ![](images/clipboard-1682792228.png)

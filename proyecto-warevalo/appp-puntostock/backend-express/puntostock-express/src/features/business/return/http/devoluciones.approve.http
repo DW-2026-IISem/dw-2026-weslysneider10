@@ -1,0 +1,8 @@
+### Feature Return — APPROVE (restaura Inventario)
+### Leyenda: SIN AUTH (sin middleware JWT / sin autenticación)
+
+@baseUrl = http://localhost:3000
+@id = 1
+
+# @name approveReturn
+PATCH {{baseUrl}}/api/devoluciones/{{id}}/approve

@@ -1,0 +1,18 @@
+### Feature Return — GET ALL / GET ONE
+### Leyenda: SIN AUTH (sin middleware JWT / sin autenticación)
+
+@baseUrl = http://localhost:3000
+@id = 1
+
+# @name getAllReturns
+GET {{baseUrl}}/api/devoluciones
+
+###
+
+# @name getReturnsBySaleDetail
+GET {{baseUrl}}/api/devoluciones?saleDetailId=1
+
+###
+
+# @name getOneReturn
+GET {{baseUrl}}/api/devoluciones/{{id}}

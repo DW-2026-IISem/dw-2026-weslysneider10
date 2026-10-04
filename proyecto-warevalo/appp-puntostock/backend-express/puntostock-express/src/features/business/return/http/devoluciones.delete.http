@@ -1,0 +1,8 @@
+### Feature Return — DELETE físico (solo si NO está approved)
+### Leyenda: SIN AUTH (sin middleware JWT / sin autenticación)
+
+@baseUrl = http://localhost:3000
+@id = 1
+
+# @name deleteReturnPhysical
+DELETE {{baseUrl}}/api/devoluciones/{{id}}

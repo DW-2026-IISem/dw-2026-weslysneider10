@@ -1,0 +1,8 @@
+### Feature Return — REJECT
+### Leyenda: SIN AUTH (sin middleware JWT / sin autenticación)
+
+@baseUrl = http://localhost:3000
+@id = 1
+
+# @name rejectReturn
+PATCH {{baseUrl}}/api/devoluciones/{{id}}/reject

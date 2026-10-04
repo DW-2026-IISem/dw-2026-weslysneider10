@@ -1,0 +1,14 @@
+### Feature Return — CREATE (pending, no toca Inventario todavía)
+### Leyenda: SIN AUTH (sin middleware JWT / sin autenticación)
+
+@baseUrl = http://localhost:3000
+
+# @name createReturn
+POST {{baseUrl}}/api/devoluciones
+Content-Type: application/json
+
+{
+  "saleDetailId": 1,
+  "motivo": "Producto llegó defectuoso",
+  "cantidad": 1
+}

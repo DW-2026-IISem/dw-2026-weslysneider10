@@ -1,10 +1,9 @@
 import { Request, Response } from "express";
 import { sequelize } from "../../../database/db";
-import {
-  Purchase,
-  PurchaseDetail,
-} from "./purchase.model";
+import { Purchase, PurchaseI } from "./purchase.model";
+import { PurchaseDetail, PurchaseDetailI } from "./purchase-detail.model";
 import { Supplier } from "../supplier/supplier.model";
+import { Branch } from "../branch/branch.model";
 import { Product } from "../product/product.model";
 import { Inventory } from "../inventory/inventory.model";
 
@@ -14,384 +13,291 @@ function paramId(req: Request): number {
   return Number(value);
 }
 
+interface CreatePurchaseItemBody {
+  productId: number;
+  cantidad: number;
+  valorUnitario: number;
+  observaciones?: string;
+}
+
+interface CreatePurchaseBody {
+  supplierId: number;
+  branchId: number;
+  impuestos?: number;
+  items: CreatePurchaseItemBody[];
+}
+
+interface ReceiveItemBody {
+  productId: number;
+  cantidad: number;
+}
+
+interface ReceiveBody {
+  items: ReceiveItemBody[];
+}
+
 export class PurchaseController {
-
   // ================== READ ==================
-
   public async getAll(req: Request, res: Response) {
     try {
-      const purchases = await Purchase.findAll();
+      const { supplierId, branchId, estado } = req.query;
+      const where: Record<string, unknown> = {};
+
+      if (supplierId) where.supplierId = Number(supplierId);
+      if (branchId) where.branchId = Number(branchId);
+      if (estado) where.estado = String(estado);
+
+      const purchases = await Purchase.findAll({
+        where,
+        include: [{ model: PurchaseDetail, as: "items" }],
+        order: [["createdAt", "DESC"]],
+      });
       res.status(200).json({ purchases });
     } catch (error) {
-      res.status(500).json({
-        error: "Error fetching purchases",
-        detail: String(error),
-      });
+      res.status(500).json({ error: "Error fetching purchases", detail: String(error) });
     }
   }
 
   public async getOne(req: Request, res: Response) {
     try {
       const id = paramId(req);
-      const purchase = await Purchase.findByPk(id);
-
+      const purchase = await Purchase.findByPk(id, {
+        include: [{ model: PurchaseDetail, as: "items" }],
+      });
       if (!purchase) {
         res.status(404).json({ error: "Purchase not found" });
         return;
       }
-
       res.status(200).json({ purchase });
     } catch (error) {
-      res.status(500).json({
-        error: "Error fetching purchase",
-        detail: String(error),
-      });
+      res.status(500).json({ error: "Error fetching purchase", detail: String(error) });
     }
   }
 
   // ================== CREATE ==================
-
   public async create(req: Request, res: Response) {
-    const transaction = await sequelize.transaction();
-
+    const t = await sequelize.transaction();
     try {
-      const body = req.body;
+      const body = req.body as CreatePurchaseBody;
 
-      const supplier = await Supplier.findByPk(body.supplierId);
+      if (!body.items || body.items.length === 0) {
+        await t.rollback();
+        res.status(400).json({ error: "La compra debe tener al menos un item" });
+        return;
+      }
 
+      const supplier = await Supplier.findByPk(body.supplierId, { transaction: t });
       if (!supplier) {
-        await transaction.rollback();
+        await t.rollback();
         res.status(404).json({ error: "Supplier not found" });
         return;
       }
 
-      if (!body.details || body.details.length === 0) {
-        await transaction.rollback();
-        res.status(400).json({
-          error: "At least one purchase detail is required",
-        });
+      const branch = await Branch.findByPk(body.branchId, { transaction: t });
+      if (!branch) {
+        await t.rollback();
+        res.status(404).json({ error: "Branch not found" });
         return;
       }
 
       let subtotal = 0;
-
-      for (const detail of body.details) {
-        const product = await Product.findByPk(detail.productId);
-
+      for (const item of body.items) {
+        const product = await Product.findByPk(item.productId, { transaction: t });
         if (!product) {
-          await transaction.rollback();
-          res.status(404).json({
-            error: `Product ${detail.productId} not found`,
-          });
+          await t.rollback();
+          res.status(404).json({ error: `Product not found: ${item.productId}` });
           return;
         }
-
-        subtotal += detail.quantity * detail.unitPrice;
+        if (item.cantidad <= 0 || item.valorUnitario <= 0) {
+          await t.rollback();
+          res.status(400).json({ error: "cantidad y valorUnitario deben ser mayores a 0" });
+          return;
+        }
+        subtotal += item.cantidad * item.valorUnitario;
       }
 
-      const taxes = body.taxes ?? 0;
-      const total = subtotal + taxes;
+      const impuestos = body.impuestos ?? 0;
+      const total = subtotal + impuestos;
 
       const purchase = await Purchase.create(
         {
           supplierId: body.supplierId,
-          date: body.date ?? new Date(),
+          branchId: body.branchId,
+          fecha: new Date(),
           subtotal,
-          taxes,
+          impuestos,
           total,
-          status: body.status ?? "pending",
+          estado: "pending",
         },
-        { transaction }
+        { transaction: t }
       );
 
-      for (const detail of body.details) {
-        await PurchaseDetail.create(
-          {
-            purchaseId: purchase.id,
-            productId: detail.productId,
-            quantity: detail.quantity,
-            unitPrice: detail.unitPrice,
-            total: detail.quantity * detail.unitPrice,
-            observations: detail.observations ?? null,
-          },
-          { transaction }
-        );
-      }
+      await PurchaseDetail.bulkCreate(
+        body.items.map((item) => ({
+          purchaseId: purchase.id,
+          productId: item.productId,
+          cantidad: item.cantidad,
+          valorUnitario: item.valorUnitario,
+          total: item.cantidad * item.valorUnitario,
+          receivedQuantity: 0,
+          observaciones: item.observaciones ?? null,
+        })),
+        { transaction: t }
+      );
 
-      await transaction.commit();
+      await t.commit();
 
-      res.status(201).json({ purchase });
+      const created = await Purchase.findByPk(purchase.id, {
+        include: [{ model: PurchaseDetail, as: "items" }],
+      });
+      res.status(201).json({ purchase: created });
     } catch (error) {
-      await transaction.rollback();
-
-      res.status(500).json({
-        error: "Error creating purchase",
-        detail: String(error),
-      });
-    }
-  }
-
-  // ================== UPDATE ==================
-
-  public async updatePut(req: Request, res: Response) {
-    try {
-      const id = paramId(req);
-      const purchase = await Purchase.findByPk(id);
-
-      if (!purchase) {
-        res.status(404).json({ error: "Purchase not found" });
-        return;
-      }
-
-      await purchase.update(req.body);
-
-      res.status(200).json({ purchase });
-    } catch (error) {
-      res.status(500).json({
-        error: "Error updating purchase (PUT)",
-        detail: String(error),
-      });
-    }
-  }
-
-  public async updatePatch(req: Request, res: Response) {
-    try {
-      const id = paramId(req);
-      const purchase = await Purchase.findByPk(id);
-
-      if (!purchase) {
-        res.status(404).json({ error: "Purchase not found" });
-        return;
-      }
-
-      await purchase.update(req.body);
-
-      res.status(200).json({ purchase });
-    } catch (error) {
-      res.status(500).json({
-        error: "Error updating purchase (PATCH)",
-        detail: String(error),
-      });
-    }
-  }
-
-  // ================== DETAILS ==================
-
-  public async getDetails(req: Request, res: Response) {
-    try {
-      const id = paramId(req);
-
-      const purchase = await Purchase.findByPk(id);
-
-      if (!purchase) {
-        res.status(404).json({
-          error: "Purchase not found",
-        });
-        return;
-      }
-
-      const details = await PurchaseDetail.findAll({
-        where: {
-          purchaseId: id,
-        },
-      });
-
-      res.status(200).json({
-        purchase,
-        details,
-      });
-    } catch (error) {
-      res.status(500).json({
-        error: "Error fetching purchase details",
-        detail: String(error),
-      });
+      await t.rollback();
+      res.status(500).json({ error: "Error creating purchase", detail: String(error) });
     }
   }
 
   // ================== RECEIVE ==================
-
+  /** Recepción parcial o total de una compra. Actualiza Inventory de la sucursal. */
   public async receive(req: Request, res: Response) {
-    const transaction = await sequelize.transaction();
-
+    const t = await sequelize.transaction();
     try {
       const id = paramId(req);
-      const { branchId, received } = req.body;
+      const body = req.body as ReceiveBody;
 
-      if (!branchId) {
-        await transaction.rollback();
-
-        res.status(400).json({
-          error: "branchId is required",
-        });
-        return;
-      }
-
-      if (!received || !Array.isArray(received)) {
-        await transaction.rollback();
-
-        res.status(400).json({
-          error: "received must be an array",
-        });
-        return;
-      }
-
-      const purchase = await Purchase.findByPk(id);
+      const purchase = await Purchase.findByPk(id, {
+        include: [{ model: PurchaseDetail, as: "items" }],
+        transaction: t,
+      });
 
       if (!purchase) {
-        await transaction.rollback();
-
-        res.status(404).json({
-          error: "Purchase not found",
-        });
+        await t.rollback();
+        res.status(404).json({ error: "Purchase not found" });
         return;
       }
 
-      for (const item of received) {
-        const detail = await PurchaseDetail.findOne({
-          where: {
-            id: item.detailId,
-            purchaseId: id,
-          },
-        });
-
-        if (!detail) {
-          await transaction.rollback();
-
-          res.status(404).json({
-            error: `Purchase detail ${item.detailId} not found`,
-          });
-          return;
-        }
-
-        if (item.quantity <= 0) {
-          await transaction.rollback();
-
-          res.status(400).json({
-            error: "Received quantity must be greater than zero",
-          });
-          return;
-        }
-
-        const inventory = await Inventory.findOne({
-          where: {
-            branchId,
-            productId: detail.productId,
-          },
-        });
-
-        if (!inventory) {
-          await transaction.rollback();
-
-          res.status(404).json({
-            error: `Inventory not found for branch ${branchId} and product ${detail.productId}`,
-          });
-          return;
-        }
-
-        await inventory.increment(
-          "quantity",
-          {
-            by: item.quantity,
-            transaction,
-          }
-        );
+      if (purchase.estado === "cancelled" || purchase.estado === "received") {
+        await t.rollback();
+        res.status(400).json({ error: `No se puede recibir una compra en estado '${purchase.estado}'` });
+        return;
       }
 
-      await purchase.update(
-        {
-          status: "received",
-        },
-        {
-          transaction,
+      const items = (purchase as any).items as PurchaseDetail[];
+
+      for (const receipt of body.items) {
+        const detail = items.find((i) => i.productId === receipt.productId);
+        if (!detail) {
+          await t.rollback();
+          res.status(400).json({ error: `El producto '${receipt.productId}' no pertenece a esta compra` });
+          return;
         }
-      );
+        if (receipt.cantidad <= 0) {
+          await t.rollback();
+          res.status(400).json({ error: "La cantidad a recibir debe ser mayor a 0" });
+          return;
+        }
+        if (detail.receivedQuantity + receipt.cantidad > detail.cantidad) {
+          await t.rollback();
+          res.status(400).json({
+            error: `La cantidad recibida no puede superar lo solicitado para el producto '${receipt.productId}'`,
+          });
+          return;
+        }
 
-      await transaction.commit();
+        await detail.update(
+          { receivedQuantity: detail.receivedQuantity + receipt.cantidad },
+          { transaction: t }
+        );
 
-      res.status(200).json({
-        message: "Purchase received successfully",
-        purchase,
+        const existingInventory = await Inventory.findOne({
+          where: { branchId: purchase.branchId, productId: receipt.productId },
+          transaction: t,
+        });
+
+        if (existingInventory) {
+          await existingInventory.update(
+            { quantity: existingInventory.quantity + receipt.cantidad },
+            { transaction: t }
+          );
+        } else {
+          await Inventory.create(
+            {
+              branchId: purchase.branchId,
+              productId: receipt.productId,
+              quantity: receipt.cantidad,
+              minStock: 0,
+            },
+            { transaction: t }
+          );
+        }
+      }
+
+      const refreshedItems = await PurchaseDetail.findAll({
+        where: { purchaseId: purchase.id },
+        transaction: t,
       });
+
+      const allReceived = refreshedItems.every((i) => i.receivedQuantity >= i.cantidad);
+      const anyReceived = refreshedItems.some((i) => i.receivedQuantity > 0);
+
+      const nuevoEstado = allReceived ? "received" : anyReceived ? "partial" : "pending";
+      await purchase.update({ estado: nuevoEstado }, { transaction: t });
+
+      await t.commit();
+
+      const updated = await Purchase.findByPk(id, {
+        include: [{ model: PurchaseDetail, as: "items" }],
+      });
+      res.status(200).json({ purchase: updated });
     } catch (error) {
-      await transaction.rollback();
+      await t.rollback();
+      res.status(500).json({ error: "Error receiving purchase", detail: String(error) });
+    }
+  }
 
-      res.status(500).json({
-        error: "Error receiving purchase",
-        detail: String(error),
-      });
+  // ================== CANCEL ==================
+  public async cancel(req: Request, res: Response) {
+    try {
+      const id = paramId(req);
+      const purchase = await Purchase.findByPk(id);
+      if (!purchase) {
+        res.status(404).json({ error: "Purchase not found" });
+        return;
+      }
+
+      if (purchase.estado === "received") {
+        res.status(400).json({ error: "No se puede cancelar una compra ya recibida" });
+        return;
+      }
+
+      await purchase.update({ estado: "cancelled" });
+      res.status(200).json({ purchase });
+    } catch (error) {
+      res.status(500).json({ error: "Error cancelling purchase", detail: String(error) });
     }
   }
 
   // ================== DELETE ==================
-
+  /** Eliminación física: borra detalle y cabecera en transacción */
   public async deletePhysical(req: Request, res: Response) {
-    const transaction = await sequelize.transaction();
-
+    const t = await sequelize.transaction();
     try {
       const id = paramId(req);
-      const purchase = await Purchase.findByPk(id);
-
+      const purchase = await Purchase.findByPk(id, { transaction: t });
       if (!purchase) {
-        await transaction.rollback();
-
-        res.status(404).json({
-          error: "Purchase not found",
-        });
+        await t.rollback();
+        res.status(404).json({ error: "Purchase not found" });
         return;
       }
 
-      await PurchaseDetail.destroy({
-        where: {
-          purchaseId: id,
-        },
-        transaction,
-      });
+      await PurchaseDetail.destroy({ where: { purchaseId: id }, transaction: t });
+      await purchase.destroy({ transaction: t });
 
-      await purchase.destroy({
-        transaction,
-      });
-
-      await transaction.commit();
-
-      res.status(200).json({
-        message: "Purchase permanently deleted",
-        id,
-      });
+      await t.commit();
+      res.status(200).json({ message: "Purchase permanently deleted", id });
     } catch (error) {
-      await transaction.rollback();
-
-      res.status(500).json({
-        error: "Error deleting purchase",
-        detail: String(error),
-      });
-    }
-  }
-
-  public async deleteLogical(req: Request, res: Response) {
-    try {
-      const id = paramId(req);
-      const purchase = await Purchase.findByPk(id);
-
-      if (!purchase) {
-        res.status(404).json({
-          error: "Purchase not found",
-        });
-        return;
-      }
-
-      await purchase.update({
-        status: "cancelled",
-      });
-
-      res.status(200).json({
-        message: "Purchase cancelled (logical delete)",
-        purchase,
-      });
-    } catch (error) {
-      res.status(500).json({
-        error: "Error cancelling purchase",
-        detail: String(error),
-      });
+      await t.rollback();
+      res.status(500).json({ error: "Error deleting purchase", detail: String(error) });
     }
   }
 }

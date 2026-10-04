@@ -16,6 +16,7 @@ import "../../features/business/purchase/purchase.associations";
 import "../../features/business/sale/sale.model";
 import "../../features/business/sale/sale-detail.model";
 import "../../features/business/sale/sale.associations";
+import "../../features/business/return/return.model";
 
 import { seedClients } from "../../features/business/client/client.seeder";
 import { seedProductTypes } from "../../features/business/product-type/product-type.seeder";
@@ -26,6 +27,7 @@ import { seedInventories } from "../../features/business/inventory/inventory.see
 import { seedPayments } from "../../features/business/payment/payment.seeder";
 import { seedPurchases } from "../../features/business/purchase/purchase.seeder";
 import { seedSales } from "../../features/business/sale/sale.seeder";
+import { seedReturns } from "../../features/business/return/return.seeder";
 
 import { resolveSeedCounts } from "./counts";
 
@@ -69,6 +71,7 @@ export async function runAllSeeders(): Promise<void> {
   await seedPayments(counts.payments);
   await seedPurchases(counts.purchases);
   await seedSales(counts.sales);
+  await seedReturns(counts.returns);
 
   console.log("🌱 SeedersRunner finalizado");
 }

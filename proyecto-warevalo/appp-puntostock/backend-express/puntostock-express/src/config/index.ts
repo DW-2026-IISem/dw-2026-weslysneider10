@@ -16,9 +16,16 @@ import "../features/business/product/product.associations";
 import "../features/business/branch/branch.model";
 import "../features/business/supplier/supplier.model";
 import "../features/business/inventory/inventory.model";
+
+import "../features/business/purchase/purchase.model";
+import "../features/business/purchase/purchase.associations";
+
 import "../features/business/sale/sale.model";
 import "../features/business/sale/sale-detail.model";
 import "../features/business/sale/sale.associations";
+
+import "../features/business/payment/payment.model";
+import "../features/business/return/return.model";
 
 import { Routes } from "../routes/index";
 import { setupSwagger } from "../swagger/index";
@@ -57,7 +64,10 @@ export class App {
     this.routePrv.branchRoutes.routes(this.app);
     this.routePrv.supplierRoutes.routes(this.app);
     this.routePrv.inventoryRoutes.routes(this.app);
+    this.routePrv.paymentRoutes.routes(this.app);
+    this.routePrv.purchaseRoutes.routes(this.app);
     this.routePrv.saleRoutes.routes(this.app);
+    this.routePrv.returnRoutes.routes(this.app);
   }
 
   private docs(): void {
@@ -84,10 +94,12 @@ export class App {
         force: false
       });
 
-      console.log(`📦 Base de datos sincronizada exitosamente`);
+      console.log("📦 Base de datos sincronizada exitosamente");
+
     } catch (error) {
+
       console.error(
-        "❌ Error al conectar a la base de datos:",
+        "❌ Error al conectar con la base de datos:",
         error
       );
 

@@ -17,6 +17,7 @@ export type SeedCounts = {
   payments: number;
   purchases: number;
   sales: number;
+  returns: number;
 };
 
 export const DEFAULT_SEED_COUNTS: SeedCounts = {
@@ -29,6 +30,7 @@ export const DEFAULT_SEED_COUNTS: SeedCounts = {
   payments: 15,
   purchases: 12,
   sales: 20,
+  returns: 6,
 };
 
 export function resolveSeedCounts(
@@ -46,6 +48,7 @@ export function resolveSeedCounts(
   const envPayments = process.env.SEED_PAYMENTS;
   const envPurchases = process.env.SEED_PURCHASES;
   const envSales = process.env.SEED_SALES;
+  const envReturns = process.env.SEED_RETURNS;
 
   if (envClients !== undefined && envClients !== "") {
     counts.clients = Number(envClients);
@@ -81,6 +84,10 @@ export function resolveSeedCounts(
 
   if (envSales !== undefined && envSales !== "") {
     counts.sales = Number(envSales);
+  }
+
+  if (envReturns !== undefined && envReturns !== "") {
+    counts.returns = Number(envReturns);
   }
 
   for (const arg of argv) {

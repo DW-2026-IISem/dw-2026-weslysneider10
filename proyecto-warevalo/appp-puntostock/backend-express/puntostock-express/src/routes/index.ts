@@ -4,7 +4,10 @@ import { ProductRoutes } from "../features/business/product/product.routes";
 import { BranchRoutes } from "../features/business/branch/branch.routes";
 import { SupplierRoutes } from "../features/business/supplier/supplier.routes";
 import { InventoryRoutes } from "../features/business/inventory/inventory.routes";
+import { PaymentRoutes } from "../features/business/payment/payment.routes";
+import { PurchaseRoutes } from "../features/business/purchase/purchase.routes";
 import { SaleRoutes } from "../features/business/sale/sale.routes";
+import { ReturnRoutes } from "../features/business/return/return.routes";
 
 export class Routes {
 
@@ -14,5 +17,8 @@ export class Routes {
   public branchRoutes: BranchRoutes = new BranchRoutes();
   public supplierRoutes: SupplierRoutes = new SupplierRoutes();
   public inventoryRoutes: InventoryRoutes = new InventoryRoutes();
+  public paymentRoutes: PaymentRoutes = new PaymentRoutes();
+  public purchaseRoutes: PurchaseRoutes = new PurchaseRoutes();
   public saleRoutes: SaleRoutes = new SaleRoutes();
+  public returnRoutes: ReturnRoutes = new ReturnRoutes();
 }
