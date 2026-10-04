@@ -1055,3 +1055,54 @@ client.controller.ts (reescrito, delgado)
 Verificación y cierre
 
 ### ![](images/clipboard-111835318.png)
+
+### src/shared/database/with-transaction.ts
+
+### ![](images/clipboard-1049591963.png) 
+dto/create-branch.dto.ts
+
+### ![](images/clipboard-3021801338.png) 
+dto/update-branch.dto.ts
+
+### ![](images/clipboard-1552942080.png) 
+dto/patch-branch.dto.ts
+
+### ![](images/clipboard-2372781112.png) 
+dto/branch-response.dto.ts
+
+### ![](images/clipboard-3418852405.png) 
+dto/index.ts
+
+### ![](images/clipboard-139862973.png) 
+branch.repository.ts (nuevo)
+
+### ![](images/clipboard-1304953027.png) 
+branch.service.ts (nuevo)
+
+### ![](images/clipboard-2922822449.png) 
+branch.controller.ts (reescrito, delgado)
+
+### ![](images/clipboard-3728392111.png) 
+Verificación y cierre
+
+![](images/clipboard-4072830561.png)
+
+# PRODUCT
+
+### dto/create-product.dto.ts
+
+###   dto/update-product.dto.ts
+
+###   dto/patch-product.dto.ts
+
+###   dto/product-response.dto.ts
+
+###   dto/index.ts
+
+###   product.repository.ts (nuevo)
+
+###   product.service.ts (nuevo — aquí se mueve la validación de productTypeId activo)
+
+###   product.controller.ts (reescrito, delgado)
+
+###   Verificación y cierre

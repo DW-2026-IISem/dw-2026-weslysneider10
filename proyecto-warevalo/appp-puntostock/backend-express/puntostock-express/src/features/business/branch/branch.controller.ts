@@ -1,124 +1,79 @@
 import { Request, Response } from "express";
-import { Branch, BranchI } from "./branch.model";
+import { BaseController } from "../../../shared/http/base-controller";
+import { CreateBranchDto, PatchBranchDto, UpdateBranchDto } from "./dto";
+import { BranchService } from "./branch.service";
 
-function paramId(req: Request): number {
-  const raw = req.params.id;
-  const value = Array.isArray(raw) ? raw[0] : raw;
-  return Number(value);
-}
-
-export class BranchController {
-  // ================== READ ==================
-  public async getAll(req: Request, res: Response) {
-    try {
-      const branches = await Branch.findAll({
-        where: { status: "active" },
-      });
-      res.status(200).json({ branches });
-    } catch (error) {
-      res.status(500).json({ error: "Error fetching branches", detail: String(error) });
-    }
+/**
+ * Capa Controller del feature Branch.
+ * Solo HTTP: lee req, llama al service y arma res. El try/catch y la
+ * validación de :id viven en BaseController.
+ */
+export class BranchController extends BaseController {
+  public constructor(
+    private readonly service: BranchService = new BranchService()
+  ) {
+    super();
   }
 
-  public async getOne(req: Request, res: Response) {
-    try {
-      const id = paramId(req);
-      const branch = await Branch.findByPk(id);
-      if (!branch) {
-        res.status(404).json({ error: "Branch not found" });
-        return;
-      }
+  // ================== READ ==================
+  public async getAll(_req: Request, res: Response): Promise<void> {
+    await this.run(res, async () => {
+      const branches = await this.service.getAll();
+      res.status(200).json({ branches });
+    });
+  }
+
+  public async getOne(req: Request, res: Response): Promise<void> {
+    await this.run(res, async () => {
+      const branch = await this.service.getOne(this.paramId(req));
       res.status(200).json({ branch });
-    } catch (error) {
-      res.status(500).json({ error: "Error fetching branch", detail: String(error) });
-    }
+    });
   }
 
   // ================== CREATE ==================
-  public async create(req: Request, res: Response) {
-    try {
-      const body = req.body as BranchI;
-      const branch = await Branch.create({
-        name: body.name,
-        description: body.description ?? null,
-        status: body.status ?? "active",
-      });
+  public async create(req: Request, res: Response): Promise<void> {
+    await this.run(res, async () => {
+      const branch = await this.service.create(req.body as CreateBranchDto);
       res.status(201).json({ branch });
-    } catch (error) {
-      res.status(500).json({ error: "Error creating branch", detail: String(error) });
-    }
+    });
   }
 
   // ================== UPDATE ==================
-  public async updatePut(req: Request, res: Response) {
-    try {
-      const id = paramId(req);
-      const body = req.body as BranchI;
-      const branch = await Branch.findByPk(id);
-      if (!branch) {
-        res.status(404).json({ error: "Branch not found" });
-        return;
-      }
-      await branch.update({
-        name: body.name,
-        description: body.description ?? null,
-        status: body.status ?? branch.status,
-      });
+  public async updatePut(req: Request, res: Response): Promise<void> {
+    await this.run(res, async () => {
+      const branch = await this.service.updatePut(
+        this.paramId(req),
+        req.body as UpdateBranchDto
+      );
       res.status(200).json({ branch });
-    } catch (error) {
-      res.status(500).json({ error: "Error updating branch (PUT)", detail: String(error) });
-    }
+    });
   }
 
-  public async updatePatch(req: Request, res: Response) {
-    try {
-      const id = paramId(req);
-      const body = req.body as Partial<BranchI>;
-      const branch = await Branch.findByPk(id);
-      if (!branch) {
-        res.status(404).json({ error: "Branch not found" });
-        return;
-      }
-      await branch.update(body);
+  public async updatePatch(req: Request, res: Response): Promise<void> {
+    await this.run(res, async () => {
+      const branch = await this.service.updatePatch(
+        this.paramId(req),
+        req.body as PatchBranchDto
+      );
       res.status(200).json({ branch });
-    } catch (error) {
-      res.status(500).json({ error: "Error updating branch (PATCH)", detail: String(error) });
-    }
+    });
   }
 
   // ================== DELETE ==================
-  /** Eliminación física */
-  public async deletePhysical(req: Request, res: Response) {
-    try {
-      const id = paramId(req);
-      const branch = await Branch.findByPk(id);
-      if (!branch) {
-        res.status(404).json({ error: "Branch not found" });
-        return;
-      }
-      await branch.destroy();
+  /** Eliminación física. */
+  public async deletePhysical(req: Request, res: Response): Promise<void> {
+    await this.run(res, async () => {
+      const id = this.paramId(req);
+      await this.service.deletePhysical(id);
       res.status(200).json({ message: "Branch permanently deleted", id });
-    } catch (error) {
-      res.status(500).json({ error: "Error deleting branch", detail: String(error) });
-    }
+    });
   }
 
-  /** Eliminación lógica → status = inactive */
-  public async deleteLogical(req: Request, res: Response) {
-    try {
-      const id = paramId(req);
-      const branch = await Branch.findByPk(id);
-      if (!branch) {
-        res.status(404).json({ error: "Branch not found" });
-        return;
-      }
-      await branch.update({ status: "inactive" });
-      res.status(200).json({
-        message: "Branch deactivated (logical delete)",
-        branch,
-      });
-    } catch (error) {
-      res.status(500).json({ error: "Error deactivating branch", detail: String(error) });
-    }
+  /** Eliminación lógica -> status = inactive. */
+  public async deleteLogical(req: Request, res: Response): Promise<void> {
+    await this.run(res, async () => {
+      const branch = await this.service.deleteLogical(this.paramId(req));
+      res.status(200).json({ message: "Branch deactivated (logical delete)", branch });
+    });
   }
 }
