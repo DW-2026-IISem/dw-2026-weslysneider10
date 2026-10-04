@@ -1108,3 +1108,47 @@ Verificación y cierre
 ### ![](images/clipboard-1573128910.png)  Verificación y cierre
 
 ![](images/clipboard-1420077000.png)
+
+# PRODUCT TYPE
+
+### `dto/create-product-type.dto.ts`
+
+###  ![](images/clipboard-1019261262.png)
+
+### `dto/update-product-type.dto.ts`
+
+###  ![](images/clipboard-2683388907.png)
+
+### `dto/patch-product-type.dto.ts`
+
+###  ![](images/clipboard-3144840308.png)
+
+### `dto/product-type-response.dto.ts`
+
+###  ![](images/clipboard-2840900310.png)
+
+### `dto/index.ts`
+
+###  ![](images/clipboard-2248542905.png)
+
+### `product-type.repository.ts`
+
+###  ![](images/clipboard-3783219900.png)
+
+### `product-type.service.ts`
+
+###  ![](images/clipboard-1467862402.png)
+
+### `product-type.controller.ts`
+
+###  ![](images/clipboard-3337687377.png)
+
+### `product-type.routes.ts` 
+
+###  ![](images/clipboard-1098067796.png)
+
+### Verificación y cierre
+
+### ![](images/clipboard-3129163323.png)
+
+PRODUCT
