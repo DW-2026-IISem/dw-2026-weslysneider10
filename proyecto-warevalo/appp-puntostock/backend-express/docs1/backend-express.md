@@ -1715,3 +1715,41 @@ Verificación y cierre
 ### Verificación: `npx tsc --noEmit`, `npm run dev`, pruebas de 401/403
 
 ### ![](images/clipboard-2784622495.png)
+
+# ISS-14: Feature RefreshToken 
+
+###  **dto/refresh-token-response.dto.ts**
+
+### ![](images/clipboard-3429508411.png)
+
+### `dto/index.ts`
+
+###  ![](images/clipboard-2110692891.png)
+
+### `refresh-token.repository.ts` (findByHash con lock pesimista, revokeFamily, revokeAllByUser,purgeInactiveByUser)
+
+### ![](images/clipboard-11023280.png)
+
+### `refresh-token.service.ts` (issue, rotate con reuse detection, revokeByToken, gestión de sesiones propias)
+
+###  ![](images/clipboard-1019162464.png)
+
+### `refresh-token.controller.ts`
+
+###  ![](images/clipboard-763330885.png)
+
+### `refresh-token.routes.ts` (modalidad JWT, sin authorize)
+
+###  ![](images/clipboard-2943538027.png)
+
+### `refresh-token.swagger.ts`
+
+###  ![](images/clipboard-1833948580.png)
+
+### Cableado en `routes/index.ts` y `config/index.ts`
+
+###  ![](images/clipboard-1837532668.png)
+
+### 
+
+### 

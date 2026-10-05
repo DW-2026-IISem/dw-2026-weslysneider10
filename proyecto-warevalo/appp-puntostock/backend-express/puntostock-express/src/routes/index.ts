@@ -14,6 +14,7 @@ import { RoleRoutes } from "../features/auth/role/role.routes";
 import { ResourceRoutes } from "../features/auth/resource/resource.routes";
 import { RoleUserRoutes } from "../features/auth/role-user/role-user.routes";
 import { ResourceRoleRoutes } from "../features/auth/resource-role/resource-role.routes";
+import { RefreshTokenRoutes } from "../features/auth/refresh-token/refresh-token.routes";
 
 export class Routes {
 
@@ -33,4 +34,5 @@ export class Routes {
   public resourceRoutes: ResourceRoutes = new ResourceRoutes();
   public roleUserRoutes: RoleUserRoutes = new RoleUserRoutes();
   public resourceRoleRoutes: ResourceRoleRoutes = new ResourceRoleRoutes();
+  public refreshTokenRoutes: RefreshTokenRoutes = new RefreshTokenRoutes();
 }
