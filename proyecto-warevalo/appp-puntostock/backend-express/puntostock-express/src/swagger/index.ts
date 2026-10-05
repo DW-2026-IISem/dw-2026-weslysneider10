@@ -12,6 +12,7 @@ import { paymentSwagger } from "../features/business/payment/payment.swagger";
 import { purchaseSwagger } from "../features/business/purchase/purchase.swagger";
 import { saleSwagger } from "../features/business/sale/sale.swagger";
 import { returnSwagger } from "../features/business/return/return.swagger";
+import { sessionSwagger } from "../features/auth/session/session.swagger";
 
 export type FeatureSwaggerModule = {
   tags: unknown[];
@@ -36,6 +37,7 @@ const featureSwaggerModules: FeatureSwaggerModule[] = [
   purchaseSwagger,
   saleSwagger,
   returnSwagger,
+  sessionSwagger,
 ];
 
 export function buildOpenApiDocument() {

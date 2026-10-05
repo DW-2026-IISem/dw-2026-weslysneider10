@@ -1752,4 +1752,95 @@ Verificación y cierre
 
 ### 
 
+# **ISS-15: Feature Session (login, refresh, logout, perfil, permisos)**
+
+### `dto/login.dto.ts`
+
+###  ![](images/clipboard-3337982463.png)
+
+### `dto/refresh-session.dto.ts`
+
+###  ![](images/clipboard-1251734493.png)
+
+### `dto/logout-session.dto.ts`
+
+###  ![](images/clipboard-4176730945.png)
+
+### `dto/session-response.dto.ts` (`SessionTokensDto` + `ProfileDto`)
+
+###  ![](images/clipboard-2783785216.png)
+
+### `dto/index.ts`
+
+###  ![](images/clipboard-2892864614.png)
+
+### `session.service.ts` (login, refresh, logout, profile, myPermissions — orquesta UserRepository,RefreshTokenService, ResourceRoleService)
+
+### ![](images/clipboard-1131422849.png)
+
+### `session.controller.ts`
+
+###  ![](images/clipboard-921465377.png)
+
+### `session.routes.ts` (login/refresh/logout OPEN; perfil/permisos JWT)
+
+###  ![](images/clipboard-1847814904.png)
+
+### `session.swagger.ts`
+
+###  ![](images/clipboard-1026108606.png)
+
+### Cableado en `routes/index.ts` y `config/index.ts`
+
+###  ![](images/clipboard-2465903802.png)
+
 ### 
+
+# ISS-15 (Feature Session: login, refresh, logout, perfil, permisos)
+
+### dto/login.dto.ts
+
+### ![](images/clipboard-1060158222.png)
+dto/refresh-session.dto.ts
+
+### ![](images/clipboard-3548578584.png)
+dto/logout-session.dto.ts
+
+### ![](images/clipboard-1456929514.png)
+dto/session-response.dto.ts
+
+### ![](images/clipboard-3940703491.png)
+dto/index.ts
+
+### ![](images/clipboard-2770847771.png)
+session.service.ts (orquesta UserRepository, RefreshTokenService, ResourceRoleService)
+
+### ![](images/clipboard-4099280200.png)
+session.controller.ts
+
+### ![](images/clipboard-1066005353.png)
+session.routes.ts (login/refresh/logout = OPEN; perfil/permisos = JWT, sin authorize)
+
+### ![](images/clipboard-3262805355.png)
+
+### 
+session.swagger.ts
+
+### ![](images/clipboard-2695700987.png)
+
+HTTP: session.login.http
+
+### ![](images/clipboard-278592944.png)
+HTTP: session.refresh.http
+
+### ![](images/clipboard-792409274.png)
+HTTP: session.profile.http
+
+### ![](images/clipboard-2512352876.png)
+Verificación end-to-end de las tres modalidades (OPEN → JWT → JWT+RBAC)
+
+### ![](images/clipboard-953558607.png)
+
+### 
+
+### ![](images/clipboard-1401641870.png)
