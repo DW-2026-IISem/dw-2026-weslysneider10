@@ -12,6 +12,8 @@ import { ReturnRoutes } from "../features/business/return/return.routes";
 import { UserRoutes } from "../features/auth/user/user.routes";
 import { RoleRoutes } from "../features/auth/role/role.routes";
 import { ResourceRoutes } from "../features/auth/resource/resource.routes";
+import { RoleUserRoutes } from "../features/auth/role-user/role-user.routes";
+import { ResourceRoleRoutes } from "../features/auth/resource-role/resource-role.routes";
 
 export class Routes {
 
@@ -29,4 +31,6 @@ export class Routes {
   public userRoutes: UserRoutes = new UserRoutes();
   public roleRoutes: RoleRoutes = new RoleRoutes();
   public resourceRoutes: ResourceRoutes = new ResourceRoutes();
+  public roleUserRoutes: RoleUserRoutes = new RoleUserRoutes();
+  public resourceRoleRoutes: ResourceRoleRoutes = new ResourceRoleRoutes();
 }

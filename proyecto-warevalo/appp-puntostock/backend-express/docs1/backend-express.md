@@ -1509,79 +1509,161 @@ Verificación y cierre
 
 ### `dto/create-role.dto.ts`
 
-###  
+###  ![](images/clipboard-3062874698.png)
 
 ### `dto/update-role.dto.ts`
 
-###  
+###  ![](images/clipboard-2289640286.png)
 
 ### `dto/patch-role.dto.ts`
 
-###  
+###  ![](images/clipboard-4290404892.png)
 
 ### `dto/role-response.dto.ts`
 
-###  
+###  ![](images/clipboard-1184637335.png)
 
 ### `dto/index.ts`
 
-###  
+###  ![](images/clipboard-1942206871.png)
 
 ### `role.repository.ts` 
 
-### 
+### ![](images/clipboard-4200455794.png)
 
 ### `role.service.ts`
 
-###  
+###  ![](images/clipboard-374603467.png)
 
 ### `role.controller.ts`
 
-###  
+###  ![](images/clipboard-2861808196.png)
 
 ### `role.routes.ts` (con `authenticate` + `authorize`)
 
-###  
+###  ![](images/clipboard-1718825167.png)
 
 ### `role.seeder.ts` (ADMIN, SELLER)
 
-###  
+###  ![](images/clipboard-1738341336.png)
 
 ### `role.swagger.ts`
 
-### 
+### ![](images/clipboard-738307947.png)
 
 ### `dto/create-resource.dto.ts`
 
-###  
+### ![](images/clipboard-196408420.png) 
  `dto/update-resource.dto.ts`
 
-###  
+### ![](images/clipboard-63472325.png) 
  `dto/patch-resource.dto.ts`
 
-###  
+### ![](images/clipboard-2643657153.png) 
  `dto/resource-response.dto.ts`
 
-###  
+### ![](images/clipboard-4084449481.png) 
  `dto/index.ts`
 
-###  
+### ![](images/clipboard-4206357310.png) 
  `resource-catalog.ts`
 
-###  
+### ![](images/clipboard-218138418.png) 
  `resource.repository.ts`
 
-###  
+### ![](images/clipboard-1254131808.png) 
  `resource.service.ts`
 
-###  
+### ![](images/clipboard-2109148038.png) 
  `resource.controller.ts`
 
-###  
+### ![](images/clipboard-96807022.png) 
  `resource.routes.ts`
 
-###  
+### ![](images/clipboard-4203491096.png) 
  `resource.seeder.ts`
 
-###  
+### ![](images/clipboard-2601350141.png) 
  `resource.swagger.ts`
+
+![](images/clipboard-2482946531.png)
+
+# Feature RoleUser
+
+### **dto/create-role-user.dto.ts**
+
+![](images/clipboard-3302219237.png)
+
+### dto/role-user-response.dto.ts
+
+![](images/clipboard-2892001944.png)
+
+### dto/index.ts
+
+![](images/clipboard-1332873048.png)
+
+###  role-user.repository.ts
+
+![](images/clipboard-515273592.png)
+
+### role-user.service.ts
+
+![](images/clipboard-235777323.png)
+
+###  role-user.controller.ts
+
+![](images/clipboard-119624647.png)
+
+###  role-user.routes.ts
+
+![](images/clipboard-1045160973.png)
+
+### role-user.seeder.ts
+
+![](images/clipboard-2177545043.png)
+
+### role-user.swagger.ts
+
+![](images/clipboard-2494346900.png)
+
+### dto/create-resource-role.dto.ts
+
+![](images/clipboard-126598886.png)
+
+### dto/list-resource-roles.dto.ts
+
+![](images/clipboard-500884058.png)
+
+### dto/resource-role-response.dto.ts
+
+![](images/clipboard-1664058047.png)
+
+### dto/index.ts
+
+![](images/clipboard-1550546168.png)
+
+###  resource-role.repository.ts
+
+![](images/clipboard-3284444097.png)
+
+###  resource-role.service.ts
+
+![](images/clipboard-485603264.png)
+
+### resource-role.controller.ts
+
+![](images/clipboard-534741127.png)
+
+###  resource-role.routes.ts
+
+![](images/clipboard-467350337.png)
+
+###  **resource-role.seeder.ts** 
+
+![](images/clipboard-1986330583.png)
+
+### resource-role.swagger.ts
+
+### ![](images/clipboard-1298171544.png)
+
+### 
