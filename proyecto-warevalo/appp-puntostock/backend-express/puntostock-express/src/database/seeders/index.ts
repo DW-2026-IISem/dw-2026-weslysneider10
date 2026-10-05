@@ -18,6 +18,16 @@ import "../../features/business/sale/sale-detail.model";
 import "../../features/business/sale/sale.associations";
 import "../../features/business/return/return.model";
 
+// Fase II — Auth con RBAC (los seeders de estas tablas llegan en ISS-10/11/12;
+// por ahora solo se registran los modelos para que `sync` cree las tablas).
+import "../../features/auth/user/user.model";
+import "../../features/auth/role/role.model";
+import "../../features/auth/resource/resource.model";
+import "../../features/auth/role-user/role-user.model";
+import "../../features/auth/resource-role/resource-role.model";
+import "../../features/auth/refresh-token/refresh-token.model";
+import "../../features/auth/rbac.associations";
+
 import { seedClients } from "../../features/business/client/client.seeder";
 import { seedProductTypes } from "../../features/business/product-type/product-type.seeder";
 import { seedProducts } from "../../features/business/product/product.seeder";
@@ -62,6 +72,7 @@ export async function runAllSeeders(): Promise<void> {
   });
 
   // Orden: business (respeta dependencias FK)
+  // Fase II (roles, resources, users, etc.) se suma aquí cuando lleguemos a ISS-10/11/12.
   await seedClients(counts.clients);
   await seedProductTypes(counts.product_types);
   await seedProducts(counts.products);

@@ -1386,3 +1386,63 @@ Verificación y cierre
 ### Verificación y cierre
 
 ![](images/clipboard-2482182755.png)
+
+# ISS-09 (Base de seguridad compartida y modelos Auth)
+
+### Instalar dependencias (bcryptjs si falta, jsonwebtoken + \@types/jsonwebtoken)
+
+### ![](images/clipboard-1483168473.png)
+PARCHE .env (JWT_SECRET, JWT_ACCESS_TTL, JWT_REFRESH_TTL_DAYS)
+
+### ![](images/clipboard-2057715526.png)
+src/shared/auth/password.ts
+
+### ![](images/clipboard-1675896771.png)
+src/shared/auth/jwt.ts
+
+### ![](images/clipboard-1196977898.png)
+src/shared/auth/resource-match.ts
+
+### ![](images/clipboard-1137226243.png)
+src/shared/auth/auth-user.ts
+
+### ![](images/clipboard-1280493806.png)
+src/shared/http/error-response.ts
+
+### ![](images/clipboard-4071777050.png)
+PARCHE src/shared/http/base-controller.ts (handleError delega en sendError)
+
+### ![](images/clipboard-3882242207.png)
+src/shared/http/swagger-security.ts
+
+### ![](images/clipboard-2735819044.png)
+src/features/auth/user/user.model.ts
+
+### ![](images/clipboard-2466488644.png)
+src/features/auth/role/role.model.ts
+
+### ![](images/clipboard-2172139224.png)
+src/features/auth/resource/resource.model.ts
+
+### ![](images/clipboard-2298675182.png)
+src/features/auth/role-user/role-user.model.ts
+
+### 
+src/features/auth/resource-role/resource-role.model.ts
+
+### 
+src/features/auth/refresh-token/refresh-token.model.ts
+
+### 
+src/features/auth/rbac.associations.ts
+
+### 
+PARCHE src/config/index.ts 
+
+### 
+PARCHE src/database/seeders/index.ts 
+
+### 
+Verificación y cierre
+
+### 

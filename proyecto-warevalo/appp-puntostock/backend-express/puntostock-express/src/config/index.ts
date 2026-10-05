@@ -16,16 +16,24 @@ import "../features/business/product/product.associations";
 import "../features/business/branch/branch.model";
 import "../features/business/supplier/supplier.model";
 import "../features/business/inventory/inventory.model";
-
+import "../features/business/payment/payment.model";
 import "../features/business/purchase/purchase.model";
+import "../features/business/purchase/purchase-detail.model";
 import "../features/business/purchase/purchase.associations";
-
 import "../features/business/sale/sale.model";
 import "../features/business/sale/sale-detail.model";
 import "../features/business/sale/sale.associations";
-
-import "../features/business/payment/payment.model";
 import "../features/business/return/return.model";
+
+// Fase II — Auth con RBAC: primero los seis modelos, después las asociaciones
+// (las asociaciones referencian los modelos, no al revés).
+import "../features/auth/user/user.model";
+import "../features/auth/role/role.model";
+import "../features/auth/resource/resource.model";
+import "../features/auth/role-user/role-user.model";
+import "../features/auth/resource-role/resource-role.model";
+import "../features/auth/refresh-token/refresh-token.model";
+import "../features/auth/rbac.associations";
 
 import { Routes } from "../routes/index";
 import { setupSwagger } from "../swagger/index";
@@ -47,7 +55,7 @@ export class App {
   }
 
   private settings(): void {
-    this.app.set("port", this.port || process.env.PORT || 3000);
+    this.app.set("port", this.port || process.env.PORT || 4000);
   }
 
   private middlewares(): void {
@@ -94,10 +102,8 @@ export class App {
         force: false
       });
 
-      console.log("📦 Base de datos sincronizada exitosamente");
-
+      console.log(`📦 Base de datos sincronizada exitosamente`);
     } catch (error) {
-
       console.error(
         "❌ Error al conectar con la base de datos:",
         error
