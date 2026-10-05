@@ -1843,4 +1843,6 @@ Verificación end-to-end de las tres modalidades (OPEN → JWT → JWT+RBAC)
 
 ### 
 
-### ![](images/clipboard-1401641870.png)
+# ![](images/clipboard-1401641870.png)
+
+# CIERRE FASE 

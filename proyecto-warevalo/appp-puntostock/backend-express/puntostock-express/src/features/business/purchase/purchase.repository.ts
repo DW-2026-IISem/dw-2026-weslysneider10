@@ -1,6 +1,6 @@
 import { CreationAttributes, Transaction } from "sequelize";
 import { Purchase } from "./purchase.model";
-import { PurchaseDetail } from "./purchase-detail.model";
+import { PurchaseDetail } from "./purchase.model";
 
 /**
  * Capa Repository del feature Purchase.

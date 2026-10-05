@@ -2,7 +2,6 @@ import { Application } from "express";
 import { ClientController } from "./client.controller";
 import { authenticate, authorize } from "../../auth/access";
 
-/** Rutas del feature Client — modalidad JWT + RBAC en todas las operaciones. */
 export class ClientRoutes {
   public clientController: ClientController = new ClientController();
 
@@ -26,11 +25,7 @@ export class ClientRoutes {
     app
       .route("/api/clientes/:id")
       .put(authenticate, authorize, this.clientController.updatePut.bind(this.clientController))
-      .patch(
-        authenticate,
-        authorize,
-        this.clientController.updatePatch.bind(this.clientController)
-      );
+      .patch(authenticate, authorize, this.clientController.updatePatch.bind(this.clientController));
 
     // delete físico
     app

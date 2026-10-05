@@ -4,12 +4,23 @@ import { sequelize } from "../../../database/db";
 export interface PurchaseI {
   id?: number;
   supplierId: number;
-  branchId: number;
-  fecha: Date;
+  date: Date;
   subtotal: number;
-  impuestos: number;
+  taxes: number;
   total: number;
-  estado: "pending" | "partial" | "received" | "cancelled";
+  status: string;
+  createdAt?: Date;
+  updatedAt?: Date;
+}
+
+export interface PurchaseDetailI {
+  id?: number;
+  purchaseId: number;
+  productId: number;
+  quantity: number;
+  unitPrice: number;
+  total: number;
+  observations?: string | null;
   createdAt?: Date;
   updatedAt?: Date;
 }
@@ -17,12 +28,23 @@ export interface PurchaseI {
 export class Purchase extends Model {
   public id!: number;
   public supplierId!: number;
-  public branchId!: number;
-  public fecha!: Date;
+  public date!: Date;
   public subtotal!: number;
-  public impuestos!: number;
+  public taxes!: number;
   public total!: number;
-  public estado!: "pending" | "partial" | "received" | "cancelled";
+  public status!: string;
+  public readonly createdAt!: Date;
+  public readonly updatedAt!: Date;
+}
+
+export class PurchaseDetail extends Model {
+  public id!: number;
+  public purchaseId!: number;
+  public productId!: number;
+  public quantity!: number;
+  public unitPrice!: number;
+  public total!: number;
+  public observations!: string | null;
   public readonly createdAt!: Date;
   public readonly updatedAt!: Date;
 }
@@ -33,32 +55,27 @@ Purchase.init(
       type: DataTypes.INTEGER,
       allowNull: false,
     },
-    branchId: {
-      type: DataTypes.INTEGER,
-      allowNull: false,
-    },
-    fecha: {
+    date: {
       type: DataTypes.DATE,
       allowNull: false,
-      defaultValue: DataTypes.NOW,
     },
     subtotal: {
-      type: DataTypes.DECIMAL(12, 2),
+      type: DataTypes.DECIMAL(15, 2),
       allowNull: false,
       defaultValue: 0,
     },
-    impuestos: {
-      type: DataTypes.DECIMAL(12, 2),
+    taxes: {
+      type: DataTypes.DECIMAL(15, 2),
       allowNull: false,
       defaultValue: 0,
     },
     total: {
-      type: DataTypes.DECIMAL(12, 2),
+      type: DataTypes.DECIMAL(15, 2),
       allowNull: false,
       defaultValue: 0,
     },
-    estado: {
-      type: DataTypes.ENUM("pending", "partial", "received", "cancelled"),
+    status: {
+      type: DataTypes.STRING,
       allowNull: false,
       defaultValue: "pending",
     },
@@ -67,6 +84,41 @@ Purchase.init(
     sequelize,
     modelName: "Purchase",
     tableName: "purchases",
+    timestamps: true,
+  }
+);
+
+PurchaseDetail.init(
+  {
+    purchaseId: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+    },
+    productId: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+    },
+    quantity: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+    },
+    unitPrice: {
+      type: DataTypes.DECIMAL(15, 2),
+      allowNull: false,
+    },
+    total: {
+      type: DataTypes.DECIMAL(15, 2),
+      allowNull: false,
+    },
+    observations: {
+      type: DataTypes.STRING,
+      allowNull: true,
+    },
+  },
+  {
+    sequelize,
+    modelName: "PurchaseDetail",
+    tableName: "purchase_details",
     timestamps: true,
   }
 );
