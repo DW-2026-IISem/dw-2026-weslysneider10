@@ -1,39 +1,52 @@
 import { Application } from "express";
 import { ReturnController } from "./return.controller";
+import { authenticate, authorize } from "../../auth/access";
 
+/** Rutas del feature Return — modalidad JWT + RBAC en todas las operaciones. */
 export class ReturnRoutes {
   public returnController: ReturnController = new ReturnController();
 
   public routes(app: Application): void {
-    // ================== RUTAS SIN AUTENTICACIÓN / SIN MIDDLEWARE JWT ==================
     // getAll
     app
       .route("/api/devoluciones")
-      .get(this.returnController.getAll.bind(this.returnController));
+      .get(authenticate, authorize, this.returnController.getAll.bind(this.returnController));
 
     // getOne
     app
       .route("/api/devoluciones/:id")
-      .get(this.returnController.getOne.bind(this.returnController));
+      .get(authenticate, authorize, this.returnController.getOne.bind(this.returnController));
 
     // create
     app
       .route("/api/devoluciones")
-      .post(this.returnController.create.bind(this.returnController));
+      .post(authenticate, authorize, this.returnController.create.bind(this.returnController));
 
     // approve
     app
       .route("/api/devoluciones/:id/approve")
-      .patch(this.returnController.approve.bind(this.returnController));
+      .patch(
+        authenticate,
+        authorize,
+        this.returnController.approve.bind(this.returnController)
+      );
 
     // reject
     app
       .route("/api/devoluciones/:id/reject")
-      .patch(this.returnController.reject.bind(this.returnController));
+      .patch(
+        authenticate,
+        authorize,
+        this.returnController.reject.bind(this.returnController)
+      );
 
     // delete físico
     app
       .route("/api/devoluciones/:id")
-      .delete(this.returnController.deletePhysical.bind(this.returnController));
+      .delete(
+        authenticate,
+        authorize,
+        this.returnController.deletePhysical.bind(this.returnController)
+      );
   }
 }

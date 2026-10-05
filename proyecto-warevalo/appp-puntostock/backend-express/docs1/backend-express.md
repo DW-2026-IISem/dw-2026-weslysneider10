@@ -1667,3 +1667,51 @@ Verificación y cierre
 ### ![](images/clipboard-1298171544.png)
 
 ### 
+
+#  ISS-13: Middlewares de acceso
+
+### `shared/auth/jwt.ts` 
+
+### ![](images/clipboard-1443901016.png)
+
+### `shared/http/error-response.ts` 
+
+###  ![](images/clipboard-1971994930.png)
+
+### `access/authenticate.middleware.ts`
+
+###  ![](images/clipboard-3092048190.png)
+
+### `access/authorize.middleware.ts`
+
+###  ![](images/clipboard-3458871876.png)
+
+### `access/index.ts` (barrel)
+
+###  
+
+### **PARCHE** de las **10** rutas de negocio (no 5 como en la guía original, porque tu proyecto tiene 10features): `client.routes.ts`, `branch.routes.ts`, `product-type.routes.ts`, `product.routes.ts`, `supplier.routes.ts`, `inventory.routes.ts`, `purchase.routes.ts`, `sale.routes.ts`, `payment.routes.ts`, `return.routes.ts`
+
+###  ![](images/clipboard-3458871876.png)
+
+![](images/clipboard-2940941248.png)
+
+![](images/clipboard-1277181950.png)
+
+![](images/clipboard-3216079118.png)
+
+![](images/clipboard-1057631512.png)
+
+![](images/clipboard-1315526726.png)
+
+![](images/clipboard-4154557362.png)
+
+![](images/clipboard-2560864453.png)
+
+![](images/clipboard-2925078381.png)
+
+![](images/clipboard-4245483918.png)
+
+### Verificación: `npx tsc --noEmit`, `npm run dev`, pruebas de 401/403
+
+### ![](images/clipboard-2784622495.png)

@@ -27,6 +27,7 @@ import "../features/business/return/return.model";
 
 // Fase II — Auth con RBAC: primero los seis modelos, después las asociaciones
 // (las asociaciones referencian los modelos, no al revés).
+import "../shared/auth/auth-user";
 import "../features/auth/user/user.model";
 import "../features/auth/role/role.model";
 import "../features/auth/resource/resource.model";
