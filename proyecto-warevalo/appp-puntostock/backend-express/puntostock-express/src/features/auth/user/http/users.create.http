@@ -1,0 +1,80 @@
+### Feature User — CREATE / UPDATE / DELETE (modalidad JWT + RBAC)
+
+@baseUrl = http://localhost:3000
+
+# @name loginAdmin
+POST {{baseUrl}}/api/sesion/login
+Content-Type: application/json
+
+{
+  "identifier": "admin",
+  "password": "Admin123!"
+}
+
+@token = {{loginAdmin.response.body.$.access_token}}
+@id = 2
+
+### CREATE — password se hashea (bcrypt, 12 rondas)
+POST {{baseUrl}}/api/usuarios
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+  "username": "nuevo.usuario",
+  "email": "nuevo.usuario@puntostock.local",
+  "password": "Password123!",
+  "avatar": null
+}
+
+### 409 — username/email ya en uso
+POST {{baseUrl}}/api/usuarios
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+  "username": "admin",
+  "email": "otro@puntostock.local",
+  "password": "Password123!"
+}
+
+### UPDATE PUT — reemplazo completo. No cambia password ni status.
+PUT {{baseUrl}}/api/usuarios/{{id}}
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+  "username": "seller",
+  "email": "seller@puntostock.local",
+  "avatar": "https://example.com/avatar.png"
+}
+
+### UPDATE PATCH — parcial
+PATCH {{baseUrl}}/api/usuarios/{{id}}
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+  "avatar": null
+}
+
+### CAMBIO DE CONTRASEÑA — exige la contraseña ACTUAL
+PATCH {{baseUrl}}/api/usuarios/{{id}}/password
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+  "current_password": "Seller123!",
+  "new_password": "Seller456!"
+}
+
+### PERMISOS EFECTIVOS del usuario
+GET {{baseUrl}}/api/usuarios/{{id}}/permisos
+Authorization: Bearer {{token}}
+
+### DELETE lógico — status = inactive
+PATCH {{baseUrl}}/api/usuarios/{{id}}/deactivate
+Authorization: Bearer {{token}}
+
+### DELETE físico
+DELETE {{baseUrl}}/api/usuarios/{{id}}
+Authorization: Bearer {{token}}

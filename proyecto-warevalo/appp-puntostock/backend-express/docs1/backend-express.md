@@ -1427,22 +1427,80 @@ src/features/auth/resource/resource.model.ts
 ### ![](images/clipboard-2298675182.png)
 src/features/auth/role-user/role-user.model.ts
 
-### 
+### ![](images/clipboard-766672424.png)
 src/features/auth/resource-role/resource-role.model.ts
 
-### 
+### ![](images/clipboard-2176635222.png)
 src/features/auth/refresh-token/refresh-token.model.ts
 
-### 
+### ![](images/clipboard-3548772214.png)
 src/features/auth/rbac.associations.ts
 
-### 
+### ![](images/clipboard-1751611073.png)
 PARCHE src/config/index.ts 
 
-### 
+### ![](images/clipboard-2219764662.png)
 PARCHE src/database/seeders/index.ts 
 
-### 
+### ![](images/clipboard-1607105391.png)
 Verificación y cierre
 
+### ![](images/clipboard-37887270.png)
+
+![](images/clipboard-1323380225.png)
+
+# ISS-10 (Feature Users: identidad y contraseña)
+
+### dto/create-user.dto.ts
+
+### ![](images/clipboard-47431707.png)
+dto/update-user.dto.ts
+
+### ![](images/clipboard-4133548338.png)
+dto/patch-user.dto.ts
+
+### ![](images/clipboard-5565.png)
+dto/change-password.dto.ts
+
+### ![](images/clipboard-544202782.png)
+dto/user-response.dto.ts
+
+### ![](images/clipboard-856497532.png)
+dto/index.ts
+
+### ![](images/clipboard-574186134.png)
+user.repository.ts
+
+### ![](images/clipboard-1046575689.png)
+user.service.ts 
+
+### ![](images/clipboard-4121510552.png)
+user.controller.ts
+
+### ![](images/clipboard-1340746597.png)
+user.routes.ts 
+
+### ![](images/clipboard-2552402510.png)
+user.seeder.ts 
+
+### ![](images/clipboard-1720041736.png)
+PARCHE counts.ts (agregar users)
+
+### ![](images/clipboard-3560921344.png)
+PARCHE seeders/index.ts (agregar seedUsers)
+
+### ![](images/clipboard-3482307869.png)
+user.swagger.ts
+
+### ![](images/clipboard-3562113976.png)
+
 ### 
+HTTP: users.get.http
+
+### ![](images/clipboard-4068717488.png)
+HTTP: users.create.http
+
+### ![](images/clipboard-2847671279.png)
+Verificación y cierre
+
+![](images/clipboard-1817079356.png)
