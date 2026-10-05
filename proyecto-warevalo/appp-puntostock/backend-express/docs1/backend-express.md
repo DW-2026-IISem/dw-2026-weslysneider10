@@ -1504,3 +1504,84 @@ HTTP: users.create.http
 Verificación y cierre
 
 ![](images/clipboard-1817079356.png)
+
+# ISS-11: Roles y Resources 
+
+### `dto/create-role.dto.ts`
+
+###  
+
+### `dto/update-role.dto.ts`
+
+###  
+
+### `dto/patch-role.dto.ts`
+
+###  
+
+### `dto/role-response.dto.ts`
+
+###  
+
+### `dto/index.ts`
+
+###  
+
+### `role.repository.ts` 
+
+### 
+
+### `role.service.ts`
+
+###  
+
+### `role.controller.ts`
+
+###  
+
+### `role.routes.ts` (con `authenticate` + `authorize`)
+
+###  
+
+### `role.seeder.ts` (ADMIN, SELLER)
+
+###  
+
+### `role.swagger.ts`
+
+### 
+
+### `dto/create-resource.dto.ts`
+
+###  
+ `dto/update-resource.dto.ts`
+
+###  
+ `dto/patch-resource.dto.ts`
+
+###  
+ `dto/resource-response.dto.ts`
+
+###  
+ `dto/index.ts`
+
+###  
+ `resource-catalog.ts`
+
+###  
+ `resource.repository.ts`
+
+###  
+ `resource.service.ts`
+
+###  
+ `resource.controller.ts`
+
+###  
+ `resource.routes.ts`
+
+###  
+ `resource.seeder.ts`
+
+###  
+ `resource.swagger.ts`

@@ -9,6 +9,10 @@ import { PurchaseRoutes } from "../features/business/purchase/purchase.routes";
 import { SaleRoutes } from "../features/business/sale/sale.routes";
 import { ReturnRoutes } from "../features/business/return/return.routes";
 
+import { UserRoutes } from "../features/auth/user/user.routes";
+import { RoleRoutes } from "../features/auth/role/role.routes";
+import { ResourceRoutes } from "../features/auth/resource/resource.routes";
+
 export class Routes {
 
   public clientRoutes: ClientRoutes = new ClientRoutes();
@@ -21,4 +25,8 @@ export class Routes {
   public purchaseRoutes: PurchaseRoutes = new PurchaseRoutes();
   public saleRoutes: SaleRoutes = new SaleRoutes();
   public returnRoutes: ReturnRoutes = new ReturnRoutes();
+
+  public userRoutes: UserRoutes = new UserRoutes();
+  public roleRoutes: RoleRoutes = new RoleRoutes();
+  public resourceRoutes: ResourceRoutes = new ResourceRoutes();
 }
