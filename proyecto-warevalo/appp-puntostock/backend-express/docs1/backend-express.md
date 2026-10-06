@@ -1845,4 +1845,46 @@ Verificación end-to-end de las tres modalidades (OPEN → JWT → JWT+RBAC)
 
 # ![](images/clipboard-1401641870.png)
 
-# CIERRE FASE 
+# CIERRE FASE BACKEND COMPLETO
+
+### PARCHE client.routes.ts (SIN AUTH -\> JWT + RBAC)
+
+### ![](images/clipboard-3791031054.png)
+PARCHE product-type.routes.ts
+
+### ![](images/clipboard-2647146868.png)
+PARCHE product.routes.ts
+
+### ![](images/clipboard-3239534333.png)
+PARCHE branch.routes.ts
+
+### ![](images/clipboard-3775034859.png)
+PARCHE supplier.routes.ts
+
+### ![](images/clipboard-1727893910.png)
+PARCHE inventory.routes.ts
+
+### ![](images/clipboard-1325935285.png)
+PARCHE payment.routes.ts
+
+### ![](images/clipboard-487595102.png)
+PARCHE purchase.routes.ts
+
+### ![](images/clipboard-743724630.png)
+PARCHE sale.routes.ts
+
+### ![](images/clipboard-1972766262.png)
+PARCHE return.routes.ts
+
+### ![](images/clipboard-3864787154.png)
+PARCHE config/index.ts (manejo de JSON malformado, orden de arranque BD-\>puerto, DB_SYNC_FORCE)
+
+### ![](images/clipboard-2882971659.png)
+
+PARCHE database/seeders/counts.ts (agregar users)
+
+### ![](images/clipboard-2171883434.png)
+
+Verificación final
+
+![![](images/clipboard-2453931621.png)](images/clipboard-4016195284.png)

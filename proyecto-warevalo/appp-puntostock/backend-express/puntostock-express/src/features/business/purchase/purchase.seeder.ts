@@ -1,6 +1,6 @@
 import { faker } from "@faker-js/faker";
 import { Purchase } from "./purchase.model";
-import { PurchaseDetail } from "./purchase.model";
+import { PurchaseDetail } from "./purchase-detail.model";
 import { Supplier } from "../supplier/supplier.model";
 import { Product } from "../product/product.model";
 

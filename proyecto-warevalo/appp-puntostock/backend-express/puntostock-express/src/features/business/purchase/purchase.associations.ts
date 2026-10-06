@@ -1,5 +1,5 @@
 import { Purchase } from "./purchase.model";
-import { PurchaseDetail } from "./purchase.model";
+import { PurchaseDetail } from "./purchase-detail.model";
 import { Product } from "../product/product.model";
 
 Purchase.hasMany(PurchaseDetail, { foreignKey: "purchaseId", as: "items" });
