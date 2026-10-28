@@ -10,14 +10,6 @@
 
 ### 2.1 Inicializar npm y scripts
 
-### 
-
-### 
-
-### 
-
-### 
-
 ### TypeScript (`tsconfig.json`)
 
 ### 
@@ -866,11 +858,11 @@ Verificación y cierre final
 
 ![](images/clipboard-734607481.png)
 
-###  Esqueleto controller/routes + carpeta 
+### Esqueleto controller/routes + carpeta
 
 ![](images/clipboard-4152512336.png)
 
-### HTTP Agregador Routes + cableado en Config 
+### HTTP Agregador Routes + cableado en Config
 
 ![](images/clipboard-831601541.png)
 
@@ -882,11 +874,11 @@ Verificación y cierre final
 
 ![](images/clipboard-830218298.png)
 
-###  Rutas PARCHE: GET /api/ventas + GET /api/ventas/:id
+### Rutas PARCHE: GET /api/ventas + GET /api/ventas/:id
 
 ![](images/clipboard-3883136593.png)
 
-###  HTTP: ventas.get.http 
+### HTTP: ventas.get.http
 
 ![](images/clipboard-1972274942.png)
 
@@ -894,7 +886,7 @@ Verificación y cierre final
 
 ![](images/clipboard-3811825463.png)
 
-### Controller PARCHE: create (valida cliente/sucursal/productos, valida stock disponible en Inventario, descuenta stock, calcula subtotal/impuestos/total, transacción) 
+### Controller PARCHE: create (valida cliente/sucursal/productos, valida stock disponible en Inventario, descuenta stock, calcula subtotal/impuestos/total, transacción)
 
 ![](images/clipboard-3430096463.png)
 
@@ -902,7 +894,7 @@ Verificación y cierre final
 
 ![](images/clipboard-2500015639.png)
 
-###  HTTP: ventas.create.http 
+### HTTP: ventas.create.http
 
 ![](images/clipboard-3278757905.png)
 
@@ -910,11 +902,11 @@ Verificación y cierre final
 
 ![](images/clipboard-2752472007.png)
 
-### Controller PARCHE: cancel (no permite cancelar si ya está cancelled, restaura cantidades a Inventario) 
+### Controller PARCHE: cancel (no permite cancelar si ya está cancelled, restaura cantidades a Inventario)
 
 ![](images/clipboard-737532767.png)
 
-### Rutas PARCHE: PATCH /api/ventas/:id/cancel 
+### Rutas PARCHE: PATCH /api/ventas/:id/cancel
 
 ![](images/clipboard-581301422.png)
 
@@ -922,7 +914,7 @@ Verificación y cierre final
 
 ![](images/clipboard-807361327.png)
 
-###  Verificación y cierre
+### Verificación y cierre
 
 ![](images/clipboard-178187800.png)
 
@@ -930,11 +922,11 @@ Verificación y cierre final
 
 ![](images/clipboard-2087569685.png)
 
-###  Rutas PARCHE: DELETE /api/ventas/:id 
+### Rutas PARCHE: DELETE /api/ventas/:id
 
 ![](images/clipboard-91818371.png)
 
-### HTTP: ventas.delete.http 
+### HTTP: ventas.delete.http
 
 ![](images/clipboard-1825018262.png)
 
@@ -942,7 +934,7 @@ Verificación y cierre final
 
 ![](images/clipboard-126641694.png)
 
-### Controller PARCHE payment.controller.ts: validar referenciaId contra Sale cuando referenciaTipo='venta' (cierra el TODO que dejamos en la fase de Pago) 
+### Controller PARCHE payment.controller.ts: validar referenciaId contra Sale cuando referenciaTipo='venta' (cierra el TODO que dejamos en la fase de Pago)
 
 ![](images/clipboard-666366297.png)
 
@@ -954,7 +946,7 @@ Verificación y cierre final
 
 ![](images/clipboard-2435323098.png)
 
-###  swagger/index.ts 
+### swagger/index.ts
 
 ![](images/clipboard-2338314559.png)
 
@@ -964,59 +956,59 @@ Verificación y cierre final
 
 # Modelo Return (devolución, referencia a SaleDetail: "cada devolución referencia líneas vendidas")
 
-### ![](images/clipboard-3719174092.png)  Esqueleto controller/routes + carpeta HTTP
+### ![](images/clipboard-3719174092.png) Esqueleto controller/routes + carpeta HTTP
 
-### ![](images/clipboard-594337611.png)  Agregador Routes + cableado en Config
+### ![](images/clipboard-594337611.png) Agregador Routes + cableado en Config
 
-### ![](images/clipboard-3295510225.png)  Verificación y cierre de la fundación
+### ![](images/clipboard-3295510225.png) Verificación y cierre de la fundación
 
-### ![](images/clipboard-4024166317.png)  Controller PARCHE: getAll + getOne
+### ![](images/clipboard-4024166317.png) Controller PARCHE: getAll + getOne
 
-### ![](images/clipboard-3068259233.png)  Rutas PARCHE: GET /api/devoluciones + GET /api/devoluciones/:id
+### ![](images/clipboard-3068259233.png) Rutas PARCHE: GET /api/devoluciones + GET /api/devoluciones/:id
 
-### ![](images/clipboard-1584425308.png)  HTTP: devoluciones.get.http
+### ![](images/clipboard-1584425308.png) HTTP: devoluciones.get.http
 
-### ![](images/clipboard-985864298.png)  Verificación y cierre
+### ![](images/clipboard-985864298.png) Verificación y cierre
 
-### ![](images/clipboard-2882373607.png)  Controller PARCHE: create
+### ![](images/clipboard-2882373607.png) Controller PARCHE: create
 
-### ![](images/clipboard-2720763784.png)  Rutas PARCHE: POST /api/devoluciones
+### ![](images/clipboard-2720763784.png) Rutas PARCHE: POST /api/devoluciones
 
-### ![](images/clipboard-3231293426.png)  HTTP: devoluciones.create.http
+### ![](images/clipboard-3231293426.png) HTTP: devoluciones.create.http
 
-### ![](images/clipboard-199374936.png)  Verificación y cierre
+### ![](images/clipboard-199374936.png) Verificación y cierre
 
-### ![](images/clipboard-2200408901.png)  Controller PARCHE: approve +reject
+### ![](images/clipboard-2200408901.png) Controller PARCHE: approve +reject
 
-### ![](images/clipboard-1299471938.png) 
+### ![](images/clipboard-1299471938.png)
 
-###   Rutas PARCHE: PATCH /api/devoluciones/:id/approve + PATCH /api/devoluciones/:id/reject
+### Rutas PARCHE: PATCH /api/devoluciones/:id/approve + PATCH /api/devoluciones/:id/reject
 
-### ![](images/clipboard-3368007692.png)  HTTP: devoluciones.approve.http + devoluciones.reject.http
+### ![](images/clipboard-3368007692.png) HTTP: devoluciones.approve.http + devoluciones.reject.http
 
-### ![](images/clipboard-2140263139.png)  Verificación y cierre
+### ![](images/clipboard-2140263139.png) Verificación y cierre
 
-### ![](images/clipboard-980208635.png)  Controller PARCHE: deletePhysical
+### ![](images/clipboard-980208635.png) Controller PARCHE: deletePhysical
 
-### ![](images/clipboard-4105427396.png)  Rutas PARCHE: DELETE /api/devoluciones/:id
+### ![](images/clipboard-4105427396.png) Rutas PARCHE: DELETE /api/devoluciones/:id
 
-### ![](images/clipboard-1600367597.png)  HTTP: devoluciones.delete.http
+### ![](images/clipboard-1600367597.png) HTTP: devoluciones.delete.http
 
-### ![](images/clipboard-1114922162.png)  Verificación y cierre
+### ![](images/clipboard-1114922162.png) Verificación y cierre
 
-### ![](images/clipboard-3877478462.png)  Seeder return.seeder.ts (Faker)
+### ![](images/clipboard-3877478462.png) Seeder return.seeder.ts (Faker)
 
-### ![](images/clipboard-3146711986.png)  PARCHE counts.ts
+### ![](images/clipboard-3146711986.png) PARCHE counts.ts
 
-### ![](images/clipboard-194042508.png)  PARCHE seeders/index.ts
+### ![](images/clipboard-194042508.png) PARCHE seeders/index.ts
 
-### ![](images/clipboard-1708351397.png) 
+### ![](images/clipboard-1708351397.png)
 
-###   Swagger return.swagger.ts
+### Swagger return.swagger.ts
 
-### ![](images/clipboard-1293833112.png)  PARCHE swagger/index.ts
+### ![](images/clipboard-1293833112.png) PARCHE swagger/index.ts
 
-### ![](images/clipboard-3710884176.png)  Verificación y cierre final
+### ![](images/clipboard-3710884176.png) Verificación y cierre final
 
 ### ![](images/clipboard-1682792228.png)
 
@@ -1024,65 +1016,84 @@ Verificación y cierre final
 
 ### src/shared/errors/app-error.ts
 
-### ![](images/clipboard-658750167.png) 
+### ![](images/clipboard-658750167.png)
+
 src/shared/http/base-controller.ts
 
-###  ![](images/clipboard-40285931.png)
+### ![](images/clipboard-40285931.png)
+
 dto/create-client.dto.ts
 
-### ![](images/clipboard-3315842648.png) 
+### ![](images/clipboard-3315842648.png)
+
 dto/update-client.dto.ts
 
-### ![](images/clipboard-3733199501.png) 
+### ![](images/clipboard-3733199501.png)
+
 dto/patch-client.dto.ts
 
-### ![](images/clipboard-2741462563.png) 
+### ![](images/clipboard-2741462563.png)
+
 dto/client-response.dto.ts
 
-### ![](images/clipboard-892889661.png) 
+### ![](images/clipboard-892889661.png)
+
 dto/index.ts
 
-### ![](images/clipboard-196510941.png) 
+### ![](images/clipboard-196510941.png)
+
 client.repository.ts (nuevo)
 
-### ![](images/clipboard-1632405026.png) 
+### ![](images/clipboard-1632405026.png)
+
 client.service.ts (nuevo)
 
-### ![](images/clipboard-4012721992.png) 
+### ![](images/clipboard-4012721992.png)
+
 client.controller.ts (reescrito, delgado)
 
-### ![](images/clipboard-808806422.png) 
+### ![](images/clipboard-808806422.png)
+
 Verificación y cierre
 
 ### ![](images/clipboard-111835318.png)
 
 ### src/shared/database/with-transaction.ts
 
-### ![](images/clipboard-1049591963.png) 
+### ![](images/clipboard-1049591963.png)
+
 dto/create-branch.dto.ts
 
-### ![](images/clipboard-3021801338.png) 
+### ![](images/clipboard-3021801338.png)
+
 dto/update-branch.dto.ts
 
-### ![](images/clipboard-1552942080.png) 
+### ![](images/clipboard-1552942080.png)
+
 dto/patch-branch.dto.ts
 
-### ![](images/clipboard-2372781112.png) 
+### ![](images/clipboard-2372781112.png)
+
 dto/branch-response.dto.ts
 
-### ![](images/clipboard-3418852405.png) 
+### ![](images/clipboard-3418852405.png)
+
 dto/index.ts
 
-### ![](images/clipboard-139862973.png) 
+### ![](images/clipboard-139862973.png)
+
 branch.repository.ts (nuevo)
 
-### ![](images/clipboard-1304953027.png) 
+### ![](images/clipboard-1304953027.png)
+
 branch.service.ts (nuevo)
 
-### ![](images/clipboard-2922822449.png) 
+### ![](images/clipboard-2922822449.png)
+
 branch.controller.ts (reescrito, delgado)
 
-### ![](images/clipboard-3728392111.png) 
+### ![](images/clipboard-3728392111.png)
+
 Verificación y cierre
 
 ![](images/clipboard-4072830561.png)
@@ -1091,21 +1102,21 @@ Verificación y cierre
 
 ### dto/create-product.dto.ts
 
-### ![](images/clipboard-1825449804.png)  dto/update-product.dto.ts
+### ![](images/clipboard-1825449804.png) dto/update-product.dto.ts
 
-### ![](images/clipboard-1526869592.png)  dto/patch-product.dto.ts
+### ![](images/clipboard-1526869592.png) dto/patch-product.dto.ts
 
-### ![](images/clipboard-1481316180.png)  dto/product-response.dto.ts
+### ![](images/clipboard-1481316180.png) dto/product-response.dto.ts
 
-### ![](images/clipboard-3242809603.png)  dto/index.ts
+### ![](images/clipboard-3242809603.png) dto/index.ts
 
-### ![](images/clipboard-3660976162.png)  product.repository.ts (nuevo)
+### ![](images/clipboard-3660976162.png) product.repository.ts (nuevo)
 
-### ![](images/clipboard-106593948.png)  product.service.ts (nuevo — aquí se mueve la validación de productTypeId activo)
+### ![](images/clipboard-106593948.png) product.service.ts (nuevo — aquí se mueve la validación de productTypeId activo)
 
-### ![](images/clipboard-115982543.png)  product.controller.ts (reescrito, delgado)
+### ![](images/clipboard-115982543.png) product.controller.ts (reescrito, delgado)
 
-### ![](images/clipboard-1573128910.png)  Verificación y cierre
+### ![](images/clipboard-1573128910.png) Verificación y cierre
 
 ![](images/clipboard-1420077000.png)
 
@@ -1113,39 +1124,39 @@ Verificación y cierre
 
 ### `dto/create-product-type.dto.ts`
 
-###  ![](images/clipboard-1019261262.png)
+### ![](images/clipboard-1019261262.png)
 
 ### `dto/update-product-type.dto.ts`
 
-###  ![](images/clipboard-2683388907.png)
+### ![](images/clipboard-2683388907.png)
 
 ### `dto/patch-product-type.dto.ts`
 
-###  ![](images/clipboard-3144840308.png)
+### ![](images/clipboard-3144840308.png)
 
 ### `dto/product-type-response.dto.ts`
 
-###  ![](images/clipboard-2840900310.png)
+### ![](images/clipboard-2840900310.png)
 
 ### `dto/index.ts`
 
-###  ![](images/clipboard-2248542905.png)
+### ![](images/clipboard-2248542905.png)
 
 ### `product-type.repository.ts`
 
-###  ![](images/clipboard-3783219900.png)
+### ![](images/clipboard-3783219900.png)
 
 ### `product-type.service.ts`
 
-###  ![](images/clipboard-1467862402.png)
+### ![](images/clipboard-1467862402.png)
 
 ### `product-type.controller.ts`
 
-###  ![](images/clipboard-3337687377.png)
+### ![](images/clipboard-3337687377.png)
 
-### `product-type.routes.ts` 
+### `product-type.routes.ts`
 
-###  ![](images/clipboard-1098067796.png)
+### ![](images/clipboard-1098067796.png)
 
 ### Verificación y cierre
 
@@ -1155,39 +1166,39 @@ Verificación y cierre
 
 ### `dto/create-supplier.dto.ts`
 
-###  ![](images/clipboard-3595742150.png)
+### ![](images/clipboard-3595742150.png)
 
 ### `dto/update-supplier.dto.ts`
 
-###  ![](images/clipboard-596459870.png)
+### ![](images/clipboard-596459870.png)
 
 ### `dto/patch-supplier.dto.ts`
 
-###  ![](images/clipboard-2687160196.png)
+### ![](images/clipboard-2687160196.png)
 
 ### `dto/supplier-response.dto.ts`
 
-###  ![](images/clipboard-3488333169.png)
+### ![](images/clipboard-3488333169.png)
 
 ### `dto/index.ts`
 
-###  ![](images/clipboard-243970534.png)
+### ![](images/clipboard-243970534.png)
 
 ### `supplier.repository.ts`
 
-###  ![](images/clipboard-2681853804.png)
+### ![](images/clipboard-2681853804.png)
 
 ### `supplier.service.ts`
 
-###  ![](images/clipboard-3167543047.png)
+### ![](images/clipboard-3167543047.png)
 
 ### `supplier.controller.ts`
 
-###  ![](images/clipboard-2346751811.png)
+### ![](images/clipboard-2346751811.png)
 
 ### `supplier.routes.ts` (
 
-###  ![](images/clipboard-2031140368.png)
+### ![](images/clipboard-2031140368.png)
 
 ### Verificación y cierre
 
@@ -1197,35 +1208,35 @@ Verificación y cierre
 
 ### `dto/create-inventory.dto.ts`
 
-###  ![](images/clipboard-2212998682.png)
+### ![](images/clipboard-2212998682.png)
 
 ### `dto/update-inventory.dto.ts`
 
-###  ![](images/clipboard-1849284752.png)
+### ![](images/clipboard-1849284752.png)
 
 ### `dto/patch-inventory.dto.ts`
 
-###  ![](images/clipboard-2854895861.png)
+### ![](images/clipboard-2854895861.png)
 
 ### `dto/inventory-response.dto.ts`
 
-###  ![](images/clipboard-4138599589.png)
+### ![](images/clipboard-4138599589.png)
 
 ### `dto/index.ts`
 
-###  ![](images/clipboard-3247867039.png)
+### ![](images/clipboard-3247867039.png)
 
-### `inventory.repository.ts` 
+### `inventory.repository.ts`
 
-###  ![](images/clipboard-333157678.png)
+### ![](images/clipboard-333157678.png)
 
-### `inventory.service.ts` 
+### `inventory.service.ts`
 
-###  ![](images/clipboard-1840733232.png)
+### ![](images/clipboard-1840733232.png)
 
 ### `inventory.controller.ts` (reescrito, delgado)
 
-###  ![](images/clipboard-3270540932.png)
+### ![](images/clipboard-3270540932.png)
 
 ### 
 
@@ -1233,7 +1244,7 @@ Verificación y cierre
 
 # COMPRA
 
-### `dto/create-purchase-item.dto.ts` 
+### `dto/create-purchase-item.dto.ts`
 
 ![](images/clipboard-1231516441.png)
 
@@ -1241,25 +1252,25 @@ Verificación y cierre
 
 ![](images/clipboard-2172805935.png)
 
-### `dto/receive-purchase-item.dto.ts` 
+### `dto/receive-purchase-item.dto.ts`
 
-###  ![](images/clipboard-1058166665.png)
+### ![](images/clipboard-1058166665.png)
 
 ### `dto/receive-purchase.dto.ts`
 
-###  ![](images/clipboard-1866222869.png)
+### ![](images/clipboard-1866222869.png)
 
 ### `dto/purchase-response.dto.ts`
 
-###  ![](images/clipboard-2106549399.png)
+### ![](images/clipboard-2106549399.png)
 
 ### `dto/index.ts`
 
-###  ![](images/clipboard-402315821.png)
+### ![](images/clipboard-402315821.png)
 
-### `purchase.repository.ts` 
+### `purchase.repository.ts`
 
-###  ![](images/clipboard-2915651296.png)
+### ![](images/clipboard-2915651296.png)
 
 ### `purchase.service.ts`
 
@@ -1267,7 +1278,7 @@ Verificación y cierre
 
 ### `purchase.controller.ts`
 
-###  ![](images/clipboard-873339386.png)
+### ![](images/clipboard-873339386.png)
 
 ### 
 
@@ -1279,23 +1290,23 @@ Verificación y cierre
 
 ### `dto/create-sale-item.dto.ts`
 
-###  ![](images/clipboard-2942732630.png)
+### ![](images/clipboard-2942732630.png)
 
 ### `dto/create-sale.dto.ts`
 
-###  ![](images/clipboard-2657745841.png)
+### ![](images/clipboard-2657745841.png)
 
 ### `dto/sale-response.dto.ts`
 
-###  ![](images/clipboard-2921241792.png)
+### ![](images/clipboard-2921241792.png)
 
 ### `dto/index.ts`
 
-###  ![](images/clipboard-2990924565.png)
+### ![](images/clipboard-2990924565.png)
 
 ### `sale.repository.ts`
 
-###  ![](images/clipboard-3314916732.png)
+### ![](images/clipboard-3314916732.png)
 
 ### `sale.service.ts`
 
@@ -1303,11 +1314,11 @@ Verificación y cierre
 
 ### `sale.controller.ts`
 
-###  ![](images/clipboard-3098692330.png)
+### ![](images/clipboard-3098692330.png)
 
 ### 
 
-###  
+### 
 
 ### Verificación y cierre
 
@@ -1321,35 +1332,35 @@ Verificación y cierre
 
 ### `dto/update-payment.dto.ts`
 
-###  ![](images/clipboard-4079972761.png)
+### ![](images/clipboard-4079972761.png)
 
 ### `dto/patch-payment.dto.ts`
 
-###  ![](images/clipboard-741955748.png)
+### ![](images/clipboard-741955748.png)
 
 ### `dto/payment-response.dto.ts`
 
-###  ![](images/clipboard-1669584620.png)
+### ![](images/clipboard-1669584620.png)
 
 ### `dto/index.ts`
 
-###  ![](images/clipboard-3736285257.png)
+### ![](images/clipboard-3736285257.png)
 
 ### `payment.repository.ts`
 
-###  ![](images/clipboard-1740688043.png)
+### ![](images/clipboard-1740688043.png)
 
 ### `payment.service.ts`
 
-###  ![](images/clipboard-4238475968.png)
+### ![](images/clipboard-4238475968.png)
 
 ### `payment.controller.ts`
 
-###  ![](images/clipboard-3013780158.png)
+### ![](images/clipboard-3013780158.png)
 
-### `payment.routes.ts` 
+### `payment.routes.ts`
 
-###  ![](images/clipboard-1277475295.png)
+### ![](images/clipboard-1277475295.png)
 
 ### Verificación y cierre
 
@@ -1359,27 +1370,27 @@ Verificación y cierre
 
 ### `dto/create-return.dto.ts`
 
-###  ![](images/clipboard-773166474.png)
+### ![](images/clipboard-773166474.png)
 
 ### `dto/return-response.dto.ts`
 
-###  ![](images/clipboard-3634101342.png)
+### ![](images/clipboard-3634101342.png)
 
 ### `dto/index.ts`
 
-###  ![](images/clipboard-2043656329.png)
+### ![](images/clipboard-2043656329.png)
 
 ### `return.repository.ts`
 
-###  ![](images/clipboard-516989730.png)
+### ![](images/clipboard-516989730.png)
 
-### `return.service.ts` 
+### `return.service.ts`
 
 ### ![](images/clipboard-1066443189.png)
 
 ### `return.controller.ts`
 
-###  ![](images/clipboard-1839132090.png)
+### ![](images/clipboard-1839132090.png)
 
 ### 
 
@@ -1392,57 +1403,75 @@ Verificación y cierre
 ### Instalar dependencias (bcryptjs si falta, jsonwebtoken + \@types/jsonwebtoken)
 
 ### ![](images/clipboard-1483168473.png)
+
 PARCHE .env (JWT_SECRET, JWT_ACCESS_TTL, JWT_REFRESH_TTL_DAYS)
 
 ### ![](images/clipboard-2057715526.png)
+
 src/shared/auth/password.ts
 
 ### ![](images/clipboard-1675896771.png)
+
 src/shared/auth/jwt.ts
 
 ### ![](images/clipboard-1196977898.png)
+
 src/shared/auth/resource-match.ts
 
 ### ![](images/clipboard-1137226243.png)
+
 src/shared/auth/auth-user.ts
 
 ### ![](images/clipboard-1280493806.png)
+
 src/shared/http/error-response.ts
 
 ### ![](images/clipboard-4071777050.png)
+
 PARCHE src/shared/http/base-controller.ts (handleError delega en sendError)
 
 ### ![](images/clipboard-3882242207.png)
+
 src/shared/http/swagger-security.ts
 
 ### ![](images/clipboard-2735819044.png)
+
 src/features/auth/user/user.model.ts
 
 ### ![](images/clipboard-2466488644.png)
+
 src/features/auth/role/role.model.ts
 
 ### ![](images/clipboard-2172139224.png)
+
 src/features/auth/resource/resource.model.ts
 
 ### ![](images/clipboard-2298675182.png)
+
 src/features/auth/role-user/role-user.model.ts
 
 ### ![](images/clipboard-766672424.png)
+
 src/features/auth/resource-role/resource-role.model.ts
 
 ### ![](images/clipboard-2176635222.png)
+
 src/features/auth/refresh-token/refresh-token.model.ts
 
 ### ![](images/clipboard-3548772214.png)
+
 src/features/auth/rbac.associations.ts
 
 ### ![](images/clipboard-1751611073.png)
-PARCHE src/config/index.ts 
+
+PARCHE src/config/index.ts
 
 ### ![](images/clipboard-2219764662.png)
-PARCHE src/database/seeders/index.ts 
+
+PARCHE src/database/seeders/index.ts
 
 ### ![](images/clipboard-1607105391.png)
+
 Verificación y cierre
 
 ### ![](images/clipboard-37887270.png)
@@ -1454,98 +1483,114 @@ Verificación y cierre
 ### dto/create-user.dto.ts
 
 ### ![](images/clipboard-47431707.png)
+
 dto/update-user.dto.ts
 
 ### ![](images/clipboard-4133548338.png)
+
 dto/patch-user.dto.ts
 
 ### ![](images/clipboard-5565.png)
+
 dto/change-password.dto.ts
 
 ### ![](images/clipboard-544202782.png)
+
 dto/user-response.dto.ts
 
 ### ![](images/clipboard-856497532.png)
+
 dto/index.ts
 
 ### ![](images/clipboard-574186134.png)
+
 user.repository.ts
 
 ### ![](images/clipboard-1046575689.png)
-user.service.ts 
+
+user.service.ts
 
 ### ![](images/clipboard-4121510552.png)
+
 user.controller.ts
 
 ### ![](images/clipboard-1340746597.png)
-user.routes.ts 
+
+user.routes.ts
 
 ### ![](images/clipboard-2552402510.png)
-user.seeder.ts 
+
+user.seeder.ts
 
 ### ![](images/clipboard-1720041736.png)
+
 PARCHE counts.ts (agregar users)
 
 ### ![](images/clipboard-3560921344.png)
+
 PARCHE seeders/index.ts (agregar seedUsers)
 
 ### ![](images/clipboard-3482307869.png)
+
 user.swagger.ts
 
 ### ![](images/clipboard-3562113976.png)
 
 ### 
+
 HTTP: users.get.http
 
 ### ![](images/clipboard-4068717488.png)
+
 HTTP: users.create.http
 
 ### ![](images/clipboard-2847671279.png)
+
 Verificación y cierre
 
 ![](images/clipboard-1817079356.png)
 
-# ISS-11: Roles y Resources 
+# ISS-11: Roles y Resources
 
 ### `dto/create-role.dto.ts`
 
-###  ![](images/clipboard-3062874698.png)
+### ![](images/clipboard-3062874698.png)
 
 ### `dto/update-role.dto.ts`
 
-###  ![](images/clipboard-2289640286.png)
+### ![](images/clipboard-2289640286.png)
 
 ### `dto/patch-role.dto.ts`
 
-###  ![](images/clipboard-4290404892.png)
+### ![](images/clipboard-4290404892.png)
 
 ### `dto/role-response.dto.ts`
 
-###  ![](images/clipboard-1184637335.png)
+### ![](images/clipboard-1184637335.png)
 
 ### `dto/index.ts`
 
-###  ![](images/clipboard-1942206871.png)
+### ![](images/clipboard-1942206871.png)
 
-### `role.repository.ts` 
+### `role.repository.ts`
 
 ### ![](images/clipboard-4200455794.png)
 
 ### `role.service.ts`
 
-###  ![](images/clipboard-374603467.png)
+### ![](images/clipboard-374603467.png)
 
 ### `role.controller.ts`
 
-###  ![](images/clipboard-2861808196.png)
+### ![](images/clipboard-2861808196.png)
 
 ### `role.routes.ts` (con `authenticate` + `authorize`)
 
-###  ![](images/clipboard-1718825167.png)
+### ![](images/clipboard-1718825167.png)
 
 ### `role.seeder.ts` (ADMIN, SELLER)
 
-###  ![](images/clipboard-1738341336.png)
+### ![](images/clipboard-1738341336.png)
 
 ### `role.swagger.ts`
 
@@ -1553,38 +1598,49 @@ Verificación y cierre
 
 ### `dto/create-resource.dto.ts`
 
-### ![](images/clipboard-196408420.png) 
- `dto/update-resource.dto.ts`
+### ![](images/clipboard-196408420.png)
 
-### ![](images/clipboard-63472325.png) 
- `dto/patch-resource.dto.ts`
+`dto/update-resource.dto.ts`
 
-### ![](images/clipboard-2643657153.png) 
- `dto/resource-response.dto.ts`
+### ![](images/clipboard-63472325.png)
 
-### ![](images/clipboard-4084449481.png) 
- `dto/index.ts`
+`dto/patch-resource.dto.ts`
 
-### ![](images/clipboard-4206357310.png) 
- `resource-catalog.ts`
+### ![](images/clipboard-2643657153.png)
 
-### ![](images/clipboard-218138418.png) 
- `resource.repository.ts`
+`dto/resource-response.dto.ts`
 
-### ![](images/clipboard-1254131808.png) 
- `resource.service.ts`
+### ![](images/clipboard-4084449481.png)
 
-### ![](images/clipboard-2109148038.png) 
- `resource.controller.ts`
+`dto/index.ts`
 
-### ![](images/clipboard-96807022.png) 
- `resource.routes.ts`
+### ![](images/clipboard-4206357310.png)
 
-### ![](images/clipboard-4203491096.png) 
- `resource.seeder.ts`
+`resource-catalog.ts`
 
-### ![](images/clipboard-2601350141.png) 
- `resource.swagger.ts`
+### ![](images/clipboard-218138418.png)
+
+`resource.repository.ts`
+
+### ![](images/clipboard-1254131808.png)
+
+`resource.service.ts`
+
+### ![](images/clipboard-2109148038.png)
+
+`resource.controller.ts`
+
+### ![](images/clipboard-96807022.png)
+
+`resource.routes.ts`
+
+### ![](images/clipboard-4203491096.png)
+
+`resource.seeder.ts`
+
+### ![](images/clipboard-2601350141.png)
+
+`resource.swagger.ts`
 
 ![](images/clipboard-2482946531.png)
 
@@ -1602,7 +1658,7 @@ Verificación y cierre
 
 ![](images/clipboard-1332873048.png)
 
-###  role-user.repository.ts
+### role-user.repository.ts
 
 ![](images/clipboard-515273592.png)
 
@@ -1610,11 +1666,11 @@ Verificación y cierre
 
 ![](images/clipboard-235777323.png)
 
-###  role-user.controller.ts
+### role-user.controller.ts
 
 ![](images/clipboard-119624647.png)
 
-###  role-user.routes.ts
+### role-user.routes.ts
 
 ![](images/clipboard-1045160973.png)
 
@@ -1642,11 +1698,11 @@ Verificación y cierre
 
 ![](images/clipboard-1550546168.png)
 
-###  resource-role.repository.ts
+### resource-role.repository.ts
 
 ![](images/clipboard-3284444097.png)
 
-###  resource-role.service.ts
+### resource-role.service.ts
 
 ![](images/clipboard-485603264.png)
 
@@ -1654,11 +1710,11 @@ Verificación y cierre
 
 ![](images/clipboard-534741127.png)
 
-###  resource-role.routes.ts
+### resource-role.routes.ts
 
 ![](images/clipboard-467350337.png)
 
-###  **resource-role.seeder.ts** 
+### **resource-role.seeder.ts**
 
 ![](images/clipboard-1986330583.png)
 
@@ -1668,31 +1724,31 @@ Verificación y cierre
 
 ### 
 
-#  ISS-13: Middlewares de acceso
+# ISS-13: Middlewares de acceso
 
-### `shared/auth/jwt.ts` 
+### `shared/auth/jwt.ts`
 
 ### ![](images/clipboard-1443901016.png)
 
-### `shared/http/error-response.ts` 
+### `shared/http/error-response.ts`
 
-###  ![](images/clipboard-1971994930.png)
+### ![](images/clipboard-1971994930.png)
 
 ### `access/authenticate.middleware.ts`
 
-###  ![](images/clipboard-3092048190.png)
+### ![](images/clipboard-3092048190.png)
 
 ### `access/authorize.middleware.ts`
 
-###  ![](images/clipboard-3458871876.png)
+### ![](images/clipboard-3458871876.png)
 
 ### `access/index.ts` (barrel)
 
-###  
+### 
 
 ### **PARCHE** de las **10** rutas de negocio (no 5 como en la guía original, porque tu proyecto tiene 10features): `client.routes.ts`, `branch.routes.ts`, `product-type.routes.ts`, `product.routes.ts`, `supplier.routes.ts`, `inventory.routes.ts`, `purchase.routes.ts`, `sale.routes.ts`, `payment.routes.ts`, `return.routes.ts`
 
-###  ![](images/clipboard-3458871876.png)
+### ![](images/clipboard-3458871876.png)
 
 ![](images/clipboard-2940941248.png)
 
@@ -1716,15 +1772,15 @@ Verificación y cierre
 
 ### ![](images/clipboard-2784622495.png)
 
-# ISS-14: Feature RefreshToken 
+# ISS-14: Feature RefreshToken
 
-###  **dto/refresh-token-response.dto.ts**
+### **dto/refresh-token-response.dto.ts**
 
 ### ![](images/clipboard-3429508411.png)
 
 ### `dto/index.ts`
 
-###  ![](images/clipboard-2110692891.png)
+### ![](images/clipboard-2110692891.png)
 
 ### `refresh-token.repository.ts` (findByHash con lock pesimista, revokeFamily, revokeAllByUser,purgeInactiveByUser)
 
@@ -1732,23 +1788,23 @@ Verificación y cierre
 
 ### `refresh-token.service.ts` (issue, rotate con reuse detection, revokeByToken, gestión de sesiones propias)
 
-###  ![](images/clipboard-1019162464.png)
+### ![](images/clipboard-1019162464.png)
 
 ### `refresh-token.controller.ts`
 
-###  ![](images/clipboard-763330885.png)
+### ![](images/clipboard-763330885.png)
 
 ### `refresh-token.routes.ts` (modalidad JWT, sin authorize)
 
-###  ![](images/clipboard-2943538027.png)
+### ![](images/clipboard-2943538027.png)
 
 ### `refresh-token.swagger.ts`
 
-###  ![](images/clipboard-1833948580.png)
+### ![](images/clipboard-1833948580.png)
 
 ### Cableado en `routes/index.ts` y `config/index.ts`
 
-###  ![](images/clipboard-1837532668.png)
+### ![](images/clipboard-1837532668.png)
 
 ### 
 
@@ -1756,23 +1812,23 @@ Verificación y cierre
 
 ### `dto/login.dto.ts`
 
-###  ![](images/clipboard-3337982463.png)
+### ![](images/clipboard-3337982463.png)
 
 ### `dto/refresh-session.dto.ts`
 
-###  ![](images/clipboard-1251734493.png)
+### ![](images/clipboard-1251734493.png)
 
 ### `dto/logout-session.dto.ts`
 
-###  ![](images/clipboard-4176730945.png)
+### ![](images/clipboard-4176730945.png)
 
 ### `dto/session-response.dto.ts` (`SessionTokensDto` + `ProfileDto`)
 
-###  ![](images/clipboard-2783785216.png)
+### ![](images/clipboard-2783785216.png)
 
 ### `dto/index.ts`
 
-###  ![](images/clipboard-2892864614.png)
+### ![](images/clipboard-2892864614.png)
 
 ### `session.service.ts` (login, refresh, logout, profile, myPermissions — orquesta UserRepository,RefreshTokenService, ResourceRoleService)
 
@@ -1780,19 +1836,19 @@ Verificación y cierre
 
 ### `session.controller.ts`
 
-###  ![](images/clipboard-921465377.png)
+### ![](images/clipboard-921465377.png)
 
 ### `session.routes.ts` (login/refresh/logout OPEN; perfil/permisos JWT)
 
-###  ![](images/clipboard-1847814904.png)
+### ![](images/clipboard-1847814904.png)
 
 ### `session.swagger.ts`
 
-###  ![](images/clipboard-1026108606.png)
+### ![](images/clipboard-1026108606.png)
 
 ### Cableado en `routes/index.ts` y `config/index.ts`
 
-###  ![](images/clipboard-2465903802.png)
+### ![](images/clipboard-2465903802.png)
 
 ### 
 
@@ -1801,29 +1857,37 @@ Verificación y cierre
 ### dto/login.dto.ts
 
 ### ![](images/clipboard-1060158222.png)
+
 dto/refresh-session.dto.ts
 
 ### ![](images/clipboard-3548578584.png)
+
 dto/logout-session.dto.ts
 
 ### ![](images/clipboard-1456929514.png)
+
 dto/session-response.dto.ts
 
 ### ![](images/clipboard-3940703491.png)
+
 dto/index.ts
 
 ### ![](images/clipboard-2770847771.png)
+
 session.service.ts (orquesta UserRepository, RefreshTokenService, ResourceRoleService)
 
 ### ![](images/clipboard-4099280200.png)
+
 session.controller.ts
 
 ### ![](images/clipboard-1066005353.png)
+
 session.routes.ts (login/refresh/logout = OPEN; perfil/permisos = JWT, sin authorize)
 
 ### ![](images/clipboard-3262805355.png)
 
 ### 
+
 session.swagger.ts
 
 ### ![](images/clipboard-2695700987.png)
@@ -1831,12 +1895,15 @@ session.swagger.ts
 HTTP: session.login.http
 
 ### ![](images/clipboard-278592944.png)
+
 HTTP: session.refresh.http
 
 ### ![](images/clipboard-792409274.png)
+
 HTTP: session.profile.http
 
 ### ![](images/clipboard-2512352876.png)
+
 Verificación end-to-end de las tres modalidades (OPEN → JWT → JWT+RBAC)
 
 ### ![](images/clipboard-953558607.png)
@@ -1850,33 +1917,43 @@ Verificación end-to-end de las tres modalidades (OPEN → JWT → JWT+RBAC)
 ### PARCHE client.routes.ts (SIN AUTH -\> JWT + RBAC)
 
 ### ![](images/clipboard-3791031054.png)
+
 PARCHE product-type.routes.ts
 
 ### ![](images/clipboard-2647146868.png)
+
 PARCHE product.routes.ts
 
 ### ![](images/clipboard-3239534333.png)
+
 PARCHE branch.routes.ts
 
 ### ![](images/clipboard-3775034859.png)
+
 PARCHE supplier.routes.ts
 
 ### ![](images/clipboard-1727893910.png)
+
 PARCHE inventory.routes.ts
 
 ### ![](images/clipboard-1325935285.png)
+
 PARCHE payment.routes.ts
 
 ### ![](images/clipboard-487595102.png)
+
 PARCHE purchase.routes.ts
 
 ### ![](images/clipboard-743724630.png)
+
 PARCHE sale.routes.ts
 
 ### ![](images/clipboard-1972766262.png)
+
 PARCHE return.routes.ts
 
 ### ![](images/clipboard-3864787154.png)
+
 PARCHE config/index.ts (manejo de JSON malformado, orden de arranque BD-\>puerto, DB_SYNC_FORCE)
 
 ### ![](images/clipboard-2882971659.png)

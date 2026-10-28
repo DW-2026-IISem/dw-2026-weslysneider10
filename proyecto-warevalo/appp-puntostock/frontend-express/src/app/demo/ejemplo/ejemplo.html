@@ -1,0 +1,101 @@
+<div class="ejemplo-alcance">
+  <p-card>
+    <ng-template pTemplate="header">
+      <div class="px-6 pt-6">
+        <span class="text-sm font-medium text-slate-500">
+          PuntoStock · Ejemplo de componente
+        </span>
+        <h1 class="mt-2 text-2xl font-bold text-slate-900">
+          Producto
+        </h1>
+      </div>
+    </ng-template>
+
+    <div class="space-y-5">
+      <div>
+        <label
+          for="nombre"
+          class="mb-2 block text-sm font-medium text-slate-700"
+        >
+          Nombre
+        </label>
+
+        <input
+          id="nombre"
+          pInputText
+          class="w-full"
+          [value]="producto().nombre"
+          (input)="cambiarNombre($event)"
+        />
+      </div>
+
+      <div class="rounded-xl bg-slate-50 p-4">
+        <p class="text-sm text-slate-500">
+          Producto
+        </p>
+
+        <p class="mt-1 text-lg font-semibold text-slate-900">
+          {{ producto().nombre }}
+        </p>
+
+        <p class="mt-3 text-2xl font-bold text-slate-900">
+          ${{ producto().precio }}
+        </p>
+
+        <p class="mt-1 text-sm text-slate-500">
+          Precio con IVA: ${{ iva() }}
+        </p>
+      </div>
+
+      <div class="flex items-center gap-3">
+        <span class="text-sm font-medium text-slate-700">
+          Estado:
+        </span>
+
+        <p-tag
+          [value]="estadoTexto()"
+          [severity]="estadoSeverity()"
+        />
+      </div>
+
+      <p class="text-sm text-slate-600">
+        {{ vistaPrevia() }}
+      </p>
+
+      <p-message
+        *ngIf="!producto().activo"
+        severity="warn"
+        text="El producto está inactivo y el borrado lógico lo ocultaría de las listas."
+      />
+
+      <div class="flex flex-wrap gap-2">
+        <p-button
+          label="+1000"
+          icon="pi pi-plus"
+          (onClick)="aumentarPrecio()"
+        />
+
+        <p-button
+          label="-1000"
+          icon="pi pi-minus"
+          severity="secondary"
+          (onClick)="disminuirPrecio()"
+        />
+
+        <p-button
+          label="Cambiar estado"
+          icon="pi pi-refresh"
+          severity="contrast"
+          (onClick)="cambiarEstado()"
+        />
+
+        <p-button
+          label="Reiniciar"
+          icon="pi pi-undo"
+          severity="secondary"
+          (onClick)="reiniciar()"
+        />
+      </div>
+    </div>
+  </p-card>
+</div>

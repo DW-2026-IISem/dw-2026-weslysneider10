@@ -1,0 +1,24 @@
+<header
+  class="sticky top-0 z-30 flex h-16 items-center gap-3 border-b border-slate-200 bg-white px-4 sm:px-6"
+>
+  <button
+    pButton
+    type="button"
+    text
+    rounded
+    aria-label="Mostrar u ocultar el menú"
+    (click)="menuRequested.emit()"
+  >
+    <i class="pi pi-bars" aria-hidden="true"></i>
+  </button>
+
+  <div class="min-w-0 flex-1">
+    <p class="truncate text-sm font-semibold text-slate-900">
+      {{ appName() }}
+    </p>
+
+    <p class="truncate text-xs text-slate-500">
+      Gestión de productos, compras, ventas e inventario
+    </p>
+  </div>
+</header>

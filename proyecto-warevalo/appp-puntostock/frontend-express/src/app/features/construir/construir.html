@@ -1,0 +1,40 @@
+<div class="flex min-h-dvh flex-col bg-slate-50">
+  <app-header
+    (menuRequested)="onMenuToggle()"
+  />
+
+  <div class="flex flex-1">
+    @if (!sidebarCollapsed()) {
+      <aside class="hidden w-72 shrink-0 lg:block">
+        <app-aside [items]="items" />
+      </aside>
+    }
+
+    <main class="min-w-0 flex-1 p-4 sm:p-6">
+      <p-card>
+        <ng-template #titleTemplate>
+          {{ title() }}
+        </ng-template>
+
+        <p class="mt-2 text-sm leading-6 text-slate-600">
+          Bienvenido a PuntoStock Express. Elige una opción del menú
+          para explorar la estructura del sistema.
+        </p>
+      </p-card>
+    </main>
+  </div>
+
+  <app-footer />
+
+  <p-drawer
+    [(visible)]="mobileOpen"
+    header="Menú"
+    position="left"
+    styleClass="w-72"
+  >
+    <app-aside
+      [items]="items"
+      (navigated)="mobileOpen.set(false)"
+    />
+  </p-drawer>
+</div>

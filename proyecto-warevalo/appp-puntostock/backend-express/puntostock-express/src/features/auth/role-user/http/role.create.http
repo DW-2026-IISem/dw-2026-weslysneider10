@@ -1,0 +1,29 @@
+### Feature User — CREATE / UPDATE / DELETE (modalidad JWT + RBAC)
+## iniciar sesion como admin
+
+
+
+@baseUrl = http://localhost:3000
+
+# @name loginAdmin
+POST {{baseUrl}}/api/sesion/login
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+  "identifier": "admin",
+  "password": "Admin123!"
+}
+
+###
+@token = {{loginAdmin.response.body.$.access_token}}
+
+### Assign/reactivate a role for a user
+POST {{baseUrl}}/api/asignaciones-rol
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+  "user_id": 4,
+  "role_id": 4
+}

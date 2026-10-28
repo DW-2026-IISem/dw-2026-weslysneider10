@@ -3,10 +3,42 @@
 ### Leyenda: SIN AUTH (sin middleware JWT / sin autenticación)
 
 @baseUrl = http://localhost:3000
+### Feature User — CREATE / UPDATE / DELETE (modalidad JWT + RBAC)
+## iniciar sesion como admin
 
+
+
+@baseUrl = http://localhost:3000
+
+# @name loginAdmin
+POST {{baseUrl}}/api/sesion/login
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+  "identifier": "wesly.usuario1",
+  "password": "Password123!"
+}
+
+###
+@token = {{loginAdmin.response.body.$.access_token}}
+
+
+
+### listar clientes
+GET {{baseUrl}}/api/clientes  
+Authorization: Bearer {{token}}
+
+
+### consultar clientes 
+GET {{baseUrl}}/api/clientes/2
+Authorization: Bearer {{token}}
+
+
+### crear cliente
 # @name createClient
 POST {{baseUrl}}/api/clientes
-
+Authorization: Bearer {{token}}
 Content-Type: application/json
 
 {
