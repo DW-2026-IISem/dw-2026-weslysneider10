@@ -23,6 +23,14 @@ export const routes: Routes = [
             (m) => m.ClientList,
           ),
       },
+      {
+        path: 'tipos-producto',
+        title: 'Tipos de producto · PuntoStock',
+        loadComponent: () =>
+          import('./features/product-types/product-type-list/product-type-list').then(
+            (m) => m.ProductTypeList,
+          ),
+      },
     ],
   },
   {

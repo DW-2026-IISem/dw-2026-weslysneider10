@@ -1,0 +1,84 @@
+<form
+  [formGroup]="form"
+  (ngSubmit)="submit()"
+  class="space-y-4"
+>
+  <div>
+    <label for="type-name" class="mb-1 block text-sm font-medium">
+      Nombre *
+    </label>
+
+    <input
+      id="type-name"
+      pInputText
+      formControlName="name"
+      placeholder="Aseo"
+      class="w-full"
+    />
+
+    @if (form.controls.name.touched && form.controls.name.hasError('required')) {
+      <p-message severity="error" size="small" variant="simple">
+        El nombre es obligatorio.
+      </p-message>
+    }
+
+    @if (form.controls.name.touched && form.controls.name.hasError('maxlength')) {
+      <p-message severity="error" size="small" variant="simple">
+        El nombre no puede superar los 120 caracteres.
+      </p-message>
+    }
+  </div>
+
+  <div>
+    <label for="type-description" class="mb-1 block text-sm font-medium">
+      Descripción
+    </label>
+
+    <textarea
+      id="type-description"
+      pTextarea
+      formControlName="description"
+      rows="3"
+      placeholder="Productos de limpieza y cuidado personal"
+      class="w-full"
+    ></textarea>
+  </div>
+
+  <div>
+    <label for="type-status" class="mb-1 block text-sm font-medium">
+      Estado
+    </label>
+
+    <p-select
+      inputId="type-status"
+      formControlName="status"
+      [options]="statusOptions"
+      optionLabel="label"
+      optionValue="value"
+      [fluid]="true"
+    />
+
+    @if (productType()) {
+      <p class="mt-1 text-sm text-slate-500">
+        El estado solo cambia mediante la baja lógica.
+      </p>
+    }
+  </div>
+
+  <div class="flex justify-end gap-2 border-t border-slate-100 pt-4">
+    <button
+      pButton
+      type="button"
+      severity="secondary"
+      [outlined]="true"
+      (click)="cancelled.emit()"
+    >
+      <span pButtonLabel>Cancelar</span>
+    </button>
+
+    <button pButton type="submit" [loading]="saving()">
+      <i pButtonIcon class="pi pi-check"></i>
+      <span pButtonLabel>Guardar</span>
+    </button>
+  </div>
+</form>

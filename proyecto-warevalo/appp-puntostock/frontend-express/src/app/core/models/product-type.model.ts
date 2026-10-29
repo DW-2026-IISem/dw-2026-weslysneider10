@@ -15,3 +15,9 @@ export type CreateProductType = Omit<
 >;
 
 export type UpdateProductType = Partial<CreateProductType>;
+
+export interface ProductTypePayload {
+  name: string;
+  description: string | null;
+  status?: RecordStatus;
+}

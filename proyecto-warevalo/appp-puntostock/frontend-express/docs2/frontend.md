@@ -293,3 +293,29 @@ Ahora vamos a preparar el Header para que el botón de menú emita el evento `me
     ### 9.Correspondencia con el código.
 
 ### ![](images/clipboard-2608217978.png)
+
+# Fase I: Business — ISS-04 — CRUD de tipos de producto
+
+# 
+
+### Paso 1. Verificar el proyecto y Crear el servicio ProductTypeApi
+
+### ![](images/clipboard-2967630463.png)
+
+### Paso 2. Implementar el formulario ProductTypeForm
+
+### ![](images/clipboard-1187413489.png)
+
+### Paso 3. Implementar ProductTypeList
+
+### ![](images/clipboard-1386043305.png)
+
+### Paso 4. Registrar la navegación
+
+### ![](images/clipboard-3319972474.png)
+
+### Paso 5. Verificar la implementación
+
+### ![](images/clipboard-1264183269.png)
+
+### 
