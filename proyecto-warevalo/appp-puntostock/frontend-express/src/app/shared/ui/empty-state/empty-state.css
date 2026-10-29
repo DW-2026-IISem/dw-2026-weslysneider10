@@ -1,0 +1,38 @@
+:host {
+  display: block;
+}
+
+.empty-state {
+  display: flex;
+  min-height: 220px;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  padding: 2rem;
+  text-align: center;
+  border: 1px dashed var(--surface-border, #cbd5e1);
+  border-radius: 0.75rem;
+}
+
+.empty-state__icon {
+  display: grid;
+  width: 3rem;
+  height: 3rem;
+  place-items: center;
+  margin-bottom: 0.75rem;
+  border-radius: 50%;
+  background: var(--surface-ground, #f1f5f9);
+  color: var(--text-color-secondary, #64748b);
+  font-size: 1.75rem;
+}
+
+h2 {
+  margin: 0;
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+
+p {
+  margin: 0.5rem 0 0;
+  color: var(--text-color-secondary, #64748b);
+}

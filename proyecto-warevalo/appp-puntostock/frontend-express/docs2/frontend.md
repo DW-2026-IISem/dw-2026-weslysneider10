@@ -129,7 +129,7 @@
 ## 1.1 Los conceptos que se agregan, uno por vez
 
 | Concepto | Para qué sirve en PuntoStock |
-|----|----|
+|------------------------------------|------------------------------------|
 | `input()` | El componente padre le entrega al Aside las opciones del menú. |
 | `output()` | El Header o el Aside avisan al componente padre cuando ocurre una acción. |
 | `signal()` | Guarda el estado local, por ejemplo, el título de la pantalla o si el menú móvil está abierto. |
@@ -211,3 +211,43 @@ Ahora vamos a preparar el Header para que el botón de menú emita el evento `me
 ![](images/clipboard-3673032045.png)
 
 ![](images/clipboard-38031851.png)
+
+# Fase I: Frontend — ISS-02 — Núcleo: environment, modelos, servicios y layout
+
+### 2.1 — Environment: 
+
+![](images/clipboard-1869951758.png)
+
+### 2.2 — Modelos: 
+
+### ![](images/clipboard-2315865145.png)
+
+### 2.3 — Servicios HTTP: siguiente paso; cada servicio debe devolver la entidad desenvuelta de la respuesta de Express.
+
+![](images/clipboard-1248304750.png)
+
+![](images/clipboard-3614549825.png)
+
+![](images/clipboard-665385611.png)
+
+### 2.4 — Utilidades: `toApiMessage` y `NotificationService`.
+
+### ![](images/clipboard-1005964098.png)
+
+### 2.5 — Componentes compartidos: `PageHeader`, `EmptyState` y `StatusTag`.
+
+### ![](images/clipboard-575521473.png)
+
+### 2.6 — Shell: integrar el layout
+
+### ![](images/clipboard-1504703881.png)
+
+### 2.7 — HttpClient: comprobar su registro, sin añadir interceptores de sesión en esta fase.
+
+### ![](images/clipboard-1357841277.png)
+
+### 2.8 — Verificación: compilación y comprobaciones finales del ISS.
+
+![](images/clipboard-3053412573.png)
+
+![](images/clipboard-3485480036.png)

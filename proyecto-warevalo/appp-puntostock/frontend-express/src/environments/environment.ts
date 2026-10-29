@@ -1,7 +1,7 @@
 export const environment = {
-  production: false,
-
+  production: true,
+  appName: 'PuntoStock Express',
   apiUrl: 'http://localhost:3000/api',
-
-  primeUiLicense: ''
+  requireAuth: true,
+  primeUiLicense: '',
 };

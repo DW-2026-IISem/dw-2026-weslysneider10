@@ -8,8 +8,15 @@ export const routes: Routes = [
   },
   {
     path: '',
-    pathMatch: 'full',
-    redirectTo: 'construir',
+    loadComponent: () =>
+      import('./layout/shell/shell').then((m) => m.Shell),
+    children: [
+      {
+        path: '',
+        pathMatch: 'full',
+        redirectTo: 'construir',
+      },
+    ],
   },
   {
     path: '**',

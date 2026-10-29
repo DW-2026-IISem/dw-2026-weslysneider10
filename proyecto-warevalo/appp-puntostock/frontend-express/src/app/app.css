@@ -1,3 +1,65 @@
-/*
- * Los estilos de App se resuelven mediante Tailwind y el tema de PrimeNG.
- */
+:host {
+  display: block;
+  min-height: 100dvh;
+}
+
+.app-shell {
+  display: flex;
+  min-height: 100dvh;
+  flex-direction: column;
+  background: var(--surface-ground, #f8fafc);
+  color: var(--text-color, #1e293b);
+}
+
+.app-shell__body {
+  display: flex;
+  flex: 1;
+  min-height: 0;
+}
+
+.app-shell__sidebar {
+  flex: 0 0 17rem;
+  width: 17rem;
+  padding: 1rem;
+  overflow-y: auto;
+  background: var(--surface-card, #fff);
+  border-right: 1px solid var(--surface-border, #e2e8f0);
+}
+
+.app-shell__content {
+  flex: 1;
+  min-width: 0;
+  padding: 1.5rem;
+  overflow-x: auto;
+}
+
+.app-shell__footer {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1rem 1.5rem;
+  border-top: 1px solid var(--surface-border, #e2e8f0);
+  color: var(--text-color-secondary, #64748b);
+  font-size: 0.8rem;
+}
+
+@media (max-width: 768px) {
+  .app-shell__body {
+    flex-direction: column;
+  }
+
+  .app-shell__sidebar {
+    width: 100%;
+    flex-basis: auto;
+    border-right: 0;
+    border-bottom: 1px solid var(--surface-border, #e2e8f0);
+  }
+
+  .app-shell__content {
+    padding: 1rem;
+  }
+
+  .app-shell__footer {
+    flex-direction: column;
+  }
+}
