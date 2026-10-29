@@ -55,6 +55,20 @@ export const routes: Routes = [
             (m) => m.SaleForm,
           ),
       },
+
+    {
+      path: 'dashboard',
+      title: 'Dashboard',
+      loadComponent: () =>
+        import('./features/dashboard/dashboard').then((m) => m.Dashboard),
+    },
+
+    {
+      path: 'detalle-ventas',
+      title: 'Detalle de ventas',
+      loadComponent: () =>
+        import('./features/product-sales/product-sale-list/product-sale-list').then((m) => m.ProductSaleList),
+    },
     ],
   },
   {

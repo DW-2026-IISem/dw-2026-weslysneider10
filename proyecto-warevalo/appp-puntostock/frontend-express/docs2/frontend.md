@@ -405,3 +405,41 @@ Ahora vamos a preparar el Header para que el botón de menú emita el evento `me
 ### Compilar y validar los criterios de aceptación.
 
 ### ![](images/clipboard-1572041551.png)
+
+# Fase I: Business — ISS-07 — Detalle de ventas, dashboard y cierre
+
+### Modelo `ProductSale` — estructura de las líneas de venta.
+
+![](images/clipboard-2050449229.png)
+
+### Servicio `ProductSaleApi` — conexión con `/api/detalle-ventas`.
+
+![](images/clipboard-4126976051.png)
+
+### Formulario de detalle de venta — crear y editar cantidades.
+
+![](images/clipboard-784161231.png)
+
+### Listado de detalles de venta — consultar, crear, editar y eliminar líneas.
+
+![](images/clipboard-2309536876.png)
+
+### Componente `SaleDetail` — presentar la cabecera y los productos de una venta.
+
+![](images/clipboard-2976801554.png)
+
+### Integración del detalle — mostrar la información desde el listado de ventas.
+
+![](images/clipboard-1584055694.png)
+
+### Dashboard — indicadores, ingresos, stock bajo y últimas ventas.
+
+![](images/clipboard-2911168683.png)
+
+### Rutas y navegación — habilitar `/detalle-ventas` y `/dashboard`.
+
+![](images/clipboard-3229706165.png)
+
+### Compilación y validación — ejecutar `npx ng build` y corregir los errores.
+
+![](images/clipboard-4263844497.png)
