@@ -44,7 +44,7 @@ export class Shell {
       items: [
         { label: 'Inventario', icon: 'pi pi-warehouse', disabled: true },
         { label: 'Compras', icon: 'pi pi-shopping-cart', disabled: true },
-        { label: 'Ventas', icon: 'pi pi-receipt', disabled: true },
+        { label: 'Ventas', icon: 'pi pi-receipt', routerLink: '/ventas' },
         { label: 'Pagos', icon: 'pi pi-wallet', disabled: true },
         { label: 'Devoluciones', icon: 'pi pi-refresh', disabled: true },
       ],

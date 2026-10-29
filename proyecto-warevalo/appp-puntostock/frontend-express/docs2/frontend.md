@@ -359,3 +359,49 @@ Ahora vamos a preparar el Header para que el botón de menú emita el evento `me
 > ### Verificación: ejecutar `npx ng build`, corregir errores y probar la pantalla.
 
 ### ![](images/clipboard-1509869760.png)
+
+# Fase I: Business — ISS-06 — Ventas transaccionales y detalle
+
+### Crear el modelo de ventas.
+
+![](images/clipboard-44011555.png)
+
+### Crear el servicio `SaleApi`.
+
+![](images/clipboard-2613954805.png)
+
+### Implementar el formulario de venta con Signals.
+
+![](images/clipboard-3310818554.png)
+
+### Implementar la carga de clientes y productos activos.
+
+![](images/clipboard-3643956428.png)
+
+### Implementar el borrador local y agregar líneas con validación de stock.
+
+![](images/clipboard-2390393106.png)
+
+### Implementar los totales derivados y el resumen de la venta.
+
+![](images/clipboard-1965979825.png)
+
+### Implementar el envío transaccional de la venta.
+
+![](images/clipboard-4079740465.png)
+
+### Implementar el listado de ventas.
+
+![](images/clipboard-3978234638.png)
+
+### Integrar las rutas de ventas.
+
+![](images/clipboard-4237698001.png)
+
+### Habilitar Ventas en el menú lateral
+
+![](images/clipboard-3623017996.png)
+
+### Compilar y validar los criterios de aceptación.
+
+### ![](images/clipboard-1572041551.png)

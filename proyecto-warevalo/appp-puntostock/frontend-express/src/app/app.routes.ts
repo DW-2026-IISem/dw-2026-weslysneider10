@@ -39,6 +39,22 @@ export const routes: Routes = [
             (m) => m.ProductList,
           ),
       },
+      {
+        path: 'ventas',
+        title: 'Ventas · PuntoStock',
+        loadComponent: () =>
+          import('./features/sales/sale-list/sale-list').then(
+            (m) => m.SaleList,
+          ),
+      },
+      {
+        path: 'ventas/nueva',
+        title: 'Nueva venta · PuntoStock',
+        loadComponent: () =>
+          import('./features/sales/sale-form/sale-form').then(
+            (m) => m.SaleForm,
+          ),
+      },
     ],
   },
   {

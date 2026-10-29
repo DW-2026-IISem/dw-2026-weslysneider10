@@ -1,0 +1,171 @@
+<div class="flex flex-col gap-4">
+  <div class="flex flex-wrap items-center justify-between gap-3">
+    <div>
+      <h1 class="text-2xl font-bold">Registrar venta</h1>
+      <p class="text-surface-500">Selecciona el cliente y agrega los productos.</p>
+    </div>
+
+    <p-button
+      label="Volver"
+      icon="pi pi-arrow-left"
+      severity="secondary"
+      [outlined]="true"
+      (onClick)="cancel()"
+    />
+  </div>
+
+  @if (error()) {
+    <p-message severity="error">{{ error() }}</p-message>
+  }
+
+  <p-card>
+    <div class="flex flex-col gap-4">
+      <div class="flex flex-col gap-2">
+        <label for="client">Cliente</label>
+        <p-select
+          inputId="client"
+          [options]="clients()"
+          optionLabel="name"
+          optionValue="id"
+          [(ngModel)]="clientId"
+          placeholder="Selecciona un cliente"
+          [filter]="true"
+          filterBy="name"
+          [disabled]="loading() || saving()"
+          class="w-full"
+        />
+      </div>
+
+      <div class="grid grid-cols-1 items-end gap-3 md:grid-cols-[1fr_150px_auto]">
+        <div class="flex flex-col gap-2">
+          <label for="product">Producto</label>
+          <p-select
+            inputId="product"
+            [options]="products()"
+            optionLabel="name"
+            optionValue="id"
+            [(ngModel)]="selectedProductId"
+            placeholder="Selecciona un producto"
+            [filter]="true"
+            filterBy="name"
+            [disabled]="loading() || saving()"
+            class="w-full"
+          />
+        </div>
+
+        <div class="flex flex-col gap-2">
+          <label for="quantity">Cantidad</label>
+          <p-inputnumber
+            inputId="quantity"
+            [(ngModel)]="quantity"
+            [min]="1"
+            [max]="selectedProduct()?.quantity ?? 999999"
+            [showButtons]="true"
+            [disabled]="saving()"
+            class="w-full"
+          />
+        </div>
+
+        <p-button
+          label="Agregar"
+          icon="pi pi-plus"
+          (onClick)="addLine()"
+          [disabled]="loading() || saving()"
+        />
+      </div>
+    </div>
+  </p-card>
+
+  <p-card>
+    <h2 class="mb-3 text-lg font-semibold">Productos de la venta</h2>
+
+    <p-table [value]="lines()" [tableStyle]="{ 'min-width': '40rem' }">
+      <ng-template #header>
+        <tr>
+          <th>Producto</th>
+          <th>Precio unitario</th>
+          <th>Cantidad</th>
+          <th>Subtotal</th>
+          <th>Acciones</th>
+        </tr>
+      </ng-template>
+
+      <ng-template #body let-line>
+        <tr>
+          <td>{{ line.product.name }}</td>
+          <td>{{ line.product.price | currency:'COP':'symbol-narrow':'1.0-0' }}</td>
+          <td>{{ line.quantity }}</td>
+          <td>{{ lineTotal(line) | currency:'COP':'symbol-narrow':'1.0-0' }}</td>
+          <td>
+            <p-button
+              icon="pi pi-trash"
+              severity="danger"
+              [text]="true"
+              [rounded]="true"
+              ariaLabel="Eliminar producto"
+              (onClick)="removeLine(line.product.id)"
+              [disabled]="saving()"
+            />
+          </td>
+        </tr>
+      </ng-template>
+
+      <ng-template #emptymessage>
+        <tr>
+          <td colspan="5" class="py-6 text-center text-surface-500">
+            Todavía no has agregado productos.
+          </td>
+        </tr>
+      </ng-template>
+    </p-table>
+  </p-card>
+
+  <p-card>
+    <div class="ml-auto flex w-full max-w-md flex-col gap-4">
+      <div class="flex items-center justify-between">
+        <span>Subtotal</span>
+        <strong>{{ subtotal() | currency:'COP':'symbol-narrow':'1.0-0' }}</strong>
+      </div>
+
+      <div class="flex items-center justify-between gap-4">
+        <label for="tax">Impuestos</label>
+        <p-inputnumber
+          inputId="tax"
+          [(ngModel)]="tax"
+          mode="currency"
+          currency="COP"
+          locale="es-CO"
+          [min]="0"
+          [disabled]="saving()"
+        />
+      </div>
+
+      <div class="flex items-center justify-between gap-4">
+        <label for="discounts">Descuentos</label>
+        <p-inputnumber
+          inputId="discounts"
+          [(ngModel)]="discounts"
+          mode="currency"
+          currency="COP"
+          locale="es-CO"
+          [min]="0"
+          [disabled]="saving()"
+        />
+      </div>
+
+      <div class="flex items-center justify-between border-t border-surface-200 pt-4 text-xl">
+        <strong>Total</strong>
+        <strong>{{ total() | currency:'COP':'symbol-narrow':'1.0-0' }}</strong>
+      </div>
+
+      <p-button
+        label="Registrar venta"
+        icon="pi pi-check"
+        (onClick)="save()"
+        [loading]="saving()"
+        [disabled]="loading() || saving() || lines().length === 0"
+        styleClass="w-full"
+      />
+    </div>
+  </p-card>
+</div>

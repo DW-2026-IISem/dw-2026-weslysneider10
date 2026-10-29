@@ -1,0 +1,79 @@
+<div class="flex flex-col gap-4">
+  <div class="flex flex-wrap items-center justify-between gap-3">
+    <div>
+      <h1 class="text-2xl font-bold">Ventas</h1>
+      <p class="text-surface-500">Consulta las ventas registradas.</p>
+    </div>
+
+    <p-button
+      label="Nueva venta"
+      icon="pi pi-plus"
+      (onClick)="newSale()"
+    />
+  </div>
+
+  @if (error()) {
+    <p-message severity="error">{{ error() }}</p-message>
+  }
+
+  <p-card>
+    <p-table
+      [value]="rows()"
+      [loading]="loading()"
+      [tableStyle]="{ 'min-width': '50rem' }"
+      [rowHover]="true"
+    >
+      <ng-template #header>
+        <tr>
+          <th>N.º</th>
+          <th>Fecha</th>
+          <th>Cliente</th>
+          <th>Subtotal</th>
+          <th>Impuestos</th>
+          <th>Descuentos</th>
+          <th>Total</th>
+          <th>Estado</th>
+          <th>Acciones</th>
+        </tr>
+      </ng-template>
+
+      <ng-template #body let-sale>
+        <tr>
+          <td>{{ sale.id }}</td>
+          <td>{{ (sale.date || sale.createdAt) | date:'dd/MM/yyyy HH:mm' }}</td>
+          <td>{{ clientName(sale.client_id) }}</td>
+          <td>{{ sale.subtotal | currency:'COP':'symbol-narrow':'1.0-0' }}</td>
+          <td>{{ sale.tax | currency:'COP':'symbol-narrow':'1.0-0' }}</td>
+          <td>{{ sale.discounts | currency:'COP':'symbol-narrow':'1.0-0' }}</td>
+          <td class="font-semibold">
+            {{ sale.total | currency:'COP':'symbol-narrow':'1.0-0' }}
+          </td>
+          <td>
+            <p-tag
+              [value]="statusLabel(sale.status)"
+              [severity]="statusSeverity(sale.status)"
+            />
+          </td>
+          <td>
+            <p-button
+              icon="pi pi-eye"
+              severity="secondary"
+              [text]="true"
+              [rounded]="true"
+              ariaLabel="Ver venta"
+              (onClick)="viewSale(sale)"
+            />
+          </td>
+        </tr>
+      </ng-template>
+
+      <ng-template #emptymessage>
+        <tr>
+          <td colspan="9" class="py-6 text-center text-surface-500">
+            No hay ventas registradas.
+          </td>
+        </tr>
+      </ng-template>
+    </p-table>
+  </p-card>
+</div>
