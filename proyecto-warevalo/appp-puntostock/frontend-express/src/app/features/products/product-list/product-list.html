@@ -1,0 +1,165 @@
+<div class="space-y-6">
+  <app-page-header
+    title="Productos"
+    subtitle="Administra productos, tipos y existencias."
+  >
+    <div page-actions class="flex flex-wrap items-center gap-2">
+      <p-tag
+        [value]="lowStockCount() + ' con stock bajo'"
+        severity="warn"
+        [rounded]="true"
+      />
+
+      <button pButton type="button" (click)="openCreate()">
+        <i pButtonIcon class="pi pi-plus"></i>
+        <span pButtonLabel>Nuevo producto</span>
+      </button>
+    </div>
+  </app-page-header>
+
+  <div class="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+    <input
+      pInputText
+      type="text"
+      aria-label="Buscar productos"
+      placeholder="Buscar por nombre, marca o tipo..."
+      class="w-full sm:max-w-md"
+      [value]="search()"
+      (input)="search.set($any($event.target).value)"
+    />
+
+    <button
+      pButton
+      type="button"
+      severity="secondary"
+      [outlined]="true"
+      [loading]="loading()"
+      (click)="load()"
+    >
+      <i pButtonIcon class="pi pi-refresh"></i>
+      <span pButtonLabel>Actualizar</span>
+    </button>
+  </div>
+
+  @if (error()) {
+    <div
+      class="rounded-lg border border-red-200 bg-red-50 p-4 text-sm text-red-700"
+      role="alert"
+    >
+      {{ error() }}
+    </div>
+  }
+
+  <div class="overflow-hidden rounded-xl border border-slate-200 bg-white">
+    <p-table
+      [value]="filteredRows()"
+      [loading]="loading()"
+      [rowHover]="true"
+      dataKey="id"
+      responsiveLayout="scroll"
+      [tableStyle]="{ 'min-width': '65rem' }"
+    >
+      <ng-template #header>
+        <tr>
+          <th>Producto</th>
+          <th>Marca</th>
+          <th>Tipo</th>
+          <th>Precio</th>
+          <th>Stock</th>
+          <th>Stock mínimo</th>
+          <th>Estado</th>
+          <th class="text-right">Acciones</th>
+        </tr>
+      </ng-template>
+
+      <ng-template #body let-row>
+        <tr>
+          <td class="font-medium">{{ row.name }}</td>
+          <td>{{ row.brand }}</td>
+          <td>
+            <p-tag
+              [value]="typeName()(row.product_type_id)"
+              severity="secondary"
+              [rounded]="true"
+            />
+          </td>
+          <td>{{ row.price | currency: 'USD' : 'symbol' : '1.2-2' }}</td>
+          <td>
+            <p-tag
+              [value]="row.quantity.toString()"
+              [severity]="stockSeverity(row)"
+              [rounded]="true"
+            />
+          </td>
+          <td>{{ row.min_stock }}</td>
+          <td>
+            <p-tag
+              [value]="row.status === 'active' ? 'Activo' : 'Inactivo'"
+              [severity]="row.status === 'active' ? 'success' : 'secondary'"
+              [rounded]="true"
+            />
+          </td>
+          <td>
+            <div class="flex justify-end gap-2">
+              <button
+                pButton
+                type="button"
+                severity="secondary"
+                [outlined]="true"
+                size="small"
+                aria-label="Editar producto"
+                (click)="openEdit(row)"
+              >
+                <i pButtonIcon class="pi pi-pencil"></i>
+              </button>
+
+              @if (row.status === 'active') {
+                <button
+                  pButton
+                  type="button"
+                  severity="danger"
+                  [outlined]="true"
+                  size="small"
+                  aria-label="Desactivar producto"
+                  (click)="deactivate(row)"
+                >
+                  <i pButtonIcon class="pi pi-ban"></i>
+                </button>
+              }
+            </div>
+          </td>
+        </tr>
+      </ng-template>
+
+      <ng-template #emptymessage>
+        <tr>
+          <td colspan="8" class="py-8 text-center text-slate-500">
+            @if (search().trim()) {
+              No hay productos que coincidan con la búsqueda.
+            } @else {
+              No hay productos disponibles.
+            }
+          </td>
+        </tr>
+      </ng-template>
+    </p-table>
+  </div>
+</div>
+
+<p-dialog
+  [visible]="dialogVisible()"
+  (visibleChange)="dialogVisible.set($event)"
+  [modal]="true"
+  [draggable]="false"
+  [resizable]="false"
+  [header]="selectedProduct() ? 'Editar producto' : 'Nuevo producto'"
+  [style]="{ width: 'min(95vw, 38rem)' }"
+>
+  <app-product-form
+    [product]="selectedProduct()"
+    [productTypes]="types()"
+    [saving]="saving()"
+    (saved)="save($event)"
+    (cancelled)="dialogVisible.set(false)"
+  />
+</p-dialog>

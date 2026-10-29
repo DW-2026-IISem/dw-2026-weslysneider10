@@ -1,0 +1,162 @@
+<form [formGroup]="form" (ngSubmit)="submit()" class="space-y-4">
+  <div>
+    <label for="product-name" class="mb-1 block text-sm font-medium">
+      Nombre *
+    </label>
+    <input
+      id="product-name"
+      pInputText
+      formControlName="name"
+      class="w-full"
+      placeholder="Detergente"
+    />
+    @if (form.controls.name.touched && form.controls.name.hasError('required')) {
+      <p-message severity="error" size="small" variant="simple">
+        El nombre es obligatorio.
+      </p-message>
+    }
+    @if (form.controls.name.touched && form.controls.name.hasError('maxlength')) {
+      <p-message severity="error" size="small" variant="simple">
+        El nombre no puede superar los 120 caracteres.
+      </p-message>
+    }
+  </div>
+
+  <div>
+    <label for="product-brand" class="mb-1 block text-sm font-medium">
+      Marca *
+    </label>
+    <input
+      id="product-brand"
+      pInputText
+      formControlName="brand"
+      class="w-full"
+      placeholder="Marca del producto"
+    />
+    @if (form.controls.brand.touched && form.controls.brand.hasError('required')) {
+      <p-message severity="error" size="small" variant="simple">
+        La marca es obligatoria.
+      </p-message>
+    }
+  </div>
+
+  <div>
+    <label for="product-price" class="mb-1 block text-sm font-medium">
+      Precio *
+    </label>
+    <p-inputnumber
+      inputId="product-price"
+      formControlName="price"
+      mode="decimal"
+      [min]="0.01"
+      [minFractionDigits]="2"
+      [maxFractionDigits]="2"
+      [fluid]="true"
+    />
+    @if (form.controls.price.touched && form.controls.price.invalid) {
+      <p-message severity="error" size="small" variant="simple">
+        El precio debe ser mayor que cero.
+      </p-message>
+    }
+  </div>
+
+  <div>
+    <label for="product-min-stock" class="mb-1 block text-sm font-medium">
+      Stock mínimo *
+    </label>
+    <p-inputnumber
+      inputId="product-min-stock"
+      formControlName="min_stock"
+      [min]="0"
+      [minFractionDigits]="0"
+      [maxFractionDigits]="0"
+      [fluid]="true"
+    />
+    @if (form.controls.min_stock.touched && form.controls.min_stock.invalid) {
+      <p-message severity="error" size="small" variant="simple">
+        El stock mínimo debe ser un entero igual o mayor que cero.
+      </p-message>
+    }
+  </div>
+
+  <div>
+    <label for="product-quantity" class="mb-1 block text-sm font-medium">
+      Cantidad disponible *
+    </label>
+    <p-inputnumber
+      inputId="product-quantity"
+      formControlName="quantity"
+      [min]="0"
+      [minFractionDigits]="0"
+      [maxFractionDigits]="0"
+      [fluid]="true"
+    />
+    @if (form.controls.quantity.touched && form.controls.quantity.invalid) {
+      <p-message severity="error" size="small" variant="simple">
+        La cantidad debe ser un entero igual o mayor que cero.
+      </p-message>
+    }
+  </div>
+
+  <div>
+    <label for="product-type" class="mb-1 block text-sm font-medium">
+      Tipo de producto *
+    </label>
+    <p-select
+      inputId="product-type"
+      formControlName="product_type_id"
+      [options]="productTypes().filter(type => type.status === 'active')"
+      optionLabel="name"
+      optionValue="id"
+      placeholder="Selecciona un tipo activo"
+      [filter]="true"
+      filterBy="name"
+      [fluid]="true"
+    />
+    @if (form.controls.product_type_id.touched && form.controls.product_type_id.invalid) {
+      <p-message severity="error" size="small" variant="simple">
+        Debes seleccionar un tipo de producto activo.
+      </p-message>
+    }
+    <p class="mt-1 text-sm text-slate-500">
+      Se envía el identificador numérico del tipo seleccionado.
+    </p>
+  </div>
+
+  @if (!product()) {
+    <div>
+      <label for="product-status" class="mb-1 block text-sm font-medium">
+        Estado inicial
+      </label>
+      <p-select
+        inputId="product-status"
+        formControlName="status"
+        [options]="statusOptions"
+        optionLabel="label"
+        optionValue="value"
+        [fluid]="true"
+      />
+    </div>
+  } @else {
+    <p class="text-sm text-slate-500">
+      El estado se modifica mediante la baja lógica.
+    </p>
+  }
+
+  <div class="flex justify-end gap-2 border-t border-slate-100 pt-4">
+    <button
+      pButton
+      type="button"
+      severity="secondary"
+      [outlined]="true"
+      (click)="cancelled.emit()"
+    >
+      <span pButtonLabel>Cancelar</span>
+    </button>
+
+    <button pButton type="submit" [loading]="saving()">
+      <i pButtonIcon class="pi pi-check"></i>
+      <span pButtonLabel>Guardar</span>
+    </button>
+  </div>
+</form>

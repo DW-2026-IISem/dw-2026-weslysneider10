@@ -1,29 +1,31 @@
-export type ProductStatus = 'active' | 'inactive';
+import type { RecordStatus } from './common.model';
 
 export interface Product {
-  id?: number;
-  sku: string;
+  id: number;
   name: string;
-  description?: string | null;
-  price: number;
-  productTypeId: number;
-  status: ProductStatus;
+  brand: string;
+  price: number | string;
+  min_stock: number;
+  quantity: number;
+  product_type_id: number;
+  status: RecordStatus;
   createdAt?: string;
   updatedAt?: string;
 }
 
-export type CreateProduct = Omit<
-  Product,
-  'id' | 'createdAt' | 'updatedAt' | 'status'
-> & {
-  status?: ProductStatus;
-};
+export interface ProductPayload {
+  name: string;
+  brand: string;
+  price: number;
+  min_stock: number;
+  quantity: number;
+  product_type_id: number;
+  status?: RecordStatus;
+}
 
-/** PUT requiere los campos de actualización completa. */
-export type UpdateProduct = Omit<
-  Product,
-  'id' | 'createdAt' | 'updatedAt' | 'status'
->;
+export type UpdateProductPayload = Partial<ProductPayload>;
 
-/** PATCH permite enviar solo los campos que se van a modificar. */
-export type PatchProduct = Partial<UpdateProduct>;
+/* Compatibilidad con el servicio anterior. */
+export type CreateProduct = ProductPayload;
+export type UpdateProduct = UpdateProductPayload;
+export type PatchProduct = Partial<UpdateProductPayload>;

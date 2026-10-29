@@ -319,3 +319,43 @@ Ahora vamos a preparar el Header para que el botón de menú emita el evento `me
 ### ![](images/clipboard-1264183269.png)
 
 ### 
+
+# Fase I: Business — ISS-05 — CRUD de productos y relación con tipos
+
+> 
+>
+> ### Modelo: actualizar `product.model.ts` con los campos del contrato de productos.
+>
+> ![](images/clipboard-1523527378.png)
+>
+> ### Servicio API: crear `product-api.ts` para listar, consultar, crear, editar y desactivar productos.
+>
+> ![](images/clipboard-2325818408.png)
+>
+> ### Formulario: crear `product-form.ts` y `product-form.html` con validaciones y selector de tiposactivos.
+>
+> ![](images/clipboard-1636830047.png)
+>
+> ![](images/clipboard-2258751075.png)
+>
+> ### Listado: crear `product-list.ts` y `product-list.html` con productos, tipo, precio, stock y semáforo de inventario.
+>
+> ![](images/clipboard-368484832.png)
+>
+> ![](images/clipboard-1181114846.png)
+>
+> ### CRUD: integrar creación, edición y baja lógica desde el listado.
+>
+> ![](images/clipboard-3072539128.png)
+>
+> ### Relación entre entidades: resolver `product_type_id` al nombre del tipo mediante `Map` y calcular `lowStockCount`.
+>
+> ![](images/clipboard-1291903668.png)
+>
+> ### Ruta y menú: habilitar `/productos` y su entrada en el menú de Shell.
+>
+> ![](images/clipboard-3848686252.png)
+>
+> ### Verificación: ejecutar `npx ng build`, corregir errores y probar la pantalla.
+
+### ![](images/clipboard-1509869760.png)
