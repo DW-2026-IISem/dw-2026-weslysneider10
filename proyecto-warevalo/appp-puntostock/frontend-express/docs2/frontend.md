@@ -251,3 +251,45 @@ Ahora vamos a preparar el Header para que el botón de menú emita el evento `me
 ![](images/clipboard-3053412573.png)
 
 ![](images/clipboard-3485480036.png)
+
+# ISS-03 · CRUD de clientes con Signals — Pasos
+
+### 3.1 Generar componentes con CLI.
+
+### ![](images/clipboard-564224615.png)
+
+### 3.2 Utilidad de filtro local.
+
+### ![](images/clipboard-3560054586.png)
+
+### 3.3 Formulario reactivo reutilizable.
+
+### ![](images/clipboard-1349261194.png)
+
+![](images/clipboard-2044202045.png)
+
+1.  
+
+    ### 4. Pruebas.
+
+    ### ![](images/clipboard-39482455.png)
+
+    ### 5. Criterios de aceptación (ISS-03).
+
+    ### ![](images/clipboard-2437939506.png)
+
+    ### 6. Comprobación funcional (Fase I, sin auth).
+
+    ### ![](images/clipboard-3141098214.png)
+
+    ### 7. Verificación del ISS.
+
+    ### ![](images/clipboard-390385933.png)
+
+    ### 8. Integración con el esqueleto.
+
+    ![](images/clipboard-3110750666.png)
+
+    ### 9.Correspondencia con el código.
+
+### ![](images/clipboard-2608217978.png)

@@ -1,0 +1,129 @@
+<p-confirmdialog />
+
+<app-page-header
+  title="Clientes"
+  subtitle="Administra los clientes registrados en PuntoStock."
+>
+  <div page-actions class="flex flex-wrap gap-2">
+    <button pButton type="button" severity="secondary" outlined
+      (click)="loadClients()" [disabled]="loading()">
+      <span pButtonLabel>Actualizar</span>
+    </button>
+    <button pButton type="button" (click)="openCreate()">
+      <span class="pi pi-plus mr-2"></span>
+      <span pButtonLabel>Nuevo cliente</span>
+    </button>
+  </div>
+</app-page-header>
+
+<section class="mt-6 rounded-xl border border-slate-200 bg-white p-4 shadow-sm sm:p-6">
+  <div class="mb-5 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+    <div>
+      <h2 class="text-lg font-semibold text-slate-900">Directorio de clientes</h2>
+      <p class="text-sm text-slate-500">
+        {{ filteredClients().length }} registro(s) encontrados
+      </p>
+    </div>
+
+    <div class="w-full sm:max-w-sm">
+      <label for="client-search" class="sr-only">Buscar clientes</label>
+      <input
+        id="client-search"
+        pInputText
+        class="w-full"
+        placeholder="Buscar por nombre, correo o teléfono..."
+        [value]="search()"
+        (input)="search.set($any($event.target).value)"
+      />
+    </div>
+  </div>
+
+  @if (loading()) {
+    <div class="flex items-center justify-center gap-3 py-12 text-slate-500">
+      <span class="pi pi-spin pi-spinner text-xl"></span>
+      <span>Cargando clientes...</span>
+    </div>
+  } @else if (clients().length === 0) {
+    <app-empty-state
+      title="Todavía no hay clientes"
+      description="Registra el primer cliente para comenzar a utilizar este módulo."
+    />
+    <div class="mt-4 flex justify-center">
+      <button pButton type="button" (click)="openCreate()">
+        <span pButtonLabel>Registrar primer cliente</span>
+      </button>
+    </div>
+  } @else if (filteredClients().length === 0) {
+    <app-empty-state
+      title="No se encontraron resultados"
+      description="Prueba con otro nombre, correo, teléfono o dirección."
+    />
+  } @else {
+    <p-table
+      [value]="filteredClients()"
+      [rowHover]="true"
+      [tableStyle]="{ 'min-width': '58rem' }"
+      styleClass="p-datatable-sm"
+    >
+      <ng-template #header>
+        <tr>
+          <th>ID</th>
+          <th>Cliente</th>
+          <th>Contacto</th>
+          <th>Dirección</th>
+          <th>Estado</th>
+          <th class="text-right">Acciones</th>
+        </tr>
+      </ng-template>
+
+      <ng-template #body let-client>
+        <tr>
+          <td>{{ client.id ?? '—' }}</td>
+          <td>
+            <span class="font-medium text-slate-900">{{ client.name }}</span>
+          </td>
+          <td>
+            <div>{{ client.email || 'Sin correo' }}</div>
+            <div class="text-sm text-slate-500">{{ client.phone || 'Sin teléfono' }}</div>
+          </td>
+          <td class="max-w-64 whitespace-normal">{{ client.address || 'Sin dirección' }}</td>
+          <td>
+            <app-status-tag [status]="client.status" />
+          </td>
+          <td>
+            <div class="flex justify-end gap-2">
+              <button pButton type="button" severity="secondary" outlined
+                size="small" [disabled]="!client.id || client.status === 'inactive'"
+                (click)="openEdit(client)" aria-label="Editar cliente">
+                <span class="pi pi-pencil"></span>
+              </button>
+              <button pButton type="button" severity="danger" outlined
+                size="small" [disabled]="!client.id || client.status === 'inactive'"
+                (click)="deactivateClient(client)" aria-label="Desactivar cliente">
+                <span class="pi pi-user-minus"></span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </ng-template>
+    </p-table>
+  }
+</section>
+
+<p-dialog
+  [header]="selectedClient() ? 'Editar cliente' : 'Nuevo cliente'"
+  [visible]="dialogVisible()"
+  (visibleChange)="!$event && closeDialog()"
+  [modal]="true"
+  [draggable]="false"
+  [resizable]="false"
+  [style]="{ width: 'min(42rem, 95vw)' }"
+>
+  <app-client-form
+    [client]="selectedClient()"
+    [resetKey]="resetKey()"
+    [saving]="saving()"
+    (saved)="saveClient($event)"
+    (cancelled)="closeDialog()"
+  />
+</p-dialog>

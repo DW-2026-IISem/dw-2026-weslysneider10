@@ -33,7 +33,7 @@ export class Shell {
     {
       label: 'Gestión comercial',
       items: [
-        { label: 'Clientes', icon: 'pi pi-users', disabled: true },
+        { label: 'Clientes', icon: 'pi pi-users', routerLink: '/clientes' },
         { label: 'Productos', icon: 'pi pi-box', disabled: true },
         { label: 'Tipos de producto', icon: 'pi pi-tags', disabled: true },
         { label: 'Proveedores', icon: 'pi pi-truck', disabled: true },

@@ -1,0 +1,121 @@
+<form
+  [formGroup]="form"
+  (ngSubmit)="submit()"
+  class="space-y-4"
+>
+  <div>
+    <label for="client-name" class="mb-1 block text-sm font-medium">
+      Nombre *
+    </label>
+
+    <input
+      id="client-name"
+      pInputText
+      formControlName="name"
+      placeholder="Nombre del cliente"
+      autocomplete="organization"
+      class="w-full"
+    />
+
+    @if (form.controls.name.touched && form.controls.name.invalid) {
+      <p-message severity="error" size="small" variant="simple">
+        El nombre es obligatorio y no debe superar 120 caracteres.
+      </p-message>
+    }
+  </div>
+
+  <div class="grid gap-4 sm:grid-cols-2">
+    <div>
+      <label for="client-phone" class="mb-1 block text-sm font-medium">
+        Teléfono
+      </label>
+
+      <input
+        id="client-phone"
+        pInputText
+        formControlName="phone"
+        placeholder="Número de teléfono"
+        autocomplete="tel"
+        class="w-full"
+      />
+    </div>
+
+    <div>
+      <label for="client-email" class="mb-1 block text-sm font-medium">
+        Correo electrónico
+      </label>
+
+      <input
+        id="client-email"
+        type="email"
+        pInputText
+        formControlName="email"
+        placeholder="cliente@correo.com"
+        autocomplete="email"
+        class="w-full"
+      />
+
+      @if (form.controls.email.touched && form.controls.email.invalid) {
+        <p-message severity="error" size="small" variant="simple">
+          Introduce un correo electrónico válido.
+        </p-message>
+      }
+    </div>
+  </div>
+
+  <div>
+    <label for="client-address" class="mb-1 block text-sm font-medium">
+      Dirección
+    </label>
+
+    <textarea
+      id="client-address"
+      pTextarea
+      formControlName="address"
+      rows="2"
+      placeholder="Dirección del cliente"
+      class="w-full"
+    ></textarea>
+  </div>
+
+  <div>
+    <label for="client-status" class="mb-1 block text-sm font-medium">
+      Estado
+    </label>
+
+    <p-select
+      inputId="client-status"
+      formControlName="status"
+      [options]="statusOptions"
+      optionLabel="label"
+      optionValue="value"
+      [fluid]="true"
+    />
+
+    @if (client()) {
+      <p class="mt-1 text-xs text-slate-500">
+        Para cambiar el estado de un cliente existente, utiliza la baja lógica.
+      </p>
+    }
+  </div>
+
+  <div class="flex justify-end gap-2 border-t pt-4">
+    <button
+      pButton
+      type="button"
+      severity="secondary"
+      outlined
+      (click)="cancelled.emit()"
+    >
+      <span pButtonLabel>Cancelar</span>
+    </button>
+
+    <button
+      pButton
+      type="submit"
+      [loading]="saving()"
+    >
+      <span pButtonLabel>Guardar</span>
+    </button>
+  </div>
+</form>

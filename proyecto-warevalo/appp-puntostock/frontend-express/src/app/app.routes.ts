@@ -16,6 +16,13 @@ export const routes: Routes = [
         pathMatch: 'full',
         redirectTo: 'construir',
       },
+      {
+        path: 'clientes',
+        loadComponent: () =>
+          import('./features/clients/client-list/client-list').then(
+            (m) => m.ClientList,
+          ),
+      },
     ],
   },
   {

@@ -1,0 +1,15 @@
+:host {
+  display: block;
+  min-width: 0;
+}
+
+:host ::ng-deep .p-datatable-thead > tr > th {
+  white-space: nowrap;
+  background: #f8fafc;
+  color: #475569;
+  font-weight: 600;
+}
+
+:host ::ng-deep .p-dialog-content {
+  padding-top: 1rem;
+}
