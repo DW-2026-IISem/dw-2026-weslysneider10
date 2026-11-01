@@ -11,6 +11,7 @@ import { TagModule } from 'primeng/tag';
 import type { Product, ProductPayload } from '../../../core/models/product.model';
 import type { ProductType } from '../../../core/models/product-type.model';
 import { NotificationService } from '../../../core/services/notification.service';
+import { HasPermissionDirective } from '../../../core/directives/has-permission.directive';
 import { PageHeader } from '../../../shared/ui/page-header/page-header';
 import { ProductTypeApi } from '../../product-types/product-type-api';
 import { ProductApi } from '../product-api';
@@ -26,6 +27,7 @@ import { ProductForm } from '../product-form/product-form';
     InputTextModule,
     TableModule,
     TagModule,
+    HasPermissionDirective,
     PageHeader,
     ProductForm,
   ],

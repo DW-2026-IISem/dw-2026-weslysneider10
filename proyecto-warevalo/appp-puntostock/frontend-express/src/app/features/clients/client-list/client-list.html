@@ -9,7 +9,13 @@
       (click)="loadClients()" [disabled]="loading()">
       <span pButtonLabel>Actualizar</span>
     </button>
-    <button pButton type="button" (click)="openCreate()">
+
+    <button
+      *appHasPermission="{ method: 'POST', path: '/api/clientes' }"
+      pButton
+      type="button"
+      (click)="openCreate()"
+    >
       <span class="pi pi-plus mr-2"></span>
       <span pButtonLabel>Nuevo cliente</span>
     </button>
@@ -48,7 +54,11 @@
       title="Todavía no hay clientes"
       description="Registra el primer cliente para comenzar a utilizar este módulo."
     />
-    <div class="mt-4 flex justify-center">
+
+    <div
+      *appHasPermission="{ method: 'POST', path: '/api/clientes' }"
+      class="mt-4 flex justify-center"
+    >
       <button pButton type="button" (click)="openCreate()">
         <span pButtonLabel>Registrar primer cliente</span>
       </button>
@@ -92,14 +102,31 @@
           </td>
           <td>
             <div class="flex justify-end gap-2">
-              <button pButton type="button" severity="secondary" outlined
-                size="small" [disabled]="!client.id || client.status === 'inactive'"
-                (click)="openEdit(client)" aria-label="Editar cliente">
+              <button
+                *appHasPermission="{ method: 'PUT', path: '/api/clientes/:id' }"
+                pButton
+                type="button"
+                severity="secondary"
+                outlined
+                size="small"
+                [disabled]="!client.id || client.status === 'inactive'"
+                (click)="openEdit(client)"
+                aria-label="Editar cliente"
+              >
                 <span class="pi pi-pencil"></span>
               </button>
-              <button pButton type="button" severity="danger" outlined
-                size="small" [disabled]="!client.id || client.status === 'inactive'"
-                (click)="deactivateClient(client)" aria-label="Desactivar cliente">
+
+              <button
+                *appHasPermission="{ method: 'PATCH', path: '/api/clientes/:id/deactivate' }"
+                pButton
+                type="button"
+                severity="danger"
+                outlined
+                size="small"
+                [disabled]="!client.id || client.status === 'inactive'"
+                (click)="deactivateClient(client)"
+                aria-label="Desactivar cliente"
+              >
                 <span class="pi pi-user-minus"></span>
               </button>
             </div>

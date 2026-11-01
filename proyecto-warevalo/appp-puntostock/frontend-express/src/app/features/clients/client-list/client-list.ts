@@ -13,6 +13,7 @@ import { ClientApi } from '../../../core/services/client-api.service';
 import { NotificationService } from '../../../core/services/notification.service';
 import { filterRows } from '../../../core/utils/filter-rows';
 import { toApiMessage } from '../../../core/utils/api-error';
+import { HasPermissionDirective } from '../../../core/directives/has-permission.directive';
 import { PageHeader } from '../../../shared/ui/page-header/page-header';
 import { EmptyState } from '../../../shared/ui/empty-state/empty-state';
 import { StatusTag } from '../../../shared/ui/status-tag/status-tag';
@@ -27,6 +28,7 @@ import { ClientForm } from '../client-form/client-form';
     DialogModule,
     InputTextModule,
     TableModule,
+    HasPermissionDirective,
     PageHeader,
     EmptyState,
     StatusTag,

@@ -6,6 +6,7 @@
     </div>
 
     <p-button
+      *appHasPermission="{ method: 'POST', path: '/api/ventas' }"
       label="Nueva venta"
       icon="pi pi-plus"
       (onClick)="newSale()"

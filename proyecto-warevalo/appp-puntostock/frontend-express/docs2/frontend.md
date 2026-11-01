@@ -491,3 +491,55 @@ Ahora vamos a preparar el Header para que el botón de menú emita el evento `me
 ### Verificar que el proyecto compile sin errores.
 
 ### ![](images/clipboard-57192365.png)
+
+# Fase II: Auth con RBAC — ISS-09 — Guards y RBAC en las pantallas Business
+
+### Revisar los permisos efectivos almacenados en `SessionStore`.
+
+### ![](images/clipboard-285259209.png)
+
+### Crear el guard de autenticación (`auth-guard.ts`).
+
+### ![](images/clipboard-3275388524.png)
+
+### 
+
+### 
+
+### Crear el guard de permisos (`permission-guard.ts`).
+
+### ![](images/clipboard-1430799238.png)
+
+### Crear el guard de autenticación habilitada (`auth-only-guard.ts`).
+
+### ![](images/clipboard-2053074161.png)
+
+### 
+
+### Actualizar el menú dinámico
+
+### ![](images/clipboard-1542172343.png)
+
+### Actualizar el HTML del Shell
+
+### ![](images/clipboard-371834058.png)
+
+### Compilar y comprobar
+
+### ![](images/clipboard-2467356077.png)
+
+### 
+
+# Fase II: Auth con RBAC — ISS-10 — Formularios de las entidades Auth
+
+### Modelo de usuario
+
+### Servicio API de usuarios
+
+### Formulario de usuarios
+
+### Listado de usuarios
+
+### Agregar la ruta de administración
+
+### 

@@ -9,7 +9,7 @@
       <aside class="w-72 shrink-0">
         <app-aside
           [appName]="appName"
-          [items]="menuItems"
+          [items]="menuItems()"
           (navigated)="closeSidebar()"
         />
       </aside>

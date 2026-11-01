@@ -10,7 +10,12 @@
         [rounded]="true"
       />
 
-      <button pButton type="button" (click)="openCreate()">
+      <button
+        *appHasPermission="{ method: 'POST', path: '/api/productos' }"
+        pButton
+        type="button"
+        (click)="openCreate()"
+      >
         <i pButtonIcon class="pi pi-plus"></i>
         <span pButtonLabel>Nuevo producto</span>
       </button>
@@ -102,6 +107,7 @@
           <td>
             <div class="flex justify-end gap-2">
               <button
+                *appHasPermission="{ method: 'PUT', path: '/api/productos/:id' }"
                 pButton
                 type="button"
                 severity="secondary"
@@ -115,6 +121,7 @@
 
               @if (row.status === 'active') {
                 <button
+                  *appHasPermission="{ method: 'PATCH', path: '/api/productos/:id/deactivate' }"
                   pButton
                   type="button"
                   severity="danger"

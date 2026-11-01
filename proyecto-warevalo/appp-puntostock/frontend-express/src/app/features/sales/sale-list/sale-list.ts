@@ -14,6 +14,7 @@ import { environment } from '../../../../environments/environment';
 import { Client } from '../../../core/models/client.model';
 import { Sale } from '../../../core/models/sale.model';
 import { NotificationService } from '../../../core/services/notification.service';
+import { HasPermissionDirective } from '../../../core/directives/has-permission.directive';
 import { SaleApi } from '../sale-api';
 
 @Component({
@@ -26,7 +27,8 @@ import { SaleApi } from '../sale-api';
     CardModule,
     MessageModule,
     TableModule,
-    TagModule
+    TagModule,
+    HasPermissionDirective,
   ],
   templateUrl: './sale-list.html'
 })
