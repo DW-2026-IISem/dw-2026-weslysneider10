@@ -39,9 +39,9 @@ export function toNumber(value: Money): number {
     MessageModule,
     SkeletonModule,
     TableModule,
-    TagModule
+    TagModule,
   ],
-  templateUrl: './dashboard.html'
+  templateUrl: './dashboard.html',
 })
 export class Dashboard {
   private readonly http = inject(HttpClient);
@@ -56,34 +56,31 @@ export class Dashboard {
   readonly typeCount = signal(0);
 
   readonly lowStock = computed(() =>
-    this.products().filter(product =>
-      Number(product.quantity) <= Number(product.min_stock)
-    )
+    this.products().filter((product) => Number(product.quantity) <= Number(product.min_stock)),
   );
 
   readonly revenue = computed(() =>
-    this.sales().reduce((sum, sale) => sum + toNumber(sale.total), 0)
+    this.sales().reduce((sum, sale) => sum + toNumber(sale.total), 0),
   );
 
   readonly latestSales = computed(() =>
     [...this.sales()]
-      .sort((a, b) =>
-        new Date(b.date ?? b.createdAt ?? 0).getTime() -
-        new Date(a.date ?? a.createdAt ?? 0).getTime()
+      .sort(
+        (a, b) =>
+          new Date(b.date ?? b.createdAt ?? 0).getTime() -
+          new Date(a.date ?? a.createdAt ?? 0).getTime(),
       )
-      .slice(0, 5)
+      .slice(0, 5),
   );
 
   ngOnInit(): void {
     forkJoin({
-      clients: this.http.get<{ clients: Client[] } | Client[]>(
-        `${environment.apiUrl}/clientes`
-      ),
+      clients: this.http.get<{ clients: Client[] } | Client[]>(`${environment.apiUrl}/clientes`),
       types: this.http.get<{ product_types: unknown[] } | unknown[]>(
-        `${environment.apiUrl}/tipos-producto`
+        `${environment.apiUrl}/tipos-producto`,
       ),
       products: this.productApi.list(),
-      sales: this.saleApi.list()
+      sales: this.saleApi.list(),
     }).subscribe({
       next: ({ clients, types, products, sales }) => {
         this.clients.set(Array.isArray(clients) ? clients : clients.clients);
@@ -92,16 +89,14 @@ export class Dashboard {
         this.sales.set(sales);
         this.loading.set(false);
       },
-      error: response => {
+      error: (response) => {
         this.error.set(response?.error?.message ?? 'No fue posible cargar el dashboard.');
         this.loading.set(false);
-      }
+      },
     });
   }
 
   statusLabel(status: string): string {
-    return status === 'completed' || status === 'active'
-      ? 'Completada'
-      : status;
+    return status === 'completed' || status === 'active' ? 'Completada' : status;
   }
 }

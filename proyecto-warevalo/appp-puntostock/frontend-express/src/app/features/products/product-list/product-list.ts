@@ -59,10 +59,7 @@ export class ProductList {
   });
 
   readonly lowStockCount = computed(
-    () =>
-      this.rows().filter(
-        (product) => product.quantity <= product.min_stock,
-      ).length,
+    () => this.rows().filter((product) => product.quantity <= product.min_stock).length,
   );
 
   readonly filteredRows = computed(() => {
@@ -73,11 +70,9 @@ export class ProductList {
     }
 
     return this.rows().filter((product) =>
-      [
-        product.name,
-        product.brand,
-        this.typeName()(product.product_type_id),
-      ].some((value) => value.toLocaleLowerCase().includes(query)),
+      [product.name, product.brand, this.typeName()(product.product_type_id)].some((value) =>
+        value.toLocaleLowerCase().includes(query),
+      ),
     );
   });
 
@@ -91,9 +86,7 @@ export class ProductList {
 
     forkJoin({
       products: this.api.list(),
-      types: this.typesApi.list().pipe(
-        catchError(() => of([] as ProductType[])),
-      ),
+      types: this.typesApi.list().pipe(catchError(() => of([] as ProductType[]))),
     })
       .pipe(finalize(() => this.loading.set(false)))
       .subscribe({
@@ -125,26 +118,20 @@ export class ProductList {
     this.saving.set(true);
 
     const current = this.selectedProduct();
-    const request = current
-      ? this.api.update(current.id, payload)
-      : this.api.create(payload);
+    const request = current ? this.api.update(current.id, payload) : this.api.create(payload);
 
-    request
-      .pipe(finalize(() => this.saving.set(false)))
-      .subscribe({
-        next: () => {
-          this.dialogVisible.set(false);
-          this.notifications.success(
-            current
-              ? 'Producto actualizado correctamente.'
-              : 'Producto creado correctamente.',
-          );
-          this.load();
-        },
-        error: (error: unknown) => {
-          this.notifications.error(this.getErrorMessage(error));
-        },
-      });
+    request.pipe(finalize(() => this.saving.set(false))).subscribe({
+      next: () => {
+        this.dialogVisible.set(false);
+        this.notifications.success(
+          current ? 'Producto actualizado correctamente.' : 'Producto creado correctamente.',
+        );
+        this.load();
+      },
+      error: (error: unknown) => {
+        this.notifications.error(this.getErrorMessage(error));
+      },
+    });
   }
 
   deactivate(product: Product): void {
@@ -181,9 +168,11 @@ export class ProductList {
 
   private getErrorMessage(error: unknown): string {
     if (typeof error === 'object' && error !== null && 'error' in error) {
-      const body = (error as {
-        error?: { message?: string | string[] };
-      }).error;
+      const body = (
+        error as {
+          error?: { message?: string | string[] };
+        }
+      ).error;
       const message = body?.message;
 
       if (Array.isArray(message)) {

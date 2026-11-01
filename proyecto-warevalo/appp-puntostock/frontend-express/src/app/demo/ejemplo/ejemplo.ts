@@ -27,14 +27,7 @@ function productoInicial(): Producto {
   host: {
     class: 'block',
   },
-  imports: [
-    CommonModule,
-    CardModule,
-    ButtonModule,
-    TagModule,
-    InputTextModule,
-    MessageModule,
-  ],
+  imports: [CommonModule, CardModule, ButtonModule, TagModule, InputTextModule, MessageModule],
   templateUrl: './ejemplo.html',
   styleUrl: './ejemplo.css',
 })
@@ -43,26 +36,17 @@ export class Ejemplo {
 
   readonly iva = computed(() => this.producto().precio * 1.19);
 
-  readonly estadoTexto = computed(() =>
-    this.producto().activo ? 'Activo' : 'Inactivo'
+  readonly estadoTexto = computed(() => (this.producto().activo ? 'Activo' : 'Inactivo'));
+
+  readonly estadoSeverity = computed<'success' | 'danger'>(() =>
+    this.producto().activo ? 'success' : 'danger',
   );
 
-  readonly estadoSeverity = computed<
-    'success' | 'danger'
-  >(() => (this.producto().activo ? 'success' : 'danger'));
-
-  readonly vistaPrevia = computed(
-    () => `Vista previa: ${this.producto().nombre}`
-  );
+  readonly vistaPrevia = computed(() => `Vista previa: ${this.producto().nombre}`);
 
   constructor() {
     effect(() => {
-      console.log(
-        '[ejemplo]',
-        this.producto().nombre,
-        'precio',
-        this.producto().precio
-      );
+      console.log('[ejemplo]', this.producto().nombre, 'precio', this.producto().precio);
     });
   }
 

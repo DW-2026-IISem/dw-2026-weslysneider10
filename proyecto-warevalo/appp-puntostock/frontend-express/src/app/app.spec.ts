@@ -39,8 +39,6 @@ describe('App', () => {
     const fixture = TestBed.createComponent(App);
     fixture.detectChanges();
 
-    expect(
-      fixture.nativeElement.querySelector('app-ejemplo'),
-    ).toBeNull();
+    expect(fixture.nativeElement.querySelector('app-ejemplo')).toBeNull();
   });
 });

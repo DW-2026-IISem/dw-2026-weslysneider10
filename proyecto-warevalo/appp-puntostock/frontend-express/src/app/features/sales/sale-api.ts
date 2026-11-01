@@ -10,20 +10,20 @@ export class SaleApi {
   private readonly baseUrl = `${environment.apiUrl}/ventas`;
 
   list(): Observable<Sale[]> {
-    return this.http.get<{ sales: Sale[] } | Sale[]>(this.baseUrl).pipe(
-      map(response => Array.isArray(response) ? response : response.sales)
-    );
+    return this.http
+      .get<{ sales: Sale[] } | Sale[]>(this.baseUrl)
+      .pipe(map((response) => (Array.isArray(response) ? response : response.sales)));
   }
 
   get(id: number): Observable<Sale> {
-    return this.http.get<{ sale: Sale } | Sale>(`${this.baseUrl}/${id}`).pipe(
-      map(response => 'sale' in response ? response.sale : response)
-    );
+    return this.http
+      .get<{ sale: Sale } | Sale>(`${this.baseUrl}/${id}`)
+      .pipe(map((response) => ('sale' in response ? response.sale : response)));
   }
 
   create(payload: SaleCreatePayload): Observable<Sale> {
-    return this.http.post<{ sale: Sale } | Sale>(this.baseUrl, payload).pipe(
-      map(response => 'sale' in response ? response.sale : response)
-    );
+    return this.http
+      .post<{ sale: Sale } | Sale>(this.baseUrl, payload)
+      .pipe(map((response) => ('sale' in response ? response.sale : response)));
   }
 }

@@ -592,6 +592,48 @@ Ahora vamos a preparar el Header para que el botón de menú emita el evento `me
 
 ![](images/clipboard-3882731711.png)
 
-### 
+# Fase II: Auth con RBAC — ISS-11 — Build, calidad y cierre del proyecto
+
+### 11.1 — Los dos entornos.
+
+### 11.2 — Scripts.
+
+![](images/clipboard-2773843480.png)
+
+### 11.3 — Presupuestos de bundle.
+
+![](images/clipboard-1170825956.png)
+
+![](images/clipboard-4247757010.png)
+
+### 11.4 — Checklist funcional de humo.
+
+![](images/clipboard-3802992230.png)
+
+### 11.5 — Errores reales y soluciones.
+
+![](images/clipboard-1288999026.png)
+
+![](images/clipboard-2969845891.png)
+
+### 11.6 — Calidad de código.
+
+![](images/clipboard-3217600856.png)
+
+![](images/clipboard-2084632296.png)
+
+![](images/clipboard-3454635549.png)
+
+![](images/clipboard-3530465834.png)
+
+### 11.7 — Publicación.
+
+![](images/clipboard-2859749852.png)
+
+![](images/clipboard-865164671.png)
+
+### Entrega final — Evidencias y cierre del proyecto.
+
+### ![](images/clipboard-519128702.png)
 
 ### 

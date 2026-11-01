@@ -7,7 +7,7 @@ import { RoleI } from '../role.model';
   selector: 'app-role-list',
   standalone: true,
   imports: [FormsModule],
-  templateUrl: './role-list.html'
+  templateUrl: './role-list.html',
 })
 export class RoleList implements OnInit {
   private readonly api = inject(RoleApi);
@@ -26,14 +26,14 @@ export class RoleList implements OnInit {
     this.loading = true;
 
     this.api.getAll().subscribe({
-      next: response => {
+      next: (response) => {
         this.roles = response.roles;
         this.loading = false;
       },
       error: () => {
         this.error = 'No se pudieron cargar los roles.';
         this.loading = false;
-      }
+      },
     });
   }
 
@@ -43,18 +43,20 @@ export class RoleList implements OnInit {
       return;
     }
 
-    this.api.create({
-      name: this.name.trim().toUpperCase(),
-      description: this.description.trim(),
-      status: 'active'
-    }).subscribe({
-      next: () => {
-        this.name = '';
-        this.description = '';
-        this.error = '';
-        this.load();
-      },
-      error: () => this.error = 'No se pudo crear el rol.'
-    });
+    this.api
+      .create({
+        name: this.name.trim().toUpperCase(),
+        description: this.description.trim(),
+        status: 'active',
+      })
+      .subscribe({
+        next: () => {
+          this.name = '';
+          this.description = '';
+          this.error = '';
+          this.load();
+        },
+        error: () => (this.error = 'No se pudo crear el rol.'),
+      });
   }
 }

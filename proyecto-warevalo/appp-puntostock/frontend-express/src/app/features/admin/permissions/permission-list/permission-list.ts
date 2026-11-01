@@ -6,7 +6,7 @@ import { PermissionApi } from '../permission-api';
   selector: 'app-permission-list',
   standalone: true,
   imports: [FormsModule],
-  templateUrl: './permission-list.html'
+  templateUrl: './permission-list.html',
 })
 export class PermissionList implements OnInit {
   private readonly api = inject(PermissionApi);
@@ -22,8 +22,8 @@ export class PermissionList implements OnInit {
 
   load(): void {
     this.api.getAll().subscribe({
-      next: response => this.grants = response.grants,
-      error: () => this.error = 'No se pudieron cargar los permisos.'
+      next: (response) => (this.grants = response.grants),
+      error: () => (this.error = 'No se pudieron cargar los permisos.'),
     });
   }
 
@@ -40,7 +40,7 @@ export class PermissionList implements OnInit {
         this.resourceId = null;
         this.load();
       },
-      error: () => this.error = 'No se pudo crear la concesión.'
+      error: () => (this.error = 'No se pudo crear la concesión.'),
     });
   }
 }

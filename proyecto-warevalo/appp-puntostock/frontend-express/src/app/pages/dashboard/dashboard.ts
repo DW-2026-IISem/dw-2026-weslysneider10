@@ -4,10 +4,7 @@ import { ButtonModule } from 'primeng/button';
 
 @Component({
   selector: 'app-dashboard',
-  imports: [
-    CardModule,
-    ButtonModule,
-  ],
+  imports: [CardModule, ButtonModule],
   templateUrl: './dashboard.html',
   styleUrl: './dashboard.css',
 })

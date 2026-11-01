@@ -30,7 +30,7 @@ import { SaleApi } from '../sale-api';
     TagModule,
     HasPermissionDirective,
   ],
-  templateUrl: './sale-list.html'
+  templateUrl: './sale-list.html',
 })
 export class SaleList {
   private readonly http = inject(HttpClient);
@@ -63,9 +63,7 @@ export class SaleList {
 
     forkJoin({
       sales: this.saleApi.list(),
-      clients: this.http.get<{ clients: Client[] } | Client[]>(
-        `${environment.apiUrl}/clientes`
-      )
+      clients: this.http.get<{ clients: Client[] } | Client[]>(`${environment.apiUrl}/clientes`),
     }).subscribe({
       next: ({ sales, clients }) => {
         this.rows.set(sales);
@@ -75,7 +73,7 @@ export class SaleList {
       error: () => {
         this.error.set('No fue posible cargar las ventas.');
         this.loading.set(false);
-      }
+      },
     });
   }
 
@@ -102,8 +100,6 @@ export class SaleList {
   }
 
   viewSale(sale: Sale): void {
-    this.notification.info(
-      `Venta #${sale.id}. La pantalla de detalle se desarrollará en ISS-07.`
-    );
+    this.notification.info(`Venta #${sale.id}. La pantalla de detalle se desarrollará en ISS-07.`);
   }
 }

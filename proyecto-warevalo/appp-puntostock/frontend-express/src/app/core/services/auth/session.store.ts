@@ -1,9 +1,5 @@
 import { Injectable, signal } from '@angular/core';
-import {
-  EffectivePermission,
-  SessionTokens,
-  UserProfile,
-} from '../../models/auth/session.model';
+import { EffectivePermission, SessionTokens, UserProfile } from '../../models/auth/session.model';
 
 @Injectable({ providedIn: 'root' })
 export class SessionStore {

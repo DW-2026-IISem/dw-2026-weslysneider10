@@ -41,10 +41,7 @@ export class ProductTypeList {
   readonly resetKey = signal(0);
 
   readonly visibleRows = computed(() =>
-    filterRows(this.rows(), this.filter(), row => [
-      row.name,
-      row.description,
-    ]),
+    filterRows(this.rows(), this.filter(), (row) => [row.name, row.description]),
   );
 
   readonly title = computed(() =>
@@ -58,19 +55,21 @@ export class ProductTypeList {
   load(): void {
     this.loading.set(true);
 
-    this.api.list()
+    this.api
+      .list()
       .pipe(finalize(() => this.loading.set(false)))
       .subscribe({
-        next: rows => this.rows.set(rows),
-        error: () => this.notifications.error(
-          'No fue posible cargar los tipos de producto. Verifica el backend y el contrato de la API.',
-        ),
+        next: (rows) => this.rows.set(rows),
+        error: () =>
+          this.notifications.error(
+            'No fue posible cargar los tipos de producto. Verifica el backend y el contrato de la API.',
+          ),
       });
   }
 
   openCreate(): void {
     this.editing.set(null);
-    this.resetKey.update(value => value + 1);
+    this.resetKey.update((value) => value + 1);
     this.dialogVisible.set(true);
   }
 
@@ -92,27 +91,22 @@ export class ProductTypeList {
     const current = this.editing();
     this.saving.set(true);
 
-    const request = current?.id
-      ? this.api.update(current.id, payload)
-      : this.api.create(payload);
+    const request = current?.id ? this.api.update(current.id, payload) : this.api.create(payload);
 
-    request
-      .pipe(finalize(() => this.saving.set(false)))
-      .subscribe({
-        next: () => {
-          this.dialogVisible.set(false);
-          this.editing.set(null);
-          this.notifications.success(
-            current
-              ? 'Tipo de producto actualizado.'
-              : 'Tipo de producto creado.',
-          );
-          this.load();
-        },
-        error: () => this.notifications.error(
+    request.pipe(finalize(() => this.saving.set(false))).subscribe({
+      next: () => {
+        this.dialogVisible.set(false);
+        this.editing.set(null);
+        this.notifications.success(
+          current ? 'Tipo de producto actualizado.' : 'Tipo de producto creado.',
+        );
+        this.load();
+      },
+      error: () =>
+        this.notifications.error(
           'No fue posible guardar. Revisa los datos y la respuesta del backend.',
         ),
-      });
+    });
   }
 
   deactivate(row: ProductType): void {
@@ -121,9 +115,7 @@ export class ProductTypeList {
       return;
     }
 
-    const accepted = window.confirm(
-      `¿Deseas desactivar el tipo de producto "${row.name}"?`,
-    );
+    const accepted = window.confirm(`¿Deseas desactivar el tipo de producto "${row.name}"?`);
 
     if (!accepted) return;
 
@@ -132,9 +124,7 @@ export class ProductTypeList {
         this.notifications.success('Tipo de producto desactivado.');
         this.load();
       },
-      error: () => this.notifications.error(
-        'No fue posible desactivar el tipo de producto.',
-      ),
+      error: () => this.notifications.error('No fue posible desactivar el tipo de producto.'),
     });
   }
 }

@@ -1,12 +1,15 @@
 <p-confirmdialog />
 
-<app-page-header
-  title="Clientes"
-  subtitle="Administra los clientes registrados en PuntoStock."
->
+<app-page-header title="Clientes" subtitle="Administra los clientes registrados en PuntoStock.">
   <div page-actions class="flex flex-wrap gap-2">
-    <button pButton type="button" severity="secondary" outlined
-      (click)="loadClients()" [disabled]="loading()">
+    <button
+      pButton
+      type="button"
+      severity="secondary"
+      outlined
+      (click)="loadClients()"
+      [disabled]="loading()"
+    >
       <span pButtonLabel>Actualizar</span>
     </button>
 
@@ -26,9 +29,7 @@
   <div class="mb-5 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
     <div>
       <h2 class="text-lg font-semibold text-slate-900">Directorio de clientes</h2>
-      <p class="text-sm text-slate-500">
-        {{ filteredClients().length }} registro(s) encontrados
-      </p>
+      <p class="text-sm text-slate-500">{{ filteredClients().length }} registro(s) encontrados</p>
     </div>
 
     <div class="w-full sm:max-w-sm">

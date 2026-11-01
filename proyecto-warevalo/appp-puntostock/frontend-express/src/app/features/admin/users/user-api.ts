@@ -25,27 +25,21 @@ export class UserApi {
   private readonly base = `${environment.apiUrl}/usuarios`;
 
   list(): Observable<AdminUser[]> {
-    return this.http.get<UsersResponse>(this.base).pipe(
-      map(response => response.users),
-    );
+    return this.http.get<UsersResponse>(this.base).pipe(map((response) => response.users));
   }
 
   getById(id: number): Observable<AdminUser> {
-    return this.http.get<UserResponse>(`${this.base}/${id}`).pipe(
-      map(response => response.user),
-    );
+    return this.http.get<UserResponse>(`${this.base}/${id}`).pipe(map((response) => response.user));
   }
 
   create(payload: CreateAdminUser): Observable<AdminUser> {
-    return this.http.post<UserResponse>(this.base, payload).pipe(
-      map(response => response.user),
-    );
+    return this.http.post<UserResponse>(this.base, payload).pipe(map((response) => response.user));
   }
 
   update(id: number, payload: UpdateAdminUser): Observable<AdminUser> {
-    return this.http.patch<UserResponse>(`${this.base}/${id}`, payload).pipe(
-      map(response => response.user),
-    );
+    return this.http
+      .patch<UserResponse>(`${this.base}/${id}`, payload)
+      .pipe(map((response) => response.user));
   }
 
   deactivate(id: number): Observable<unknown> {
@@ -55,6 +49,6 @@ export class UserApi {
   getPermissions(id: number): Observable<UserEffectivePermission[]> {
     return this.http
       .get<UserPermissionsResponse>(`${this.base}/${id}/permisos`)
-      .pipe(map(response => response.permissions));
+      .pipe(map((response) => response.permissions));
   }
 }

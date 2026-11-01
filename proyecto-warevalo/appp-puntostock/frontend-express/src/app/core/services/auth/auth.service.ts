@@ -4,7 +4,6 @@ import { Observable, forkJoin, map, switchMap, tap } from 'rxjs';
 
 import { environment } from '../../../../environments/environment';
 import {
-
   LoginRequest as Credentials,
   PermissionsResponse,
   ProfileResponse,
@@ -22,20 +21,16 @@ export class AuthService {
   private readonly baseUrl = `${environment.apiUrl}/sesion`;
 
   login(credentials: Credentials): Observable<UserProfile> {
-    return this.http
-      .post<SessionTokens>(`${this.baseUrl}/login`, credentials)
-      .pipe(
-        tap((tokens) => this.session.setTokens(tokens)),
-        switchMap(() => this.loadIdentity()),
-      );
+    return this.http.post<SessionTokens>(`${this.baseUrl}/login`, credentials).pipe(
+      tap((tokens) => this.session.setTokens(tokens)),
+      switchMap(() => this.loadIdentity()),
+    );
   }
 
   loadIdentity(): Observable<UserProfile> {
     return forkJoin({
       profile: this.http.get<ProfileResponse>(`${this.baseUrl}/perfil`),
-      permissions: this.http.get<PermissionsResponse>(
-        `${environment.apiUrl}/permisos`,
-      ),
+      permissions: this.http.get<PermissionsResponse>(`${environment.apiUrl}/permisos`),
     }).pipe(
       tap(({ profile, permissions }) => {
         this.session.setProfile(profile.user);
@@ -71,12 +66,10 @@ export class AuthService {
       });
     }
 
-    return this.http
-      .post(`${this.baseUrl}/logout`, { refresh_token: refreshToken })
-      .pipe(
-        map(() => undefined),
-        tap(() => this.session.clear()),
-      );
+    return this.http.post(`${this.baseUrl}/logout`, { refresh_token: refreshToken }).pipe(
+      map(() => undefined),
+      tap(() => this.session.clear()),
+    );
   }
 
   clearSession(): void {

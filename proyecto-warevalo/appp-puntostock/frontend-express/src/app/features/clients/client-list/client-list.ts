@@ -68,7 +68,8 @@ export class ClientList {
   loadClients(): void {
     this.loading.set(true);
 
-    this.api.list()
+    this.api
+      .list()
       .pipe(finalize(() => this.loading.set(false)))
       .subscribe({
         next: (clients) => this.clients.set(clients),
@@ -94,9 +95,7 @@ export class ClientList {
     const current = this.selectedClient();
 
     this.saving.set(true);
-    const request = current?.id
-      ? this.api.update(current.id, payload)
-      : this.api.create(payload);
+    const request = current?.id ? this.api.update(current.id, payload) : this.api.create(payload);
 
     request.pipe(finalize(() => this.saving.set(false))).subscribe({
       next: (client) => {
@@ -106,9 +105,7 @@ export class ClientList {
         this.dialogVisible.set(false);
 
         if (current) {
-          this.clients.update((rows) =>
-            rows.map((row) => row.id === client.id ? client : row),
-          );
+          this.clients.update((rows) => rows.map((row) => (row.id === client.id ? client : row)));
         } else {
           this.clients.update((rows) => [client, ...rows]);
         }

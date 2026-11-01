@@ -4,17 +4,12 @@
       <p class="truncate text-sm font-semibold text-slate-900">
         {{ appName() }}
       </p>
-      <p class="text-xs text-slate-500">
-        Panel administrativo
-      </p>
+      <p class="text-xs text-slate-500">Panel administrativo</p>
     </div>
   </div>
 
   <div class="flex-1 overflow-y-auto p-3">
-    <nav
-      aria-label="Navegación principal"
-      (click)="onNavigationClick($event)"
-    >
+    <nav aria-label="Navegación principal" (click)="onNavigationClick($event)">
       <p-panelmenu [model]="items()" [multiple]="true" />
     </nav>
   </div>

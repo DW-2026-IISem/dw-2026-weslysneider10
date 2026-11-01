@@ -33,9 +33,7 @@
   <div class="mb-5 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
     <div>
       <h2 class="text-lg font-semibold text-slate-900">Usuarios registrados</h2>
-      <p class="text-sm text-slate-500">
-        {{ filteredUsers().length }} usuario(s) encontrados
-      </p>
+      <p class="text-sm text-slate-500">{{ filteredUsers().length }} usuario(s) encontrados</p>
     </div>
 
     <div class="w-full sm:max-w-sm">
@@ -207,16 +205,12 @@
           }
         </div>
       } @else {
-        <p class="text-sm text-slate-500">
-          Este usuario no tiene roles con permisos efectivos.
-        </p>
+        <p class="text-sm text-slate-500">Este usuario no tiene roles con permisos efectivos.</p>
       }
     </div>
 
     <div>
-      <h3 class="mb-2 font-semibold">
-        Recursos autorizados ({{ permissions().length }})
-      </h3>
+      <h3 class="mb-2 font-semibold">Recursos autorizados ({{ permissions().length }})</h3>
 
       @if (permissions().length) {
         <p-table
@@ -237,12 +231,11 @@
             <tr>
               <td>{{ permission.role_name }}</td>
               <td>
-                <p-tag
-                  [value]="permission.method"
-                  [severity]="methodSeverity(permission.method)"
-                />
+                <p-tag [value]="permission.method" [severity]="methodSeverity(permission.method)" />
               </td>
-              <td><code class="text-xs">{{ permission.path }}</code></td>
+              <td>
+                <code class="text-xs">{{ permission.path }}</code>
+              </td>
               <td>{{ permission.description || '—' }}</td>
             </tr>
           </ng-template>

@@ -50,28 +50,23 @@ export class SaleApi {
       params = params.set('estado', filters.estado);
     }
 
-    return this.http.get<SalesResponse>(this.base, { params }).pipe(
-      map(response => response.sales),
-    );
+    return this.http
+      .get<SalesResponse>(this.base, { params })
+      .pipe(map((response) => response.sales));
   }
 
   getById(id: number): Observable<Sale> {
-    return this.http.get<SaleResponse>(`${this.base}/${id}`).pipe(
-      map(response => response.sale),
-    );
+    return this.http.get<SaleResponse>(`${this.base}/${id}`).pipe(map((response) => response.sale));
   }
 
   create(payload: CreateSalePayload): Observable<Sale> {
-    return this.http.post<SaleResponse>(this.base, payload).pipe(
-      map(response => response.sale),
-    );
+    return this.http.post<SaleResponse>(this.base, payload).pipe(map((response) => response.sale));
   }
 
   cancel(id: number): Observable<Sale> {
-    return this.http.patch<SaleResponse>(
-      `${this.base}/${id}/cancel`,
-      {},
-    ).pipe(map(response => response.sale));
+    return this.http
+      .patch<SaleResponse>(`${this.base}/${id}/cancel`, {})
+      .pipe(map((response) => response.sale));
   }
 
   delete(id: number): Observable<unknown> {

@@ -41,19 +41,16 @@
       <ng-template #body let-sale>
         <tr>
           <td>{{ sale.id }}</td>
-          <td>{{ (sale.date || sale.createdAt) | date:'dd/MM/yyyy HH:mm' }}</td>
+          <td>{{ sale.date || sale.createdAt | date: 'dd/MM/yyyy HH:mm' }}</td>
           <td>{{ clientName(sale.client_id) }}</td>
-          <td>{{ sale.subtotal | currency:'COP':'symbol-narrow':'1.0-0' }}</td>
-          <td>{{ sale.tax | currency:'COP':'symbol-narrow':'1.0-0' }}</td>
-          <td>{{ sale.discounts | currency:'COP':'symbol-narrow':'1.0-0' }}</td>
+          <td>{{ sale.subtotal | currency: 'COP' : 'symbol-narrow' : '1.0-0' }}</td>
+          <td>{{ sale.tax | currency: 'COP' : 'symbol-narrow' : '1.0-0' }}</td>
+          <td>{{ sale.discounts | currency: 'COP' : 'symbol-narrow' : '1.0-0' }}</td>
           <td class="font-semibold">
-            {{ sale.total | currency:'COP':'symbol-narrow':'1.0-0' }}
+            {{ sale.total | currency: 'COP' : 'symbol-narrow' : '1.0-0' }}
           </td>
           <td>
-            <p-tag
-              [value]="statusLabel(sale.status)"
-              [severity]="statusSeverity(sale.status)"
-            />
+            <p-tag [value]="statusLabel(sale.status)" [severity]="statusSeverity(sale.status)" />
           </td>
           <td>
             <p-button
@@ -70,9 +67,7 @@
 
       <ng-template #emptymessage>
         <tr>
-          <td colspan="9" class="py-6 text-center text-surface-500">
-            No hay ventas registradas.
-          </td>
+          <td colspan="9" class="py-6 text-center text-surface-500">No hay ventas registradas.</td>
         </tr>
       </ng-template>
     </p-table>

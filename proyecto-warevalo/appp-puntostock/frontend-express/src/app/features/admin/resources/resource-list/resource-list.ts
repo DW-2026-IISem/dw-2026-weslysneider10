@@ -7,7 +7,7 @@ import { ResourceI } from '../resource.model';
   selector: 'app-resource-list',
   standalone: true,
   imports: [FormsModule],
-  templateUrl: './resource-list.html'
+  templateUrl: './resource-list.html',
 })
 export class ResourceList implements OnInit {
   private readonly api = inject(ResourceApi);
@@ -24,8 +24,8 @@ export class ResourceList implements OnInit {
 
   load(): void {
     this.api.getAll().subscribe({
-      next: response => this.resources = response.resources,
-      error: () => this.error = 'No se pudieron cargar los recursos.'
+      next: (response) => (this.resources = response.resources),
+      error: () => (this.error = 'No se pudieron cargar los recursos.'),
     });
   }
 
@@ -35,19 +35,21 @@ export class ResourceList implements OnInit {
       return;
     }
 
-    this.api.create({
-      path: this.path.trim(),
-      method: this.method,
-      description: this.description.trim(),
-      status: 'active'
-    }).subscribe({
-      next: () => {
-        this.path = '';
-        this.description = '';
-        this.error = '';
-        this.load();
-      },
-      error: () => this.error = 'No se pudo crear el recurso.'
-    });
+    this.api
+      .create({
+        path: this.path.trim(),
+        method: this.method,
+        description: this.description.trim(),
+        status: 'active',
+      })
+      .subscribe({
+        next: () => {
+          this.path = '';
+          this.description = '';
+          this.error = '';
+          this.load();
+        },
+        error: () => (this.error = 'No se pudo crear el recurso.'),
+      });
   }
 }

@@ -1,19 +1,12 @@
 import { Component, effect, inject, input, output } from '@angular/core';
-import {
-  NonNullableFormBuilder,
-  ReactiveFormsModule,
-  Validators,
-} from '@angular/forms';
+import { NonNullableFormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ButtonModule } from 'primeng/button';
 import { InputNumberModule } from 'primeng/inputnumber';
 import { InputTextModule } from 'primeng/inputtext';
 import { MessageModule } from 'primeng/message';
 import { SelectModule } from 'primeng/select';
 import type { RecordStatus } from '../../../core/models/common.model';
-import type {
-  Product,
-  ProductPayload,
-} from '../../../core/models/product.model';
+import type { Product, ProductPayload } from '../../../core/models/product.model';
 import type { ProductType } from '../../../core/models/product-type.model';
 
 @Component({

@@ -6,7 +6,7 @@ import { AssignmentApi } from '../assignment-api';
   selector: 'app-assignment-list',
   standalone: true,
   imports: [FormsModule],
-  templateUrl: './assignment-list.html'
+  templateUrl: './assignment-list.html',
 })
 export class AssignmentList implements OnInit {
   private readonly api = inject(AssignmentApi);
@@ -22,8 +22,8 @@ export class AssignmentList implements OnInit {
 
   load(): void {
     this.api.getAll().subscribe({
-      next: response => this.assignments = response.assignments,
-      error: () => this.error = 'No se pudieron cargar las asignaciones.'
+      next: (response) => (this.assignments = response.assignments),
+      error: () => (this.error = 'No se pudieron cargar las asignaciones.'),
     });
   }
 
@@ -40,7 +40,7 @@ export class AssignmentList implements OnInit {
         this.roleId = null;
         this.load();
       },
-      error: () => this.error = 'No se pudo crear la asignación.'
+      error: () => (this.error = 'No se pudo crear la asignación.'),
     });
   }
 }

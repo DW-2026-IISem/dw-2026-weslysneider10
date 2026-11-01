@@ -1,11 +1,4 @@
-import {
-  Directive,
-  TemplateRef,
-  ViewContainerRef,
-  effect,
-  inject,
-  input,
-} from '@angular/core';
+import { Directive, TemplateRef, ViewContainerRef, effect, inject, input } from '@angular/core';
 
 import { PermissionService } from '../services/permissions/permission.service';
 
@@ -31,10 +24,7 @@ export class HasPermissionDirective {
     effect(() => {
       const requirement = this.appHasPermission();
 
-      const allowed = this.permissionService.hasPermission(
-        requirement.method,
-        requirement.path,
-      );
+      const allowed = this.permissionService.hasPermission(requirement.method, requirement.path);
 
       if (allowed && !this.visible) {
         this.viewContainer.createEmbeddedView(this.template);

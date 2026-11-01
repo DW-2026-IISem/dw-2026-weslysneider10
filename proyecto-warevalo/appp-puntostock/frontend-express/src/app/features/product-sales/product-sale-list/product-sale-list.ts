@@ -27,15 +27,12 @@ export class ProductSaleList implements OnInit {
 
     this.api.list().subscribe({
       next: (data: any) => {
-        this.productSales = Array.isArray(data)
-          ? data
-          : data?.data ?? [];
+        this.productSales = Array.isArray(data) ? data : (data?.data ?? []);
         this.loading = false;
       },
       error: (error: any) => {
         this.errorMessage =
-          error?.error?.message ??
-          'No se pudieron cargar los detalles de ventas.';
+          error?.error?.message ?? 'No se pudieron cargar los detalles de ventas.';
         this.loading = false;
       },
     });

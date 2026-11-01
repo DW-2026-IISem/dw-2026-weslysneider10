@@ -41,7 +41,5 @@ export function toApiMessage(error: unknown): string {
     return error.message || 'Ocurrió un error al comunicarse con la API.';
   }
 
-  return error instanceof Error
-    ? error.message
-    : 'Ocurrió un error inesperado.';
+  return error instanceof Error ? error.message : 'Ocurrió un error inesperado.';
 }

@@ -93,9 +93,9 @@
       <ng-template #body let-line>
         <tr>
           <td>{{ line.product.name }}</td>
-          <td>{{ line.product.price | currency:'COP':'symbol-narrow':'1.0-0' }}</td>
+          <td>{{ line.product.price | currency: 'COP' : 'symbol-narrow' : '1.0-0' }}</td>
           <td>{{ line.quantity }}</td>
-          <td>{{ lineTotal(line) | currency:'COP':'symbol-narrow':'1.0-0' }}</td>
+          <td>{{ lineTotal(line) | currency: 'COP' : 'symbol-narrow' : '1.0-0' }}</td>
           <td>
             <p-button
               icon="pi pi-trash"
@@ -124,7 +124,7 @@
     <div class="ml-auto flex w-full max-w-md flex-col gap-4">
       <div class="flex items-center justify-between">
         <span>Subtotal</span>
-        <strong>{{ subtotal() | currency:'COP':'symbol-narrow':'1.0-0' }}</strong>
+        <strong>{{ subtotal() | currency: 'COP' : 'symbol-narrow' : '1.0-0' }}</strong>
       </div>
 
       <div class="flex items-center justify-between gap-4">
@@ -155,7 +155,7 @@
 
       <div class="flex items-center justify-between border-t border-surface-200 pt-4 text-xl">
         <strong>Total</strong>
-        <strong>{{ total() | currency:'COP':'symbol-narrow':'1.0-0' }}</strong>
+        <strong>{{ total() | currency: 'COP' : 'symbol-narrow' : '1.0-0' }}</strong>
       </div>
 
       <p-button

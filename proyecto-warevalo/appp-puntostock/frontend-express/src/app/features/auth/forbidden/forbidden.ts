@@ -10,13 +10,11 @@ import { RouterLink } from '@angular/router';
       <div class="max-w-lg text-center">
         <div class="mb-4 text-7xl font-bold text-red-500">403</div>
 
-        <h1 class="mb-3 text-2xl font-bold text-slate-800">
-          Acceso denegado
-        </h1>
+        <h1 class="mb-3 text-2xl font-bold text-slate-800">Acceso denegado</h1>
 
         <p class="mb-6 text-slate-600">
-          No tienes los permisos necesarios para acceder a este recurso.
-          Contacta al administrador si consideras que necesitas autorización.
+          No tienes los permisos necesarios para acceder a este recurso. Contacta al administrador
+          si consideras que necesitas autorización.
         </p>
 
         <a

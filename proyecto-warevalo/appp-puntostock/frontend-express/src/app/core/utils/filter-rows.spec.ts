@@ -14,20 +14,14 @@ describe('filterRows', () => {
     { id: 3, name: 'María López', email: 'maria@example.com' },
   ];
 
-  const pick = (client: TestClient) => [
-    client.name,
-    client.email,
-    client.id,
-  ];
+  const pick = (client: TestClient) => [client.name, client.email, client.id];
 
   it('devuelve todas las filas si la búsqueda está vacía', () => {
     expect(filterRows(clients, '', pick)).toEqual(clients);
   });
 
   it('ignora espacios al principio y al final', () => {
-    expect(filterRows(clients, '  Ana Pérez  ', pick)).toEqual([
-      clients[0],
-    ]);
+    expect(filterRows(clients, '  Ana Pérez  ', pick)).toEqual([clients[0]]);
   });
 
   it('busca sin distinguir mayúsculas y minúsculas', () => {
@@ -35,9 +29,7 @@ describe('filterRows', () => {
   });
 
   it('busca por correo electrónico', () => {
-    expect(filterRows(clients, 'maria@example.com', pick)).toEqual([
-      clients[2],
-    ]);
+    expect(filterRows(clients, 'maria@example.com', pick)).toEqual([clients[2]]);
   });
 
   it('permite buscar por identificador numérico', () => {

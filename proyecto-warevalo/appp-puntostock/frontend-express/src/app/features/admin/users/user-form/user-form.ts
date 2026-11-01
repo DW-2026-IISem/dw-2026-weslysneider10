@@ -1,38 +1,17 @@
-import {
-  Component,
-  effect,
-  inject,
-  input,
-  output,
-} from '@angular/core';
-import {
-  NonNullableFormBuilder,
-  ReactiveFormsModule,
-  Validators,
-} from '@angular/forms';
+import { Component, effect, inject, input, output } from '@angular/core';
+import { NonNullableFormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 
 import { ButtonModule } from 'primeng/button';
 import { InputTextModule } from 'primeng/inputtext';
 import { MessageModule } from 'primeng/message';
 import { SelectModule } from 'primeng/select';
 
-import {
-  AdminUser,
-  CreateAdminUser,
-  UserStatus,
-  UpdateAdminUser,
-} from '../user.model';
+import { AdminUser, CreateAdminUser, UserStatus, UpdateAdminUser } from '../user.model';
 
 @Component({
   selector: 'app-user-form',
   standalone: true,
-  imports: [
-    ReactiveFormsModule,
-    ButtonModule,
-    InputTextModule,
-    MessageModule,
-    SelectModule,
-  ],
+  imports: [ReactiveFormsModule, ButtonModule, InputTextModule, MessageModule, SelectModule],
   templateUrl: './user-form.html',
 })
 export class UserForm {
@@ -51,20 +30,9 @@ export class UserForm {
   ];
 
   readonly form = this.fb.group({
-    username: ['', [
-      Validators.required,
-      Validators.minLength(3),
-      Validators.maxLength(80),
-    ]],
-    email: ['', [
-      Validators.required,
-      Validators.email,
-      Validators.maxLength(150),
-    ]],
-    password: ['', [
-      Validators.required,
-      Validators.minLength(8),
-    ]],
+    username: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(80)]],
+    email: ['', [Validators.required, Validators.email, Validators.maxLength(150)]],
+    password: ['', [Validators.required, Validators.minLength(8)]],
     avatar: [''],
     status: ['active' as UserStatus, Validators.required],
   });
@@ -88,10 +56,7 @@ export class UserForm {
         this.form.controls.status.disable();
       } else {
         this.form.controls.password.enable();
-        this.form.controls.password.setValidators([
-          Validators.required,
-          Validators.minLength(8),
-        ]);
+        this.form.controls.password.setValidators([Validators.required, Validators.minLength(8)]);
         this.form.controls.status.enable();
       }
 

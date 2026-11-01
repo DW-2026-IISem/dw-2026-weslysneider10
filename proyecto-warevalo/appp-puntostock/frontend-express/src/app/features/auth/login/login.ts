@@ -27,21 +27,22 @@ export class Login {
 
     this.loading.set(true);
 
-    this.auth.login({
-      identifier: this.identifier.trim(),
-      password: this.password,
-    }).subscribe({
-      next: () => {
-        this.notifications.success('Bienvenido a PuntoStock.');
-        this.router.navigateByUrl('/dashboard');
-      },
-      error: (error) => {
-        const message =
-          error?.error?.message ?? 'No fue posible iniciar sesión.';
-        this.notifications.error(message);
-        this.loading.set(false);
-      },
-      complete: () => this.loading.set(false),
-    });
+    this.auth
+      .login({
+        identifier: this.identifier.trim(),
+        password: this.password,
+      })
+      .subscribe({
+        next: () => {
+          this.notifications.success('Bienvenido a PuntoStock.');
+          this.router.navigateByUrl('/dashboard');
+        },
+        error: (error) => {
+          const message = error?.error?.message ?? 'No fue posible iniciar sesión.';
+          this.notifications.error(message);
+          this.loading.set(false);
+        },
+        complete: () => this.loading.set(false),
+      });
   }
 }

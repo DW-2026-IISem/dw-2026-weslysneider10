@@ -23,10 +23,7 @@ export class Aside {
   onNavigationClick(event: Event): void {
     const target = event.target;
 
-    if (
-      target instanceof HTMLElement &&
-      target.closest('a, button, [role="button"]')
-    ) {
+    if (target instanceof HTMLElement && target.closest('a, button, [role="button"]')) {
       this.navigated.emit();
     }
   }

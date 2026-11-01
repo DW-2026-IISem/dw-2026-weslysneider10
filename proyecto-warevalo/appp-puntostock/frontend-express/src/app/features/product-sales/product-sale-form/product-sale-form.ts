@@ -12,14 +12,8 @@ import { Product } from '../../../core/models/product.model';
 @Component({
   selector: 'app-product-sale-form',
   standalone: true,
-  imports: [
-    ReactiveFormsModule,
-    ButtonModule,
-    CardModule,
-    InputNumberModule,
-    SelectModule
-  ],
-  templateUrl: './product-sale-form.html'
+  imports: [ReactiveFormsModule, ButtonModule, CardModule, InputNumberModule, SelectModule],
+  templateUrl: './product-sale-form.html',
 })
 export class ProductSaleForm {
   private readonly fb = inject(FormBuilder);
@@ -34,7 +28,7 @@ export class ProductSaleForm {
     sale_id: [null as number | null, Validators.required],
     product_id: [null as number | null, Validators.required],
     quantity: [1, [Validators.required, Validators.min(1)]],
-    status: ['active' as 'active' | 'inactive', Validators.required]
+    status: ['active' as 'active' | 'inactive', Validators.required],
   });
 
   constructor() {
@@ -45,7 +39,7 @@ export class ProductSaleForm {
         sale_id: current?.sale_id ?? null,
         product_id: current?.product_id ?? null,
         quantity: current?.quantity ?? 1,
-        status: current?.status ?? 'active'
+        status: current?.status ?? 'active',
       });
 
       if (current) {
@@ -76,7 +70,7 @@ export class ProductSaleForm {
       sale_id: value.sale_id,
       product_id: value.product_id,
       quantity: Number(value.quantity),
-      ...(this.line() ? {} : { status: value.status ?? undefined })
+      ...(this.line() ? {} : { status: value.status ?? undefined }),
     });
   }
 }

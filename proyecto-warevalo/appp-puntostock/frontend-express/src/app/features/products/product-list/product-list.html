@@ -1,14 +1,7 @@
 <div class="space-y-6">
-  <app-page-header
-    title="Productos"
-    subtitle="Administra productos, tipos y existencias."
-  >
+  <app-page-header title="Productos" subtitle="Administra productos, tipos y existencias.">
     <div page-actions class="flex flex-wrap items-center gap-2">
-      <p-tag
-        [value]="lowStockCount() + ' con stock bajo'"
-        severity="warn"
-        [rounded]="true"
-      />
+      <p-tag [value]="lowStockCount() + ' con stock bajo'" severity="warn" [rounded]="true" />
 
       <button
         *appHasPermission="{ method: 'POST', path: '/api/productos' }"
@@ -47,10 +40,7 @@
   </div>
 
   @if (error()) {
-    <div
-      class="rounded-lg border border-red-200 bg-red-50 p-4 text-sm text-red-700"
-      role="alert"
-    >
+    <div class="rounded-lg border border-red-200 bg-red-50 p-4 text-sm text-red-700" role="alert">
       {{ error() }}
     </div>
   }

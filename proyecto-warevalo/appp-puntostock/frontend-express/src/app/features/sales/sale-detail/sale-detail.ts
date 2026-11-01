@@ -10,18 +10,18 @@ import { Product } from '../../../core/models/product.model';
   selector: 'app-sale-detail',
   standalone: true,
   imports: [CurrencyPipe, CardModule, TableModule],
-  templateUrl: './sale-detail.html'
+  templateUrl: './sale-detail.html',
 })
 export class SaleDetail {
   readonly sale = input.required<Sale>();
   readonly products = input<Product[]>([]);
 
   readonly productName = computed(() => {
-    const map = new Map(this.products().map(product => [product.id, product.name]));
+    const map = new Map(this.products().map((product) => [product.id, product.name]));
     return (id: number) => map.get(id) ?? `Producto #${id}`;
   });
 
   readonly itemCount = computed(() =>
-    (this.sale().items ?? []).reduce((sum, item) => sum + Number(item.quantity), 0)
+    (this.sale().items ?? []).reduce((sum, item) => sum + Number(item.quantity), 0),
   );
 }

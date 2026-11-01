@@ -2,10 +2,7 @@ import { Injectable, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, map } from 'rxjs';
 import { environment } from '../../../environments/environment';
-import {
-  ProductSale,
-  ProductSalePayload
-} from '../../core/models/product-sale.model';
+import { ProductSale, ProductSalePayload } from '../../core/models/product-sale.model';
 
 @Injectable({ providedIn: 'root' })
 export class ProductSaleApi {
@@ -15,25 +12,25 @@ export class ProductSaleApi {
   list(): Observable<ProductSale[]> {
     return this.http
       .get<{ product_sales: ProductSale[] }>(this.base)
-      .pipe(map(response => response.product_sales));
+      .pipe(map((response) => response.product_sales));
   }
 
   get(id: number): Observable<ProductSale> {
     return this.http
       .get<{ product_sale: ProductSale }>(`${this.base}/${id}`)
-      .pipe(map(response => response.product_sale));
+      .pipe(map((response) => response.product_sale));
   }
 
   create(payload: ProductSalePayload): Observable<ProductSale> {
     return this.http
       .post<{ product_sale: ProductSale }>(this.base, payload)
-      .pipe(map(response => response.product_sale));
+      .pipe(map((response) => response.product_sale));
   }
 
   update(id: number, payload: { quantity: number }): Observable<ProductSale> {
     return this.http
       .patch<{ product_sale: ProductSale }>(`${this.base}/${id}`, payload)
-      .pipe(map(response => response.product_sale));
+      .pipe(map((response) => response.product_sale));
   }
 
   deactivate(id: number): Observable<unknown> {

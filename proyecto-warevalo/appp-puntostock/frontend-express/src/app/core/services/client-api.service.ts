@@ -24,27 +24,27 @@ export class ClientApi {
       params = params.set('isActive', String(filters.isActive));
     }
 
-    return this.http.get<ClientsResponse>(this.base, { params }).pipe(
-      map(response => response.clients),
-    );
+    return this.http
+      .get<ClientsResponse>(this.base, { params })
+      .pipe(map((response) => response.clients));
   }
 
   getById(id: number): Observable<Client> {
-    return this.http.get<ClientResponse>(`${this.base}/${id}`).pipe(
-      map(response => response.client),
-    );
+    return this.http
+      .get<ClientResponse>(`${this.base}/${id}`)
+      .pipe(map((response) => response.client));
   }
 
   create(payload: CreateClient): Observable<Client> {
-    return this.http.post<ClientResponse>(this.base, payload).pipe(
-      map(response => response.client),
-    );
+    return this.http
+      .post<ClientResponse>(this.base, payload)
+      .pipe(map((response) => response.client));
   }
 
   update(id: number, payload: UpdateClient): Observable<Client> {
-    return this.http.put<ClientResponse>(`${this.base}/${id}`, payload).pipe(
-      map(response => response.client),
-    );
+    return this.http
+      .put<ClientResponse>(`${this.base}/${id}`, payload)
+      .pipe(map((response) => response.client));
   }
 
   deactivate(id: number): Observable<unknown> {

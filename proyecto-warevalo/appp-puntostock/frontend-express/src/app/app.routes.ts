@@ -8,21 +8,18 @@ export const routes: Routes = [
   {
     path: 'login',
     title: 'Iniciar sesión · PuntoStock',
-    loadComponent: () =>
-      import('./features/auth/login/login').then((m) => m.Login),
+    loadComponent: () => import('./features/auth/login/login').then((m) => m.Login),
   },
   {
     path: 'construir',
     title: 'Construir · PuntoStock',
     canActivate: [authGuard],
-    loadComponent: () =>
-      import('./features/construir/construir').then((m) => m.Construir),
+    loadComponent: () => import('./features/construir/construir').then((m) => m.Construir),
   },
   {
     path: 'access-denied',
     title: 'Acceso denegado · PuntoStock',
-    loadComponent: () =>
-      import('./features/auth/forbidden/forbidden').then((m) => m.Forbidden),
+    loadComponent: () => import('./features/auth/forbidden/forbidden').then((m) => m.Forbidden),
   },
   {
     path: '',
@@ -37,8 +34,7 @@ export const routes: Routes = [
       {
         path: 'perfil',
         title: 'Mi perfil · PuntoStock',
-        loadComponent: () =>
-          import('./features/auth/profile/profile').then((m) => m.Profile),
+        loadComponent: () => import('./features/auth/profile/profile').then((m) => m.Profile),
       },
       {
         path: 'clientes',
@@ -51,9 +47,7 @@ export const routes: Routes = [
           },
         },
         loadComponent: () =>
-          import('./features/clients/client-list/client-list').then(
-            (m) => m.ClientList,
-          ),
+          import('./features/clients/client-list/client-list').then((m) => m.ClientList),
       },
       {
         path: 'tipos-producto',
@@ -81,9 +75,7 @@ export const routes: Routes = [
           },
         },
         loadComponent: () =>
-          import('./features/products/product-list/product-list').then(
-            (m) => m.ProductList,
-          ),
+          import('./features/products/product-list/product-list').then((m) => m.ProductList),
       },
       {
         path: 'ventas',
@@ -95,10 +87,7 @@ export const routes: Routes = [
             path: '/api/ventas',
           },
         },
-        loadComponent: () =>
-          import('./features/sales/sale-list/sale-list').then(
-            (m) => m.SaleList,
-          ),
+        loadComponent: () => import('./features/sales/sale-list/sale-list').then((m) => m.SaleList),
       },
       {
         path: 'ventas/nueva',
@@ -110,10 +99,7 @@ export const routes: Routes = [
             path: '/api/ventas',
           },
         },
-        loadComponent: () =>
-          import('./features/sales/sale-form/sale-form').then(
-            (m) => m.SaleForm,
-          ),
+        loadComponent: () => import('./features/sales/sale-form/sale-form').then((m) => m.SaleForm),
       },
       {
         path: 'dashboard',
@@ -122,10 +108,7 @@ export const routes: Routes = [
         data: {
           roles: ['ADMIN'],
         },
-        loadComponent: () =>
-          import('./features/dashboard/dashboard').then(
-            (m) => m.Dashboard,
-          ),
+        loadComponent: () => import('./features/dashboard/dashboard').then((m) => m.Dashboard),
       },
       {
         path: 'ventas/detalle',
@@ -135,9 +118,7 @@ export const routes: Routes = [
           roles: ['ADMIN'],
         },
         loadComponent: () =>
-          import('./features/sales/sale-detail/sale-detail').then(
-            (m) => m.SaleDetail,
-          ),
+          import('./features/sales/sale-detail/sale-detail').then((m) => m.SaleDetail),
       },
       {
         path: 'admin/usuarios',
@@ -150,9 +131,7 @@ export const routes: Routes = [
           },
         },
         loadComponent: () =>
-          import('./features/admin/users/user-list/user-list').then(
-            (m) => m.UserList,
-          ),
+          import('./features/admin/users/user-list/user-list').then((m) => m.UserList),
       },
       {
         path: 'admin/roles',
@@ -162,9 +141,7 @@ export const routes: Routes = [
           roles: ['ADMIN'],
         },
         loadComponent: () =>
-          import('./features/admin/roles/role-list/role-list').then(
-            (m) => m.RoleList,
-          ),
+          import('./features/admin/roles/role-list/role-list').then((m) => m.RoleList),
       },
       {
         path: 'admin/recursos',

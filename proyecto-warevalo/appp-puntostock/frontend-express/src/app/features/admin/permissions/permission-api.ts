@@ -15,7 +15,7 @@ export class PermissionApi {
   create(roleId: number, resourceId: number): Observable<unknown> {
     return this.http.post(this.url, {
       role_id: roleId,
-      resource_id: resourceId
+      resource_id: resourceId,
     });
   }
 }

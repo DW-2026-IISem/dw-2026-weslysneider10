@@ -10,9 +10,6 @@ export interface Supplier {
   updatedAt?: string;
 }
 
-export type CreateSupplier = Omit<
-  Supplier,
-  'id' | 'createdAt' | 'updatedAt'
->;
+export type CreateSupplier = Omit<Supplier, 'id' | 'createdAt' | 'updatedAt'>;
 
 export type UpdateSupplier = Partial<CreateSupplier>;

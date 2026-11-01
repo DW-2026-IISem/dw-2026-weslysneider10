@@ -1,9 +1,6 @@
 <form [formGroup]="form" (ngSubmit)="submit()" class="space-y-4">
-
   <div>
-    <label for="user-username" class="mb-1 block text-sm font-medium">
-      Nombre de usuario *
-    </label>
+    <label for="user-username" class="mb-1 block text-sm font-medium"> Nombre de usuario * </label>
     <input
       id="user-username"
       pInputText
@@ -21,9 +18,7 @@
   </div>
 
   <div>
-    <label for="user-email" class="mb-1 block text-sm font-medium">
-      Correo electrónico *
-    </label>
+    <label for="user-email" class="mb-1 block text-sm font-medium"> Correo electrónico * </label>
     <input
       id="user-email"
       type="email"
@@ -43,9 +38,7 @@
 
   @if (!user()) {
     <div>
-      <label for="user-password" class="mb-1 block text-sm font-medium">
-        Contraseña *
-      </label>
+      <label for="user-password" class="mb-1 block text-sm font-medium"> Contraseña * </label>
       <input
         id="user-password"
         type="password"
@@ -65,9 +58,7 @@
   }
 
   <div>
-    <label for="user-avatar" class="mb-1 block text-sm font-medium">
-      URL del avatar
-    </label>
+    <label for="user-avatar" class="mb-1 block text-sm font-medium"> URL del avatar </label>
     <input
       id="user-avatar"
       pInputText
@@ -78,9 +69,7 @@
   </div>
 
   <div>
-    <label for="user-status" class="mb-1 block text-sm font-medium">
-      Estado
-    </label>
+    <label for="user-status" class="mb-1 block text-sm font-medium"> Estado </label>
 
     <p-select
       inputId="user-status"
@@ -93,20 +82,13 @@
 
     @if (user()) {
       <p class="mt-1 text-xs text-slate-500">
-        El estado de un usuario existente se cambia mediante la acción
-        de desactivación.
+        El estado de un usuario existente se cambia mediante la acción de desactivación.
       </p>
     }
   </div>
 
   <div class="flex justify-end gap-2 border-t pt-4">
-    <button
-      pButton
-      type="button"
-      severity="secondary"
-      outlined
-      (click)="cancelled.emit()"
-    >
+    <button pButton type="button" severity="secondary" outlined (click)="cancelled.emit()">
       <span pButtonLabel>Cancelar</span>
     </button>
 

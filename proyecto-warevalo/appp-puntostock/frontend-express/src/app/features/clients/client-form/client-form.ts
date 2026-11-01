@@ -1,25 +1,12 @@
-import {
-  Component,
-  effect,
-  inject,
-  input,
-  output,
-} from '@angular/core';
-import {
-  NonNullableFormBuilder,
-  ReactiveFormsModule,
-  Validators,
-} from '@angular/forms';
+import { Component, effect, inject, input, output } from '@angular/core';
+import { NonNullableFormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ButtonModule } from 'primeng/button';
 import { InputTextModule } from 'primeng/inputtext';
 import { MessageModule } from 'primeng/message';
 import { SelectModule } from 'primeng/select';
 import { TextareaModule } from 'primeng/textarea';
 
-import type {
-  Client,
-  CreateClient,
-} from '../../../core/models/client.model';
+import type { Client, CreateClient } from '../../../core/models/client.model';
 import type { RecordStatus } from '../../../core/models/common.model';
 
 @Component({

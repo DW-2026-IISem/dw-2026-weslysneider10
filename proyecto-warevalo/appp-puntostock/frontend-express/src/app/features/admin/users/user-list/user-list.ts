@@ -10,7 +10,12 @@ import { TableModule } from 'primeng/table';
 import { TagModule } from 'primeng/tag';
 import { ConfirmationService } from 'primeng/api';
 
-import { AdminUser, CreateAdminUser, UpdateAdminUser, UserEffectivePermission } from '../user.model';
+import {
+  AdminUser,
+  CreateAdminUser,
+  UpdateAdminUser,
+  UserEffectivePermission,
+} from '../user.model';
 import { UserApi } from '../user-api';
 import { UserForm } from '../user-form/user-form';
 
@@ -63,13 +68,12 @@ export class UserList {
 
     if (!term) return this.users();
 
-    return this.users().filter(user =>
-      [
-        user.id,
-        user.username,
-        user.email,
-        user.status,
-      ].some(value => String(value ?? '').toLowerCase().includes(term)),
+    return this.users().filter((user) =>
+      [user.id, user.username, user.email, user.status].some((value) =>
+        String(value ?? '')
+          .toLowerCase()
+          .includes(term),
+      ),
     );
   });
 
@@ -98,26 +102,25 @@ export class UserList {
   loadUsers(): void {
     this.loading.set(true);
 
-    this.api.list()
+    this.api
+      .list()
       .pipe(finalize(() => this.loading.set(false)))
       .subscribe({
-        next: users => this.users.set(users),
-        error: error => this.notifications.error(
-          toApiMessage(error),
-          'No se pudieron cargar los usuarios',
-        ),
+        next: (users) => this.users.set(users),
+        error: (error) =>
+          this.notifications.error(toApiMessage(error), 'No se pudieron cargar los usuarios'),
       });
   }
 
   openCreate(): void {
     this.selectedUser.set(null);
-    this.resetKey.update(value => value + 1);
+    this.resetKey.update((value) => value + 1);
     this.dialogVisible.set(true);
   }
 
   openEdit(user: AdminUser): void {
     this.selectedUser.set(user);
-    this.resetKey.update(value => value + 1);
+    this.resetKey.update((value) => value + 1);
     this.dialogVisible.set(true);
   }
 
@@ -131,20 +134,16 @@ export class UserList {
       : this.api.create(payload as CreateAdminUser);
 
     request.pipe(finalize(() => this.saving.set(false))).subscribe({
-      next: user => {
+      next: (user) => {
         this.notifications.success(
-          current
-            ? 'Usuario actualizado correctamente.'
-            : 'Usuario creado correctamente.',
+          current ? 'Usuario actualizado correctamente.' : 'Usuario creado correctamente.',
         );
 
         this.dialogVisible.set(false);
         this.loadUsers();
       },
-      error: error => this.notifications.error(
-        toApiMessage(error),
-        'No se pudo guardar el usuario',
-      ),
+      error: (error) =>
+        this.notifications.error(toApiMessage(error), 'No se pudo guardar el usuario'),
     });
   }
 
@@ -167,10 +166,8 @@ export class UserList {
             this.notifications.success('Usuario desactivado correctamente.');
             this.loadUsers();
           },
-          error: error => this.notifications.error(
-            toApiMessage(error),
-            'No se pudo desactivar el usuario',
-          ),
+          error: (error) =>
+            this.notifications.error(toApiMessage(error), 'No se pudo desactivar el usuario'),
         });
       },
     });
@@ -182,14 +179,13 @@ export class UserList {
     this.permissionsVisible.set(true);
     this.permissionsLoading.set(true);
 
-    this.api.getPermissions(user.id)
+    this.api
+      .getPermissions(user.id)
       .pipe(finalize(() => this.permissionsLoading.set(false)))
       .subscribe({
-        next: permissions => this.permissions.set(permissions),
-        error: error => this.notifications.error(
-          toApiMessage(error),
-          'No se pudieron consultar los permisos',
-        ),
+        next: (permissions) => this.permissions.set(permissions),
+        error: (error) =>
+          this.notifications.error(toApiMessage(error), 'No se pudieron consultar los permisos'),
       });
   }
 
@@ -201,12 +197,17 @@ export class UserList {
 
   methodSeverity(method: string): 'info' | 'success' | 'warn' | 'danger' | 'secondary' {
     switch (method.toUpperCase()) {
-      case 'GET': return 'info';
-      case 'POST': return 'success';
+      case 'GET':
+        return 'info';
+      case 'POST':
+        return 'success';
       case 'PUT':
-      case 'PATCH': return 'warn';
-      case 'DELETE': return 'danger';
-      default: return 'secondary';
+      case 'PATCH':
+        return 'warn';
+      case 'DELETE':
+        return 'danger';
+      default:
+        return 'secondary';
     }
   }
 }

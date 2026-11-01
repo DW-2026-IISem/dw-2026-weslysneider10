@@ -12,9 +12,6 @@ export interface ReturnRecord {
   updatedAt?: string;
 }
 
-export type CreateReturn = Omit<
-  ReturnRecord,
-  'id' | 'createdAt' | 'updatedAt'
->;
+export type CreateReturn = Omit<ReturnRecord, 'id' | 'createdAt' | 'updatedAt'>;
 
 export type UpdateReturn = Partial<CreateReturn>;

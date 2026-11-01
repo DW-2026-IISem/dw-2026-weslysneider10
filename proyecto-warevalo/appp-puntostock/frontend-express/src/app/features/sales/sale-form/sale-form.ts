@@ -36,9 +36,9 @@ interface SaleLine {
     InputNumberModule,
     MessageModule,
     SelectModule,
-    TableModule
+    TableModule,
   ],
-  templateUrl: './sale-form.html'
+  templateUrl: './sale-form.html',
 })
 export class SaleForm {
   private readonly http = inject(HttpClient);
@@ -61,18 +61,15 @@ export class SaleForm {
   discounts = 0;
 
   readonly subtotal = computed(() =>
-    this.lines().reduce(
-      (sum, line) => sum + Number(line.product.price) * line.quantity,
-      0
-    )
+    this.lines().reduce((sum, line) => sum + Number(line.product.price) * line.quantity, 0),
   );
 
   readonly total = computed(() =>
-    Math.max(0, this.subtotal() + Number(this.tax || 0) - Number(this.discounts || 0))
+    Math.max(0, this.subtotal() + Number(this.tax || 0) - Number(this.discounts || 0)),
   );
 
   readonly selectedProduct = computed(() =>
-    this.products().find(product => product.id === this.selectedProductId)
+    this.products().find((product) => product.id === this.selectedProductId),
   );
 
   ngOnInit(): void {
@@ -84,29 +81,29 @@ export class SaleForm {
     this.error.set('');
 
     forkJoin({
-      clients: this.http.get<{ clients: Client[] } | Client[]>(
-        `${environment.apiUrl}/clientes`
-      ),
-      products: this.productApi.list()
+      clients: this.http.get<{ clients: Client[] } | Client[]>(`${environment.apiUrl}/clientes`),
+      products: this.productApi.list(),
     }).subscribe({
       next: ({ clients, products }) => {
         const clientList = Array.isArray(clients) ? clients : clients.clients;
 
-        this.clients.set(clientList.filter(client =>
-          String(client.status).toLowerCase() === 'active'
-        ));
+        this.clients.set(
+          clientList.filter((client) => String(client.status).toLowerCase() === 'active'),
+        );
 
-        this.products.set(products.filter(product =>
-          String(product.status).toLowerCase() === 'active' &&
-          Number(product.quantity) > 0
-        ));
+        this.products.set(
+          products.filter(
+            (product) =>
+              String(product.status).toLowerCase() === 'active' && Number(product.quantity) > 0,
+          ),
+        );
 
         this.loading.set(false);
       },
       error: () => {
         this.error.set('No fue posible cargar los clientes y productos.');
         this.loading.set(false);
-      }
+      },
     });
   }
 
@@ -129,26 +126,24 @@ export class SaleForm {
       return;
     }
 
-    const existing = this.lines().find(line => line.product.id === product.id);
+    const existing = this.lines().find((line) => line.product.id === product.id);
     const currentQuantity = existing?.quantity ?? 0;
 
     if (currentQuantity + qty > Number(product.quantity)) {
       this.error.set(
-        `Stock insuficiente para ${product.name}. Disponible: ${Number(product.quantity) - currentQuantity}.`
+        `Stock insuficiente para ${product.name}. Disponible: ${Number(product.quantity) - currentQuantity}.`,
       );
       return;
     }
 
     if (existing) {
-      this.lines.update(lines =>
-        lines.map(line =>
-          line.product.id === product.id
-            ? { ...line, quantity: line.quantity + qty }
-            : line
-        )
+      this.lines.update((lines) =>
+        lines.map((line) =>
+          line.product.id === product.id ? { ...line, quantity: line.quantity + qty } : line,
+        ),
       );
     } else {
-      this.lines.update(lines => [...lines, { product, quantity: qty }]);
+      this.lines.update((lines) => [...lines, { product, quantity: qty }]);
     }
 
     this.error.set('');
@@ -157,9 +152,7 @@ export class SaleForm {
   }
 
   removeLine(productId: number): void {
-    this.lines.update(lines =>
-      lines.filter(line => line.product.id !== productId)
-    );
+    this.lines.update((lines) => lines.filter((line) => line.product.id !== productId));
   }
 
   lineTotal(line: SaleLine): number {
@@ -191,10 +184,10 @@ export class SaleForm {
       client_id: this.clientId,
       tax: Number(this.tax || 0),
       discounts: Number(this.discounts || 0),
-      items: this.lines().map(line => ({
+      items: this.lines().map((line) => ({
         product_id: line.product.id,
-        quantity: line.quantity
-      }))
+        quantity: line.quantity,
+      })),
     };
 
     this.saving.set(true);
@@ -205,12 +198,10 @@ export class SaleForm {
         this.notification.success('La venta fue registrada correctamente.');
         this.router.navigate(['/ventas']);
       },
-      error: response => {
-        this.error.set(
-          response?.error?.message ?? 'No fue posible registrar la venta.'
-        );
+      error: (response) => {
+        this.error.set(response?.error?.message ?? 'No fue posible registrar la venta.');
         this.saving.set(false);
-      }
+      },
     });
   }
 

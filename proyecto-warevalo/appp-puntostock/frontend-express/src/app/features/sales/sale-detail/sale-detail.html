@@ -5,10 +5,20 @@
     <div class="grid grid-cols-1 gap-3 sm:grid-cols-2">
       <p><strong>Cliente:</strong> {{ sale().client_id }}</p>
       <p><strong>Estado:</strong> {{ sale().status }}</p>
-      <p><strong>Subtotal:</strong> {{ sale().subtotal | currency:'COP':'symbol-narrow':'1.0-0' }}</p>
-      <p><strong>Impuestos:</strong> {{ sale().tax | currency:'COP':'symbol-narrow':'1.0-0' }}</p>
-      <p><strong>Descuentos:</strong> {{ sale().discounts | currency:'COP':'symbol-narrow':'1.0-0' }}</p>
-      <p><strong>Total:</strong> {{ sale().total | currency:'COP':'symbol-narrow':'1.0-0' }}</p>
+      <p>
+        <strong>Subtotal:</strong>
+        {{ sale().subtotal | currency: 'COP' : 'symbol-narrow' : '1.0-0' }}
+      </p>
+      <p>
+        <strong>Impuestos:</strong> {{ sale().tax | currency: 'COP' : 'symbol-narrow' : '1.0-0' }}
+      </p>
+      <p>
+        <strong>Descuentos:</strong>
+        {{ sale().discounts | currency: 'COP' : 'symbol-narrow' : '1.0-0' }}
+      </p>
+      <p>
+        <strong>Total:</strong> {{ sale().total | currency: 'COP' : 'symbol-narrow' : '1.0-0' }}
+      </p>
       <p><strong>Unidades:</strong> {{ itemCount() }}</p>
     </div>
 
@@ -28,8 +38,8 @@
         <tr>
           <td>{{ productName()(item.product_id) }}</td>
           <td>{{ item.quantity }}</td>
-          <td>{{ item.unit_price | currency:'COP':'symbol-narrow':'1.0-0' }}</td>
-          <td>{{ item.line_total | currency:'COP':'symbol-narrow':'1.0-0' }}</td>
+          <td>{{ item.unit_price | currency: 'COP' : 'symbol-narrow' : '1.0-0' }}</td>
+          <td>{{ item.line_total | currency: 'COP' : 'symbol-narrow' : '1.0-0' }}</td>
         </tr>
       </ng-template>
 

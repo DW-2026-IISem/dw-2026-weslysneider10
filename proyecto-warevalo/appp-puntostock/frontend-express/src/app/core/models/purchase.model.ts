@@ -1,8 +1,4 @@
-export type PurchaseStatus =
-  | 'pending'
-  | 'partial'
-  | 'received'
-  | 'cancelled';
+export type PurchaseStatus = 'pending' | 'partial' | 'received' | 'cancelled';
 
 export interface Purchase {
   id?: number;
@@ -28,9 +24,6 @@ export interface PurchaseDetail {
   observaciones?: string | null;
 }
 
-export type CreatePurchase = Omit<
-  Purchase,
-  'id' | 'createdAt' | 'updatedAt'
->;
+export type CreatePurchase = Omit<Purchase, 'id' | 'createdAt' | 'updatedAt'>;
 
 export type UpdatePurchase = Partial<CreatePurchase>;

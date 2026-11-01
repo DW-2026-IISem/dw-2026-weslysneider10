@@ -1,12 +1,6 @@
-<form
-  [formGroup]="form"
-  (ngSubmit)="submit()"
-  class="space-y-4"
->
+<form [formGroup]="form" (ngSubmit)="submit()" class="space-y-4">
   <div>
-    <label for="client-name" class="mb-1 block text-sm font-medium">
-      Nombre *
-    </label>
+    <label for="client-name" class="mb-1 block text-sm font-medium"> Nombre * </label>
 
     <input
       id="client-name"
@@ -26,9 +20,7 @@
 
   <div class="grid gap-4 sm:grid-cols-2">
     <div>
-      <label for="client-phone" class="mb-1 block text-sm font-medium">
-        Teléfono
-      </label>
+      <label for="client-phone" class="mb-1 block text-sm font-medium"> Teléfono </label>
 
       <input
         id="client-phone"
@@ -41,9 +33,7 @@
     </div>
 
     <div>
-      <label for="client-email" class="mb-1 block text-sm font-medium">
-        Correo electrónico
-      </label>
+      <label for="client-email" class="mb-1 block text-sm font-medium"> Correo electrónico </label>
 
       <input
         id="client-email"
@@ -64,9 +54,7 @@
   </div>
 
   <div>
-    <label for="client-address" class="mb-1 block text-sm font-medium">
-      Dirección
-    </label>
+    <label for="client-address" class="mb-1 block text-sm font-medium"> Dirección </label>
 
     <textarea
       id="client-address"
@@ -79,9 +67,7 @@
   </div>
 
   <div>
-    <label for="client-status" class="mb-1 block text-sm font-medium">
-      Estado
-    </label>
+    <label for="client-status" class="mb-1 block text-sm font-medium"> Estado </label>
 
     <p-select
       inputId="client-status"
@@ -100,21 +86,11 @@
   </div>
 
   <div class="flex justify-end gap-2 border-t pt-4">
-    <button
-      pButton
-      type="button"
-      severity="secondary"
-      outlined
-      (click)="cancelled.emit()"
-    >
+    <button pButton type="button" severity="secondary" outlined (click)="cancelled.emit()">
       <span pButtonLabel>Cancelar</span>
     </button>
 
-    <button
-      pButton
-      type="submit"
-      [loading]="saving()"
-    >
+    <button pButton type="submit" [loading]="saving()">
       <span pButtonLabel>Guardar</span>
     </button>
   </div>

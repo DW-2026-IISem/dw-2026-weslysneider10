@@ -12,9 +12,6 @@ export interface Payment {
   updatedAt?: string;
 }
 
-export type CreatePayment = Omit<
-  Payment,
-  'id' | 'createdAt' | 'updatedAt'
->;
+export type CreatePayment = Omit<Payment, 'id' | 'createdAt' | 'updatedAt'>;
 
 export type UpdatePayment = Partial<CreatePayment>;

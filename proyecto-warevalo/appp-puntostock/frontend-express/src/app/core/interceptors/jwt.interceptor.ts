@@ -1,16 +1,6 @@
 import { inject } from '@angular/core';
-import {
-  HttpErrorResponse,
-  HttpInterceptorFn,
-} from '@angular/common/http';
-import {
-  BehaviorSubject,
-  catchError,
-  filter,
-  switchMap,
-  take,
-  throwError,
-} from 'rxjs';
+import { HttpErrorResponse, HttpInterceptorFn } from '@angular/common/http';
+import { BehaviorSubject, catchError, filter, switchMap, take, throwError } from 'rxjs';
 
 import { AuthService } from '../services/auth/auth.service';
 import { SessionStore } from '../services/auth/session.store';
@@ -22,15 +12,9 @@ export const jwtInterceptor: HttpInterceptorFn = (request, next) => {
   const session = inject(SessionStore);
   const auth = inject(AuthService);
 
-  const authEndpoints = [
-    '/sesion/login',
-    '/sesion/refresh',
-    '/sesion/logout',
-  ];
+  const authEndpoints = ['/sesion/login', '/sesion/refresh', '/sesion/logout'];
 
-  const isAuthEndpoint = authEndpoints.some((endpoint) =>
-    request.url.includes(endpoint),
-  );
+  const isAuthEndpoint = authEndpoints.some((endpoint) => request.url.includes(endpoint));
 
   const accessToken = session.accessToken();
 
@@ -45,11 +29,7 @@ export const jwtInterceptor: HttpInterceptorFn = (request, next) => {
 
   return next(authenticatedRequest).pipe(
     catchError((error: HttpErrorResponse) => {
-      if (
-        error.status !== 401 ||
-        isAuthEndpoint ||
-        !session.refreshToken()
-      ) {
+      if (error.status !== 401 || isAuthEndpoint || !session.refreshToken()) {
         return throwError(() => error);
       }
 

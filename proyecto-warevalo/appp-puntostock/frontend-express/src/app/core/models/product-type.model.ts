@@ -9,10 +9,7 @@ export interface ProductType {
   updatedAt?: string;
 }
 
-export type CreateProductType = Omit<
-  ProductType,
-  'id' | 'createdAt' | 'updatedAt'
->;
+export type CreateProductType = Omit<ProductType, 'id' | 'createdAt' | 'updatedAt'>;
 
 export type UpdateProductType = Partial<CreateProductType>;
 

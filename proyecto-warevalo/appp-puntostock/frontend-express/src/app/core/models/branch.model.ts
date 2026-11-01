@@ -9,9 +9,6 @@ export interface Branch {
   updatedAt?: string;
 }
 
-export type CreateBranch = Omit<
-  Branch,
-  'id' | 'createdAt' | 'updatedAt'
->;
+export type CreateBranch = Omit<Branch, 'id' | 'createdAt' | 'updatedAt'>;
 
 export type UpdateBranch = Partial<CreateBranch>;

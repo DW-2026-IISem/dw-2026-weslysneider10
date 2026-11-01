@@ -15,7 +15,7 @@ export class AssignmentApi {
   create(userId: number, roleId: number): Observable<unknown> {
     return this.http.post(this.url, {
       user_id: userId,
-      role_id: roleId
+      role_id: roleId,
     });
   }
 }

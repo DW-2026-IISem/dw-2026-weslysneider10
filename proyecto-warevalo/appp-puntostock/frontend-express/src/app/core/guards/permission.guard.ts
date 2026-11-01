@@ -8,8 +8,7 @@ export const permissionGuard: CanActivateFn = (route) => {
   const router = inject(Router);
 
   const requiredPermission = route.data['permission'] as
-    | { method: string; path: string }
-    | undefined;
+    { method: string; path: string } | undefined;
 
   const requiredRoles = route.data['roles'] as string[] | undefined;
 
@@ -23,10 +22,7 @@ export const permissionGuard: CanActivateFn = (route) => {
     return router.createUrlTree(['/acceso-denegado']);
   }
 
-  return permissions.hasPermission(
-    requiredPermission.method,
-    requiredPermission.path,
-  )
+  return permissions.hasPermission(requiredPermission.method, requiredPermission.path)
     ? true
     : router.createUrlTree(['/acceso-denegado']);
 };

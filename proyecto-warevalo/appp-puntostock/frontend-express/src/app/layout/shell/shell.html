@@ -1,17 +1,10 @@
 <div class="flex min-h-dvh flex-col bg-slate-50">
-  <app-header
-    [appName]="appName"
-    (menuRequested)="toggleSidebar()"
-  />
+  <app-header [appName]="appName" (menuRequested)="toggleSidebar()" />
 
   <div class="flex flex-1">
     @if (sidebarVisible()) {
       <aside class="w-72 shrink-0">
-        <app-aside
-          [appName]="appName"
-          [items]="menuItems()"
-          (navigated)="closeSidebar()"
-        />
+        <app-aside [appName]="appName" [items]="menuItems()" (navigated)="closeSidebar()" />
       </aside>
     }
 

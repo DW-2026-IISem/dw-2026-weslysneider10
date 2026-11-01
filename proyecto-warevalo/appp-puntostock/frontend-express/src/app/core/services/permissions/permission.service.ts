@@ -11,16 +11,13 @@ export class PermissionService {
   hasPermission(method: string, path: string): boolean {
     const permissions = this.session.permissions();
 
-    return permissions.some((permission) =>
-      this.matchesPermission(permission, method, path),
-    );
+    return permissions.some((permission) => this.matchesPermission(permission, method, path));
   }
 
   hasRole(role: string): boolean {
-    return this.session.permissions().some(
-      (permission) =>
-        permission.role_name.toUpperCase() === role.toUpperCase(),
-    );
+    return this.session
+      .permissions()
+      .some((permission) => permission.role_name.toUpperCase() === role.toUpperCase());
   }
 
   hasAnyRole(roles: string[]): boolean {
