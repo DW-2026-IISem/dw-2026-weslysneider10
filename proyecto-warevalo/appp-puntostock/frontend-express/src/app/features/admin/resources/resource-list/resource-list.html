@@ -1,0 +1,59 @@
+<section class="p-6">
+  <h1 class="mb-6 text-2xl font-bold">Administración de recursos</h1>
+
+  <form (ngSubmit)="save()" class="mb-6 flex flex-wrap gap-3">
+    <input
+      name="path"
+      [(ngModel)]="path"
+      placeholder="/api/clientes"
+      class="rounded border p-2"
+      required
+    />
+
+    <select name="method" [(ngModel)]="method" class="rounded border p-2">
+      <option>GET</option>
+      <option>POST</option>
+      <option>PUT</option>
+      <option>PATCH</option>
+      <option>DELETE</option>
+    </select>
+
+    <input
+      name="description"
+      [(ngModel)]="description"
+      placeholder="Descripción"
+      class="rounded border p-2"
+    />
+
+    <button class="rounded bg-blue-600 px-4 py-2 text-white">
+      Crear recurso
+    </button>
+  </form>
+
+  @if (error) {
+    <p class="mb-4 text-red-600">{{ error }}</p>
+  }
+
+  <table class="w-full border-collapse">
+    <thead>
+      <tr class="border-b bg-gray-100 text-left">
+        <th class="p-3">ID</th>
+        <th class="p-3">Método</th>
+        <th class="p-3">Ruta</th>
+        <th class="p-3">Descripción</th>
+        <th class="p-3">Estado</th>
+      </tr>
+    </thead>
+    <tbody>
+      @for (resource of resources; track resource.id) {
+        <tr class="border-b">
+          <td class="p-3">{{ resource.id }}</td>
+          <td class="p-3">{{ resource.method }}</td>
+          <td class="p-3">{{ resource.path }}</td>
+          <td class="p-3">{{ resource.description }}</td>
+          <td class="p-3">{{ resource.status }}</td>
+        </tr>
+      }
+    </tbody>
+  </table>
+</section>

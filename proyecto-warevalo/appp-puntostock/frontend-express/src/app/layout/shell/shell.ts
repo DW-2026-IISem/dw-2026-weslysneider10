@@ -164,6 +164,37 @@ export class Shell {
           },
         ],
       });
+
+      items.push({
+        label: 'Administración',
+        items: [
+          {
+            label: 'Usuarios',
+            icon: 'pi pi-users',
+            routerLink: '/admin/usuarios',
+          },
+          {
+            label: 'Roles',
+            icon: 'pi pi-id-card',
+            routerLink: '/admin/roles',
+          },
+          {
+            label: 'Recursos',
+            icon: 'pi pi-server',
+            routerLink: '/admin/recursos',
+          },
+          {
+            label: 'Asignaciones',
+            icon: 'pi pi-user-plus',
+            routerLink: '/admin/asignaciones',
+          },
+          {
+            label: 'Permisos',
+            icon: 'pi pi-lock',
+            routerLink: '/admin/permisos',
+          },
+        ],
+      });
     }
 
     return items;

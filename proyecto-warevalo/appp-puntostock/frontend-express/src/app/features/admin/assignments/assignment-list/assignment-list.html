@@ -1,0 +1,52 @@
+<section class="p-6">
+  <h1 class="mb-6 text-2xl font-bold">Asignaciones de roles</h1>
+
+  <form (ngSubmit)="save()" class="mb-6 flex flex-wrap gap-3">
+    <input
+      type="number"
+      name="userId"
+      [(ngModel)]="userId"
+      placeholder="ID del usuario"
+      class="rounded border p-2"
+      required
+    />
+
+    <input
+      type="number"
+      name="roleId"
+      [(ngModel)]="roleId"
+      placeholder="ID del rol"
+      class="rounded border p-2"
+      required
+    />
+
+    <button class="rounded bg-blue-600 px-4 py-2 text-white">
+      Asignar rol
+    </button>
+  </form>
+
+  @if (error) {
+    <p class="mb-4 text-red-600">{{ error }}</p>
+  }
+
+  <table class="w-full border-collapse">
+    <thead>
+      <tr class="border-b bg-gray-100 text-left">
+        <th class="p-3">ID</th>
+        <th class="p-3">Usuario</th>
+        <th class="p-3">Rol</th>
+        <th class="p-3">Estado</th>
+      </tr>
+    </thead>
+    <tbody>
+      @for (item of assignments; track item.id) {
+        <tr class="border-b">
+          <td class="p-3">{{ item.id }}</td>
+          <td class="p-3">{{ item.user_id }}</td>
+          <td class="p-3">{{ item.role_id }}</td>
+          <td class="p-3">{{ item.status }}</td>
+        </tr>
+      }
+    </tbody>
+  </table>
+</section>

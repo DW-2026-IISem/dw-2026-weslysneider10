@@ -1,0 +1,68 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.SEED_USERS = void 0;
+exports.seedUsers = seedUsers;
+const user_model_1 = require("./user.model");
+const faker_1 = require("@faker-js/faker");
+/**
+ * Seeder de usuarios (users).
+ *
+ * Crea dos usuarios canónicos que sostienen toda la demostración de RBAC:
+ *
+ *  username | password     | rol (ISS-12) | permisos
+ *  admin    | Admin123!    | ADMIN        | todos los recursos
+ *  seller   | Seller123!   | SELLER       | recursos de operación
+ *
+ * Si count > 2, se añaden usuarios aleatorios (sin rol asignado): sirven
+ * para comprobar que estar autenticado no basta: recibirán 403 en todo.
+ *
+ * Las contraseñas se guardan como hash: las hashea el hook beforeCreate del
+ * modelo. Idempotente por username.
+ */
+exports.SEED_USERS = [
+    { username: "admin", email: "admin@puntostock.local", password: "Admin123!" },
+    { username: "seller", email: "seller@puntostock.local", password: "Seller123!" },
+];
+async function seedUsers(count) {
+    if (count <= 0) {
+        console.log("⏭️  users: count=0, se omite");
+        return 0;
+    }
+    let created = 0;
+    for (const item of exports.SEED_USERS) {
+        const [user, wasCreated] = await user_model_1.User.findOrCreate({
+            where: { username: item.username },
+            defaults: {
+                username: item.username,
+                email: item.email,
+                password: item.password,
+                avatar: null,
+                status: "active",
+            },
+        });
+        if (wasCreated) {
+            created++;
+            continue;
+        }
+        // Reconciliación: reactiva los canónicos si quedaron inactivos, para
+        // que `npm run db:seed` devuelva siempre el laboratorio a un estado operable.
+        if (user.status !== "active") {
+            await user.update({ status: "active" });
+        }
+    }
+    const extras = Math.max(0, count - exports.SEED_USERS.length);
+    for (let i = 0; i < extras; i++) {
+        const username = `user.${i}.${faker_1.faker.string.alphanumeric(6)}`.toLowerCase();
+        await user_model_1.User.create({
+            username,
+            email: `${username}@example.com`,
+            password: "Password123!",
+            avatar: null,
+            status: "active",
+        });
+        created++;
+    }
+    console.log(`✅ users: insertados ${created} usuario(s) (2 canónicos + ${extras} aleatorios)`);
+    return created;
+}
+//# sourceMappingURL=user.seeder.js.map

@@ -1,0 +1,55 @@
+<section class="p-6">
+  <h1 class="mb-6 text-2xl font-bold">Administración de roles</h1>
+
+  <form (ngSubmit)="save()" class="mb-6 flex flex-wrap gap-3">
+    <input
+      name="name"
+      [(ngModel)]="name"
+      placeholder="Nombre del rol"
+      class="rounded border p-2"
+      required
+    />
+
+    <input
+      name="description"
+      [(ngModel)]="description"
+      placeholder="Descripción"
+      class="rounded border p-2"
+    />
+
+    <button
+      type="submit"
+      class="rounded bg-blue-600 px-4 py-2 text-white">
+      Crear rol
+    </button>
+  </form>
+
+  @if (error) {
+    <p class="mb-4 text-red-600">{{ error }}</p>
+  }
+
+  @if (loading) {
+    <p>Cargando roles...</p>
+  } @else {
+    <table class="w-full border-collapse">
+      <thead>
+        <tr class="border-b bg-gray-100 text-left">
+          <th class="p-3">ID</th>
+          <th class="p-3">Nombre</th>
+          <th class="p-3">Descripción</th>
+          <th class="p-3">Estado</th>
+        </tr>
+      </thead>
+      <tbody>
+        @for (role of roles; track role.id) {
+          <tr class="border-b">
+            <td class="p-3">{{ role.id }}</td>
+            <td class="p-3">{{ role.name }}</td>
+            <td class="p-3">{{ role.description }}</td>
+            <td class="p-3">{{ role.status }}</td>
+          </tr>
+        }
+      </tbody>
+    </table>
+  }
+</section>

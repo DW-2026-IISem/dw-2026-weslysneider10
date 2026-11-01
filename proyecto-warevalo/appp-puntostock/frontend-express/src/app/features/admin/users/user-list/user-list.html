@@ -1,0 +1,258 @@
+<p-confirmdialog />
+
+<app-page-header
+  title="Administración de usuarios"
+  subtitle="Gestiona las cuentas y consulta los permisos efectivos de cada usuario."
+>
+  <div page-actions class="flex flex-wrap gap-2">
+    <button
+      pButton
+      type="button"
+      severity="secondary"
+      outlined
+      (click)="loadUsers()"
+      [disabled]="loading()"
+    >
+      <span class="pi pi-refresh mr-2"></span>
+      <span pButtonLabel>Actualizar</span>
+    </button>
+
+    <button
+      *appHasPermission="{ method: 'POST', path: '/api/usuarios' }"
+      pButton
+      type="button"
+      (click)="openCreate()"
+    >
+      <span class="pi pi-plus mr-2"></span>
+      <span pButtonLabel>Nuevo usuario</span>
+    </button>
+  </div>
+</app-page-header>
+
+<section class="mt-6 rounded-xl border border-slate-200 bg-white p-4 shadow-sm sm:p-6">
+  <div class="mb-5 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+    <div>
+      <h2 class="text-lg font-semibold text-slate-900">Usuarios registrados</h2>
+      <p class="text-sm text-slate-500">
+        {{ filteredUsers().length }} usuario(s) encontrados
+      </p>
+    </div>
+
+    <div class="w-full sm:max-w-sm">
+      <label for="user-search" class="sr-only">Buscar usuarios</label>
+      <input
+        id="user-search"
+        pInputText
+        class="w-full"
+        placeholder="Buscar por usuario, correo o estado..."
+        [value]="search()"
+        (input)="search.set($any($event.target).value)"
+      />
+    </div>
+  </div>
+
+  @if (loading()) {
+    <div class="flex items-center justify-center gap-3 py-12 text-slate-500">
+      <span class="pi pi-spin pi-spinner text-xl"></span>
+      <span>Cargando usuarios...</span>
+    </div>
+  } @else if (users().length === 0) {
+    <app-empty-state
+      title="No hay usuarios activos"
+      description="Cuando registres usuarios, aparecerán en este listado."
+    />
+  } @else if (filteredUsers().length === 0) {
+    <app-empty-state
+      title="No se encontraron resultados"
+      description="Intenta con otro nombre de usuario o correo."
+    />
+  } @else {
+    <p-table
+      [value]="filteredUsers()"
+      [rowHover]="true"
+      [tableStyle]="{ 'min-width': '58rem' }"
+      styleClass="p-datatable-sm"
+    >
+      <ng-template #header>
+        <tr>
+          <th>ID</th>
+          <th>Usuario</th>
+          <th>Correo electrónico</th>
+          <th>Estado</th>
+          <th class="text-right">Acciones</th>
+        </tr>
+      </ng-template>
+
+      <ng-template #body let-user>
+        <tr>
+          <td>{{ user.id }}</td>
+          <td>
+            <div class="flex items-center gap-3">
+              <p-avatar
+                [image]="user.avatar || undefined"
+                [label]="user.username.substring(0, 1).toUpperCase()"
+                shape="circle"
+              />
+              <div>
+                <div class="font-medium text-slate-900">{{ user.username }}</div>
+                @if (isSelf(user)) {
+                  <span class="text-xs text-blue-600">Tu cuenta</span>
+                }
+              </div>
+            </div>
+          </td>
+          <td>{{ user.email }}</td>
+          <td>
+            <p-tag
+              [value]="user.status === 'active' ? 'Activo' : 'Inactivo'"
+              [severity]="user.status === 'active' ? 'success' : 'danger'"
+            />
+          </td>
+          <td>
+            <div class="flex justify-end gap-2">
+              <button
+                *appHasPermission="{ method: 'GET', path: '/api/usuarios/:id/permisos' }"
+                pButton
+                type="button"
+                severity="info"
+                outlined
+                size="small"
+                (click)="openPermissions(user)"
+                aria-label="Ver permisos"
+                pTooltip="Ver permisos"
+              >
+                <span class="pi pi-shield"></span>
+              </button>
+
+              <button
+                *appHasPermission="{ method: 'PATCH', path: '/api/usuarios/:id' }"
+                pButton
+                type="button"
+                severity="secondary"
+                outlined
+                size="small"
+                (click)="openEdit(user)"
+                aria-label="Editar usuario"
+              >
+                <span class="pi pi-pencil"></span>
+              </button>
+
+              <button
+                *appHasPermission="{ method: 'PATCH', path: '/api/usuarios/:id/deactivate' }"
+                pButton
+                type="button"
+                severity="danger"
+                outlined
+                size="small"
+                [disabled]="isSelf(user)"
+                (click)="deactivateUser(user)"
+                aria-label="Desactivar usuario"
+              >
+                <span class="pi pi-user-minus"></span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </ng-template>
+    </p-table>
+  }
+</section>
+
+<p-dialog
+  [header]="selectedUser() ? 'Editar usuario' : 'Nuevo usuario'"
+  [visible]="dialogVisible()"
+  (visibleChange)="!$event && closeDialog()"
+  [modal]="true"
+  [draggable]="false"
+  [resizable]="false"
+  [style]="{ width: 'min(38rem, 95vw)' }"
+>
+  <app-user-form
+    [user]="selectedUser()"
+    [resetKey]="resetKey()"
+    [saving]="saving()"
+    (saved)="saveUser($event)"
+    (cancelled)="closeDialog()"
+  />
+</p-dialog>
+
+<p-dialog
+  header="Permisos efectivos del usuario"
+  [visible]="permissionsVisible()"
+  (visibleChange)="!$event && permissionsVisible.set(false)"
+  [modal]="true"
+  [draggable]="false"
+  [style]="{ width: 'min(55rem, 95vw)' }"
+>
+  @if (selectedUser(); as user) {
+    <div class="mb-4">
+      <h3 class="font-semibold text-slate-900">{{ user.username }}</h3>
+      <p class="text-sm text-slate-500">{{ user.email }}</p>
+    </div>
+  }
+
+  @if (permissionsLoading()) {
+    <div class="flex items-center justify-center gap-3 py-10 text-slate-500">
+      <span class="pi pi-spin pi-spinner"></span>
+      Consultando permisos...
+    </div>
+  } @else {
+    <div class="mb-4">
+      <h3 class="mb-2 font-semibold">Roles efectivos</h3>
+
+      @if (permissionRoles().length) {
+        <div class="flex flex-wrap gap-2">
+          @for (role of permissionRoles(); track role.id) {
+            <p-tag [value]="role.name" severity="info" />
+          }
+        </div>
+      } @else {
+        <p class="text-sm text-slate-500">
+          Este usuario no tiene roles con permisos efectivos.
+        </p>
+      }
+    </div>
+
+    <div>
+      <h3 class="mb-2 font-semibold">
+        Recursos autorizados ({{ permissions().length }})
+      </h3>
+
+      @if (permissions().length) {
+        <p-table
+          [value]="permissions()"
+          [tableStyle]="{ 'min-width': '32rem' }"
+          styleClass="p-datatable-sm"
+        >
+          <ng-template #header>
+            <tr>
+              <th>Rol</th>
+              <th>Método</th>
+              <th>Ruta</th>
+              <th>Descripción</th>
+            </tr>
+          </ng-template>
+
+          <ng-template #body let-permission>
+            <tr>
+              <td>{{ permission.role_name }}</td>
+              <td>
+                <p-tag
+                  [value]="permission.method"
+                  [severity]="methodSeverity(permission.method)"
+                />
+              </td>
+              <td><code class="text-xs">{{ permission.path }}</code></td>
+              <td>{{ permission.description || '—' }}</td>
+            </tr>
+          </ng-template>
+        </p-table>
+      } @else {
+        <app-empty-state
+          title="Sin permisos efectivos"
+          description="No se encontraron recursos autorizados para este usuario."
+        />
+      }
+    </div>
+  }
+</p-dialog>

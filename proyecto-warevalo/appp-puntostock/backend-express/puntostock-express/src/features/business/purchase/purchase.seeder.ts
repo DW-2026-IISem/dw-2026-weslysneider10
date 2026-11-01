@@ -3,15 +3,15 @@ import { Purchase } from "./purchase.model";
 import { PurchaseDetail } from "./purchase-detail.model";
 import { Supplier } from "../supplier/supplier.model";
 import { Product } from "../product/product.model";
+import { Branch } from "../branch/branch.model";
 
 /**
- * Seeder del feature Purchase.
- * Requiere Suppliers y Products previamente sembrados.
- * Idempotente.
+ * Seeder de compras.
+ * Requiere proveedores, productos y sucursales previamente sembrados.
  */
 export async function seedPurchases(count: number): Promise<number> {
   if (count <= 0) {
-    console.log("⏭️  purchases: count=0, se omite");
+    console.log("⏭️ purchases: count=0, se omite");
     return 0;
   }
 
@@ -19,26 +19,30 @@ export async function seedPurchases(count: number): Promise<number> {
 
   if (existing > 0) {
     console.log(
-      `⏭️  purchases: ya hay ${existing} registro(s), se omite seeder`
+      `⏭️ purchases: ya hay ${existing} registro(s), se omite seeder`
     );
     return 0;
   }
 
   const suppliers = await Supplier.findAll({
-    where: {
-      isActive: true,
-    },
+    where: { isActive: true },
   });
 
   const products = await Product.findAll({
-    where: {
-      status: "active",
-    },
+    where: { status: "active" },
   });
 
-  if (suppliers.length === 0 || products.length === 0) {
+  const branches = await Branch.findAll({
+    where: { status: "active" },
+  });
+
+  if (
+    suppliers.length === 0 ||
+    products.length === 0 ||
+    branches.length === 0
+  ) {
     console.log(
-      "⏭️  purchases: no hay proveedores o productos, se omite seeder"
+      "⏭️ purchases: no hay proveedores, productos o sucursales activas"
     );
     return 0;
   }
@@ -46,8 +50,8 @@ export async function seedPurchases(count: number): Promise<number> {
   let inserted = 0;
 
   for (let i = 0; i < count; i++) {
-    const supplier =
-      suppliers[Math.floor(Math.random() * suppliers.length)];
+    const supplier = faker.helpers.arrayElement(suppliers);
+    const branch = faker.helpers.arrayElement(branches);
 
     const selectedProducts = faker.helpers.arrayElements(
       products,
@@ -57,41 +61,36 @@ export async function seedPurchases(count: number): Promise<number> {
     let subtotal = 0;
 
     const details = selectedProducts.map((product) => {
-      const quantity = faker.number.int({
-        min: 1,
-        max: 20,
-      });
-
-      const unitPrice = faker.number.int({
+      const cantidad = faker.number.int({ min: 1, max: 20 });
+      const valorUnitario = faker.number.int({
         min: 5000,
         max: 100000,
       });
 
-      const total = quantity * unitPrice;
-
+      const total = cantidad * valorUnitario;
       subtotal += total;
 
       return {
         productId: product.id,
-        quantity,
-        unitPrice,
+        cantidad,
+        valorUnitario,
         total,
-        observations: faker.commerce.productDescription(),
+        receivedQuantity: 0,
+        observaciones: faker.commerce.productDescription(),
       };
     });
 
-    const taxes = Math.round(subtotal * 0.19);
-    const total = subtotal + taxes;
+    const impuestos = Math.round(subtotal * 0.19);
+    const total = subtotal + impuestos;
 
     const purchase = await Purchase.create({
       supplierId: supplier.id,
-      date: faker.date.recent({
-        days: 30,
-      }),
+      branchId: branch.id,
+      fecha: faker.date.recent({ days: 30 }),
       subtotal,
-      taxes,
+      impuestos,
       total,
-      status: "pending",
+      estado: "pending",
     });
 
     await PurchaseDetail.bulkCreate(
@@ -104,9 +103,6 @@ export async function seedPurchases(count: number): Promise<number> {
     inserted++;
   }
 
-  console.log(
-    `✅ purchases: insertadas ${inserted} compra(s) falsos`
-  );
-
+  console.log(`✅ purchases: insertadas ${inserted} compras de prueba`);
   return inserted;
 }

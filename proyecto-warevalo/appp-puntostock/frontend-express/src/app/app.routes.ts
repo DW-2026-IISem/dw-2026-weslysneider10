@@ -2,6 +2,7 @@ import { Routes } from '@angular/router';
 
 import { authGuard } from './core/guards/auth.guard';
 import { permissionGuard } from './core/guards/permission.guard';
+import { Shell } from './layout/shell/shell';
 
 export const routes: Routes = [
   {
@@ -12,36 +13,37 @@ export const routes: Routes = [
   },
   {
     path: 'construir',
+    title: 'Construir · PuntoStock',
+    canActivate: [authGuard],
     loadComponent: () =>
       import('./features/construir/construir').then((m) => m.Construir),
   },
   {
-    path: 'acceso-denegado',
+    path: 'access-denied',
     title: 'Acceso denegado · PuntoStock',
     loadComponent: () =>
       import('./features/auth/forbidden/forbidden').then((m) => m.Forbidden),
   },
   {
     path: '',
-    loadComponent: () =>
-      import('./layout/shell/shell').then((m) => m.Shell),
+    component: Shell,
+    canActivate: [authGuard],
     children: [
       {
         path: '',
         pathMatch: 'full',
-        redirectTo: 'construir',
+        redirectTo: 'dashboard',
       },
       {
         path: 'perfil',
         title: 'Mi perfil · PuntoStock',
-        canActivate: [authGuard],
         loadComponent: () =>
           import('./features/auth/profile/profile').then((m) => m.Profile),
       },
       {
         path: 'clientes',
         title: 'Clientes · PuntoStock',
-        canActivate: [authGuard, permissionGuard],
+        canActivate: [permissionGuard],
         data: {
           permission: {
             method: 'GET',
@@ -56,7 +58,7 @@ export const routes: Routes = [
       {
         path: 'tipos-producto',
         title: 'Tipos de producto · PuntoStock',
-        canActivate: [authGuard, permissionGuard],
+        canActivate: [permissionGuard],
         data: {
           permission: {
             method: 'GET',
@@ -71,7 +73,7 @@ export const routes: Routes = [
       {
         path: 'productos',
         title: 'Productos · PuntoStock',
-        canActivate: [authGuard, permissionGuard],
+        canActivate: [permissionGuard],
         data: {
           permission: {
             method: 'GET',
@@ -86,7 +88,7 @@ export const routes: Routes = [
       {
         path: 'ventas',
         title: 'Ventas · PuntoStock',
-        canActivate: [authGuard, permissionGuard],
+        canActivate: [permissionGuard],
         data: {
           permission: {
             method: 'GET',
@@ -101,7 +103,7 @@ export const routes: Routes = [
       {
         path: 'ventas/nueva',
         title: 'Nueva venta · PuntoStock',
-        canActivate: [authGuard, permissionGuard],
+        canActivate: [permissionGuard],
         data: {
           permission: {
             method: 'POST',
@@ -116,29 +118,94 @@ export const routes: Routes = [
       {
         path: 'dashboard',
         title: 'Dashboard · PuntoStock',
-        canActivate: [authGuard, permissionGuard],
+        canActivate: [permissionGuard],
         data: {
           roles: ['ADMIN'],
         },
         loadComponent: () =>
-          import('./features/dashboard/dashboard').then((m) => m.Dashboard),
+          import('./features/dashboard/dashboard').then(
+            (m) => m.Dashboard,
+          ),
       },
       {
-        path: 'detalle-ventas',
+        path: 'ventas/detalle',
         title: 'Detalle de ventas · PuntoStock',
-        canActivate: [authGuard, permissionGuard],
+        canActivate: [permissionGuard],
         data: {
           roles: ['ADMIN'],
         },
         loadComponent: () =>
-          import('./features/product-sales/product-sale-list/product-sale-list').then(
-            (m) => m.ProductSaleList,
+          import('./features/sales/sale-detail/sale-detail').then(
+            (m) => m.SaleDetail,
+          ),
+      },
+      {
+        path: 'admin/usuarios',
+        title: 'Administración de usuarios · PuntoStock',
+        canActivate: [permissionGuard],
+        data: {
+          permission: {
+            method: 'GET',
+            path: '/api/usuarios',
+          },
+        },
+        loadComponent: () =>
+          import('./features/admin/users/user-list/user-list').then(
+            (m) => m.UserList,
+          ),
+      },
+      {
+        path: 'admin/roles',
+        title: 'Administración de roles · PuntoStock',
+        canActivate: [permissionGuard],
+        data: {
+          roles: ['ADMIN'],
+        },
+        loadComponent: () =>
+          import('./features/admin/roles/role-list/role-list').then(
+            (m) => m.RoleList,
+          ),
+      },
+      {
+        path: 'admin/recursos',
+        title: 'Administración de recursos · PuntoStock',
+        canActivate: [permissionGuard],
+        data: {
+          roles: ['ADMIN'],
+        },
+        loadComponent: () =>
+          import('./features/admin/resources/resource-list/resource-list').then(
+            (m) => m.ResourceList,
+          ),
+      },
+      {
+        path: 'admin/asignaciones',
+        title: 'Asignaciones de roles · PuntoStock',
+        canActivate: [permissionGuard],
+        data: {
+          roles: ['ADMIN'],
+        },
+        loadComponent: () =>
+          import('./features/admin/assignments/assignment-list/assignment-list').then(
+            (m) => m.AssignmentList,
+          ),
+      },
+      {
+        path: 'admin/permisos',
+        title: 'Concesiones de permisos · PuntoStock',
+        canActivate: [permissionGuard],
+        data: {
+          roles: ['ADMIN'],
+        },
+        loadComponent: () =>
+          import('./features/admin/permissions/permission-list/permission-list').then(
+            (m) => m.PermissionList,
           ),
       },
     ],
   },
   {
     path: '**',
-    redirectTo: 'construir',
+    redirectTo: '',
   },
 ];

@@ -534,12 +534,64 @@ Ahora vamos a preparar el Header para que el botón de menú emita el evento `me
 
 ### Modelo de usuario
 
+![](images/clipboard-1565261224.png)
+
 ### Servicio API de usuarios
+
+![](images/clipboard-2158822455.png)
 
 ### Formulario de usuarios
 
+![](images/clipboard-200892616.png)
+
+![](images/clipboard-1066097150.png)
+
 ### Listado de usuarios
 
+![](images/clipboard-1567386305.png)
+
+![](images/clipboard-2195652928.png)
+
 ### Agregar la ruta de administración
+
+### ![](images/clipboard-3488534459.png)
+
+### Preparar la estructura del módulo de administración.
+
+![](images/clipboard-1869630629.png)
+
+### Crear la pantalla de administración de roles.
+
+![](images/clipboard-660792606.png)
+
+![](images/clipboard-496319163.png)
+
+### Crear la pantalla de administración de recursos.
+
+![](images/clipboard-3548310794.png)
+
+![](images/clipboard-1603655960.png)
+
+### Crear la pantalla de asignaciones de roles a usuarios.
+
+![](images/clipboard-1096853384.png)
+
+![](images/clipboard-883248352.png)
+
+### Crear la pantalla de concesiones de permisos a roles.
+
+![](images/clipboard-1560073566.png)
+
+![](images/clipboard-1082036527.png)
+
+### Configurar las cinco rutas de administración.
+
+![](images/clipboard-1161475261.png)
+
+### Probar las funcionalidades con los roles ADMIN y SELLER.
+
+![](images/clipboard-3882731711.png)
+
+### 
 
 ### 
