@@ -2,7 +2,10 @@ import {
   ApplicationConfig,
   provideBrowserGlobalErrorListeners,
 } from '@angular/core';
-import { provideHttpClient } from '@angular/common/http';
+import {
+  provideHttpClient,
+  withInterceptors,
+} from '@angular/common/http';
 import {
   provideRouter,
   withComponentInputBinding,
@@ -11,22 +14,20 @@ import {
 import { ConfirmationService, MessageService } from 'primeng/api';
 import { providePrimeNG } from 'primeng/config';
 import Aura from '@primeuix/themes/aura';
-import { environment } from '../environments/environment';
 
+import { environment } from '../environments/environment';
 import { routes } from './app.routes';
+import { jwtInterceptor } from './core/interceptors/jwt.interceptor';
 
 export const appConfig: ApplicationConfig = {
   providers: [
-    provideHttpClient(),
+    provideHttpClient(withInterceptors([jwtInterceptor])),
     provideBrowserGlobalErrorListeners(),
-
     provideRouter(
       routes,
       withComponentInputBinding(),
       withInMemoryScrolling({ scrollPositionRestoration: 'top' }),
     ),
-
-    // PrimeNG 22: tema Aura. El modo oscuro se activa con la clase .app-dark.
     providePrimeNG({
       license: environment.primeUiLicense || undefined,
       ripple: true,
@@ -35,11 +36,13 @@ export const appConfig: ApplicationConfig = {
         preset: Aura,
         options: {
           darkModeSelector: '.app-dark',
-          cssLayer: { name: 'primeng', order: 'theme, base, primeng, utilities' },
+          cssLayer: {
+            name: 'primeng',
+            order: 'theme, base, primeng, utilities',
+          },
         },
       },
     }),
-
     MessageService,
     ConfirmationService,
   ],

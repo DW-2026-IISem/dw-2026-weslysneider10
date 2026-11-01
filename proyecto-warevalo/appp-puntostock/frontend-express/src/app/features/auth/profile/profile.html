@@ -1,0 +1,81 @@
+<section class="mx-auto max-w-3xl space-y-6">
+  <div>
+    <h1 class="text-2xl font-bold text-slate-900">Mi perfil</h1>
+    <p class="mt-1 text-sm text-slate-500">
+      Información de tu cuenta en PuntoStock.
+    </p>
+  </div>
+
+  @if (session.profile(); as user) {
+    <div class="rounded-xl border border-slate-200 bg-white p-6 shadow-sm">
+      <div class="flex items-center gap-4">
+        @if (user.avatar) {
+          <img
+            [src]="user.avatar"
+            alt="Avatar del usuario"
+            class="h-16 w-16 rounded-full object-cover"
+          />
+        } @else {
+          <div class="flex h-16 w-16 items-center justify-center rounded-full bg-blue-100 text-2xl font-bold text-blue-700">
+            {{ user.username.charAt(0).toUpperCase() }}
+          </div>
+        }
+
+        <div>
+          <h2 class="text-lg font-semibold text-slate-900">
+            {{ user.username }}
+          </h2>
+          <p class="text-sm text-slate-500">{{ user.email }}</p>
+        </div>
+      </div>
+
+      <div class="mt-6 grid gap-4 border-t border-slate-100 pt-6 sm:grid-cols-2">
+        <div>
+          <p class="text-xs font-medium uppercase text-slate-400">Identificador</p>
+          <p class="mt-1 text-sm text-slate-800">{{ user.id }}</p>
+        </div>
+
+        <div>
+          <p class="text-xs font-medium uppercase text-slate-400">Estado</p>
+          <p class="mt-1 text-sm text-slate-800">{{ user.status }}</p>
+        </div>
+      </div>
+
+      <button
+        type="button"
+        (click)="reload()"
+        [disabled]="loading()"
+        class="mt-6 rounded-lg border border-slate-300 px-4 py-2 text-sm font-medium text-slate-700 hover:bg-slate-50 disabled:opacity-60"
+      >
+        {{ loading() ? 'Actualizando...' : 'Actualizar perfil' }}
+      </button>
+    </div>
+  } @else {
+    <div class="rounded-xl border border-slate-200 bg-white p-6 text-sm text-slate-500">
+      No hay información de perfil cargada en esta sesión.
+    </div>
+  }
+
+  <div class="rounded-xl border border-slate-200 bg-white p-6 shadow-sm">
+    <h2 class="font-semibold text-slate-900">Permisos efectivos</h2>
+
+    @if (session.permissions().length > 0) {
+      <ul class="mt-4 divide-y divide-slate-100">
+        @for (permission of session.permissions(); track $index) {
+          <li class="py-3">
+            <p class="text-sm font-medium text-slate-800">
+              {{ permission.method }} {{ permission.path }}
+            </p>
+            <p class="mt-1 text-xs text-slate-500">
+              {{ permission.description || permission.role_name }}
+            </p>
+          </li>
+        }
+      </ul>
+    } @else {
+      <p class="mt-3 text-sm text-slate-500">
+        No se encontraron permisos efectivos para esta cuenta.
+      </p>
+    }
+  </div>
+</section>

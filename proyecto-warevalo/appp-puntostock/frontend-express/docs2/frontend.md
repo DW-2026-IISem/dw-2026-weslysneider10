@@ -214,11 +214,11 @@ Ahora vamos a preparar el Header para que el botón de menú emita el evento `me
 
 # Fase I: Frontend — ISS-02 — Núcleo: environment, modelos, servicios y layout
 
-### 2.1 — Environment: 
+### 2.1 — Environment:
 
 ![](images/clipboard-1869951758.png)
 
-### 2.2 — Modelos: 
+### 2.2 — Modelos:
 
 ### ![](images/clipboard-2315865145.png)
 
@@ -322,8 +322,6 @@ Ahora vamos a preparar el Header para que el botón de menú emita el evento `me
 
 # Fase I: Business — ISS-05 — CRUD de productos y relación con tipos
 
-> 
->
 > ### Modelo: actualizar `product.model.ts` con los campos del contrato de productos.
 >
 > ![](images/clipboard-1523527378.png)
@@ -443,3 +441,53 @@ Ahora vamos a preparar el Header para que el botón de menú emita el evento `me
 ### Compilación y validación — ejecutar `npx ng build` y corregir los errores.
 
 ![](images/clipboard-4263844497.png)
+
+# Fase II: Auth con RBAC — ISS-08 — Autenticación JWT, perfil y permisos efectivos
+
+### Revisar el frontend actual.
+
+![](images/clipboard-875051759.png)
+
+### Activar la autenticación.
+
+![](images/clipboard-4217302390.png)
+
+### Crear los modelos de sesión.
+
+![](images/clipboard-3550149086.png)
+
+### Implementar `SessionStore`.
+
+![](images/clipboard-3737673298.png)
+
+### Implementar `AuthService`.
+
+![](images/clipboard-2652019948.png)
+
+### Configurar el interceptor JWT.
+
+![](images/clipboard-3648920205.png)
+
+### Crear la pantalla de login.
+
+![](images/clipboard-965581689.png)
+
+### Crear la pantalla de perfil.
+
+![](images/clipboard-1912934791.png)
+
+### Configurar las rutas y los interceptores.
+
+![](images/clipboard-1397745419.png)
+
+### Conectar la sesión al layout existente.
+
+![](images/clipboard-573053418.png)
+
+### Probar login, refresh y logout.
+
+![](images/clipboard-2094505818.png)
+
+### Verificar que el proyecto compile sin errores.
+
+### ![](images/clipboard-57192365.png)
