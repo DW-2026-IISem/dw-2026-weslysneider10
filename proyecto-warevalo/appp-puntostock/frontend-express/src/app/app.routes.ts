@@ -102,6 +102,27 @@ export const routes: Routes = [
         loadComponent: () => import('./features/sales/sale-form/sale-form').then((m) => m.SaleForm),
       },
       {
+        path: 'sucursales',
+        title: 'Sucursales · PuntoStock',
+        canActivate: [permissionGuard],
+        data: { permission: { method: 'GET', path: '/api/sucursales' } },
+        loadComponent: () => import('./features/branches/branch-list/branch-list').then(m => m.BranchList),
+      },
+      {
+        path: 'inventario',
+        title: 'Inventario · PuntoStock',
+        canActivate: [permissionGuard],
+        data: { permission: { method: 'GET', path: '/api/inventarios' } },
+        loadComponent: () => import('./features/inventory/inventory-list/inventory-list').then(m => m.InventoryList),
+      },
+      {
+        path: 'pagos',
+        title: 'Pagos · PuntoStock',
+        canActivate: [permissionGuard],
+        data: { permission: { method: 'GET', path: '/api/pagos' } },
+        loadComponent: () => import('./features/payments/payment-list/payment-list').then(m => m.PaymentList),
+      },
+      {
         path: 'dashboard',
         title: 'Dashboard · PuntoStock',
         canActivate: [permissionGuard],

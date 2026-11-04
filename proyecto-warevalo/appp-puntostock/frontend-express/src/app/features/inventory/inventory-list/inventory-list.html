@@ -1,0 +1,50 @@
+<div class="space-y-6">
+  <app-page-header title="Inventario" subtitle="Controla las existencias de productos por sucursal.">
+    <div page-actions class="flex flex-wrap gap-2">
+      <p-tag [value]="lowCount() + ' con stock bajo'" severity="warn" />
+      <button pButton severity="secondary" [outlined]="true" (click)="load()" [loading]="loading()">
+        <i pButtonIcon class="pi pi-refresh"></i><span pButtonLabel>Actualizar</span>
+      </button>
+    </div>
+  </app-page-header>
+
+  <section class="rounded-xl border border-slate-200 bg-white p-4 shadow-sm sm:p-6">
+    <div class="mb-5 flex flex-col gap-3 lg:flex-row lg:items-center">
+      <input pInputText class="w-full lg:max-w-sm" placeholder="Buscar producto o sucursal..."
+        [value]="search()" (input)="search.set($any($event.target).value)" />
+      <select class="rounded-lg border border-slate-300 p-2.5" [(ngModel)]="branchId" (change)="load()">
+        <option value="">Todas las sucursales</option>
+        @for (branch of branches(); track branch.id) {
+          <option [value]="branch.id">{{ branch.name }}</option>
+        }
+      </select>
+      <label class="flex items-center gap-2 text-sm">
+        <input type="checkbox" [checked]="lowOnly()" (change)="lowOnly.set($any($event.target).checked); load()" />
+        Mostrar solo stock bajo
+      </label>
+    </div>
+
+    <p-table [value]="filtered()" [loading]="loading()" [rowHover]="true" responsiveLayout="scroll">
+      <ng-template #header>
+        <tr><th>ID</th><th>Sucursal</th><th>Producto</th><th>Existencias</th><th>Stock mínimo</th><th>Actualización</th><th>Estado</th></tr>
+      </ng-template>
+      <ng-template #body let-row>
+        <tr>
+          <td>{{ row.id }}</td>
+          <td>{{ branchName(row.branchId) }}</td>
+          <td class="font-medium">{{ productName(row.productId) }}</td>
+          <td>{{ row.quantity }}</td>
+          <td>{{ row.minStock }}</td>
+          <td>{{ row.updatedAt ? (row.updatedAt | date:'short') : '—' }}</td>
+          <td>
+            <p-tag [value]="row.quantity === 0 ? 'Agotado' : row.quantity <= row.minStock ? 'Stock bajo' : 'Disponible'"
+              [severity]="severity(row)" />
+          </td>
+        </tr>
+      </ng-template>
+      <ng-template #emptymessage>
+        <tr><td colspan="7" class="py-8 text-center text-slate-500">No hay registros de inventario.</td></tr>
+      </ng-template>
+    </p-table>
+  </section>
+</div>

@@ -1,16 +1,71 @@
-<div class="flex h-full flex-col border-r border-slate-200 bg-white text-slate-900">
-  <div class="flex h-16 items-center border-b border-slate-200 px-5">
-    <div class="min-w-0">
-      <p class="truncate text-sm font-semibold text-slate-900">
-        {{ appName() }}
-      </p>
-      <p class="text-xs text-slate-500">Panel administrativo</p>
-    </div>
-  </div>
+<div class="sidebar flex h-full flex-col">
 
-  <div class="flex-1 overflow-y-auto p-3">
-    <nav aria-label="Navegación principal" (click)="onNavigationClick($event)">
-      <p-panelmenu [model]="items()" [multiple]="true" />
+  <button
+    type="button"
+    class="back-button"
+    (click)="goBack()"
+  >
+    <i class="pi pi-arrow-left"></i>
+    <span>Volver</span>
+  </button>
+
+  <div class="sidebar-navigation flex-1 overflow-y-auto">
+    <p class="navigation-heading">MENÚ PRINCIPAL</p>
+
+    <nav aria-label="Navegación principal">
+      @for (section of items(); track section.label) {
+        <div class="menu-section">
+
+          <button
+            type="button"
+            class="section-toggle"
+            [class.section-open]="isExpanded(section.label || '')"
+            [attr.aria-expanded]="isExpanded(section.label || '')"
+            (click)="toggleSection(section.label || '')"
+          >
+            <span class="section-name">
+              {{ section.label }}
+            </span>
+
+            <i
+              class="pi pi-chevron-down section-chevron"
+              [class.chevron-open]="isExpanded(section.label || '')"
+            ></i>
+          </button>
+
+          @if (isExpanded(section.label || '')) {
+            <div class="section-items">
+              @for (item of section.items || []; track item.label) {
+                <a
+                  class="menu-link"
+                  [routerLink]="item.routerLink"
+                  routerLinkActive="menu-link-active"
+                  [routerLinkActiveOptions]="{ exact: true }"
+                  (click)="onNavigation()"
+                >
+                  @if (item.icon) {
+                    <i [class]="item.icon + ' menu-icon'"></i>
+                  }
+
+                  <span>{{ item.label }}</span>
+                </a>
+              }
+            </div>
+          }
+        </div>
+      }
     </nav>
   </div>
+
+  <div class="sidebar-bottom">
+    <div class="sidebar-status">
+      <span class="status-dot"></span>
+      <span>Sistema PuntoStock</span>
+    </div>
+
+    <p class="sidebar-version">
+      Gestión comercial e inventario
+    </p>
+  </div>
+
 </div>

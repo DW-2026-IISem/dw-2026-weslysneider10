@@ -7,22 +7,25 @@ export const permissionGuard: CanActivateFn = (route) => {
   const permissions = inject(PermissionService);
   const router = inject(Router);
 
+  const denied = router.createUrlTree(['/access-denied']);
+
   const requiredPermission = route.data['permission'] as
     { method: string; path: string } | undefined;
 
   const requiredRoles = route.data['roles'] as string[] | undefined;
 
   if (requiredRoles?.length) {
-    return permissions.hasAnyRole(requiredRoles)
-      ? true
-      : router.createUrlTree(['/acceso-denegado']);
+    return permissions.hasAnyRole(requiredRoles) ? true : denied;
   }
 
   if (!requiredPermission) {
-    return router.createUrlTree(['/acceso-denegado']);
+    return denied;
   }
 
-  return permissions.hasPermission(requiredPermission.method, requiredPermission.path)
+  return permissions.hasPermission(
+    requiredPermission.method,
+    requiredPermission.path,
+  )
     ? true
-    : router.createUrlTree(['/acceso-denegado']);
+    : denied;
 };

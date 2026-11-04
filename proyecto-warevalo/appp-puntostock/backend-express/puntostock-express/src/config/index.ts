@@ -54,7 +54,10 @@ export class App {
   }
 
   private settings(): void {
-    this.app.set("port", this.port || process.env.PORT || 4000);
+    this.app.set("port", this.port || process.env.PORT || 3000);
+
+    // Evitar respuestas 304 en las solicitudes de autenticación.
+    this.app.set("etag", false);
   }
 
   private middlewares(): void {
@@ -142,7 +145,7 @@ export class App {
         await sequelize.query("SET FOREIGN_KEY_CHECKS = 0");
       }
       try {
-        await sequelize.sync({ force, alter: !force });
+        await sequelize.sync({ force });
       } finally {
         if (isMysql) {
           await sequelize.query("SET FOREIGN_KEY_CHECKS = 1");

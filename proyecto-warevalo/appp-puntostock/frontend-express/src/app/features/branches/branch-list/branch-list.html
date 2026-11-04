@@ -1,0 +1,83 @@
+<div class="space-y-6">
+  <app-page-header title="Sucursales" subtitle="Consulta y administra las sucursales de PuntoStock.">
+    <div page-actions class="flex gap-2">
+      <button pButton severity="secondary" [outlined]="true" (click)="load()" [disabled]="loading()">
+        <i pButtonIcon class="pi pi-refresh"></i>
+        <span pButtonLabel>Actualizar</span>
+      </button>
+      <button *appHasPermission="{method:'POST',path:'/api/sucursales'}" pButton (click)="openCreate()">
+        <i pButtonIcon class="pi pi-plus"></i>
+        <span pButtonLabel>Nueva sucursal</span>
+      </button>
+    </div>
+  </app-page-header>
+
+  <section class="rounded-xl border border-slate-200 bg-white p-4 shadow-sm sm:p-6">
+    <div class="mb-5 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+      <div>
+        <h2 class="text-lg font-semibold text-slate-900">Listado de sucursales</h2>
+        <p class="text-sm text-slate-500">{{ filtered().length }} registro(s)</p>
+      </div>
+      <input pInputText class="w-full sm:max-w-sm" placeholder="Buscar sucursal..."
+        [value]="search()" (input)="search.set($any($event.target).value)" />
+    </div>
+
+    <p-table [value]="filtered()" [loading]="loading()" [rowHover]="true" responsiveLayout="scroll">
+      <ng-template #header>
+        <tr><th>ID</th><th>Nombre</th><th>Descripción</th><th>Estado</th><th class="text-right">Acciones</th></tr>
+      </ng-template>
+      <ng-template #body let-row>
+        <tr>
+          <td>{{ row.id }}</td>
+          <td class="font-medium">{{ row.name }}</td>
+          <td>{{ row.description || 'Sin descripción' }}</td>
+          <td>
+            <p-tag [value]="row.status === 'active' ? 'Activa' : 'Inactiva'"
+              [severity]="row.status === 'active' ? 'success' : 'secondary'" />
+          </td>
+          <td>
+            <div class="flex justify-end gap-2">
+              <button *appHasPermission="{method:'PUT',path:'/api/sucursales/:id'}"
+                pButton severity="secondary" [outlined]="true" size="small"
+                (click)="openEdit(row)" [disabled]="row.status === 'inactive'" aria-label="Editar">
+                <i pButtonIcon class="pi pi-pencil"></i>
+              </button>
+              <button *appHasPermission="{method:'PATCH',path:'/api/sucursales/:id/deactivate'}"
+                pButton severity="danger" [outlined]="true" size="small"
+                (click)="deactivate(row)" [disabled]="row.status === 'inactive'" aria-label="Desactivar">
+                <i pButtonIcon class="pi pi-ban"></i>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </ng-template>
+      <ng-template #emptymessage>
+        <tr><td colspan="5" class="py-8 text-center text-slate-500">No hay sucursales registradas.</td></tr>
+      </ng-template>
+    </p-table>
+  </section>
+</div>
+
+<p-dialog [header]="selected() ? 'Editar sucursal' : 'Nueva sucursal'"
+  [visible]="visible()" (visibleChange)="visible.set($event)" [modal]="true"
+  [draggable]="false" [style]="{width:'min(95vw, 35rem)'}">
+  <form class="space-y-4" (ngSubmit)="save()">
+    <div>
+      <label class="mb-1 block text-sm font-medium">Nombre</label>
+      <input pInputText class="w-full" name="name" [(ngModel)]="name" required />
+    </div>
+    <div>
+      <label class="mb-1 block text-sm font-medium">Descripción</label>
+      <textarea class="w-full rounded-lg border border-slate-300 p-3" name="description"
+        [(ngModel)]="description" rows="3"></textarea>
+    </div>
+    <div class="flex justify-end gap-2">
+      <button pButton type="button" severity="secondary" [outlined]="true" (click)="visible.set(false)">
+        <span pButtonLabel>Cancelar</span>
+      </button>
+      <button pButton type="submit" [loading]="saving()">
+        <span pButtonLabel>Guardar</span>
+      </button>
+    </div>
+  </form>
+</p-dialog>

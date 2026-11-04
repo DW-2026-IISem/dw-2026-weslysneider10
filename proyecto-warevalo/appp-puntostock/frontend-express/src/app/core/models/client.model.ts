@@ -6,7 +6,6 @@ export interface Client {
   address: string;
   phone: string;
   email: string;
-  password?: string;
   status: RecordStatus;
   createdAt?: string;
   updatedAt?: string;

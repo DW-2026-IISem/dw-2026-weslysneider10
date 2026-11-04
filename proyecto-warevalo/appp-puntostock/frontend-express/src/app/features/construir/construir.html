@@ -1,5 +1,9 @@
 <div class="flex min-h-dvh flex-col bg-slate-50">
-  <app-header (menuRequested)="onMenuToggle()" />
+  <app-header
+    appName="PuntoStock Express"
+    (menuRequested)="onMenuToggle()"
+    (logoutRequested)="logout()"
+  />
 
   <div class="flex flex-1">
     @if (!sidebarCollapsed()) {

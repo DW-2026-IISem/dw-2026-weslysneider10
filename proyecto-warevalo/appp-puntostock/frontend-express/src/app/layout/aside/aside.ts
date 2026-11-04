@@ -1,30 +1,49 @@
-import { Component, input, output } from '@angular/core';
+import { Location } from '@angular/common';
+import { Component, inject, input, output, signal } from '@angular/core';
+import { RouterLink, RouterLinkActive } from '@angular/router';
 import { MenuItem } from 'primeng/api';
-import { PanelMenuModule } from 'primeng/panelmenu';
 
 @Component({
   selector: 'app-aside',
   host: {
     class: 'block h-full',
   },
-  imports: [PanelMenuModule],
+  imports: [RouterLink, RouterLinkActive],
   templateUrl: './aside.html',
   styleUrl: './aside.css',
 })
 export class Aside {
+  private readonly location = inject(Location);
+
   readonly appName = input('PuntoStock Express');
-
-  /** Opciones que recibe del componente padre. */
   readonly items = input<MenuItem[]>([]);
-
-  /** Avisa al padre cuando se selecciona una opción del menú. */
   readonly navigated = output<void>();
 
-  onNavigationClick(event: Event): void {
-    const target = event.target;
+  readonly expandedSections = signal<string[]>([
+    'Principal',
+    'Gestión comercial',
+    'Operaciones',
+    'Informes',
+    'Administración',
+  ]);
 
-    if (target instanceof HTMLElement && target.closest('a, button, [role="button"]')) {
-      this.navigated.emit();
-    }
+  toggleSection(label: string): void {
+    this.expandedSections.update(sections =>
+      sections.includes(label)
+        ? sections.filter(section => section !== label)
+        : [...sections, label],
+    );
+  }
+
+  isExpanded(label: string): boolean {
+    return this.expandedSections().includes(label);
+  }
+
+  onNavigation(): void {
+    this.navigated.emit();
+  }
+
+  goBack(): void {
+    this.location.back();
   }
 }

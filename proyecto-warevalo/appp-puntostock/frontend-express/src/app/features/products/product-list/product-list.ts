@@ -1,6 +1,6 @@
 import { CurrencyPipe } from '@angular/common';
 import { Component, computed, inject, signal } from '@angular/core';
-import { forkJoin, of } from 'rxjs';
+import { of } from 'rxjs';
 import { catchError, finalize } from 'rxjs/operators';
 import { ButtonModule } from 'primeng/button';
 import { DialogModule } from 'primeng/dialog';
@@ -84,20 +84,25 @@ export class ProductList {
     this.loading.set(true);
     this.error.set(null);
 
-    forkJoin({
-      products: this.api.list(),
-      types: this.typesApi.list().pipe(catchError(() => of([] as ProductType[]))),
-    })
+    // Cargar productos independientemente de los tipos.
+    this.api.list()
       .pipe(finalize(() => this.loading.set(false)))
       .subscribe({
-        next: ({ products, types }) => {
-          this.rows.set(products);
-          this.types.set(types.filter((type) => type.status === 'active'));
-        },
+        next: products => this.rows.set(products),
         error: (error: unknown) => {
           const message = this.getErrorMessage(error);
           this.error.set(message);
           this.notifications.error(message);
+        },
+      });
+
+    // Los tipos son información complementaria.
+    // Si falla su consulta, los productos siguen mostrándose.
+    this.typesApi.list()
+      .pipe(catchError(() => of([] as ProductType[])))
+      .subscribe({
+        next: types => {
+          this.types.set(types.filter(type => type.status === 'active'));
         },
       });
   }

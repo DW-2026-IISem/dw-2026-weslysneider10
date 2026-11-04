@@ -1,5 +1,6 @@
 import { Component, computed, inject, signal } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { Router, RouterOutlet } from '@angular/router';
+import { finalize } from 'rxjs';
 import { MenuItem } from 'primeng/api';
 
 import { Header } from '../header/header';
@@ -7,6 +8,7 @@ import { Aside } from '../aside/aside';
 import { Footer } from '../footer/footer';
 import { PermissionService } from '../../core/services/permissions/permission.service';
 import { SessionStore } from '../../core/services/auth/session.store';
+import { AuthService } from '../../core/services/auth/auth.service';
 
 @Component({
   selector: 'app-shell',
@@ -21,34 +23,40 @@ export class Shell {
 
   private readonly permissions = inject(PermissionService);
   private readonly session = inject(SessionStore);
+  private readonly auth = inject(AuthService);
+  private readonly router = inject(Router);
+
+  readonly currentRole = computed(() => {
+    const permissions = this.session.permissions();
+
+    if (permissions.some(p => p.role_name.toUpperCase() === 'ADMIN')) {
+      return 'ADMINISTRADOR';
+    }
+
+    if (permissions.some(p => p.role_name.toUpperCase() === 'SELLER')) {
+      return 'VENDEDOR';
+    }
+
+    if (permissions.some(p => p.role_name.toUpperCase() === 'FUNCIONARIO')) {
+      return 'FUNCIONARIO';
+    }
+
+    return 'USUARIO';
+  });
 
   readonly menuItems = computed<MenuItem[]>(() => {
-    const authenticated = this.session.authenticated();
-
-    if (!authenticated) {
-      return [
-        {
-          label: 'Principal',
-          items: [
-            {
-              label: 'Inicio',
-              icon: 'pi pi-home',
-              routerLink: '/construir',
-            },
-          ],
-        },
-      ];
+    if (!this.session.authenticated()) {
+      return [];
     }
+
+    const isAdmin = this.permissions.hasRole('ADMIN');
+    const can = (method: string, path: string): boolean =>
+      isAdmin || this.permissions.hasPermission(method, path);
 
     const items: MenuItem[] = [
       {
         label: 'Principal',
         items: [
-          {
-            label: 'Inicio',
-            icon: 'pi pi-home',
-            routerLink: '/construir',
-          },
           {
             label: 'Mi perfil',
             icon: 'pi pi-user',
@@ -60,7 +68,7 @@ export class Shell {
 
     const commercialItems: MenuItem[] = [];
 
-    if (this.permissions.hasPermission('GET', '/api/clientes')) {
+    if (can('GET', '/api/clientes')) {
       commercialItems.push({
         label: 'Clientes',
         icon: 'pi pi-users',
@@ -68,7 +76,7 @@ export class Shell {
       });
     }
 
-    if (this.permissions.hasPermission('GET', '/api/productos')) {
+    if (can('GET', '/api/productos')) {
       commercialItems.push({
         label: 'Productos',
         icon: 'pi pi-box',
@@ -76,7 +84,7 @@ export class Shell {
       });
     }
 
-    if (this.permissions.hasPermission('GET', '/api/tipos-producto')) {
+    if (can('GET', '/api/tipos-producto')) {
       commercialItems.push({
         label: 'Tipos de producto',
         icon: 'pi pi-tags',
@@ -84,7 +92,15 @@ export class Shell {
       });
     }
 
-    if (commercialItems.length > 0) {
+    if (can('GET', '/api/sucursales')) {
+      commercialItems.push({
+        label: 'Sucursales',
+        icon: 'pi pi-building',
+        routerLink: '/sucursales',
+      });
+    }
+
+    if (commercialItems.length) {
       items.push({
         label: 'Gestión comercial',
         items: commercialItems,
@@ -93,7 +109,7 @@ export class Shell {
 
     const operationItems: MenuItem[] = [];
 
-    if (this.permissions.hasPermission('GET', '/api/ventas')) {
+    if (can('GET', '/api/ventas')) {
       operationItems.push({
         label: 'Ventas',
         icon: 'pi pi-receipt',
@@ -101,7 +117,7 @@ export class Shell {
       });
     }
 
-    if (this.permissions.hasPermission('POST', '/api/ventas')) {
+    if (can('POST', '/api/ventas')) {
       operationItems.push({
         label: 'Nueva venta',
         icon: 'pi pi-plus-circle',
@@ -109,7 +125,7 @@ export class Shell {
       });
     }
 
-    if (this.permissions.hasPermission('GET', '/api/compras')) {
+    if (can('GET', '/api/compras')) {
       operationItems.push({
         label: 'Compras',
         icon: 'pi pi-shopping-cart',
@@ -117,7 +133,7 @@ export class Shell {
       });
     }
 
-    if (this.permissions.hasPermission('GET', '/api/inventario')) {
+    if (can('GET', '/api/inventarios')) {
       operationItems.push({
         label: 'Inventario',
         icon: 'pi pi-warehouse',
@@ -125,7 +141,7 @@ export class Shell {
       });
     }
 
-    if (this.permissions.hasPermission('GET', '/api/pagos')) {
+    if (can('GET', '/api/pagos')) {
       operationItems.push({
         label: 'Pagos',
         icon: 'pi pi-wallet',
@@ -133,7 +149,7 @@ export class Shell {
       });
     }
 
-    if (this.permissions.hasPermission('GET', '/api/devoluciones')) {
+    if (can('GET', '/api/devoluciones')) {
       operationItems.push({
         label: 'Devoluciones',
         icon: 'pi pi-refresh',
@@ -141,30 +157,39 @@ export class Shell {
       });
     }
 
-    if (operationItems.length > 0) {
+    if (operationItems.length) {
       items.push({
         label: 'Operaciones',
         items: operationItems,
       });
     }
 
-    if (this.permissions.hasRole('ADMIN')) {
+    const reportItems: MenuItem[] = [];
+
+    if (can('GET', '/api/dashboard')) {
+      reportItems.push({
+        label: 'Dashboard',
+        icon: 'pi pi-chart-bar',
+        routerLink: '/dashboard',
+      });
+    }
+
+    if (can('GET', '/api/detalle-ventas')) {
+      reportItems.push({
+        label: 'Detalle de ventas',
+        icon: 'pi pi-list',
+        routerLink: '/ventas/detalle',
+      });
+    }
+
+    if (reportItems.length) {
       items.push({
         label: 'Informes',
-        items: [
-          {
-            label: 'Dashboard',
-            icon: 'pi pi-chart-bar',
-            routerLink: '/dashboard',
-          },
-          {
-            label: 'Detalle de ventas',
-            icon: 'pi pi-list',
-            routerLink: '/detalle-ventas',
-          },
-        ],
+        items: reportItems,
       });
+    }
 
+    if (isAdmin) {
       items.push({
         label: 'Administración',
         items: [
@@ -200,8 +225,23 @@ export class Shell {
     return items;
   });
 
+  logout(): void {
+    this.auth.logout()
+      .pipe(
+        finalize(() => {
+          this.session.clear();
+          void this.router.navigateByUrl('/login');
+        }),
+      )
+      .subscribe({
+        error: (error) => {
+          console.error('Error al cerrar sesión en el servidor:', error);
+        },
+      });
+  }
+
   toggleSidebar(): void {
-    this.sidebarVisible.update((visible) => !visible);
+    this.sidebarVisible.update(visible => !visible);
   }
 
   closeSidebar(): void {

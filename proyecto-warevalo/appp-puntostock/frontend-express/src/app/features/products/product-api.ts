@@ -8,6 +8,11 @@ import type {
   UpdateProductPayload,
 } from '../../core/models/product.model';
 
+type ApiProduct = Partial<Product> & {
+  productTypeId?: number;
+  minStock?: number;
+};
+
 @Injectable({
   providedIn: 'root',
 })
@@ -15,28 +20,43 @@ export class ProductApi {
   private readonly http = inject(HttpClient);
   private readonly base = `${environment.apiUrl}/productos`;
 
+  private normalize(product: ApiProduct): Product {
+    return {
+      ...product,
+      id: product.id ?? 0,
+      product_type_id:
+        product.product_type_id ?? product.productTypeId ?? 0,
+      min_stock: product.min_stock ?? product.minStock ?? 0,
+      quantity: product.quantity ?? 0,
+    } as Product;
+  }
+
   list(): Observable<Product[]> {
     return this.http
-      .get<{ products: Product[] }>(this.base)
-      .pipe(map((response) => response.products));
+      .get<{ products: ApiProduct[] }>(this.base)
+      .pipe(
+        map(response =>
+          (response.products ?? []).map(product => this.normalize(product))
+        )
+      );
   }
 
   get(id: number): Observable<Product> {
     return this.http
-      .get<{ product: Product }>(`${this.base}/${id}`)
-      .pipe(map((response) => response.product));
+      .get<{ product: ApiProduct }>(`${this.base}/${id}`)
+      .pipe(map(response => this.normalize(response.product)));
   }
 
   create(payload: ProductPayload): Observable<Product> {
     return this.http
-      .post<{ product: Product }>(this.base, payload)
-      .pipe(map((response) => response.product));
+      .post<{ product: ApiProduct }>(this.base, payload)
+      .pipe(map(response => this.normalize(response.product)));
   }
 
   update(id: number, payload: UpdateProductPayload): Observable<Product> {
     return this.http
-      .patch<{ product: Product }>(`${this.base}/${id}`, payload)
-      .pipe(map((response) => response.product));
+      .patch<{ product: ApiProduct }>(`${this.base}/${id}`, payload)
+      .pipe(map(response => this.normalize(response.product)));
   }
 
   deactivate(id: number): Observable<unknown> {

@@ -81,7 +81,7 @@
           <td>{{ row.price | currency: 'USD' : 'symbol' : '1.2-2' }}</td>
           <td>
             <p-tag
-              [value]="row.quantity.toString()"
+              [value]="(row.quantity ?? 0).toString()"
               [severity]="stockSeverity(row)"
               [rounded]="true"
             />

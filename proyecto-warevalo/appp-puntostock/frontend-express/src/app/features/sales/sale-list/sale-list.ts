@@ -85,17 +85,25 @@ export class SaleList {
     return this.clientNames().get(clientId) ?? `Cliente #${clientId}`;
   }
 
-  statusLabel(status: string): string {
+  statusLabel(status?: string): string {
+    if (!status) return 'Sin estado';
+
     const value = status.toLowerCase();
+
     if (value === 'completed' || value === 'active') return 'Completada';
     if (value === 'cancelled' || value === 'inactive') return 'Cancelada';
+
     return status;
   }
 
-  statusSeverity(status: string): 'success' | 'danger' | 'secondary' {
+  statusSeverity(status?: string): 'success' | 'danger' | 'secondary' {
+    if (!status) return 'secondary';
+
     const value = status.toLowerCase();
+
     if (value === 'completed' || value === 'active') return 'success';
     if (value === 'cancelled' || value === 'inactive') return 'danger';
+
     return 'secondary';
   }
 

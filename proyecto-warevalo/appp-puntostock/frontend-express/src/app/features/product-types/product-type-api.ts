@@ -2,7 +2,10 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
 import { Observable, map } from 'rxjs';
 import { environment } from '../../../environments/environment';
-import type { ProductType, ProductTypePayload } from '../../core/models/product-type.model';
+import type {
+  ProductType,
+  ProductTypePayload,
+} from '../../core/models/product-type.model';
 
 @Injectable({ providedIn: 'root' })
 export class ProductTypeApi {
@@ -11,26 +14,29 @@ export class ProductTypeApi {
 
   list(): Observable<ProductType[]> {
     return this.http
-      .get<{ product_types: ProductType[] }>(this.base)
-      .pipe(map((response) => response.product_types));
+      .get<{ productTypes: ProductType[] }>(this.base)
+      .pipe(map(response => response.productTypes ?? []));
   }
 
   get(id: number): Observable<ProductType> {
     return this.http
-      .get<{ product_type: ProductType }>(`${this.base}/${id}`)
-      .pipe(map((response) => response.product_type));
+      .get<{ productType: ProductType }>(`${this.base}/${id}`)
+      .pipe(map(response => response.productType));
   }
 
   create(payload: ProductTypePayload): Observable<ProductType> {
     return this.http
-      .post<{ product_type: ProductType }>(this.base, payload)
-      .pipe(map((response) => response.product_type));
+      .post<{ productType: ProductType }>(this.base, payload)
+      .pipe(map(response => response.productType));
   }
 
-  update(id: number, payload: Partial<ProductTypePayload>): Observable<ProductType> {
+  update(
+    id: number,
+    payload: Partial<ProductTypePayload>
+  ): Observable<ProductType> {
     return this.http
-      .patch<{ product_type: ProductType }>(`${this.base}/${id}`, payload)
-      .pipe(map((response) => response.product_type));
+      .patch<{ productType: ProductType }>(`${this.base}/${id}`, payload)
+      .pipe(map(response => response.productType));
   }
 
   deactivate(id: number): Observable<unknown> {

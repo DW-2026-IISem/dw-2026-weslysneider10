@@ -1,11 +1,16 @@
 <div class="flex flex-col gap-5">
+
   <div>
     <h1 class="text-2xl font-bold">Dashboard</h1>
-    <p class="text-surface-500">Resumen de la operación de PuntoStock.</p>
+    <p class="text-surface-500">
+      Resumen general de la operación de PuntoStock.
+    </p>
   </div>
 
   @if (error()) {
-    <p-message severity="error">{{ error() }}</p-message>
+    <p-message severity="warn">
+      {{ error() }}
+    </p-message>
   }
 
   @if (loading()) {
@@ -15,59 +20,98 @@
       }
     </div>
   } @else {
+
     <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-4">
+
       <p-card>
-        <p class="text-surface-500">Clientes</p>
-        <p class="text-3xl font-bold">{{ clients().length }}</p>
+        <div class="flex items-center justify-between">
+          <div>
+            <p class="text-surface-500">Clientes</p>
+            <p class="text-3xl font-bold">{{ clients().length }}</p>
+          </div>
+          <i class="pi pi-users text-3xl text-blue-500"></i>
+        </div>
       </p-card>
 
       <p-card>
-        <p class="text-surface-500">Tipos de producto</p>
-        <p class="text-3xl font-bold">{{ typeCount() }}</p>
+        <div class="flex items-center justify-between">
+          <div>
+            <p class="text-surface-500">Tipos de producto</p>
+            <p class="text-3xl font-bold">{{ typeCount() }}</p>
+          </div>
+          <i class="pi pi-tags text-3xl text-purple-500"></i>
+        </div>
       </p-card>
 
       <p-card>
-        <p class="text-surface-500">Productos</p>
-        <p class="text-3xl font-bold">{{ products().length }}</p>
+        <div class="flex items-center justify-between">
+          <div>
+            <p class="text-surface-500">Productos</p>
+            <p class="text-3xl font-bold">{{ products().length }}</p>
+          </div>
+          <i class="pi pi-box text-3xl text-orange-500"></i>
+        </div>
       </p-card>
 
       <p-card>
-        <p class="text-surface-500">Ingresos registrados</p>
-        <p class="text-2xl font-bold">
-          {{ revenue() | currency: 'COP' : 'symbol-narrow' : '1.0-0' }}
-        </p>
-        <p class="text-sm text-surface-500">{{ sales().length }} ventas</p>
+        <div class="flex items-center justify-between">
+          <div>
+            <p class="text-surface-500">Ingresos registrados</p>
+            <p class="text-2xl font-bold">
+              {{ revenue() | currency: 'COP' : 'symbol-narrow' : '1.0-0' }}
+            </p>
+            <p class="text-sm text-surface-500">
+              {{ completedSales() }} ventas completadas
+            </p>
+          </div>
+          <i class="pi pi-wallet text-3xl text-green-500"></i>
+        </div>
       </p-card>
+
     </div>
   }
 
   <p-card>
     <div class="mb-3 flex flex-wrap items-center justify-between gap-3">
-      <h2 class="text-lg font-semibold">Productos con stock bajo</h2>
-      <span class="text-surface-500">{{ lowStock().length }} productos</span>
+      <div>
+        <h2 class="text-lg font-semibold">Productos con stock bajo</h2>
+        <p class="text-sm text-surface-500">
+          Productos que alcanzaron o están por debajo del stock mínimo.
+        </p>
+      </div>
+
+      <span class="font-semibold text-orange-500">
+        {{ lowStock().length }} registros
+      </span>
     </div>
 
-    <p-table [value]="lowStock()">
+    <p-table [value]="lowStock()" responsiveLayout="scroll">
       <ng-template #header>
         <tr>
           <th>Producto</th>
+          <th>Sucursal</th>
           <th>Existencias</th>
           <th>Stock mínimo</th>
         </tr>
       </ng-template>
 
-      <ng-template #body let-product>
+      <ng-template #body let-item>
         <tr>
-          <td>{{ product.name }}</td>
-          <td>{{ product.quantity }}</td>
-          <td>{{ product.min_stock }}</td>
+          <td>{{ item.productName }}</td>
+          <td>{{ item.branchId }}</td>
+          <td>
+            <span class="font-semibold text-orange-500">
+              {{ item.quantity }}
+            </span>
+          </td>
+          <td>{{ item.minStock }}</td>
         </tr>
       </ng-template>
 
       <ng-template #emptymessage>
         <tr>
-          <td colspan="3" class="py-4 text-center text-surface-500">
-            No hay productos por debajo del stock mínimo.
+          <td colspan="4" class="py-4 text-center text-surface-500">
+            No hay productos con stock bajo.
           </td>
         </tr>
       </ng-template>
@@ -76,11 +120,22 @@
 
   <p-card>
     <div class="mb-3 flex flex-wrap items-center justify-between gap-3">
-      <h2 class="text-lg font-semibold">Últimas ventas</h2>
-      <p-button label="Ver ventas" icon="pi pi-arrow-right" [text]="true" routerLink="/ventas" />
+      <div>
+        <h2 class="text-lg font-semibold">Últimas ventas</h2>
+        <p class="text-sm text-surface-500">
+          Últimas cinco operaciones registradas.
+        </p>
+      </div>
+
+      <p-button
+        label="Ver ventas"
+        icon="pi pi-arrow-right"
+        [text]="true"
+        routerLink="/ventas"
+      />
     </div>
 
-    <p-table [value]="latestSales()">
+    <p-table [value]="latestSales()" responsiveLayout="scroll">
       <ng-template #header>
         <tr>
           <th>Venta</th>
@@ -94,18 +149,34 @@
       <ng-template #body let-sale>
         <tr>
           <td>#{{ sale.id }}</td>
-          <td>{{ sale.date || sale.createdAt | date: 'dd/MM/yyyy HH:mm' }}</td>
-          <td>{{ sale.client_id }}</td>
-          <td>{{ sale.total | currency: 'COP' : 'symbol-narrow' : '1.0-0' }}</td>
-          <td><p-tag [value]="statusLabel(sale.status)" /></td>
+
+          <td>
+            {{ sale.fecha || sale.createdAt | date: 'dd/MM/yyyy HH:mm' }}
+          </td>
+
+          <td>{{ sale.clientId }}</td>
+
+          <td>
+            {{ sale.total | currency: 'COP' : 'symbol-narrow' : '1.0-0' }}
+          </td>
+
+          <td>
+            <p-tag
+              [value]="statusLabel(sale.estado)"
+              [severity]="statusSeverity(sale.estado)"
+            />
+          </td>
         </tr>
       </ng-template>
 
       <ng-template #emptymessage>
         <tr>
-          <td colspan="5" class="py-4 text-center text-surface-500">No hay ventas registradas.</td>
+          <td colspan="5" class="py-4 text-center text-surface-500">
+            No hay ventas registradas.
+          </td>
         </tr>
       </ng-template>
     </p-table>
   </p-card>
+
 </div>

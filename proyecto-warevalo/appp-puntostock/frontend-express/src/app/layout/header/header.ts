@@ -12,7 +12,6 @@ import { ButtonModule } from 'primeng/button';
 })
 export class Header {
   readonly appName = input('PuntoStock Express');
-
-  /** Avisa al componente padre cuando se pulsa el botón del menú. */
   readonly menuRequested = output<void>();
+  readonly logoutRequested = output<void>();
 }

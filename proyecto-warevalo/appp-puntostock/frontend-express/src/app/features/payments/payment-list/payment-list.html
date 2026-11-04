@@ -1,0 +1,90 @@
+<div class="space-y-6">
+  <app-page-header title="Pagos" subtitle="Consulta y registra los pagos asociados a las ventas.">
+    <div page-actions class="flex gap-2">
+      <button pButton severity="secondary" [outlined]="true" (click)="load()" [disabled]="loading()">
+        <i pButtonIcon class="pi pi-refresh"></i><span pButtonLabel>Actualizar</span>
+      </button>
+      <button *appHasPermission="{method:'POST',path:'/api/pagos'}" pButton (click)="openCreate()">
+        <i pButtonIcon class="pi pi-plus"></i><span pButtonLabel>Registrar pago</span>
+      </button>
+    </div>
+  </app-page-header>
+
+  <section class="rounded-xl border border-slate-200 bg-white p-4 shadow-sm sm:p-6">
+    <div class="mb-5 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+      <div>
+        <h2 class="text-lg font-semibold text-slate-900">Historial de pagos</h2>
+        <p class="text-sm text-slate-500">{{ filtered().length }} registro(s)</p>
+      </div>
+      <input pInputText class="w-full sm:max-w-sm" placeholder="Buscar por venta, método o estado..."
+        [value]="search()" (input)="search.set($any($event.target).value)" />
+    </div>
+
+    <p-table [value]="filtered()" [loading]="loading()" [rowHover]="true" responsiveLayout="scroll">
+      <ng-template #header>
+        <tr><th>ID</th><th>Venta</th><th>Fecha</th><th>Método</th><th>Monto</th><th>Estado</th><th class="text-right">Acciones</th></tr>
+      </ng-template>
+      <ng-template #body let-row>
+        <tr>
+          <td>{{ row.id }}</td>
+          <td>#{{ row.saleId }}</td>
+          <td>{{ row.fecha | date:'short' }}</td>
+          <td>{{ row.metodo === 'cash' ? 'Efectivo' : row.metodo === 'card' ? 'Tarjeta' : 'Transferencia' }}</td>
+          <td>{{ row.monto | currency:'COP':'symbol':'1.0-0' }}</td>
+          <td>
+            <p-tag [value]="row.estado === 'completed' ? 'Completado' : 'Cancelado'"
+              [severity]="row.estado === 'completed' ? 'success' : 'secondary'" />
+          </td>
+          <td>
+            <div class="flex justify-end">
+              <button *appHasPermission="{method:'PATCH',path:'/api/pagos/:id/cancel'}"
+                pButton severity="danger" [outlined]="true" size="small"
+                [disabled]="row.estado === 'cancelled'" (click)="cancelPayment(row)" aria-label="Cancelar pago">
+                <i pButtonIcon class="pi pi-ban"></i>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </ng-template>
+      <ng-template #emptymessage>
+        <tr><td colspan="7" class="py-8 text-center text-slate-500">No hay pagos registrados.</td></tr>
+      </ng-template>
+    </p-table>
+  </section>
+</div>
+
+<p-dialog header="Registrar pago" [visible]="visible()" (visibleChange)="visible.set($event)"
+  [modal]="true" [draggable]="false" [style]="{width:'min(95vw, 35rem)'}">
+  <form class="space-y-4" (ngSubmit)="save()">
+    <div>
+      <label class="mb-1 block text-sm font-medium">ID de la venta</label>
+      <input pInputText class="w-full" type="number" min="1" name="saleId"
+        [(ngModel)]="saleId" required />
+    </div>
+    <div>
+      <label class="mb-1 block text-sm font-medium">Fecha</label>
+      <input pInputText class="w-full" type="datetime-local" name="fecha" [(ngModel)]="fecha" />
+    </div>
+    <div>
+      <label class="mb-1 block text-sm font-medium">Método de pago</label>
+      <select class="w-full rounded-lg border border-slate-300 p-2.5" name="metodo" [(ngModel)]="metodo">
+        <option value="cash">Efectivo</option>
+        <option value="card">Tarjeta</option>
+        <option value="transfer">Transferencia</option>
+      </select>
+    </div>
+    <div>
+      <label class="mb-1 block text-sm font-medium">Monto</label>
+      <input pInputText class="w-full" type="number" min="0.01" step="0.01"
+        name="monto" [(ngModel)]="monto" required />
+    </div>
+    <div class="flex justify-end gap-2">
+      <button pButton type="button" severity="secondary" [outlined]="true" (click)="visible.set(false)">
+        <span pButtonLabel>Cancelar</span>
+      </button>
+      <button pButton type="submit" [loading]="saving()">
+        <span pButtonLabel>Guardar pago</span>
+      </button>
+    </div>
+  </form>
+</p-dialog>

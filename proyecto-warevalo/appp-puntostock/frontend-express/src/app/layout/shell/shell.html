@@ -1,15 +1,22 @@
-<div class="flex min-h-dvh flex-col bg-slate-50">
-  <app-header [appName]="appName" (menuRequested)="toggleSidebar()" />
+<div class="app-shell flex min-h-dvh flex-col">
+  <app-header
+    [appName]="appName"
+    (menuRequested)="toggleSidebar()"
+    (logoutRequested)="logout()"
+  />
 
-  <div class="flex flex-1">
-    @if (sidebarVisible()) {
-      <aside class="w-72 shrink-0">
-        <app-aside [appName]="appName" [items]="menuItems()" (navigated)="closeSidebar()" />
-      </aside>
-    }
+  <div class="shell-body flex min-h-0 flex-1">
+    <aside class="sidebar-container shrink-0">
+      <app-aside
+        [appName]="appName"
+        [items]="menuItems()"
+      />
+    </aside>
 
-    <main class="min-w-0 flex-1 p-4 sm:p-6">
-      <router-outlet />
+    <main class="main-content min-w-0 flex-1">
+      <div class="mx-auto w-full max-w-[1600px]">
+        <router-outlet />
+      </div>
     </main>
   </div>
 

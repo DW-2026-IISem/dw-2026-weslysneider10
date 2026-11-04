@@ -43,15 +43,15 @@ export const RESOURCE_CATALOG: readonly CatalogResource[] = [
   // ── Clientes (7) ──────────────────────────────────────────────
   { method: "GET", path: "/api/clientes", description: "Listar clientes", seller: true },
   { method: "GET", path: "/api/clientes/:id", description: "Consultar cliente", seller: true },
-  { method: "POST", path: "/api/clientes", description: "Crear cliente" },
-  { method: "PUT", path: "/api/clientes/:id", description: "Reemplazar cliente" },
-  { method: "PATCH", path: "/api/clientes/:id", description: "Modificar cliente" },
+  { method: "POST", path: "/api/clientes", description: "Crear cliente", seller: true },
+  { method: "PUT", path: "/api/clientes/:id", description: "Reemplazar cliente", seller: true },
+  { method: "PATCH", path: "/api/clientes/:id", description: "Modificar cliente", seller: true },
   { method: "DELETE", path: "/api/clientes/:id", description: "Eliminar cliente" },
   { method: "PATCH", path: "/api/clientes/:id/deactivate", description: "Desactivar cliente" },
 
   // ── Sucursales (7) ────────────────────────────────────────────
-  { method: "GET", path: "/api/sucursales", description: "Listar sucursales" },
-  { method: "GET", path: "/api/sucursales/:id", description: "Consultar sucursal" },
+  { method: "GET", path: "/api/sucursales", description: "Listar sucursales", seller: true },
+  { method: "GET", path: "/api/sucursales/:id", description: "Consultar sucursal", seller: true },
   { method: "POST", path: "/api/sucursales", description: "Crear sucursal" },
   { method: "PUT", path: "/api/sucursales/:id", description: "Reemplazar sucursal" },
   { method: "PATCH", path: "/api/sucursales/:id", description: "Modificar sucursal" },
@@ -90,9 +90,9 @@ export const RESOURCE_CATALOG: readonly CatalogResource[] = [
   { method: "PATCH", path: "/api/proveedores/:id/deactivate", description: "Desactivar proveedor" },
 
   // ── Inventarios (7) ───────────────────────────────────────────
-  { method: "GET", path: "/api/inventarios", description: "Listar inventarios" },
-  { method: "GET", path: "/api/inventarios/low-stock", description: "Listar inventarios con stock bajo" },
-  { method: "GET", path: "/api/inventarios/:id", description: "Consultar inventario" },
+  { method: "GET", path: "/api/inventarios", description: "Listar inventarios", seller: true },
+  { method: "GET", path: "/api/inventarios/low-stock", description: "Listar inventarios con stock bajo", seller: true },
+  { method: "GET", path: "/api/inventarios/:id", description: "Consultar inventario", seller: true },
   { method: "POST", path: "/api/inventarios", description: "Crear registro de inventario" },
   { method: "PUT", path: "/api/inventarios/:id", description: "Reemplazar inventario" },
   { method: "PATCH", path: "/api/inventarios/:id", description: "Modificar inventario" },
@@ -114,13 +114,13 @@ export const RESOURCE_CATALOG: readonly CatalogResource[] = [
   { method: "DELETE", path: "/api/ventas/:id", description: "Eliminar venta" },
 
   // ── Pagos (7) ─────────────────────────────────────────────────
-  { method: "GET", path: "/api/payments", description: "Listar pagos" },
-  { method: "GET", path: "/api/payments/:id", description: "Consultar pago" },
-  { method: "POST", path: "/api/payments", description: "Crear pago" },
-  { method: "PUT", path: "/api/payments/:id", description: "Reemplazar pago" },
-  { method: "PATCH", path: "/api/payments/:id", description: "Modificar pago" },
-  { method: "PATCH", path: "/api/payments/:id/cancel", description: "Cancelar pago" },
-  { method: "DELETE", path: "/api/payments/:id", description: "Eliminar pago" },
+  { method: "GET", path: "/api/pagos", description: "Listar pagos", seller: true },
+  { method: "GET", path: "/api/pagos/:id", description: "Consultar pago", seller: true },
+  { method: "POST", path: "/api/pagos", description: "Crear pago", seller: true },
+  { method: "PUT", path: "/api/pagos/:id", description: "Reemplazar pago" },
+  { method: "PATCH", path: "/api/pagos/:id", description: "Modificar pago" },
+  { method: "PATCH", path: "/api/pagos/:id/cancel", description: "Cancelar pago" },
+  { method: "DELETE", path: "/api/pagos/:id", description: "Eliminar pago" },
 
   // ── Devoluciones (6) ──────────────────────────────────────────
   { method: "GET", path: "/api/devoluciones", description: "Listar devoluciones" },

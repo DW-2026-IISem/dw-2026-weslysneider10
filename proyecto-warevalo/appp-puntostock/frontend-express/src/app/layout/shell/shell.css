@@ -2,3 +2,42 @@
   display: block;
   min-height: 100dvh;
 }
+
+.app-shell {
+  min-height: 100dvh;
+  background: #f4f7fb;
+  color: #172033;
+}
+
+.shell-body {
+  align-items: stretch;
+}
+
+.sidebar-container {
+  position: sticky;
+  top: 64px;
+  align-self: flex-start;
+  width: 275px;
+  height: calc(100dvh - 64px);
+  flex-shrink: 0;
+  background: #111c35;
+  z-index: 20;
+}
+
+.main-content {
+  min-height: calc(100dvh - 64px);
+  padding: 24px;
+  background:
+    radial-gradient(circle at top right, rgba(20, 184, 166, 0.07), transparent 28%),
+    #f4f7fb;
+}
+
+@media (max-width: 768px) {
+  .sidebar-container {
+    width: 230px;
+  }
+
+  .main-content {
+    padding: 14px;
+  }
+}
