@@ -460,6 +460,10 @@ Ahora vamos a preparar el Header para que el botón de menú emita el evento `me
 
 ![](images/clipboard-4263844497.png)
 
+![](images/clipboard-2922575928.png)
+
+![](images/clipboard-1988284344.png)
+
 # Fase II: Auth con RBAC — ISS-08 — Autenticación JWT, perfil y permisos efectivos
 
 ### Revisar el frontend actual.
