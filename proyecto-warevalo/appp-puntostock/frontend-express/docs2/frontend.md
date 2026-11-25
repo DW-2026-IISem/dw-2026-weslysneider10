@@ -294,6 +294,8 @@ Ahora vamos a preparar el Header para que el botón de menú emita el evento `me
 
 ### ![](images/clipboard-2608217978.png)
 
+# PRUEBAS VISIBLES
+
 ![](images/clipboard-1085495153.png)
 
 ![](images/clipboard-1295603676.png)
@@ -364,6 +366,14 @@ Ahora vamos a preparar el Header para que el botón de menú emita el evento `me
 
 ### ![](images/clipboard-1509869760.png)
 
+# PRUEBAS VISIBLES
+
+![](images/clipboard-2030237805.png)
+
+![](images/clipboard-2013609519.png)
+
+![](images/clipboard-1022488015.png)
+
 # Fase I: Business — ISS-06 — Ventas transaccionales y detalle
 
 ### Crear el modelo de ventas.
@@ -409,6 +419,8 @@ Ahora vamos a preparar el Header para que el botón de menú emita el evento `me
 ### Compilar y validar los criterios de aceptación.
 
 ### ![](images/clipboard-1572041551.png)
+
+# PRUEBAS VISIBLES
 
 # Fase I: Business — ISS-07 — Detalle de ventas, dashboard y cierre
 
