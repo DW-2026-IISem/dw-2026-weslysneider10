@@ -294,6 +294,12 @@ Ahora vamos a preparar el Header para que el botón de menú emita el evento `me
 
 ### ![](images/clipboard-2608217978.png)
 
+![](images/clipboard-1085495153.png)
+
+![](images/clipboard-1295603676.png)
+
+![](images/clipboard-4022096161.png)
+
 # Fase I: Business — ISS-04 — CRUD de tipos de producto
 
 # 
