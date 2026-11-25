@@ -1,0 +1,1 @@
+{"version":3,"file":"payment.serializer.js","sourceRoot":"","sources":["../../../../../../../src/features/business/payments/presentation/http/serializers/payment.serializer.ts"],"names":[],"mappings":";;;AAEA,gFAA4E;AAE5E,MAAa,iBAAiB;IAC5B,MAAM,CAAC,SAAS,CAAC,MAAe;QAC9B,OAAO,8BAAa,CAAC,UAAU,CAAC,MAAM,CAAC,CAAC;IAC1C,CAAC;CACF;AAJD,8CAIC"}

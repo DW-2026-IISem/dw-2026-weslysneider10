@@ -1,0 +1,1 @@
+{"version":3,"file":"inventory.serializer.js","sourceRoot":"","sources":["../../../../../../../src/features/business/inventory/presentation/http/serializers/inventory.serializer.ts"],"names":[],"mappings":";;;AAEA,oFAAgF;AAEhF,MAAa,mBAAmB;IAC9B,MAAM,CAAC,SAAS,CAAC,MAAiB;QAChC,OAAO,kCAAe,CAAC,UAAU,CAAC,MAAM,CAAC,CAAC;IAC5C,CAAC;CACF;AAJD,kDAIC"}

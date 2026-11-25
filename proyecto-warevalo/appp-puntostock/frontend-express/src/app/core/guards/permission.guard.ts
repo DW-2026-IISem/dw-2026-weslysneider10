@@ -12,6 +12,8 @@ export const permissionGuard: CanActivateFn = (route) => {
   const requiredPermission = route.data['permission'] as
     { method: string; path: string } | undefined;
 
+  // Las pantallas marcadas con roles (administración) siguen siendo exclusivas.
+
   const requiredRoles = route.data['roles'] as string[] | undefined;
 
   if (requiredRoles?.length) {
@@ -22,10 +24,9 @@ export const permissionGuard: CanActivateFn = (route) => {
     return denied;
   }
 
-  return permissions.hasPermission(
-    requiredPermission.method,
-    requiredPermission.path,
-  )
-    ? true
-    : denied;
+  // Política "ve todo, hace solo lo asignado": las pantallas de negocio se
+  // pueden abrir siempre. Si falta el permiso de lectura, la pantalla muestra
+  // el aviso del backend (403) y los botones salen bloqueados con candado.
+  // La seguridad real la aplica el backend en cada petición.
+  return true;
 };

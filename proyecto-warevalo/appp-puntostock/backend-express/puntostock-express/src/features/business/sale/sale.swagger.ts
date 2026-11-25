@@ -105,11 +105,10 @@ export const saleSwagger = {
             type: "array",
             items: {
               type: "object",
-              required: ["productId", "cantidad", "valorUnitario"],
+              required: ["productId", "cantidad"],
               properties: {
                 productId: { type: "integer" },
                 cantidad: { type: "integer" },
-                valorUnitario: { type: "number" },
                 observaciones: { type: "string" },
               },
             },

@@ -77,9 +77,10 @@ export class ClientForm {
 
     const payload: CreateClient = {
       name: value.name.trim(),
-      address: value.address.trim(),
-      phone: value.phone.trim(),
-      email: value.email.trim(),
+      // Vacío -> null: el backend guarda NULL, no cadena vacía.
+      address: value.address.trim() || null,
+      phone: value.phone.trim() || null,
+      email: value.email.trim() || null,
       status: value.status,
     };
 

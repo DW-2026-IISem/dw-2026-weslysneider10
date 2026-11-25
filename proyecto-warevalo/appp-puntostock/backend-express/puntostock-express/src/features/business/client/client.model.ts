@@ -1,14 +1,21 @@
 import { DataTypes, Model } from "sequelize";
 import { sequelize } from "../../../database/db";
-import bcrypt from "bcryptjs";
 
+/**
+ * Cliente de la tienda (tabla clients).
+ *
+ * No tiene contraseña: un cliente no inicia sesión en el sistema. Las
+ * credenciales pertenecen a los usuarios internos (tabla users).
+ *
+ * name es obligatorio; address, phone y email son opcionales (NULL si no
+ * se conocen, nunca cadena vacía).
+ */
 export interface ClientI {
   id?: number;
   name: string;
-  address: string;
-  phone: string;
-  email: string;
-  password: string;
+  address: string | null;
+  phone: string | null;
+  email: string | null;
   status: "active" | "inactive";
   createdAt?: Date;
   updatedAt?: Date;
@@ -17,10 +24,9 @@ export interface ClientI {
 export class Client extends Model {
   public id!: number;
   public name!: string;
-  public address!: string;
-  public phone!: string;
-  public email!: string;
-  public password!: string;
+  public address!: string | null;
+  public phone!: string | null;
+  public email!: string | null;
   public status!: "active" | "inactive";
   public readonly createdAt!: Date;
   public readonly updatedAt!: Date;
@@ -29,35 +35,31 @@ export class Client extends Model {
 Client.init(
   {
     name: {
-      type: DataTypes.STRING,
-      allowNull: true,
+      type: DataTypes.STRING(120),
+      allowNull: false,
+      validate: {
+        notEmpty: { msg: "Name cannot be empty" },
+      },
     },
     address: {
       type: DataTypes.STRING,
       allowNull: true,
     },
     phone: {
-      type: DataTypes.STRING,
+      type: DataTypes.STRING(40),
       allowNull: true,
-      validate: {
-        notEmpty: { msg: "Phone cannot be empty" },
-      },
     },
     email: {
-      type: DataTypes.STRING,
+      type: DataTypes.STRING(150),
       allowNull: true,
       unique: true,
       validate: {
         isEmail: { msg: "Email must be a valid email address" },
       },
     },
-    password: {
-      type: DataTypes.STRING,
-      allowNull: true,
-    },
     status: {
       type: DataTypes.ENUM("active", "inactive"),
-      defaultValue: "inactive",
+      defaultValue: "active",
       allowNull: false,
     },
   },
@@ -66,27 +68,5 @@ Client.init(
     modelName: "Client",
     tableName: "clients",
     timestamps: true,
-    hooks: {
-      beforeCreate: async (client: Client) => {
-        if (client.password) {
-          const salt = await bcrypt.genSalt(10);
-          client.password = await bcrypt.hash(client.password, salt);
-        }
-      },
-      beforeUpdate: async (client: Client) => {
-        if (client.changed("password") && client.password) {
-          const salt = await bcrypt.genSalt(10);
-          client.password = await bcrypt.hash(client.password, salt);
-        }
-      },
-      beforeBulkCreate: async (clients: Client[]) => {
-        for (const client of clients) {
-          if (client.password) {
-            const salt = await bcrypt.genSalt(10);
-            client.password = await bcrypt.hash(client.password, salt);
-          }
-        }
-      },
-    },
   }
 );

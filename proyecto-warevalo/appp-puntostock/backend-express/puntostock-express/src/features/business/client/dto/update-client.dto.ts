@@ -7,8 +7,7 @@
  */
 export interface UpdateClientDto {
   name: string;
-  address: string;
-  phone: string;
-  email: string;
-  password?: string;
+  address?: string | null;
+  phone?: string | null;
+  email?: string | null;
 }

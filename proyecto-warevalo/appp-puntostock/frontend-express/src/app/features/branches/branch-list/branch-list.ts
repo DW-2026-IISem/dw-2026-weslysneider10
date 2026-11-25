@@ -11,6 +11,7 @@ import { BranchApi } from '../branch-api';
 import { NotificationService } from '../../../core/services/notification.service';
 import { HasPermissionDirective } from '../../../core/directives/has-permission.directive';
 import { PageHeader } from '../../../shared/ui/page-header/page-header';
+import { toApiMessage } from '../../../core/utils/api-error';
 
 @Component({
   selector: 'app-branch-list',
@@ -49,7 +50,7 @@ export class BranchList {
     this.loading.set(true);
     this.api.list().subscribe({
       next: rows => this.rows.set(rows),
-      error: () => this.notifications.error('No se pudieron cargar las sucursales.'),
+      error: (e: unknown) => this.notifications.error(`No se pudieron cargar las sucursales. ${toApiMessage(e)}`),
       complete: () => this.loading.set(false),
     });
   }
@@ -95,8 +96,8 @@ export class BranchList {
         this.load();
         this.saving.set(false);
       },
-      error: () => {
-        this.notifications.error('No se pudo guardar la sucursal.');
+      error: (e: unknown) => {
+        this.notifications.error(`No se pudo guardar la sucursal. ${toApiMessage(e)}`);
         this.saving.set(false);
       },
     });
@@ -110,7 +111,7 @@ export class BranchList {
         this.notifications.success('Sucursal desactivada.');
         this.load();
       },
-      error: () => this.notifications.error('No se pudo desactivar la sucursal.'),
+      error: (e: unknown) => this.notifications.error(`No se pudo desactivar la sucursal. ${toApiMessage(e)}`),
     });
   }
 }

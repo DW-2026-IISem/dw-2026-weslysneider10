@@ -1,51 +1,426 @@
-<section class="p-6">
-  <h1 class="mb-6 text-2xl font-bold">Administración de roles</h1>
+<div class="space-y-6">
+  <app-page-header
+    title="Roles y accesos"
+    subtitle="Crea el usuario, dale un rol y marca en la tabla qué puede hacer."
+  >
+    <div page-actions>
+      <button pButton severity="secondary" [outlined]="true" (click)="loadAll()" [disabled]="loading()">
+        <i pButtonIcon class="pi pi-refresh"></i><span pButtonLabel>Actualizar</span>
+      </button>
+    </div>
+  </app-page-header>
 
-  <form (ngSubmit)="save()" class="mb-6 flex flex-wrap gap-3">
-    <input
-      name="name"
-      [(ngModel)]="name"
-      placeholder="Nombre del rol"
-      class="rounded border p-2"
-      required
-    />
-
-    <input
-      name="description"
-      [(ngModel)]="description"
-      placeholder="Descripción"
-      class="rounded border p-2"
-    />
-
-    <button type="submit" class="rounded bg-blue-600 px-4 py-2 text-white">Crear rol</button>
-  </form>
-
-  @if (error) {
-    <p class="mb-4 text-red-600">{{ error }}</p>
+  @if (error()) {
+    <p-message severity="error">{{ error() }}</p-message>
   }
 
-  @if (loading) {
-    <p>Cargando roles...</p>
+  <!-- Pestañas -->
+  <div class="flex flex-wrap gap-2 border-b border-slate-200" role="tablist">
+    @for (t of [
+      { id: 'usuarios', label: 'Crear usuario y accesos', icon: 'pi-user-plus' },
+      { id: 'permisos', label: 'Permisos por rol', icon: 'pi-lock' },
+      { id: 'roles', label: 'Roles', icon: 'pi-id-card' }
+    ]; track t.id) {
+      <button
+        type="button"
+        role="tab"
+        [attr.aria-selected]="tab() === t.id"
+        (click)="tab.set($any(t.id))"
+        class="-mb-px flex items-center gap-2 border-b-2 px-4 py-2 text-sm font-medium transition-colors"
+        [class]="tab() === t.id
+          ? 'border-blue-600 text-blue-700'
+          : 'border-transparent text-slate-500 hover:text-slate-800'"
+      >
+        <i class="pi {{ t.icon }}"></i>{{ t.label }}
+      </button>
+    }
+  </div>
+
+  @if (loading()) {
+    <p class="text-slate-500">Cargando...</p>
   } @else {
-    <table class="w-full border-collapse">
-      <thead>
-        <tr class="border-b bg-gray-100 text-left">
-          <th class="p-3">ID</th>
-          <th class="p-3">Nombre</th>
-          <th class="p-3">Descripción</th>
-          <th class="p-3">Estado</th>
-        </tr>
-      </thead>
-      <tbody>
-        @for (role of roles; track role.id) {
-          <tr class="border-b">
-            <td class="p-3">{{ role.id }}</td>
-            <td class="p-3">{{ role.name }}</td>
-            <td class="p-3">{{ role.description }}</td>
-            <td class="p-3">{{ role.status }}</td>
-          </tr>
+    <!-- ══════════════════ USUARIOS Y ACCESOS ══════════════════ -->
+    @if (tab() === 'usuarios') {
+      <section class="space-y-5">
+        <!-- Selector de usuario + pasos -->
+        <div class="flex flex-col gap-4 rounded-xl border border-slate-200 bg-white p-5 xl:flex-row xl:items-end">
+          <div class="xl:w-96">
+            <label for="acc-user" class="mb-1 block text-sm font-medium">Usuario</label>
+            <p-select
+              inputId="acc-user"
+              [options]="userOptions()"
+              optionLabel="label"
+              optionValue="value"
+              [ngModel]="selectedUserId()"
+              (ngModelChange)="onUserChange($event)"
+              [filter]="true"
+              filterBy="label"
+              [fluid]="true"
+            />
+          </div>
+
+          <ol class="flex flex-wrap items-center gap-2 text-sm xl:ml-auto">
+            @for (s of [
+              { n: 1, label: 'Datos del usuario' },
+              { n: 2, label: 'Rol' },
+              { n: 3, label: 'Permisos' }
+            ]; track s.n) {
+              @if (s.n > 1) {
+                <li class="text-slate-300"><i class="pi pi-chevron-right"></i></li>
+              }
+              <li>
+                <span
+                  class="flex items-center gap-2 rounded-full px-3 py-1.5"
+                  [class]="step() === s.n
+                    ? 'bg-blue-600 text-white'
+                    : step() > s.n ? 'bg-emerald-100 text-emerald-800' : 'bg-slate-100 text-slate-500'"
+                >
+                  @if (step() > s.n) {
+                    <i class="pi pi-check text-xs"></i>
+                  } @else {
+                    <span class="font-bold">{{ s.n }}</span>
+                  }
+                  {{ s.label }}
+                </span>
+              </li>
+            }
+          </ol>
+        </div>
+
+        @if (editingSelf()) {
+          <p-message severity="warn">
+            Estás editando tu propio usuario: puedes cambiar tus datos, pero no tu rol ni tus permisos
+            (evita quitarte el acceso de administrador).
+          </p-message>
         }
-      </tbody>
-    </table>
+
+        <!-- ── Paso 1: datos ── -->
+        @if (step() === 1) {
+          <form class="rounded-xl border border-slate-200 bg-white p-5" (ngSubmit)="saveDataAndContinue()">
+            <h2 class="mb-4 text-lg font-semibold">
+              {{ selectedUserId() === null ? 'Paso 1 · Datos del nuevo usuario' : 'Paso 1 · Datos de ' + selectedUser()?.username }}
+            </h2>
+
+            <div class="grid gap-4 md:grid-cols-2">
+              <div>
+                <label for="u-username" class="mb-1 block text-sm font-medium">Usuario *</label>
+                <input id="u-username" pInputText class="w-full" name="username"
+                  [(ngModel)]="form.username" placeholder="wesly.jesus" autocomplete="off" />
+                <small class="text-slate-500">Entre 3 y 80 caracteres. Lo usa para iniciar sesión.</small>
+              </div>
+              <div>
+                <label for="u-email" class="mb-1 block text-sm font-medium">Email *</label>
+                <input id="u-email" pInputText class="w-full" type="email" name="email"
+                  [(ngModel)]="form.email" placeholder="wesly@puntostock.com" autocomplete="off" />
+                <small class="text-slate-500">También sirve para iniciar sesión.</small>
+              </div>
+
+              @if (selectedUserId() === null) {
+                <div>
+                  <label for="u-password" class="mb-1 block text-sm font-medium">Contraseña *</label>
+                  <input id="u-password" pInputText class="w-full" type="password" name="password"
+                    [(ngModel)]="form.password" autocomplete="new-password" />
+                  <small class="text-slate-500">Mínimo 8 caracteres.</small>
+                </div>
+              }
+
+              <div [class.md:col-span-2]="selectedUserId() !== null">
+                <label for="u-avatar" class="mb-1 block text-sm font-medium">Avatar (URL de imagen, opcional)</label>
+                <input id="u-avatar" pInputText class="w-full" name="avatar"
+                  [(ngModel)]="form.avatar" placeholder="https://..." />
+              </div>
+            </div>
+
+            <div class="mt-5 flex flex-wrap justify-end gap-2 border-t border-slate-100 pt-4">
+              @if (selectedUserId() !== null) {
+                <button pButton type="button" severity="secondary" [outlined]="true" (click)="goToRole()">
+                  <span pButtonLabel>Ir al rol sin guardar</span>
+                </button>
+              }
+              <button pButton type="submit" [loading]="savingData()">
+                <span pButtonLabel>
+                  {{ selectedUserId() === null ? 'Crear usuario y continuar' : 'Guardar datos y continuar' }}
+                </span>
+                <i pButtonIcon class="pi pi-arrow-right"></i>
+              </button>
+            </div>
+          </form>
+        }
+
+        <!-- ── Paso 2: rol ── -->
+        @if (step() === 2) {
+          <div class="rounded-xl border border-slate-200 bg-white p-5">
+            <h2 class="mb-1 text-lg font-semibold">Paso 2 · Rol de {{ selectedUser()?.username }}</h2>
+            <p class="mb-4 text-sm text-slate-500">
+              El rol define qué puede hacer el usuario. Créale uno propio o reutiliza uno existente.
+            </p>
+
+            <div class="mb-4 flex flex-wrap gap-2">
+              <button type="button" (click)="roleMode.set('new')"
+                class="rounded-lg border px-4 py-2 text-sm font-medium"
+                [class]="roleMode() === 'new' ? 'border-blue-600 bg-blue-50 text-blue-700' : 'border-slate-200 text-slate-600'">
+                <i class="pi pi-plus mr-1"></i> Crear un rol nuevo
+              </button>
+              <button type="button" (click)="roleMode.set('existing')"
+                class="rounded-lg border px-4 py-2 text-sm font-medium"
+                [class]="roleMode() === 'existing' ? 'border-blue-600 bg-blue-50 text-blue-700' : 'border-slate-200 text-slate-600'">
+                <i class="pi pi-list mr-1"></i> Usar un rol existente
+              </button>
+            </div>
+
+            @if (roleMode() === 'new') {
+              <div class="grid gap-4 md:grid-cols-2">
+                <div>
+                  <label for="nr-name" class="mb-1 block text-sm font-medium">Nombre del rol *</label>
+                  <input id="nr-name" pInputText class="w-full uppercase" [(ngModel)]="newUserRole.name"
+                    placeholder="CAJERO" [disabled]="editingSelf()" />
+                </div>
+                <div>
+                  <label for="nr-desc" class="mb-1 block text-sm font-medium">Descripción</label>
+                  <input id="nr-desc" pInputText class="w-full" [(ngModel)]="newUserRole.description"
+                    [disabled]="editingSelf()" />
+                </div>
+              </div>
+            } @else {
+              <div class="grid gap-3 md:grid-cols-2 xl:grid-cols-3">
+                @for (role of activeRoles(); track role.id) {
+                  <label
+                    class="flex cursor-pointer items-start gap-3 rounded-lg border p-3"
+                    [class]="chosenRoleId() === role.id ? 'border-blue-400 bg-blue-50' : 'border-slate-200 hover:bg-slate-50'"
+                  >
+                    <input type="radio" name="wizard-role" class="mt-1 h-4 w-4 accent-blue-600"
+                      [checked]="chosenRoleId() === role.id" [disabled]="editingSelf()"
+                      (change)="chosenRoleId.set(role.id!)" />
+                    <span>
+                      <span class="block font-medium">{{ role.name }}</span>
+                      <span class="block text-xs text-slate-500">
+                        {{ role.name.toUpperCase() === 'ADMIN' ? 'Todos los permisos' : rolePermCount(role.id) + ' permisos' }}
+                        @if (role.description) { · {{ role.description }} }
+                      </span>
+                    </span>
+                  </label>
+                }
+              </div>
+              <p class="mt-3 text-xs text-slate-500">
+                Si cambias los permisos de un rol existente, el cambio aplica a todos los usuarios que lo tengan.
+              </p>
+            }
+
+            <div class="mt-5 flex flex-wrap justify-between gap-2 border-t border-slate-100 pt-4">
+              <button pButton type="button" severity="secondary" [outlined]="true" (click)="step.set(1)">
+                <i pButtonIcon class="pi pi-arrow-left"></i><span pButtonLabel>Datos</span>
+              </button>
+              <button pButton type="button" (click)="confirmRole()" [loading]="savingRoleStep()" [disabled]="editingSelf()">
+                <span pButtonLabel>{{ roleMode() === 'new' ? 'Crear rol y elegir permisos' : 'Elegir permisos' }}</span>
+                <i pButtonIcon class="pi pi-arrow-right"></i>
+              </button>
+            </div>
+          </div>
+        }
+
+        <!-- ── Paso 3: permisos ── -->
+        @if (step() === 3) {
+          <div class="flex flex-wrap items-baseline justify-between gap-2">
+            <h2 class="text-lg font-semibold">
+              Paso 3 · Permisos del rol {{ chosenRole()?.name }}
+              <span class="text-sm font-normal text-slate-500">(para {{ selectedUser()?.username }})</span>
+            </h2>
+            <span class="text-sm text-slate-500">
+              Marca lo que puede hacer. Lo que no marques, lo verá pero no podrá hacerlo.
+            </span>
+          </div>
+
+          @if (chosenIsAdmin()) {
+            <p-message severity="info">
+              ADMIN siempre tiene todos los permisos. Solo se asignará el rol al usuario.
+            </p-message>
+          }
+
+          <app-permission-table
+            [resources]="resources()"
+            [checked]="chosenIsAdmin() ? allIds() : wizardChecked()"
+            [disabled]="chosenIsAdmin() || editingSelf()"
+            [ownLabel]="'Rol ' + (chosenRole()?.name ?? '')"
+            (toggled)="onWizardToggle($event)"
+          />
+
+          <div class="sticky bottom-0 flex flex-wrap items-center justify-between gap-3 rounded-xl border border-slate-200 bg-white/95 p-4 backdrop-blur">
+            <span class="text-sm text-slate-600">
+              <strong class="text-slate-900">{{ chosenIsAdmin() ? totalPermissions() : wizardChecked().size }}</strong>
+              de {{ totalPermissions() }} permisos marcados
+            </span>
+            <div class="flex flex-wrap gap-2">
+              <button pButton severity="secondary" [outlined]="true" (click)="step.set(2)">
+                <i pButtonIcon class="pi pi-arrow-left"></i><span pButtonLabel>Rol</span>
+              </button>
+              <button pButton severity="secondary" [outlined]="true" (click)="newUser()">
+                <i pButtonIcon class="pi pi-user-plus"></i><span pButtonLabel>Otro usuario</span>
+              </button>
+              <button pButton (click)="finishWizard()" [loading]="savingWizard()" [disabled]="editingSelf()">
+                <i pButtonIcon class="pi pi-check"></i><span pButtonLabel>Guardar y asignar</span>
+              </button>
+            </div>
+          </div>
+        }
+      </section>
+    }
+
+    <!-- ══════════════════ PERMISOS POR ROL ══════════════════ -->
+    @if (tab() === 'permisos') {
+      <section class="space-y-4">
+        <div class="flex flex-col gap-3 rounded-xl border border-slate-200 bg-white p-5 md:flex-row md:items-end">
+          <div class="md:w-80">
+            <label for="acc-role" class="mb-1 block text-sm font-medium">Rol</label>
+            <p-select
+              inputId="acc-role"
+              [options]="activeRoles()"
+              optionLabel="name"
+              optionValue="id"
+              [ngModel]="selectedRoleId()"
+              (ngModelChange)="onRoleChange($event)"
+              placeholder="Selecciona un rol"
+              [fluid]="true"
+            />
+          </div>
+          @if (selectedRoleId() !== null && !roleIsAdmin()) {
+            <button pButton class="md:ml-auto" (click)="savePermissions()" [loading]="savingPerms()">
+              <i pButtonIcon class="pi pi-check"></i>
+              <span pButtonLabel>Guardar permisos del rol ({{ roleChecked().size }})</span>
+            </button>
+          }
+        </div>
+
+        @if (selectedRoleId() === null) {
+          <p class="text-slate-500">Selecciona un rol para ver y editar sus permisos.</p>
+        } @else {
+          @if (roleIsAdmin()) {
+            <p-message severity="info">
+              El rol ADMIN siempre tiene todos los permisos del sistema y no se edita desde aquí.
+            </p-message>
+          }
+          <app-permission-table
+            [resources]="resources()"
+            [checked]="roleIsAdmin() ? allIds() : roleChecked()"
+            [disabled]="roleIsAdmin()"
+            [ownLabel]="'Rol ' + (selectedRole()?.name ?? '')"
+            (toggled)="onRolePermToggle($event)"
+          />
+        }
+      </section>
+    }
+
+    <!-- ══════════════════ ROLES ══════════════════ -->
+    @if (tab() === 'roles') {
+      <section class="grid gap-6 lg:grid-cols-[22rem_1fr]">
+        <form class="space-y-4 rounded-xl border border-slate-200 bg-white p-5" (ngSubmit)="saveRole()">
+          <h2 class="text-lg font-semibold">Nuevo rol</h2>
+          <div>
+            <label for="role-name" class="mb-1 block text-sm font-medium">Nombre *</label>
+            <input id="role-name" pInputText class="w-full" name="name" [(ngModel)]="newRole.name" placeholder="CAJERO" />
+          </div>
+          <div>
+            <label for="role-desc" class="mb-1 block text-sm font-medium">Descripción</label>
+            <input id="role-desc" pInputText class="w-full" name="description" [(ngModel)]="newRole.description" />
+          </div>
+          <div class="flex justify-end">
+            <button pButton type="submit" [loading]="savingRole()">
+              <i pButtonIcon class="pi pi-plus"></i><span pButtonLabel>Crear y asignar permisos</span>
+            </button>
+          </div>
+        </form>
+
+        <div class="overflow-hidden rounded-xl border border-slate-200 bg-white">
+          <table class="w-full text-left text-sm">
+            <thead class="bg-slate-50 text-slate-600">
+              <tr>
+                <th class="p-3">ID</th>
+                <th class="p-3">Nombre</th>
+                <th class="p-3">Descripción</th>
+                <th class="p-3">Permisos</th>
+                <th class="p-3">Estado</th>
+                <th class="p-3"></th>
+              </tr>
+            </thead>
+            <tbody>
+              @for (role of roles(); track role.id) {
+                <tr class="border-t border-slate-100">
+                  <td class="p-3">{{ role.id }}</td>
+                  <td class="p-3 font-medium">{{ role.name }}</td>
+                  <td class="p-3 text-slate-600">{{ role.description }}</td>
+                  <td class="p-3">{{ rolePermCount(role.id) }}</td>
+                  <td class="p-3">
+                    <p-tag [value]="role.status === 'active' ? 'Activo' : 'Inactivo'"
+                      [severity]="role.status === 'active' ? 'success' : 'secondary'" />
+                  </td>
+                  <td class="p-3 text-right">
+                    @if (role.status === 'active') {
+                      <button type="button" class="text-sm text-blue-600 hover:underline"
+                        (click)="tab.set('permisos'); onRoleChange(role.id ?? null)">
+                        Editar permisos
+                      </button>
+                    }
+                  </td>
+                </tr>
+              }
+            </tbody>
+          </table>
+        </div>
+      </section>
+    }
   }
-</section>
+</div>
+
+<!-- Ventana emergente de confirmación -->
+<p-dialog
+  [visible]="success() !== null"
+  (visibleChange)="!$event && success.set(null)"
+  [modal]="true"
+  [draggable]="false"
+  [closable]="true"
+  [dismissableMask]="true"
+  [showHeader]="false"
+  [style]="{ width: 'min(95vw, 32rem)' }"
+>
+  @if (success(); as ok) {
+    <div class="space-y-5 pt-6 text-center">
+      <div class="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-emerald-100">
+        <i class="pi pi-check text-3xl text-emerald-600"></i>
+      </div>
+      <div>
+        <h2 class="text-xl font-bold text-slate-900">{{ ok.title }}</h2>
+        <p class="mt-1 text-sm text-slate-600">{{ ok.message }}</p>
+      </div>
+
+      <dl class="grid grid-cols-2 gap-x-4 gap-y-2 rounded-lg bg-slate-50 p-4 text-left text-sm">
+        @for (d of ok.details; track d.label) {
+          <dt class="text-slate-500">{{ d.label }}</dt>
+          <dd class="font-medium text-slate-900">{{ d.value }}</dd>
+        }
+      </dl>
+
+      @if (ok.modules.length) {
+        <div class="text-left">
+          <p class="mb-2 text-xs font-semibold uppercase tracking-wide text-slate-500">Puede trabajar en</p>
+          <div class="flex flex-wrap gap-2">
+            @for (m of ok.modules; track m.label) {
+              <span class="rounded-full bg-blue-50 px-3 py-1 text-xs text-blue-700">
+                {{ m.label }} · {{ m.count }}
+              </span>
+            }
+          </div>
+        </div>
+      }
+
+      <div class="flex flex-wrap justify-center gap-2 border-t border-slate-100 pt-4">
+        @if (ok.offerNewUser) {
+          <button pButton severity="secondary" [outlined]="true" (click)="closeSuccessAndNewUser()">
+            <i pButtonIcon class="pi pi-user-plus"></i><span pButtonLabel>Crear otro usuario</span>
+          </button>
+        }
+        <button pButton (click)="success.set(null)">
+          <span pButtonLabel>Aceptar</span>
+        </button>
+      </div>
+    </div>
+  }
+</p-dialog>

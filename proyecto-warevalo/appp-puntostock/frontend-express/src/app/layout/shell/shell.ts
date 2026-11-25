@@ -50,144 +50,46 @@ export class Shell {
     }
 
     const isAdmin = this.permissions.hasRole('ADMIN');
-    const can = (method: string, path: string): boolean =>
-      isAdmin || this.permissions.hasPermission(method, path);
+
+    /**
+     * Política "ve todo, hace solo lo asignado": todas las secciones se
+     * muestran. Las que el usuario no puede leer llevan un candado
+     * (badge 'lock'); al abrirlas verá el aviso de "sin permiso".
+     */
+    const entry = (label: string, icon: string, routerLink: string, method: string, path: string): MenuItem => ({
+      label,
+      icon,
+      routerLink,
+      badge: isAdmin || this.permissions.hasPermission(method, path) ? undefined : 'lock',
+    });
 
     const items: MenuItem[] = [
       {
         label: 'Principal',
         items: [
-          {
-            label: 'Mi perfil',
-            icon: 'pi pi-user',
-            routerLink: '/perfil',
-          },
+          { label: 'Mi perfil', icon: 'pi pi-user', routerLink: '/perfil' },
+          entry('Dashboard', 'pi pi-chart-bar', '/dashboard', 'GET', '/api/clientes'),
+        ],
+      },
+      {
+        label: 'Gestión comercial',
+        items: [
+          entry('Clientes', 'pi pi-users', '/clientes', 'GET', '/api/clientes'),
+          entry('Productos', 'pi pi-box', '/productos', 'GET', '/api/productos'),
+          entry('Tipos de producto', 'pi pi-tags', '/tipos-producto', 'GET', '/api/tipos-producto'),
+          entry('Sucursales', 'pi pi-building', '/sucursales', 'GET', '/api/sucursales'),
+        ],
+      },
+      {
+        label: 'Operaciones',
+        items: [
+          entry('Ventas', 'pi pi-receipt', '/ventas', 'GET', '/api/ventas'),
+          entry('Nueva venta', 'pi pi-plus-circle', '/ventas/nueva', 'POST', '/api/ventas'),
+          entry('Inventario', 'pi pi-warehouse', '/inventario', 'GET', '/api/inventarios'),
+          entry('Pagos', 'pi pi-wallet', '/pagos', 'GET', '/api/pagos'),
         ],
       },
     ];
-
-    const commercialItems: MenuItem[] = [];
-
-    if (can('GET', '/api/clientes')) {
-      commercialItems.push({
-        label: 'Clientes',
-        icon: 'pi pi-users',
-        routerLink: '/clientes',
-      });
-    }
-
-    if (can('GET', '/api/productos')) {
-      commercialItems.push({
-        label: 'Productos',
-        icon: 'pi pi-box',
-        routerLink: '/productos',
-      });
-    }
-
-    if (can('GET', '/api/tipos-producto')) {
-      commercialItems.push({
-        label: 'Tipos de producto',
-        icon: 'pi pi-tags',
-        routerLink: '/tipos-producto',
-      });
-    }
-
-    if (can('GET', '/api/sucursales')) {
-      commercialItems.push({
-        label: 'Sucursales',
-        icon: 'pi pi-building',
-        routerLink: '/sucursales',
-      });
-    }
-
-    if (commercialItems.length) {
-      items.push({
-        label: 'Gestión comercial',
-        items: commercialItems,
-      });
-    }
-
-    const operationItems: MenuItem[] = [];
-
-    if (can('GET', '/api/ventas')) {
-      operationItems.push({
-        label: 'Ventas',
-        icon: 'pi pi-receipt',
-        routerLink: '/ventas',
-      });
-    }
-
-    if (can('POST', '/api/ventas')) {
-      operationItems.push({
-        label: 'Nueva venta',
-        icon: 'pi pi-plus-circle',
-        routerLink: '/ventas/nueva',
-      });
-    }
-
-    if (can('GET', '/api/compras')) {
-      operationItems.push({
-        label: 'Compras',
-        icon: 'pi pi-shopping-cart',
-        routerLink: '/compras',
-      });
-    }
-
-    if (can('GET', '/api/inventarios')) {
-      operationItems.push({
-        label: 'Inventario',
-        icon: 'pi pi-warehouse',
-        routerLink: '/inventario',
-      });
-    }
-
-    if (can('GET', '/api/pagos')) {
-      operationItems.push({
-        label: 'Pagos',
-        icon: 'pi pi-wallet',
-        routerLink: '/pagos',
-      });
-    }
-
-    if (can('GET', '/api/devoluciones')) {
-      operationItems.push({
-        label: 'Devoluciones',
-        icon: 'pi pi-refresh',
-        routerLink: '/devoluciones',
-      });
-    }
-
-    if (operationItems.length) {
-      items.push({
-        label: 'Operaciones',
-        items: operationItems,
-      });
-    }
-
-    const reportItems: MenuItem[] = [];
-
-    if (can('GET', '/api/dashboard')) {
-      reportItems.push({
-        label: 'Dashboard',
-        icon: 'pi pi-chart-bar',
-        routerLink: '/dashboard',
-      });
-    }
-
-    if (can('GET', '/api/detalle-ventas')) {
-      reportItems.push({
-        label: 'Detalle de ventas',
-        icon: 'pi pi-list',
-        routerLink: '/ventas/detalle',
-      });
-    }
-
-    if (reportItems.length) {
-      items.push({
-        label: 'Informes',
-        items: reportItems,
-      });
-    }
 
     if (isAdmin) {
       items.push({
@@ -199,7 +101,7 @@ export class Shell {
             routerLink: '/admin/usuarios',
           },
           {
-            label: 'Roles',
+            label: 'Roles y accesos',
             icon: 'pi pi-id-card',
             routerLink: '/admin/roles',
           },
@@ -207,16 +109,6 @@ export class Shell {
             label: 'Recursos',
             icon: 'pi pi-server',
             routerLink: '/admin/recursos',
-          },
-          {
-            label: 'Asignaciones',
-            icon: 'pi pi-user-plus',
-            routerLink: '/admin/asignaciones',
-          },
-          {
-            label: 'Permisos',
-            icon: 'pi pi-lock',
-            routerLink: '/admin/permisos',
           },
         ],
       });

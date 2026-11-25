@@ -7,10 +7,19 @@ export const paymentSwagger = {
   ],
 
   paths: {
-    "/api/payments": {
+    "/api/pagos": {
       get: {
         tags: ["Payments"],
         summary: "Obtener todos los pagos",
+        parameters: [
+          {
+            name: "saleId",
+            in: "query",
+            required: false,
+            schema: { type: "integer" },
+            description: "Filtra los pagos de una venta",
+          },
+        ],
         responses: {
           200: {
             description: "Lista de pagos",
@@ -56,7 +65,7 @@ export const paymentSwagger = {
       },
     },
 
-    "/api/payments/{id}": {
+    "/api/pagos/{id}": {
       get: {
         tags: ["Payments"],
         summary: "Obtener un pago",
@@ -89,7 +98,27 @@ export const paymentSwagger = {
 
       delete: {
         tags: ["Payments"],
-        summary: "Cancelar un pago",
+        summary: "Eliminar físicamente un pago",
+      },
+    },
+
+    "/api/pagos/{id}/cancel": {
+      patch: {
+        tags: ["Payments"],
+        summary: "Cancelar un pago (borrado lógico: estado = cancelled; libera saldo de la venta)",
+        parameters: [
+          {
+            name: "id",
+            in: "path",
+            required: true,
+            schema: { type: "integer" },
+          },
+        ],
+        responses: {
+          200: { description: "Pago cancelado" },
+          400: { description: "El pago ya estaba cancelado" },
+          404: { description: "Pago no encontrado" },
+        },
       },
     },
   },

@@ -14,6 +14,7 @@ import { BranchApi } from '../../branches/branch-api';
 import { ProductApi } from '../../products/product-api';
 import { NotificationService } from '../../../core/services/notification.service';
 import { PageHeader } from '../../../shared/ui/page-header/page-header';
+import { toApiMessage } from '../../../core/utils/api-error';
 
 @Component({
   selector: 'app-inventory-list',
@@ -54,11 +55,11 @@ export class InventoryList {
   constructor() {
     this.branchesApi.list().subscribe({
       next: rows => this.branches.set(rows),
-      error: () => this.notifications.error('No se pudieron cargar las sucursales.'),
+      error: (e: unknown) => this.notifications.error(`No se pudieron cargar las sucursales. ${toApiMessage(e)}`),
     });
     this.productsApi.list().subscribe({
       next: rows => this.products.set(rows),
-      error: () => this.notifications.error('No se pudieron cargar los productos.'),
+      error: (e: unknown) => this.notifications.error(`No se pudieron cargar los productos. ${toApiMessage(e)}`),
     });
     this.load();
   }
@@ -70,8 +71,8 @@ export class InventoryList {
 
     request.subscribe({
       next: rows => this.rows.set(rows),
-      error: () => {
-        this.notifications.error('No se pudo cargar el inventario.');
+      error: (e: unknown) => {
+        this.notifications.error(`No se pudo cargar el inventario. ${toApiMessage(e)}`);
         this.loading.set(false);
       },
       complete: () => this.loading.set(false),

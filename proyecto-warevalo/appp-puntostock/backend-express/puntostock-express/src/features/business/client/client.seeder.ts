@@ -29,7 +29,6 @@ export async function seedClients(count: number): Promise<number> {
     address: faker.location.streetAddress(),
     phone: faker.phone.number({ style: "national" }),
     email: `client.${i}.${faker.string.alphanumeric(6)}@example.com`.toLowerCase(),
-    password: "Password123!",
     status: "active" as const,
   }));
 

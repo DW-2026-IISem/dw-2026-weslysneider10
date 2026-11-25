@@ -20,12 +20,12 @@
  * | Ventas                      | 5 |
  * | Pagos                       | 7 |
  * | Devoluciones                | 6 |
- * | Usuarios                    | 9 |
- * | Roles                       | 7 |
+ * | Usuarios                    | 11 |
+ * | Roles                       | 9 |
  * | Recursos                    | 7 |
  * | Asignaciones usuario-rol    | 5 |
  * | Concesiones rol-recurso     | 5 |
- * | **Total**                   | **99** |
+ * | **Total**                   | **103** |
  *
  * Nota: las operaciones de sesión (/api/sesion/* y /api/sesiones/*) no son
  * recursos RBAC. Son las modalidades OPEN y JWT: no dependen de la matriz de
@@ -130,7 +130,7 @@ export const RESOURCE_CATALOG: readonly CatalogResource[] = [
   { method: "PATCH", path: "/api/devoluciones/:id/reject", description: "Rechazar devolución" },
   { method: "DELETE", path: "/api/devoluciones/:id", description: "Eliminar devolución" },
 
-  // ── Usuarios (9) ──────────────────────────────────────────────
+  // ── Usuarios (11) ──────────────────────────────────────────────
   { method: "GET", path: "/api/usuarios", description: "Listar usuarios" },
   { method: "GET", path: "/api/usuarios/:id", description: "Consultar usuario" },
   { method: "POST", path: "/api/usuarios", description: "Crear usuario" },
@@ -144,8 +144,10 @@ export const RESOURCE_CATALOG: readonly CatalogResource[] = [
     path: "/api/usuarios/:id/permisos",
     description: "Consultar permisos efectivos del usuario",
   },
+  { method: "GET", path: "/api/usuarios/:id/roles", description: "Consultar roles del usuario" },
+  { method: "PUT", path: "/api/usuarios/:id/roles", description: "Definir roles del usuario (casillas)" },
 
-  // ── Roles (7) ─────────────────────────────────────────────────
+  // ── Roles (9) ─────────────────────────────────────────────────
   { method: "GET", path: "/api/roles", description: "Listar roles" },
   { method: "GET", path: "/api/roles/:id", description: "Consultar rol" },
   { method: "POST", path: "/api/roles", description: "Crear rol" },
@@ -153,6 +155,8 @@ export const RESOURCE_CATALOG: readonly CatalogResource[] = [
   { method: "PATCH", path: "/api/roles/:id", description: "Modificar rol" },
   { method: "DELETE", path: "/api/roles/:id", description: "Eliminar rol" },
   { method: "PATCH", path: "/api/roles/:id/deactivate", description: "Desactivar rol" },
+  { method: "GET", path: "/api/roles/:id/permisos", description: "Consultar permisos del rol" },
+  { method: "PUT", path: "/api/roles/:id/permisos", description: "Definir permisos del rol (casillas)" },
 
   // ── Recursos (7) ──────────────────────────────────────────────
   { method: "GET", path: "/api/recursos", description: "Listar recursos" },

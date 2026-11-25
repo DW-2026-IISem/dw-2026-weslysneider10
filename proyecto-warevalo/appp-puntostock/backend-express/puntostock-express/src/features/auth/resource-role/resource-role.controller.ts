@@ -56,6 +56,28 @@ export class ResourceRoleController extends BaseController {
       res.status(200).json({ message: "Grant reactivated", grant });
     });
   }
+
+  // ================== PERMISOS DE UN ROL (casillas) ==================
+  /** GET /api/roles/:id/permisos -> { role_id, resource_ids } */
+  public async getRolePermissions(req: Request, res: Response): Promise<void> {
+    await this.run(res, async () => {
+      const roleId = this.paramId(req);
+      const resource_ids = await this.service.getResourceIdsForRole(roleId);
+      res.status(200).json({ role_id: roleId, resource_ids });
+    });
+  }
+
+  /** PUT /api/roles/:id/permisos  body { resource_ids: number[] } -> resumen de la reconciliación */
+  public async setRolePermissions(req: Request, res: Response): Promise<void> {
+    await this.run(res, async () => {
+      const result = await this.service.setRolePermissions(
+        this.paramId(req),
+        req.body?.resource_ids
+      );
+      res.status(200).json({ result });
+    });
+  }
+
 }
 
 /** Convierte un query param en número o undefined (sin lanzar por basura). */

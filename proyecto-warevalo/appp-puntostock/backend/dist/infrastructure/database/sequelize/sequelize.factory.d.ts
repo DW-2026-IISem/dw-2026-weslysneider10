@@ -1,0 +1,15 @@
+import { Sequelize } from 'sequelize-typescript';
+import { DatabaseDialect } from '../../../config/environment/env.interface';
+import { ClientModel } from '../../../features/business/clients/infrastructure/persistence/models/client.model';
+import { ProductTypeModel } from '../../../features/business/product-types/infrastructure/persistence/models/product-type.model';
+import { ProductModel } from '../../../features/business/products/infrastructure/persistence/models/product.model';
+import { SaleModel } from '../../../features/business/sales/infrastructure/persistence/models/sale.model';
+import { ProductSaleModel } from '../../../features/business/sales/infrastructure/persistence/models/product-sale.model';
+import { SupplierModel } from '../../../features/business/suppliers/infrastructure/persistence/models/supplier.model';
+import { InventoryModel } from '../../../features/business/inventory/infrastructure/persistence/models/inventory.model';
+import { PurchaseModel } from '../../../features/business/purchases/infrastructure/persistence/models/purchase.model';
+import { PurchaseDetailModel } from '../../../features/business/purchases/infrastructure/persistence/models/purchase-detail.model';
+import { ReturnModel } from '../../../features/business/returns/infrastructure/persistence/models/return.model';
+import { ReturnDetailModel } from '../../../features/business/returns/infrastructure/persistence/models/return-detail.model';
+export declare const ALL_MODELS: (typeof ClientModel | typeof ProductTypeModel | typeof ProductModel | typeof SaleModel | typeof ProductSaleModel | typeof SupplierModel | typeof InventoryModel | typeof PurchaseModel | typeof PurchaseDetailModel | typeof ReturnModel | typeof ReturnDetailModel)[];
+export declare function createSequelizeInstance(dialect: DatabaseDialect): Promise<Sequelize>;

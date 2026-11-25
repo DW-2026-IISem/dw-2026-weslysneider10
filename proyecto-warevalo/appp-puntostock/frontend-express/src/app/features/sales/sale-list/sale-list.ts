@@ -2,7 +2,7 @@ import { CurrencyPipe, DatePipe } from '@angular/common';
 import { Component, computed, inject, signal } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
-import { forkJoin } from 'rxjs';
+import { catchError, forkJoin, of } from 'rxjs';
 
 import { ButtonModule } from 'primeng/button';
 import { CardModule } from 'primeng/card';
@@ -11,10 +11,12 @@ import { TableModule } from 'primeng/table';
 import { TagModule } from 'primeng/tag';
 
 import { environment } from '../../../../environments/environment';
+import { Branch } from '../../../core/models/branch.model';
 import { Client } from '../../../core/models/client.model';
-import { Sale } from '../../../core/models/sale.model';
-import { NotificationService } from '../../../core/services/notification.service';
+import { Sale, SaleStatus } from '../../../core/models/sale.model';
 import { HasPermissionDirective } from '../../../core/directives/has-permission.directive';
+import { toApiMessage } from '../../../core/utils/api-error';
+import { BranchApi } from '../../branches/branch-api';
 import { SaleApi } from '../sale-api';
 
 @Component({
@@ -35,11 +37,12 @@ import { SaleApi } from '../sale-api';
 export class SaleList {
   private readonly http = inject(HttpClient);
   private readonly saleApi = inject(SaleApi);
+  private readonly branchApi = inject(BranchApi);
   private readonly router = inject(Router);
-  private readonly notification = inject(NotificationService);
 
   readonly rows = signal<Sale[]>([]);
   readonly clients = signal<Client[]>([]);
+  readonly branches = signal<Branch[]>([]);
   readonly loading = signal(false);
   readonly error = signal('');
 
@@ -53,6 +56,10 @@ export class SaleList {
     return names;
   });
 
+  readonly branchNames = computed(
+    () => new Map(this.branches().map((branch) => [branch.id as number, branch.name])),
+  );
+
   ngOnInit(): void {
     this.load();
   }
@@ -61,17 +68,23 @@ export class SaleList {
     this.loading.set(true);
     this.error.set('');
 
+    // Clientes y sucursales solo aportan nombres: si el usuario no tiene
+    // permiso para listarlos, se muestran los ids y las ventas siguen visibles.
     forkJoin({
       sales: this.saleApi.list(),
-      clients: this.http.get<{ clients: Client[] } | Client[]>(`${environment.apiUrl}/clientes`),
+      clients: this.http
+        .get<{ clients: Client[] }>(`${environment.apiUrl}/clientes`)
+        .pipe(catchError(() => of({ clients: [] as Client[] }))),
+      branches: this.branchApi.list().pipe(catchError(() => of([] as Branch[]))),
     }).subscribe({
-      next: ({ sales, clients }) => {
+      next: ({ sales, clients, branches }) => {
         this.rows.set(sales);
-        this.clients.set(Array.isArray(clients) ? clients : clients.clients);
+        this.clients.set(clients.clients ?? []);
+        this.branches.set(branches);
         this.loading.set(false);
       },
-      error: () => {
-        this.error.set('No fue posible cargar las ventas.');
+      error: (error: unknown) => {
+        this.error.set(`No fue posible cargar las ventas. ${toApiMessage(error)}`);
         this.loading.set(false);
       },
     });
@@ -85,29 +98,19 @@ export class SaleList {
     return this.clientNames().get(clientId) ?? `Cliente #${clientId}`;
   }
 
-  statusLabel(status?: string): string {
-    if (!status) return 'Sin estado';
-
-    const value = status.toLowerCase();
-
-    if (value === 'completed' || value === 'active') return 'Completada';
-    if (value === 'cancelled' || value === 'inactive') return 'Cancelada';
-
-    return status;
+  branchName(branchId: number): string {
+    return this.branchNames().get(branchId) ?? `Sucursal #${branchId}`;
   }
 
-  statusSeverity(status?: string): 'success' | 'danger' | 'secondary' {
-    if (!status) return 'secondary';
+  statusLabel(estado: SaleStatus): string {
+    return estado === 'completed' ? 'Completada' : 'Cancelada';
+  }
 
-    const value = status.toLowerCase();
-
-    if (value === 'completed' || value === 'active') return 'success';
-    if (value === 'cancelled' || value === 'inactive') return 'danger';
-
-    return 'secondary';
+  statusSeverity(estado: SaleStatus): 'success' | 'danger' {
+    return estado === 'completed' ? 'success' : 'danger';
   }
 
   viewSale(sale: Sale): void {
-    this.notification.info(`Venta #${sale.id}. La pantalla de detalle se desarrollará en ISS-07.`);
+    this.router.navigate(['/ventas', sale.id]);
   }
 }

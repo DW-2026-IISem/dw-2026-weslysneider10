@@ -16,9 +16,13 @@ export class PaymentController extends BaseController {
   }
 
   // ================== READ ==================
-  public async getAll(_req: Request, res: Response): Promise<void> {
+  /** GET /api/pagos?saleId=N filtra por venta. */
+  public async getAll(req: Request, res: Response): Promise<void> {
     await this.run(res, async () => {
-      const payments = await this.service.getAll();
+      const { saleId } = req.query;
+      const payments = await this.service.getAll({
+        saleId: saleId ? Number(saleId) : undefined,
+      });
       res.status(200).json({ payments });
     });
   }

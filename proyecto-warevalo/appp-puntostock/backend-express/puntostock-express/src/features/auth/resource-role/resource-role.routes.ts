@@ -7,6 +7,20 @@ export class ResourceRoleRoutes {
   public resourceRoleController: ResourceRoleController = new ResourceRoleController();
 
   public routes(app: Application): void {
+    // permisos de un rol en bloque (panel de casillas)
+    app
+      .route("/api/roles/:id/permisos")
+      .get(
+        authenticate,
+        authorize,
+        this.resourceRoleController.getRolePermissions.bind(this.resourceRoleController)
+      )
+      .put(
+        authenticate,
+        authorize,
+        this.resourceRoleController.setRolePermissions.bind(this.resourceRoleController)
+      );
+
     // getAll (filtros ?role_id= y ?resource_id=)
     app
       .route("/api/concesiones-rol")

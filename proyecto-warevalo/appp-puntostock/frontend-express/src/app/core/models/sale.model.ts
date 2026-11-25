@@ -1,41 +1,52 @@
-export type SaleStatus = 'completed' | 'cancelled' | 'active' | 'inactive';
+/**
+ * Venta — refleja las tablas `sales` y `sale_details` del backend
+ * campo a campo (mismos nombres, mismos estados).
+ */
+export type SaleStatus = 'completed' | 'cancelled';
 
-export interface SaleItem {
-  id?: number;
-  product_id: number;
-  quantity: number;
-  unit_price: number | string;
-  line_total: number | string;
-  product?: {
-    id: number;
-    name: string;
-  };
+/** Fila de `sale_details`. */
+export interface SaleDetailItem {
+  id: number;
+  saleId: number;
+  productId: number;
+  cantidad: number;
+  /** DECIMAL(12,2): el backend puede devolverlo como string. */
+  valorUnitario: number | string;
+  total: number | string;
+  observaciones: string | null;
+  /** Incluido por el backend (SaleDetail.belongsTo(Product, as: 'product')). */
+  product?: { id: number; sku: string; name: string };
 }
 
+/** Fila de `sales` con sus items. */
 export interface Sale {
   id: number;
-  client_id: number;
+  clientId: number;
+  branchId: number;
+  fecha: string;
   subtotal: number | string;
-  tax: number | string;
-  discounts: number | string;
+  impuestos: number | string;
   total: number | string;
-  status: SaleStatus;
-  date?: string;
+  estado: SaleStatus;
   createdAt?: string;
   updatedAt?: string;
-  items?: SaleItem[];
+  items?: SaleDetailItem[];
 }
 
+/**
+ * Item del cuerpo de POST /api/ventas.
+ * No lleva precio: el backend toma products.price (el cliente no fija precios).
+ */
 export interface SaleCreateItem {
-  product_id: number;
-  quantity: number;
+  productId: number;
+  cantidad: number;
+  observaciones?: string | null;
 }
 
+/** Cuerpo de POST /api/ventas. */
 export interface SaleCreatePayload {
-  client_id: number;
-  tax: number;
-  discounts: number;
+  clientId: number;
+  branchId: number;
+  impuestos: number;
   items: SaleCreateItem[];
 }
-
-export type SaleUpdatePayload = Partial<SaleCreatePayload>;

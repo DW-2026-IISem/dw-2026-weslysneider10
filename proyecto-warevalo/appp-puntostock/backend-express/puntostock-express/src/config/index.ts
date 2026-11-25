@@ -36,6 +36,7 @@ import "../features/auth/rbac.associations";
 
 import { Routes } from "../routes/index";
 import { setupSwagger } from "../swagger/index";
+import { syncCatalog } from "../features/auth/resource/catalog-sync";
 
 dotenv.config();
 
@@ -157,6 +158,9 @@ export class App {
           ? "📦 Base de datos recreada (DB_SYNC_FORCE=true)"
           : "📦 Base de datos sincronizada exitosamente"
       );
+
+      // Rutas nuevas del catálogo -> resources + concesión a ADMIN (solo añade).
+      await syncCatalog();
     } catch (error) {
       console.error(
         "❌ Error al conectar con la base de datos:",

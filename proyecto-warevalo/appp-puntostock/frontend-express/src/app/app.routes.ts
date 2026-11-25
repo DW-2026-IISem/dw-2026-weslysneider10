@@ -126,17 +126,20 @@ export const routes: Routes = [
         path: 'dashboard',
         title: 'Dashboard · PuntoStock',
         canActivate: [permissionGuard],
-        data: {
-          roles: ['ADMIN'],
-        },
+        // Visible para todos ("ve todo"); cada bloque muestra sus datos si hay permiso.
+        data: { permission: { method: 'GET', path: '/api/clientes' } },
         loadComponent: () => import('./features/dashboard/dashboard').then((m) => m.Dashboard),
       },
       {
-        path: 'ventas/detalle',
-        title: 'Detalle de ventas · PuntoStock',
+        // Debe ir después de 'ventas/nueva' para que "nueva" no se tome como :id.
+        path: 'ventas/:id',
+        title: 'Detalle de venta · PuntoStock',
         canActivate: [permissionGuard],
         data: {
-          roles: ['ADMIN'],
+          permission: {
+            method: 'GET',
+            path: '/api/ventas/:id',
+          },
         },
         loadComponent: () =>
           import('./features/sales/sale-detail/sale-detail').then((m) => m.SaleDetail),
@@ -174,30 +177,6 @@ export const routes: Routes = [
         loadComponent: () =>
           import('./features/admin/resources/resource-list/resource-list').then(
             (m) => m.ResourceList,
-          ),
-      },
-      {
-        path: 'admin/asignaciones',
-        title: 'Asignaciones de roles · PuntoStock',
-        canActivate: [permissionGuard],
-        data: {
-          roles: ['ADMIN'],
-        },
-        loadComponent: () =>
-          import('./features/admin/assignments/assignment-list/assignment-list').then(
-            (m) => m.AssignmentList,
-          ),
-      },
-      {
-        path: 'admin/permisos',
-        title: 'Concesiones de permisos · PuntoStock',
-        canActivate: [permissionGuard],
-        data: {
-          roles: ['ADMIN'],
-        },
-        loadComponent: () =>
-          import('./features/admin/permissions/permission-list/permission-list').then(
-            (m) => m.PermissionList,
           ),
       },
     ],

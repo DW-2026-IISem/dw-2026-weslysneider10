@@ -48,6 +48,10 @@
                   }
 
                   <span>{{ item.label }}</span>
+                  @if (item.badge === 'lock') {
+                    <i class="pi pi-lock ml-auto text-xs opacity-60"
+                      title="Puedes ver esta sección, pero no tienes permiso sobre ella"></i>
+                  }
                 </a>
               }
             </div>

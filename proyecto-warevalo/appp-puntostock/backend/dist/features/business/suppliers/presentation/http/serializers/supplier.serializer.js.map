@@ -1,0 +1,1 @@
+{"version":3,"file":"supplier.serializer.js","sourceRoot":"","sources":["../../../../../../../src/features/business/suppliers/presentation/http/serializers/supplier.serializer.ts"],"names":[],"mappings":";;;AAEA,kFAA8E;AAE9E,MAAa,kBAAkB;IAC7B,MAAM,CAAC,SAAS,CAAC,MAAgB;QAC/B,OAAO,gCAAc,CAAC,UAAU,CAAC,MAAM,CAAC,CAAC;IAC3C,CAAC;CACF;AAJD,gDAIC"}

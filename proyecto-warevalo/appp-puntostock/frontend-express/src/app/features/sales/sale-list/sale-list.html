@@ -29,9 +29,9 @@
           <th>N.º</th>
           <th>Fecha</th>
           <th>Cliente</th>
+          <th>Sucursal</th>
           <th>Subtotal</th>
           <th>Impuestos</th>
-          <th>Descuentos</th>
           <th>Total</th>
           <th>Estado</th>
           <th>Acciones</th>
@@ -41,16 +41,16 @@
       <ng-template #body let-sale>
         <tr>
           <td>{{ sale.id }}</td>
-          <td>{{ sale.date || sale.createdAt | date: 'dd/MM/yyyy HH:mm' }}</td>
-          <td>{{ clientName(sale.client_id) }}</td>
+          <td>{{ sale.fecha | date: 'dd/MM/yyyy HH:mm' }}</td>
+          <td>{{ clientName(sale.clientId) }}</td>
+          <td>{{ branchName(sale.branchId) }}</td>
           <td>{{ sale.subtotal | currency: 'COP' : 'symbol-narrow' : '1.0-0' }}</td>
-          <td>{{ sale.tax | currency: 'COP' : 'symbol-narrow' : '1.0-0' }}</td>
-          <td>{{ sale.discounts | currency: 'COP' : 'symbol-narrow' : '1.0-0' }}</td>
+          <td>{{ sale.impuestos | currency: 'COP' : 'symbol-narrow' : '1.0-0' }}</td>
           <td class="font-semibold">
             {{ sale.total | currency: 'COP' : 'symbol-narrow' : '1.0-0' }}
           </td>
           <td>
-            <p-tag [value]="statusLabel(sale.status)" [severity]="statusSeverity(sale.status)" />
+            <p-tag [value]="statusLabel(sale.estado)" [severity]="statusSeverity(sale.estado)" />
           </td>
           <td>
             <p-button

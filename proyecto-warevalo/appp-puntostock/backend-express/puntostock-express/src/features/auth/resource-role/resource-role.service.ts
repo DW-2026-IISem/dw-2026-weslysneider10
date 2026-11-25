@@ -11,6 +11,7 @@ import { RoleRepository } from "../role/role.repository";
 import { ResourceRepository } from "../resource/resource.repository";
 import { AppError } from "../../../shared/errors/app-error";
 import { withTransaction } from "../../../shared/database/with-transaction";
+import { parseIdList } from "../../../shared/http/id-list";
 
 /** Resumen de una reconciliación de concesiones de un rol. */
 export interface ReconcileResult {
@@ -103,6 +104,48 @@ export class ResourceRoleService {
     }
     await this.repository.update(grant, { status: "active" });
     return toResourceRoleResponse(await this.reload(grant.id));
+  }
+
+  // ================== PERMISOS DE UN ROL (casillas) ==================
+  /** ids de los recursos concedidos (concesión activa) a un rol. */
+  public async getResourceIdsForRole(roleId: number): Promise<number[]> {
+    const role = await this.roleRepository.findById(roleId);
+    if (!role) {
+      throw new AppError(404, "Role not found");
+    }
+    const rows = await this.repository.findAllByRole(roleId);
+    return rows.filter((row) => row.status === "active").map((row) => row.resource_id);
+  }
+
+  /**
+   * Deja los permisos de un rol exactamente en `resource_ids` (lo marcado
+   * en las casillas), en una sola transacción (reconcileRole).
+   *
+   * Reglas:
+   *  - el rol y cada recurso deben existir y estar activos;
+   *  - el rol ADMIN no se edita desde aquí: siempre tiene el catálogo
+   *    completo (lo mantiene el seeder). Si se le pudieran quitar permisos,
+   *    el administrador podría bloquearse a sí mismo fuera del panel.
+   */
+  public async setRolePermissions(roleId: number, rawResourceIds: unknown): Promise<ReconcileResult> {
+    const resourceIds = parseIdList(rawResourceIds, "resource_ids");
+
+    const role = await this.roleRepository.findById(roleId);
+    if (!role || role.status !== "active") {
+      throw new AppError(404, "Role not found or inactive");
+    }
+    if (role.name.toUpperCase() === "ADMIN") {
+      throw new AppError(400, "Los permisos del rol ADMIN no se editan: siempre tiene todos los recursos");
+    }
+
+    for (const resourceId of resourceIds) {
+      const resource = await this.resourceRepository.findById(resourceId);
+      if (!resource || resource.status !== "active") {
+        throw new AppError(404, `Resource not found or inactive: ${resourceId}`);
+      }
+    }
+
+    return this.reconcileRole(roleId, resourceIds);
   }
 
   // ================== RECONCILIACIÓN ==================

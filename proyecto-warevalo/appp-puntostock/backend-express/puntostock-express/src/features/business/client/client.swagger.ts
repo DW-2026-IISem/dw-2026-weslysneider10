@@ -24,7 +24,7 @@ export const clientSwagger = {
         tags: ["Clients"],
         summary: "Listar clientes activos",
         description:
-          "SIN AUTH — retorna clientes con status=active (sin password)",
+          "SIN AUTH — retorna clientes con status=active ",
         security: [],
         responses: {
           "200": {
@@ -62,7 +62,7 @@ export const clientSwagger = {
       get: {
         tags: ["Clients"],
         summary: "Obtener cliente por ID",
-        description: "SIN AUTH — retorna un cliente sin password",
+        description: "SIN AUTH — retorna un cliente ",
         security: [],
         parameters: [
           {
@@ -235,7 +235,7 @@ export const clientSwagger = {
 
       ClientCreate: {
         type: "object",
-        required: ["name", "phone", "email", "password"],
+        required: ["name"],
         properties: {
           name: { type: "string" },
           address: { type: "string" },
@@ -243,10 +243,6 @@ export const clientSwagger = {
           email: {
             type: "string",
             format: "email",
-          },
-          password: {
-            type: "string",
-            format: "password",
           },
           status: {
             type: "string",
@@ -258,7 +254,7 @@ export const clientSwagger = {
 
       ClientUpdate: {
         type: "object",
-        required: ["name", "phone", "email"],
+        required: ["name"],
         properties: {
           name: { type: "string" },
           address: { type: "string" },
@@ -266,14 +262,6 @@ export const clientSwagger = {
           email: {
             type: "string",
             format: "email",
-          },
-          password: {
-            type: "string",
-            format: "password",
-          },
-          status: {
-            type: "string",
-            enum: ["active", "inactive"],
           },
         },
       },
@@ -287,14 +275,6 @@ export const clientSwagger = {
           email: {
             type: "string",
             format: "email",
-          },
-          password: {
-            type: "string",
-            format: "password",
-          },
-          status: {
-            type: "string",
-            enum: ["active", "inactive"],
           },
         },
       },

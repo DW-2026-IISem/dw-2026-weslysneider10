@@ -13,6 +13,7 @@ import { filterRows } from '../../../core/utils/filter-rows';
 import { PageHeader } from '../../../shared/ui/page-header/page-header';
 import { StatusTag } from '../../../shared/ui/status-tag/status-tag';
 import { ProductTypeForm } from '../product-type-form/product-type-form';
+import { toApiMessage } from '../../../core/utils/api-error';
 
 @Component({
   selector: 'app-product-type-list',
@@ -60,9 +61,9 @@ export class ProductTypeList {
       .pipe(finalize(() => this.loading.set(false)))
       .subscribe({
         next: (rows) => this.rows.set(rows),
-        error: () =>
+        error: (e: unknown) =>
           this.notifications.error(
-            'No fue posible cargar los tipos de producto. Verifica el backend y el contrato de la API.',
+            `No fue posible cargar los tipos de producto. ${toApiMessage(e)}`,
           ),
       });
   }
@@ -102,9 +103,9 @@ export class ProductTypeList {
         );
         this.load();
       },
-      error: () =>
+      error: (e: unknown) =>
         this.notifications.error(
-          'No fue posible guardar. Revisa los datos y la respuesta del backend.',
+          `No fue posible guardar. ${toApiMessage(e)}`,
         ),
     });
   }
@@ -124,7 +125,7 @@ export class ProductTypeList {
         this.notifications.success('Tipo de producto desactivado.');
         this.load();
       },
-      error: () => this.notifications.error('No fue posible desactivar el tipo de producto.'),
+      error: (e: unknown) => this.notifications.error(`No fue posible desactivar el tipo de producto. ${toApiMessage(e)}`),
     });
   }
 }

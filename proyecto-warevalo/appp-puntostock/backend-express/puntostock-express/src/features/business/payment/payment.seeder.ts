@@ -15,10 +15,11 @@ export async function seedPayments(count: number): Promise<number> {
     return 0;
   }
 
-  const sales = await Sale.findAll();
+  // Solo ventas completadas: una venta cancelada no admite pagos.
+  const sales = await Sale.findAll({ where: { estado: "completed" } });
 
   if (sales.length === 0) {
-    console.log("⏭️ payments: no hay ventas disponibles");
+    console.log("⏭️ payments: no hay ventas completadas disponibles");
     return 0;
   }
 
@@ -28,19 +29,18 @@ export async function seedPayments(count: number): Promise<number> {
     "transfer",
   ];
 
-  const rows = Array.from({ length: count }, () => {
-    const sale = faker.helpers.arrayElement(sales);
+  // Regla de negocio: lo pagado no puede superar el total de la venta.
+  // Se genera como máximo un pago por venta, por el total exacto
+  // (la venta queda saldada).
+  const selected = faker.helpers.arrayElements(sales, Math.min(count, sales.length));
 
-    return {
-      saleId: sale.id,
-      metodo: faker.helpers.arrayElement(metodos),
-      monto: Number(
-        faker.commerce.price({ min: 5000, max: 300000, dec: 0 })
-      ),
-      fecha: faker.date.recent({ days: 30 }),
-      estado: "completed" as const,
-    };
-  });
+  const rows = selected.map((sale) => ({
+    saleId: sale.id,
+    metodo: faker.helpers.arrayElement(metodos),
+    monto: Number(sale.total),
+    fecha: sale.fecha,
+    estado: "completed" as const,
+  }));
 
   await Payment.bulkCreate(rows);
 

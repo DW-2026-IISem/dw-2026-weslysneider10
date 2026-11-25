@@ -23,6 +23,11 @@ export class PaymentRoutes {
       .put(authenticate, authorize, this.paymentController.updatePut.bind(this.paymentController))
       .patch(authenticate, authorize, this.paymentController.updatePatch.bind(this.paymentController));
 
+    // cancelar (borrado lógico -> estado = cancelled)
+    app
+      .route("/api/pagos/:id/cancel")
+      .patch(authenticate, authorize, this.paymentController.cancel.bind(this.paymentController));
+
     app
       .route("/api/pagos/:id")
       .delete(

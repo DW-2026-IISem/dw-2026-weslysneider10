@@ -2,7 +2,9 @@
   <div class="flex flex-wrap items-center justify-between gap-3">
     <div>
       <h1 class="text-2xl font-bold">Registrar venta</h1>
-      <p class="text-surface-500">Selecciona el cliente y agrega los productos.</p>
+      <p class="text-surface-500">
+        Selecciona el cliente y la sucursal; solo se ofrecen productos con existencias en esa sucursal.
+      </p>
     </div>
 
     <p-button
@@ -20,32 +22,16 @@
 
   <p-card>
     <div class="flex flex-col gap-4">
-      <div class="flex flex-col gap-2">
-        <label for="client">Cliente</label>
-        <p-select
-          inputId="client"
-          [options]="clients()"
-          optionLabel="name"
-          optionValue="id"
-          [(ngModel)]="clientId"
-          placeholder="Selecciona un cliente"
-          [filter]="true"
-          filterBy="name"
-          [disabled]="loading() || saving()"
-          class="w-full"
-        />
-      </div>
-
-      <div class="grid grid-cols-1 items-end gap-3 md:grid-cols-[1fr_150px_auto]">
+      <div class="grid grid-cols-1 gap-3 md:grid-cols-2">
         <div class="flex flex-col gap-2">
-          <label for="product">Producto</label>
+          <label for="client">Cliente *</label>
           <p-select
-            inputId="product"
-            [options]="products()"
+            inputId="client"
+            [options]="clients()"
             optionLabel="name"
             optionValue="id"
-            [(ngModel)]="selectedProductId"
-            placeholder="Selecciona un producto"
+            [(ngModel)]="clientId"
+            placeholder="Selecciona un cliente"
             [filter]="true"
             filterBy="name"
             [disabled]="loading() || saving()"
@@ -54,14 +40,59 @@
         </div>
 
         <div class="flex flex-col gap-2">
-          <label for="quantity">Cantidad</label>
+          <label for="branch">Sucursal *</label>
+          <p-select
+            inputId="branch"
+            [options]="branches()"
+            optionLabel="name"
+            optionValue="id"
+            [ngModel]="branchId()"
+            (ngModelChange)="onBranchChange($event)"
+            placeholder="Selecciona una sucursal"
+            [disabled]="loading() || saving()"
+            class="w-full"
+          />
+          @if (lines().length > 0) {
+            <small class="text-surface-500">Cambiar la sucursal vacía los productos agregados.</small>
+          }
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 items-end gap-3 md:grid-cols-[1fr_150px_auto]">
+        <div class="flex flex-col gap-2">
+          <label for="product">Producto</label>
+          <p-select
+            inputId="product"
+            [options]="sellable()"
+            optionLabel="label"
+            optionValue="product.id"
+            [ngModel]="selectedProductId()"
+            (ngModelChange)="selectedProductId.set($event)"
+            [placeholder]="
+              !branchId()
+                ? 'Primero selecciona una sucursal'
+                : loadingStock()
+                  ? 'Cargando inventario...'
+                  : sellable().length === 0
+                    ? 'Sin existencias en esta sucursal'
+                    : 'Selecciona un producto'
+            "
+            [filter]="true"
+            filterBy="label"
+            [disabled]="loading() || saving() || !branchId() || loadingStock()"
+            class="w-full"
+          />
+        </div>
+
+        <div class="flex flex-col gap-2">
+          <label for="cantidad">Cantidad</label>
           <p-inputnumber
-            inputId="quantity"
-            [(ngModel)]="quantity"
+            inputId="cantidad"
+            [(ngModel)]="cantidad"
             [min]="1"
-            [max]="selectedProduct()?.quantity ?? 999999"
+            [max]="selected()?.available ?? 999999"
             [showButtons]="true"
-            [disabled]="saving()"
+            [disabled]="saving() || !branchId()"
             class="w-full"
           />
         </div>
@@ -70,7 +101,7 @@
           label="Agregar"
           icon="pi pi-plus"
           (onClick)="addLine()"
-          [disabled]="loading() || saving()"
+          [disabled]="loading() || saving() || !branchId()"
         />
       </div>
     </div>
@@ -82,19 +113,21 @@
     <p-table [value]="lines()" [tableStyle]="{ 'min-width': '40rem' }">
       <ng-template #header>
         <tr>
+          <th>SKU</th>
           <th>Producto</th>
-          <th>Precio unitario</th>
+          <th>Valor unitario</th>
           <th>Cantidad</th>
-          <th>Subtotal</th>
+          <th>Total</th>
           <th>Acciones</th>
         </tr>
       </ng-template>
 
       <ng-template #body let-line>
         <tr>
+          <td class="font-mono text-sm">{{ line.product.sku }}</td>
           <td>{{ line.product.name }}</td>
-          <td>{{ line.product.price | currency: 'COP' : 'symbol-narrow' : '1.0-0' }}</td>
-          <td>{{ line.quantity }}</td>
+          <td>{{ line.valorUnitario | currency: 'COP' : 'symbol-narrow' : '1.0-0' }}</td>
+          <td>{{ line.cantidad }}</td>
           <td>{{ lineTotal(line) | currency: 'COP' : 'symbol-narrow' : '1.0-0' }}</td>
           <td>
             <p-button
@@ -112,7 +145,7 @@
 
       <ng-template #emptymessage>
         <tr>
-          <td colspan="5" class="py-6 text-center text-surface-500">
+          <td colspan="6" class="py-6 text-center text-surface-500">
             Todavía no has agregado productos.
           </td>
         </tr>
@@ -128,23 +161,10 @@
       </div>
 
       <div class="flex items-center justify-between gap-4">
-        <label for="tax">Impuestos</label>
+        <label for="impuestos">Impuestos</label>
         <p-inputnumber
-          inputId="tax"
-          [(ngModel)]="tax"
-          mode="currency"
-          currency="COP"
-          locale="es-CO"
-          [min]="0"
-          [disabled]="saving()"
-        />
-      </div>
-
-      <div class="flex items-center justify-between gap-4">
-        <label for="discounts">Descuentos</label>
-        <p-inputnumber
-          inputId="discounts"
-          [(ngModel)]="discounts"
+          inputId="impuestos"
+          [(ngModel)]="impuestos"
           mode="currency"
           currency="COP"
           locale="es-CO"

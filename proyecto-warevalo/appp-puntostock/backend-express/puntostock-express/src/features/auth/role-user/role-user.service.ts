@@ -4,6 +4,9 @@ import { RoleUser } from "./role-user.model";
 import { UserRepository } from "../user/user.repository";
 import { RoleRepository } from "../role/role.repository";
 import { AppError } from "../../../shared/errors/app-error";
+import { withTransaction } from "../../../shared/database/with-transaction";
+import { parseIdList } from "../../../shared/http/id-list";
+
 
 /**
  * Capa Service del feature RoleUser — asignaciones usuario <-> rol.
@@ -74,6 +77,67 @@ export class RoleUserService {
     }
     await this.repository.update(assignment, { status: "active" });
     return toRoleUserResponse(await this.reload(assignment.id));
+  }
+
+  // ================== ROLES DE UN USUARIO (casillas) ==================
+  /** ids de los roles activos asignados (asignación activa) a un usuario. */
+  public async getRoleIdsForUser(userId: number): Promise<number[]> {
+    const user = await this.userRepository.findById(userId);
+    if (!user) {
+      throw new AppError(404, "User not found");
+    }
+    const rows = await this.repository.findAllByUser(userId);
+    return rows.filter((row) => row.status === "active").map((row) => row.role_id);
+  }
+
+  /**
+   * Deja los roles de un usuario exactamente en `role_ids` (lo marcado en
+   * las casillas), en una sola transacción:
+   *  - rol marcado sin asignación        -> se crea;
+   *  - rol marcado con asignación inactiva -> se reactiva;
+   *  - asignación activa no marcada      -> se retira (inactive, reversible).
+   *
+   * Regla anti-bloqueo: nadie puede cambiar sus propios roles (podría
+   * quitarse el rol ADMIN y quedarse sin acceso al panel).
+   */
+  public async setUserRoles(
+    userId: number,
+    rawRoleIds: unknown,
+    requesterId: number
+  ): Promise<number[]> {
+    if (userId === requesterId) {
+      throw new AppError(400, "No puedes modificar tus propios roles");
+    }
+
+    const roleIds = parseIdList(rawRoleIds, "role_ids");
+    await this.assertUserActive(userId);
+    for (const roleId of roleIds) {
+      await this.assertRoleActive(roleId);
+    }
+
+    const wanted = new Set(roleIds);
+
+    await withTransaction(async (t) => {
+      const existing = await this.repository.findAllByUser(userId, t);
+      const byRole = new Map(existing.map((row) => [row.role_id, row]));
+
+      for (const roleId of wanted) {
+        const row = byRole.get(roleId);
+        if (!row) {
+          await this.repository.create({ user_id: userId, role_id: roleId, status: "active" }, t);
+        } else if (row.status !== "active") {
+          await this.repository.update(row, { status: "active" }, t);
+        }
+      }
+
+      for (const row of existing) {
+        if (!wanted.has(row.role_id) && row.status === "active") {
+          await this.repository.update(row, { status: "inactive" }, t);
+        }
+      }
+    });
+
+    return [...wanted];
   }
 
   // ================== HELPERS ==================

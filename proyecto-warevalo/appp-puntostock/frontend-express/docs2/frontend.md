@@ -645,3 +645,7 @@ Ahora vamos a preparar el Header para que el botón de menú emita el evento `me
 ![![](images/clipboard-1689679986.png)](images/clipboard-3164543070.png)
 
 ![](images/clipboard-1272056322.png)
+
+![](images/clipboard-2427395316.png)
+
+![](images/clipboard-3803578851.png)

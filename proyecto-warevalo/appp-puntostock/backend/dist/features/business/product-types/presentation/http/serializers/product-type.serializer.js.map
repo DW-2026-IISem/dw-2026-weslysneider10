@@ -1,0 +1,1 @@
+{"version":3,"file":"product-type.serializer.js","sourceRoot":"","sources":["../../../../../../../src/features/business/product-types/presentation/http/serializers/product-type.serializer.ts"],"names":[],"mappings":";;;AAIA,0FAAqF;AAErF,MAAa,qBAAqB;IAChC,MAAM,CAAC,SAAS,CACd,MAAmB;QAEnB,OAAO,uCAAiB,CAAC,UAAU,CAAC,MAAM,CAAC,CAAC;IAC9C,CAAC;CACF;AAND,sDAMC"}

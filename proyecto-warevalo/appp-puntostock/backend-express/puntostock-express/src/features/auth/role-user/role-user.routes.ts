@@ -7,6 +7,12 @@ export class RoleUserRoutes {
   public roleUserController: RoleUserController = new RoleUserController();
 
   public routes(app: Application): void {
+    // roles de un usuario en bloque (panel de casillas)
+    app
+      .route("/api/usuarios/:id/roles")
+      .get(authenticate, authorize, this.roleUserController.getUserRoles.bind(this.roleUserController))
+      .put(authenticate, authorize, this.roleUserController.setUserRoles.bind(this.roleUserController));
+
     // getAll
     app
       .route("/api/asignaciones-rol")

@@ -137,20 +137,26 @@ export class PurchaseService {
 
         const existingInventory = await this.inventoryRepository.findByBranchAndProduct(
           purchase.branchId,
-          receipt.productId
+          receipt.productId,
+          transaction
         );
 
         if (existingInventory) {
-          await this.inventoryRepository.update(existingInventory, {
-            quantity: existingInventory.quantity + receipt.cantidad,
-          });
+          await this.inventoryRepository.update(
+            existingInventory,
+            { quantity: existingInventory.quantity + receipt.cantidad },
+            transaction
+          );
         } else {
-          await this.inventoryRepository.create({
-            branchId: purchase.branchId,
-            productId: receipt.productId,
-            quantity: receipt.cantidad,
-            minStock: 0,
-          });
+          await this.inventoryRepository.create(
+            {
+              branchId: purchase.branchId,
+              productId: receipt.productId,
+              quantity: receipt.cantidad,
+              minStock: 0,
+            },
+            transaction
+          );
         }
       }
 

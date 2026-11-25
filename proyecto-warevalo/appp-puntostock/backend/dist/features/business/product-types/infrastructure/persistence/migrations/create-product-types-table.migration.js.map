@@ -1,0 +1,1 @@
+{"version":3,"file":"create-product-types-table.migration.js","sourceRoot":"","sources":["../../../../../../../src/features/business/product-types/infrastructure/persistence/migrations/create-product-types-table.migration.ts"],"names":[],"mappings":";;;AAAa,QAAA,gCAAgC,GAAG;IAC9C,IAAI,EAAE,4BAA4B;IAElC,KAAK,CAAC,EAAE;IAER,CAAC;IAED,KAAK,CAAC,IAAI;IAEV,CAAC;CACF,CAAC"}

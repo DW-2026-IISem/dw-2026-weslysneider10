@@ -19,7 +19,6 @@ Content-Type: application/json
   "address": "Calle 20 #30-40",
   "phone": "3009876543",
   "email": "cliente.actualizado@example.com",
-  "password": "Password123!",
   "status": "active"
 }
 

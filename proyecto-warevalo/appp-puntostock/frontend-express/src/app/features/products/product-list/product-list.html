@@ -1,8 +1,6 @@
 <div class="space-y-6">
-  <app-page-header title="Productos" subtitle="Administra productos, tipos y existencias.">
+  <app-page-header title="Productos" subtitle="Administra el catálogo de productos. Las existencias por sucursal están en Inventario.">
     <div page-actions class="flex flex-wrap items-center gap-2">
-      <p-tag [value]="lowStockCount() + ' con stock bajo'" severity="warn" [rounded]="true" />
-
       <button
         *appHasPermission="{ method: 'POST', path: '/api/productos' }"
         pButton
@@ -20,7 +18,7 @@
       pInputText
       type="text"
       aria-label="Buscar productos"
-      placeholder="Buscar por nombre, marca o tipo..."
+      placeholder="Buscar por SKU, nombre o tipo..."
       class="w-full sm:max-w-md"
       [value]="search()"
       (input)="search.set($any($event.target).value)"
@@ -56,12 +54,10 @@
     >
       <ng-template #header>
         <tr>
+          <th>SKU</th>
           <th>Producto</th>
-          <th>Marca</th>
           <th>Tipo</th>
           <th>Precio</th>
-          <th>Stock</th>
-          <th>Stock mínimo</th>
           <th>Estado</th>
           <th class="text-right">Acciones</th>
         </tr>
@@ -69,24 +65,21 @@
 
       <ng-template #body let-row>
         <tr>
-          <td class="font-medium">{{ row.name }}</td>
-          <td>{{ row.brand }}</td>
+          <td class="font-mono text-sm">{{ row.sku }}</td>
+          <td>
+            <div class="font-medium">{{ row.name }}</div>
+            @if (row.description) {
+              <div class="text-sm text-slate-500">{{ row.description }}</div>
+            }
+          </td>
           <td>
             <p-tag
-              [value]="typeName()(row.product_type_id)"
+              [value]="typeName()(row.productTypeId)"
               severity="secondary"
               [rounded]="true"
             />
           </td>
-          <td>{{ row.price | currency: 'USD' : 'symbol' : '1.2-2' }}</td>
-          <td>
-            <p-tag
-              [value]="(row.quantity ?? 0).toString()"
-              [severity]="stockSeverity(row)"
-              [rounded]="true"
-            />
-          </td>
-          <td>{{ row.min_stock }}</td>
+          <td>{{ row.price | currency: 'COP' : 'symbol-narrow' : '1.0-0' }}</td>
           <td>
             <p-tag
               [value]="row.status === 'active' ? 'Activo' : 'Inactivo'"
@@ -130,7 +123,7 @@
 
       <ng-template #emptymessage>
         <tr>
-          <td colspan="8" class="py-8 text-center text-slate-500">
+          <td colspan="6" class="py-8 text-center text-slate-500">
             @if (search().trim()) {
               No hay productos que coincidan con la búsqueda.
             } @else {

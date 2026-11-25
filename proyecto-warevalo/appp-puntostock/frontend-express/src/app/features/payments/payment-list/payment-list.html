@@ -29,8 +29,8 @@
           <td>{{ row.id }}</td>
           <td>#{{ row.saleId }}</td>
           <td>{{ row.fecha | date:'short' }}</td>
-          <td>{{ row.metodo === 'cash' ? 'Efectivo' : row.metodo === 'card' ? 'Tarjeta' : 'Transferencia' }}</td>
-          <td>{{ row.monto | currency:'COP':'symbol':'1.0-0' }}</td>
+          <td>{{ metodoLabel(row.metodo) }}</td>
+          <td>{{ row.monto | currency:'COP':'symbol-narrow':'1.0-0' }}</td>
           <td>
             <p-tag [value]="row.estado === 'completed' ? 'Completado' : 'Cancelado'"
               [severity]="row.estado === 'completed' ? 'success' : 'secondary'" />
@@ -57,32 +57,58 @@
   [modal]="true" [draggable]="false" [style]="{width:'min(95vw, 35rem)'}">
   <form class="space-y-4" (ngSubmit)="save()">
     <div>
-      <label class="mb-1 block text-sm font-medium">ID de la venta</label>
-      <input pInputText class="w-full" type="number" min="1" name="saleId"
-        [(ngModel)]="saleId" required />
+      <label for="pay-sale" class="mb-1 block text-sm font-medium">Venta *</label>
+      <p-select
+        inputId="pay-sale"
+        [options]="pendientes()"
+        optionLabel="label"
+        optionValue="sale.id"
+        [ngModel]="saleId()"
+        (ngModelChange)="onSaleChange($event)"
+        name="saleId"
+        [filter]="true"
+        filterBy="label"
+        [placeholder]="pendientes().length ? 'Selecciona una venta con saldo pendiente' : 'No hay ventas con saldo pendiente'"
+        appendTo="body"
+        [fluid]="true"
+      />
+    </div>
+
+    @if (selectedBalance(); as b) {
+      <div class="grid grid-cols-3 gap-2 rounded-lg bg-slate-50 p-3 text-sm">
+        <div><div class="text-slate-500">Total</div><strong>{{ b.total | currency:'COP':'symbol-narrow':'1.0-0' }}</strong></div>
+        <div><div class="text-slate-500">Pagado</div><strong>{{ b.pagado | currency:'COP':'symbol-narrow':'1.0-0' }}</strong></div>
+        <div><div class="text-slate-500">Saldo</div><strong class="text-emerald-700">{{ b.saldo | currency:'COP':'symbol-narrow':'1.0-0' }}</strong></div>
+      </div>
+    }
+
+    <div>
+      <label for="pay-fecha" class="mb-1 block text-sm font-medium">Fecha</label>
+      <input id="pay-fecha" pInputText class="w-full" type="datetime-local" name="fecha" [(ngModel)]="fecha" />
     </div>
     <div>
-      <label class="mb-1 block text-sm font-medium">Fecha</label>
-      <input pInputText class="w-full" type="datetime-local" name="fecha" [(ngModel)]="fecha" />
+      <label for="pay-metodo" class="mb-1 block text-sm font-medium">Método de pago</label>
+      <p-select
+        inputId="pay-metodo"
+        [options]="metodos"
+        optionLabel="label"
+        optionValue="value"
+        [(ngModel)]="metodo"
+        name="metodo"
+        appendTo="body"
+        [fluid]="true"
+      />
     </div>
     <div>
-      <label class="mb-1 block text-sm font-medium">Método de pago</label>
-      <select class="w-full rounded-lg border border-slate-300 p-2.5" name="metodo" [(ngModel)]="metodo">
-        <option value="cash">Efectivo</option>
-        <option value="card">Tarjeta</option>
-        <option value="transfer">Transferencia</option>
-      </select>
-    </div>
-    <div>
-      <label class="mb-1 block text-sm font-medium">Monto</label>
-      <input pInputText class="w-full" type="number" min="0.01" step="0.01"
-        name="monto" [(ngModel)]="monto" required />
+      <label for="pay-monto" class="mb-1 block text-sm font-medium">Monto *</label>
+      <input id="pay-monto" pInputText class="w-full" type="number" min="0.01" step="0.01"
+        [max]="selectedBalance()?.saldo ?? null" name="monto" [(ngModel)]="monto" required />
     </div>
     <div class="flex justify-end gap-2">
       <button pButton type="button" severity="secondary" [outlined]="true" (click)="visible.set(false)">
         <span pButtonLabel>Cancelar</span>
       </button>
-      <button pButton type="submit" [loading]="saving()">
+      <button pButton type="submit" [loading]="saving()" [disabled]="!saleId()">
         <span pButtonLabel>Guardar pago</span>
       </button>
     </div>

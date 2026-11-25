@@ -16,6 +16,7 @@ import { PageHeader } from '../../../shared/ui/page-header/page-header';
 import { ProductTypeApi } from '../../product-types/product-type-api';
 import { ProductApi } from '../product-api';
 import { ProductForm } from '../product-form/product-form';
+import { toApiMessage } from '../../../core/utils/api-error';
 
 @Component({
   selector: 'app-product-list',
@@ -58,10 +59,6 @@ export class ProductList {
     return (id: number) => map.get(id) ?? `Tipo #${id}`;
   });
 
-  readonly lowStockCount = computed(
-    () => this.rows().filter((product) => product.quantity <= product.min_stock).length,
-  );
-
   readonly filteredRows = computed(() => {
     const query = this.search().trim().toLocaleLowerCase();
 
@@ -70,7 +67,7 @@ export class ProductList {
     }
 
     return this.rows().filter((product) =>
-      [product.name, product.brand, this.typeName()(product.product_type_id)].some((value) =>
+      [product.sku, product.name, this.typeName()(product.productTypeId)].some((value) =>
         value.toLocaleLowerCase().includes(query),
       ),
     );
@@ -159,36 +156,8 @@ export class ProductList {
     });
   }
 
-  stockSeverity(product: Product): 'danger' | 'warn' | 'success' {
-    if (product.quantity === 0) {
-      return 'danger';
-    }
-
-    if (product.quantity <= product.min_stock) {
-      return 'warn';
-    }
-
-    return 'success';
-  }
-
   private getErrorMessage(error: unknown): string {
-    if (typeof error === 'object' && error !== null && 'error' in error) {
-      const body = (
-        error as {
-          error?: { message?: string | string[] };
-        }
-      ).error;
-      const message = body?.message;
-
-      if (Array.isArray(message)) {
-        return message.join(', ');
-      }
-
-      if (typeof message === 'string') {
-        return message;
-      }
-    }
-
-    return 'No se pudo completar la operación. Verifica los datos y la conexión.';
+    return toApiMessage(error);
   }
+
 }

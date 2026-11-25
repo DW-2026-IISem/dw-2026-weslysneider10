@@ -98,20 +98,26 @@ export class ReturnService {
 
       const inventory = await this.inventoryRepository.findByBranchAndProduct(
         sale.branchId,
-        saleDetail.productId
+        saleDetail.productId,
+        transaction
       );
 
       if (inventory) {
-        await this.inventoryRepository.update(inventory, {
-          quantity: inventory.quantity + ret.cantidad,
-        });
+        await this.inventoryRepository.update(
+          inventory,
+          { quantity: inventory.quantity + ret.cantidad },
+          transaction
+        );
       } else {
-        await this.inventoryRepository.create({
-          branchId: sale.branchId,
-          productId: saleDetail.productId,
-          quantity: ret.cantidad,
-          minStock: 0,
-        });
+        await this.inventoryRepository.create(
+          {
+            branchId: sale.branchId,
+            productId: saleDetail.productId,
+            quantity: ret.cantidad,
+            minStock: 0,
+          },
+          transaction
+        );
       }
 
       await this.repository.update(ret, { estado: "approved" }, transaction);

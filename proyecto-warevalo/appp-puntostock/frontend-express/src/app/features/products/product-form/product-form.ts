@@ -38,12 +38,11 @@ export class ProductForm {
   ];
 
   readonly form = this.fb.group({
+    sku: ['', [Validators.required, Validators.maxLength(60)]],
     name: ['', [Validators.required, Validators.maxLength(120)]],
-    brand: ['', [Validators.required, Validators.maxLength(120)]],
+    description: ['', [Validators.maxLength(255)]],
     price: [0, [Validators.required, Validators.min(0.01)]],
-    min_stock: [0, [Validators.required, Validators.min(0)]],
-    quantity: [0, [Validators.required, Validators.min(0)]],
-    product_type_id: [null as number | null, Validators.required],
+    productTypeId: [null as number | null, Validators.required],
     status: ['active' as RecordStatus, Validators.required],
   });
 
@@ -51,12 +50,11 @@ export class ProductForm {
     effect(() => {
       const current = this.product();
       this.form.reset({
+        sku: current?.sku ?? '',
         name: current?.name ?? '',
-        brand: current?.brand ?? '',
+        description: current?.description ?? '',
         price: Number(current?.price ?? 0),
-        min_stock: current?.min_stock ?? 0,
-        quantity: current?.quantity ?? 0,
-        product_type_id: current?.product_type_id ?? null,
+        productTypeId: current?.productTypeId ?? null,
         status: current?.status ?? 'active',
       });
 
@@ -77,22 +75,21 @@ export class ProductForm {
     const value = this.form.getRawValue();
 
     if (
-      value.product_type_id === null ||
+      value.productTypeId === null ||
       !this.productTypes().some(
-        (type) => type.id === value.product_type_id && type.status === 'active',
+        (type) => type.id === value.productTypeId && type.status === 'active',
       )
     ) {
-      this.form.controls.product_type_id.markAsTouched();
+      this.form.controls.productTypeId.markAsTouched();
       return;
     }
 
     this.saved.emit({
+      sku: value.sku.trim(),
       name: value.name.trim(),
-      brand: value.brand.trim(),
+      description: value.description.trim() || null,
       price: Number(value.price),
-      min_stock: Number(value.min_stock),
-      quantity: Number(value.quantity),
-      product_type_id: value.product_type_id,
+      productTypeId: value.productTypeId,
       ...(this.product() ? {} : { status: value.status }),
     });
   }

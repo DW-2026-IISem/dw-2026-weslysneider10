@@ -1,6 +1,14 @@
 import { CreationAttributes, Transaction } from "sequelize";
 import { Sale } from "./sale.model";
 import { SaleDetail } from "./sale-detail.model";
+import { Product } from "../product/product.model";
+
+/** Items con el resumen del producto (sku y nombre) para mostrarlos en el frontend. */
+const ITEMS_WITH_PRODUCT = {
+  model: SaleDetail,
+  as: "items",
+  include: [{ model: Product, as: "product", attributes: ["id", "sku", "name"] }],
+};
 
 /**
  * Capa Repository del feature Sale.
@@ -21,7 +29,7 @@ export class SaleRepository {
 
     return Sale.findAll({
       where,
-      include: [{ model: SaleDetail, as: "items" }],
+      include: [ITEMS_WITH_PRODUCT],
       order: [["createdAt", "DESC"]],
     });
   }
@@ -29,7 +37,7 @@ export class SaleRepository {
   /** Una venta por PK, con sus items (o `null`). Acepta transacción. */
   public async findById(id: number, transaction?: Transaction): Promise<Sale | null> {
     return Sale.findByPk(id, {
-      include: [{ model: SaleDetail, as: "items" }],
+      include: [ITEMS_WITH_PRODUCT],
       transaction,
     });
   }

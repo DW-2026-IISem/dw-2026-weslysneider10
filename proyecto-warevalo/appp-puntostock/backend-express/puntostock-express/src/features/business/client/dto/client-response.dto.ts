@@ -1,15 +1,9 @@
 import { Client, ClientI } from "../client.model";
 
-/**
- * DTO público: excluye siempre la contraseña.
- */
-export type ClientResponseDto = Omit<ClientI, "password">;
+/** DTO público del cliente (la tabla ya no guarda credenciales). */
+export type ClientResponseDto = ClientI;
 
-/**
- * Convierte el modelo Sequelize en una respuesta segura.
- */
+/** Convierte el modelo Sequelize en un objeto plano para la respuesta. */
 export function toClientResponse(client: Client): ClientResponseDto {
-  const { password: _password, ...safeClient } = client.toJSON() as ClientI;
-
-  return safeClient;
+  return client.toJSON() as ClientI;
 }

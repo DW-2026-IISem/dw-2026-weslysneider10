@@ -1,0 +1,1 @@
+{"version":3,"file":"create-inventories-table.migration.js","sourceRoot":"","sources":["../../../../../../../src/features/business/inventory/infrastructure/persistence/migrations/create-inventories-table.migration.ts"],"names":[],"mappings":";;;AAAa,QAAA,+BAA+B,GAAG;IAC7C,IAAI,EAAE,0BAA0B;IAChC,KAAK,CAAC,EAAE;IAIR,CAAC;IACD,KAAK,CAAC,IAAI;IAEV,CAAC;CACF,CAAC"}

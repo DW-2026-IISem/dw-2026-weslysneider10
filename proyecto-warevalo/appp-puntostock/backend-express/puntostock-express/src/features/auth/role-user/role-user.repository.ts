@@ -32,13 +32,25 @@ export class RoleUserRepository {
     return RoleUser.findOne({ where: { user_id: userId, role_id: roleId } });
   }
 
+  /** Todas las asignaciones (activas e inactivas) de un usuario. */
+  public async findAllByUser(userId: number, transaction?: Transaction): Promise<RoleUser[]> {
+    return RoleUser.findAll({ where: { user_id: userId }, transaction });
+  }
+
   /** Inserta una asignación. */
-  public async create(data: CreationAttributes<RoleUser>): Promise<RoleUser> {
-    return RoleUser.create(data);
+  public async create(
+    data: CreationAttributes<RoleUser>,
+    transaction?: Transaction
+  ): Promise<RoleUser> {
+    return RoleUser.create(data, { transaction });
   }
 
   /** Persiste cambios sobre una instancia existente. */
-  public async update(roleUser: RoleUser, data: Partial<RoleUser>): Promise<RoleUser> {
-    return roleUser.update(data);
+  public async update(
+    roleUser: RoleUser,
+    data: Partial<RoleUser>,
+    transaction?: Transaction
+  ): Promise<RoleUser> {
+    return roleUser.update(data, { transaction });
   }
 }

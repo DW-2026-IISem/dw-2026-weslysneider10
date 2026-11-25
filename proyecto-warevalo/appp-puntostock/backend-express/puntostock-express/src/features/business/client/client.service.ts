@@ -6,7 +6,7 @@ import {
   toClientResponse,
 } from "./dto";
 import { ClientRepository } from "./client.repository";
-import { Client } from "./client.model";
+import { Client, ClientI } from "./client.model";
 import { AppError } from "../../../shared/errors/app-error";
 
 /**
@@ -36,11 +36,10 @@ export class ClientService {
   // ================== CREATE ==================
   public async create(body: CreateClientDto): Promise<ClientResponseDto> {
     const client = await this.repository.create({
-      name: body.name,
-      address: body.address,
-      phone: body.phone,
-      email: body.email,
-      password: body.password,
+      name: requireName(body.name),
+      address: optionalText(body.address),
+      phone: optionalText(body.phone),
+      email: optionalText(body.email),
       status: body.status ?? "active",
     });
     return toClientResponse(client);
@@ -50,18 +49,25 @@ export class ClientService {
   public async updatePut(id: number, body: UpdateClientDto): Promise<ClientResponseDto> {
     const client = await this.findOrFail(id);
     await this.repository.update(client, {
-      name: body.name,
-      address: body.address,
-      phone: body.phone,
-      email: body.email,
-      password: body.password ?? client.password,
+      name: requireName(body.name),
+      address: optionalText(body.address),
+      phone: optionalText(body.phone),
+      email: optionalText(body.email),
     });
     return toClientResponse(client);
   }
 
   public async updatePatch(id: number, body: PatchClientDto): Promise<ClientResponseDto> {
     const client = await this.findOrFail(id);
-    await this.repository.update(client, body);
+
+    // Solo los campos editables: status no se toca por PATCH (ver UpdateClientDto).
+    const data: Partial<ClientI> = {};
+    if (body.name !== undefined) data.name = requireName(body.name);
+    if (body.address !== undefined) data.address = optionalText(body.address);
+    if (body.phone !== undefined) data.phone = optionalText(body.phone);
+    if (body.email !== undefined) data.email = optionalText(body.email);
+
+    await this.repository.update(client, data);
     return toClientResponse(client);
   }
 
@@ -96,4 +102,20 @@ export class ClientService {
     }
     return client;
   }
+}
+
+/** name obligatorio y sin espacios sobrantes. */
+function requireName(value: unknown): string {
+  const name = typeof value === "string" ? value.trim() : "";
+  if (!name) {
+    throw new AppError(400, "name is required");
+  }
+  return name;
+}
+
+/** Campo opcional: cadena vacía o ausente -> NULL. */
+function optionalText(value: unknown): string | null {
+  if (typeof value !== "string") return null;
+  const trimmed = value.trim();
+  return trimmed === "" ? null : trimmed;
 }

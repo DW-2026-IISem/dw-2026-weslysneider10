@@ -1,11 +1,13 @@
 import type { RecordStatus } from './common.model';
 
+/** Cliente — refleja la tabla `clients` del backend (sin credenciales: un cliente no inicia sesión). */
 export interface Client {
   id?: number;
   name: string;
-  address: string;
-  phone: string;
-  email: string;
+  /** Opcionales: el backend guarda NULL cuando no se conocen. */
+  address: string | null;
+  phone: string | null;
+  email: string | null;
   status: RecordStatus;
   createdAt?: string;
   updatedAt?: string;

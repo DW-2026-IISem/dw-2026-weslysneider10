@@ -22,8 +22,8 @@ export class RoleRepository {
   }
 
   /** Inserta un rol. */
-  public async create(data: CreationAttributes<Role>): Promise<Role> {
-    return Role.create(data);
+  public async create(data: CreationAttributes<Role>, transaction?: Transaction): Promise<Role> {
+    return Role.create(data, { transaction });
   }
 
   /** Persiste cambios sobre una instancia existente. */

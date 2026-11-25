@@ -13,16 +13,32 @@ import { SelectModule } from 'primeng/select';
 import { TableModule } from 'primeng/table';
 
 import { environment } from '../../../../environments/environment';
+import { Branch } from '../../../core/models/branch.model';
 import { Client } from '../../../core/models/client.model';
+import { Inventory } from '../../../core/models/inventory.model';
 import { Product } from '../../../core/models/product.model';
 import { SaleCreatePayload } from '../../../core/models/sale.model';
 import { NotificationService } from '../../../core/services/notification.service';
+import { toApiMessage } from '../../../core/utils/api-error';
+import { BranchApi } from '../../branches/branch-api';
+import { InventoryApi } from '../../inventory/inventory-api';
 import { ProductApi } from '../../products/product-api';
 import { SaleApi } from '../sale-api';
 
+/** Producto vendible en la sucursal elegida: el producto + su existencia allí. */
+interface SellableProduct {
+  product: Product;
+  /** inventories.quantity de (branchId, productId). */
+  available: number;
+  /** Texto del selector: "SKU · Nombre (disp. N)". */
+  label: string;
+}
+
+/** valorUnitario es solo para mostrar el total estimado; el backend fija el precio real. */
 interface SaleLine {
   product: Product;
-  quantity: number;
+  cantidad: number;
+  valorUnitario: number;
 }
 
 @Component({
@@ -42,34 +58,52 @@ interface SaleLine {
 })
 export class SaleForm {
   private readonly http = inject(HttpClient);
+  private readonly branchApi = inject(BranchApi);
+  private readonly inventoryApi = inject(InventoryApi);
   private readonly productApi = inject(ProductApi);
   private readonly saleApi = inject(SaleApi);
   private readonly notification = inject(NotificationService);
   private readonly router = inject(Router);
 
   readonly clients = signal<Client[]>([]);
+  readonly branches = signal<Branch[]>([]);
   readonly products = signal<Product[]>([]);
+  /** Inventario de la sucursal seleccionada. */
+  readonly inventory = signal<Inventory[]>([]);
   readonly lines = signal<SaleLine[]>([]);
   readonly loading = signal(true);
+  readonly loadingStock = signal(false);
   readonly saving = signal(false);
   readonly error = signal('');
 
   clientId: number | null = null;
-  selectedProductId: number | null = null;
-  quantity = 1;
-  tax = 0;
-  discounts = 0;
+  readonly branchId = signal<number | null>(null);
+  readonly selectedProductId = signal<number | null>(null);
+  cantidad = 1;
+  impuestos = 0;
+
+  /** Productos activos con existencias > 0 en la sucursal elegida. */
+  readonly sellable = computed<SellableProduct[]>(() => {
+    const stock = new Map(this.inventory().map((row) => [row.productId, Number(row.quantity)]));
+
+    return this.products()
+      .filter((product) => product.status === 'active' && (stock.get(product.id) ?? 0) > 0)
+      .map((product) => {
+        const available = stock.get(product.id) ?? 0;
+        return {
+          product,
+          available,
+          label: `${product.sku} · ${product.name} (disp. ${available})`,
+        };
+      });
+  });
+
+  readonly selected = computed(() =>
+    this.sellable().find((item) => item.product.id === this.selectedProductId()),
+  );
 
   readonly subtotal = computed(() =>
-    this.lines().reduce((sum, line) => sum + Number(line.product.price) * line.quantity, 0),
-  );
-
-  readonly total = computed(() =>
-    Math.max(0, this.subtotal() + Number(this.tax || 0) - Number(this.discounts || 0)),
-  );
-
-  readonly selectedProduct = computed(() =>
-    this.products().find((product) => product.id === this.selectedProductId),
+    this.lines().reduce((sum, line) => sum + line.valorUnitario * line.cantidad, 0),
   );
 
   ngOnInit(): void {
@@ -81,57 +115,73 @@ export class SaleForm {
     this.error.set('');
 
     forkJoin({
-      clients: this.http.get<{ clients: Client[] } | Client[]>(`${environment.apiUrl}/clientes`),
+      clients: this.http.get<{ clients: Client[] }>(`${environment.apiUrl}/clientes`),
+      branches: this.branchApi.list(),
       products: this.productApi.list(),
     }).subscribe({
-      next: ({ clients, products }) => {
-        const clientList = Array.isArray(clients) ? clients : clients.clients;
-
-        this.clients.set(
-          clientList.filter((client) => String(client.status).toLowerCase() === 'active'),
-        );
-
-        this.products.set(
-          products.filter(
-            (product) =>
-              String(product.status).toLowerCase() === 'active' && Number(product.quantity) > 0,
-          ),
-        );
-
+      next: ({ clients, branches, products }) => {
+        this.clients.set((clients.clients ?? []).filter((client) => client.status === 'active'));
+        this.branches.set(branches.filter((branch) => branch.status === 'active'));
+        this.products.set(products);
         this.loading.set(false);
       },
-      error: () => {
-        this.error.set('No fue posible cargar los clientes y productos.');
+      error: (error: unknown) => {
+        this.error.set(`No fue posible cargar clientes, sucursales y productos. ${toApiMessage(error)}`);
         this.loading.set(false);
       },
     });
   }
 
-  addLine(): void {
-    const product = this.selectedProduct();
-    const qty = Number(this.quantity);
+  /**
+   * Al cambiar de sucursal se vacía la venta: el stock (y por tanto lo que
+   * se puede vender) depende de la sucursal.
+   */
+  onBranchChange(branchId: number | null): void {
+    this.branchId.set(branchId);
+    this.lines.set([]);
+    this.selectedProductId.set(null);
+    this.inventory.set([]);
 
-    if (!this.clientId) {
-      this.error.set('Selecciona un cliente antes de agregar productos.');
+    if (branchId === null) return;
+
+    this.loadingStock.set(true);
+    this.inventoryApi.list({ branchId }).subscribe({
+      next: (rows) => {
+        this.inventory.set(rows);
+        this.loadingStock.set(false);
+      },
+      error: (error: unknown) => {
+        this.error.set(`No fue posible cargar el inventario de la sucursal. ${toApiMessage(error)}`);
+        this.loadingStock.set(false);
+      },
+    });
+  }
+
+  addLine(): void {
+    const item = this.selected();
+    const cantidad = Number(this.cantidad);
+
+    if (!this.branchId()) {
+      this.error.set('Selecciona la sucursal antes de agregar productos.');
       return;
     }
 
-    if (!product) {
+    if (!item) {
       this.error.set('Selecciona un producto.');
       return;
     }
 
-    if (!Number.isInteger(qty) || qty < 1) {
+    if (!Number.isInteger(cantidad) || cantidad < 1) {
       this.error.set('La cantidad debe ser un número entero mayor que cero.');
       return;
     }
 
-    const existing = this.lines().find((line) => line.product.id === product.id);
-    const currentQuantity = existing?.quantity ?? 0;
+    const existing = this.lines().find((line) => line.product.id === item.product.id);
+    const yaAgregado = existing?.cantidad ?? 0;
 
-    if (currentQuantity + qty > Number(product.quantity)) {
+    if (yaAgregado + cantidad > item.available) {
       this.error.set(
-        `Stock insuficiente para ${product.name}. Disponible: ${Number(product.quantity) - currentQuantity}.`,
+        `Stock insuficiente para ${item.product.name} en esta sucursal. Disponible: ${item.available - yaAgregado}.`,
       );
       return;
     }
@@ -139,16 +189,21 @@ export class SaleForm {
     if (existing) {
       this.lines.update((lines) =>
         lines.map((line) =>
-          line.product.id === product.id ? { ...line, quantity: line.quantity + qty } : line,
+          line.product.id === item.product.id
+            ? { ...line, cantidad: line.cantidad + cantidad }
+            : line,
         ),
       );
     } else {
-      this.lines.update((lines) => [...lines, { product, quantity: qty }]);
+      this.lines.update((lines) => [
+        ...lines,
+        { product: item.product, cantidad, valorUnitario: Number(item.product.price) },
+      ]);
     }
 
     this.error.set('');
-    this.selectedProductId = null;
-    this.quantity = 1;
+    this.selectedProductId.set(null);
+    this.cantidad = 1;
   }
 
   removeLine(productId: number): void {
@@ -156,12 +211,23 @@ export class SaleForm {
   }
 
   lineTotal(line: SaleLine): number {
-    return Number(line.product.price) * line.quantity;
+    return line.valorUnitario * line.cantidad;
+  }
+
+  total(): number {
+    return this.subtotal() + Number(this.impuestos || 0);
   }
 
   save(): void {
+    const branchId = this.branchId();
+
     if (!this.clientId) {
       this.error.set('Selecciona un cliente.');
+      return;
+    }
+
+    if (!branchId) {
+      this.error.set('Selecciona una sucursal.');
       return;
     }
 
@@ -170,23 +236,18 @@ export class SaleForm {
       return;
     }
 
-    if (Number(this.tax) < 0 || Number(this.discounts) < 0) {
-      this.error.set('Los impuestos y descuentos no pueden ser negativos.');
-      return;
-    }
-
-    if (Number(this.discounts) > this.subtotal() + Number(this.tax)) {
-      this.error.set('El descuento no puede superar el subtotal más los impuestos.');
+    if (Number(this.impuestos) < 0) {
+      this.error.set('Los impuestos no pueden ser negativos.');
       return;
     }
 
     const payload: SaleCreatePayload = {
-      client_id: this.clientId,
-      tax: Number(this.tax || 0),
-      discounts: Number(this.discounts || 0),
+      clientId: this.clientId,
+      branchId,
+      impuestos: Number(this.impuestos || 0),
       items: this.lines().map((line) => ({
-        product_id: line.product.id,
-        quantity: line.quantity,
+        productId: line.product.id,
+        cantidad: line.cantidad,
       })),
     };
 
@@ -194,12 +255,12 @@ export class SaleForm {
     this.error.set('');
 
     this.saleApi.create(payload).subscribe({
-      next: () => {
-        this.notification.success('La venta fue registrada correctamente.');
+      next: (sale) => {
+        this.notification.success(`La venta #${sale.id} fue registrada correctamente.`);
         this.router.navigate(['/ventas']);
       },
-      error: (response) => {
-        this.error.set(response?.error?.message ?? 'No fue posible registrar la venta.');
+      error: (error: unknown) => {
+        this.error.set(toApiMessage(error));
         this.saving.set(false);
       },
     });

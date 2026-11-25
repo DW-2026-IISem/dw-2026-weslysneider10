@@ -1,0 +1,133 @@
+<div class="rounded-xl border border-slate-200 bg-white">
+  <!-- Barra de herramientas -->
+  <div class="flex flex-col gap-3 border-b border-slate-100 p-4 lg:flex-row lg:items-center">
+    <input
+      pInputText
+      class="lg:w-72"
+      placeholder="Buscar permiso, ruta o módulo..."
+      [value]="search()"
+      (input)="search.set($any($event.target).value)"
+    />
+    <p-select
+      class="lg:w-60"
+      [options]="moduleOptions()"
+      optionLabel="label"
+      optionValue="value"
+      [ngModel]="moduleFilter()"
+      (ngModelChange)="moduleFilter.set($event)"
+      appendTo="body"
+    />
+    <label class="flex cursor-pointer items-center gap-2 text-sm text-slate-700">
+      <input
+        type="checkbox"
+        class="h-4 w-4 accent-blue-600"
+        [checked]="onlyChecked()"
+        (change)="onlyChecked.set($any($event.target).checked)"
+      />
+      Solo marcados
+    </label>
+
+    <div class="flex items-center gap-3 lg:ml-auto">
+      <span class="text-sm text-slate-600">
+        <strong class="text-slate-900">{{ totalOn() }}</strong> de {{ activeResources().length }} permisos
+      </span>
+      @if (!disabled()) {
+        <button type="button" class="text-sm text-blue-600 hover:underline" (click)="toggleVisible(true)">
+          Marcar visibles
+        </button>
+        <button type="button" class="text-sm text-slate-500 hover:underline" (click)="toggleVisible(false)">
+          Quitar visibles
+        </button>
+      }
+    </div>
+  </div>
+
+  <!-- Tabla -->
+  <div class="max-h-[60vh] overflow-auto">
+    <table class="w-full min-w-[48rem] text-left text-sm">
+      <thead class="sticky top-0 z-10 bg-slate-50 text-xs uppercase tracking-wide text-slate-500">
+        <tr>
+          <th class="w-12 p-3"></th>
+          <th class="w-24 p-3">Método</th>
+          <th class="p-3">Permiso</th>
+          <th class="p-3">Ruta</th>
+          <th class="w-48 p-3">Origen</th>
+        </tr>
+      </thead>
+      <tbody>
+        @for (group of groups(); track group.key) {
+          <!-- Encabezado del módulo -->
+          <tr class="border-t border-slate-200 bg-slate-100/70">
+            <td class="p-3">
+              <input
+                type="checkbox"
+                class="h-4 w-4 accent-blue-600"
+                [attr.aria-label]="'Marcar todo ' + group.label"
+                [checked]="groupState(group) === 'all'"
+                [indeterminate]="groupState(group) === 'some'"
+                [disabled]="disabled()"
+                (change)="toggleGroup(group, $any($event.target).checked)"
+              />
+            </td>
+            <td class="p-3 font-semibold text-slate-800" colspan="3">
+              {{ group.label }}
+              <span class="ml-2 text-xs font-normal text-slate-500">{{ groupOn(group) }}/{{ group.rows.length }}</span>
+            </td>
+            <td class="p-3 text-right">
+              @if (!disabled()) {
+                <button type="button" class="text-xs text-blue-600 hover:underline" (click)="onlyReads(group)">
+                  Solo consulta
+                </button>
+              }
+            </td>
+          </tr>
+
+          @for (resource of group.rows; track resource.id) {
+            <tr
+              class="border-t border-slate-100"
+              [class]="isOn(resource) ? 'bg-blue-50/40' : 'hover:bg-slate-50'"
+            >
+              <td class="p-3 pl-6">
+                <input
+                  type="checkbox"
+                  class="h-4 w-4 accent-blue-600"
+                  [attr.aria-label]="resource.description || resource.path"
+                  [checked]="isOn(resource)"
+                  [disabled]="disabled() || isLocked(resource)"
+                  (change)="toggleRow(resource, $any($event.target).checked)"
+                />
+              </td>
+              <td class="p-3">
+                <span class="inline-block w-16 rounded px-2 py-0.5 text-center text-xs font-semibold {{ methodClass(resource.method) }}">
+                  {{ resource.method }}
+                </span>
+              </td>
+              <td class="p-3">{{ resource.description || '—' }}</td>
+              <td class="p-3 font-mono text-xs text-slate-500">{{ resource.path }}</td>
+              <td class="p-3 text-xs">
+                @if (isLocked(resource)) {
+                  <span class="inline-flex items-center gap-1 text-slate-500">
+                    <i class="pi pi-lock text-[10px]"></i>{{ origin(resource) }}
+                  </span>
+                } @else {
+                  <span [class]="isOn(resource) ? 'font-medium text-blue-700' : 'text-slate-400'">
+                    {{ origin(resource) }}
+                  </span>
+                }
+              </td>
+            </tr>
+          }
+        } @empty {
+          <tr>
+            <td colspan="5" class="p-8 text-center text-slate-500">Ningún permiso coincide con los filtros.</td>
+          </tr>
+        }
+      </tbody>
+    </table>
+  </div>
+
+  <div class="border-t border-slate-100 px-4 py-2 text-xs text-slate-500">
+    Mostrando {{ visibleCount() }} permiso(s).
+    <i class="pi pi-lock ml-2 text-[10px]"></i> = concedido por un rol (se cambia desde ese rol).
+  </div>
+</div>
